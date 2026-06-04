@@ -1,18 +1,50 @@
-import express from 'express' ;
-import type { Application, Request, Response } from 'express';
+import * as dotenv from 'dotenv';
+dotenv.config()
+
+import express from 'express';
 import cors from 'cors';
+import { authConfig } from 'oauth-entra-id/express';
 
-const app: Application = express();
-const PORT: number = 3000;
-
-app.use(cors);
-app.use(express.json());
+const port = process.env.PORT;
+console.log(`Server running on port ${port}`);
 
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello from TypeScript server!');
-});
+function bootstrap() {
+  const app = express();
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+  app.use(
+    cors({
+      origin: process.env.FRONTEND_URL,
+      methods: 'GET,POST,PUT,DELETE,OPTIONS',
+      allowedHeaders: ['Content-Type', 'Authorization'],
+      credentials: true, // <-- Allow credentials to be included in CORS requests
+    }),
+  );
+  // Other configurations...
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+  app.use(
+    authConfig({
+      azure: {
+        clientId: process.env.CLIENT_ID,
+        tenantId: process.env.TENANT_ID,
+        scopes: [process.env.AZURE_CLIENT_SCOPE],
+        clientSecret: process.env.AZURE_CLIENT_SECRET,
+      },
+      frontendUrl: process.env.FRONTEND_URL,
+      serverCallbackUrl: `${process.env.SERVER_URL}/auth/callback`,
+      encryptionKey: process.env.SECRET,
+    }),
+  );
+
+  // Here you can add your routes and other configurations
+
+  const port = Number(process.env.PORT) || 3000;
+  app.listen(port, () => {
+    console.log(`🚀 Express server running at http://localhost:${port}`);
+  });
+}
+
+bootstrap();
+
+
