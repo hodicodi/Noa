@@ -4,6 +4,8 @@ dotenv.config()
 import express from 'express';
 import cors from 'cors';
 import { authConfig } from 'oauth-entra-id/express';
+import pgPromise from 'pg-promise';
+
 
 const port = process.env.PORT;
 console.log(`Server running on port ${port}`);
@@ -37,13 +39,18 @@ function bootstrap() {
     }),
   );
 
-  // Here you can add your routes and other configurations
+  const pgp = pgPromise();
+  const db = pgp('postgres://postgres:postgres@localhost:5432/postgres');
+  console.log("db:"+ db.any('SELECT * FROM users'));
 
+  // Here you can add your routes and other configurations
   const port = Number(process.env.PORT) || 3000;
   app.listen(port, () => {
     console.log(`🚀 Express server running at http://localhost:${port}`);
   });
 }
+
+
 
 bootstrap();
 
