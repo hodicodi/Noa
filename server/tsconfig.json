@@ -1,16 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "module": "NodeNext",
+    "rootDir": "src",
+    "outDir": "dist",
+    "target": "ES2022",
+    "module": "NodeNext", // ⚠ NOT "CommonJS" – see §5.2
     "moduleResolution": "NodeNext",
-    "verbatimModuleSyntax": false,
-    "lib": ["es6", "dom"],
+    "types": ["node"],
     "strict": true,
     "esModuleInterop": true,
+    "verbatimModuleSyntax": true, // forces `import type` for types
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist"
   },
-  "include": ["../**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "include": ["src"],
 }
