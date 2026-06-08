@@ -11,8 +11,10 @@ export default function PlaylistCard({name, avaterPicture}: PlaylistOverviewProp
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 140 }}
-        image={avaterPicture}
-      />
+        component="img"
+        height="140"
+        image="https://images.unsplash.com/photo-1494548162494-384bba4ab999"
+        alt="Beautiful Sunrise"      />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {name}

@@ -19,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function HomePage() {
   return (
     <> 
-    <Box sx={{ display: 'flex', flexDirection: 'column', rowGap: 18 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', rowGap: 10 , borderRadius: 7}}>
         <LastPlaylists></LastPlaylists> 
         <SuggestedPlaylists></SuggestedPlaylists>
     </Box>

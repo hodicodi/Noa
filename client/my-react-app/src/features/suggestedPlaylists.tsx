@@ -1,8 +1,9 @@
-import React from 'react';
-import { styled } from '@mui/material/styles';
+import {
+  Box,
+  Typography,
+} from "@mui/material";import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 import PlaylistCard from '../components/playlistCard';
 
 
@@ -13,6 +14,9 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function SuggestedPlaylists() {
   return (
     <Box sx={{ width: '100%' }}>
+        <Typography color="primary" gutterBottom variant="h6" component="div" >
+            suggested playlists 
+        </Typography>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid size={6}>
           <Item>
