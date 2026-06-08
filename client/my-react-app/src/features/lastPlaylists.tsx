@@ -15,7 +15,7 @@ export default function LastPlaylists() {
   return (
     <Box sx={{ width: '100%'}}>
         <Typography color="primary" gutterBottom variant="h6" component="div" >
-            Recent listenings 
+            recent listenings 
         </Typography>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid size={6}>
