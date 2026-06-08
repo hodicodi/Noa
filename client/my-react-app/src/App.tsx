@@ -9,6 +9,8 @@ import {
 } from "@mui/material";
 import { useAuth } from "./auth/AuthContext";
 import { LoginPage } from "./auth/LoginPage";
+import MediaCard from "./components/lastPlaylistCard";
+import RowAndColumnSpacing from "./features/lastPlaylists";
 
 const theme = createTheme({ palette: { primary: { main: "#1976d2" } } });
 
@@ -38,7 +40,11 @@ function Shell() {
           Sign out
         </Button>
       </Box>
-      <Box sx={{ p: 2 }}>{/* your protected app goes here */}</Box>
+      <Box sx={{ p: 2 }}>{/* your protected app goes here */
+      <>
+        <RowAndColumnSpacing></RowAndColumnSpacing>
+      </>
+        }</Box>
     </Box>
   );
 }
