@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { PlaylistOverviewProps } from '../../../../shared/playlistOverview';
 
-export default function MediaCard({name, avaterPicture}: PlaylistOverviewProps) {
+export default function PlaylistCard({name, avaterPicture}: PlaylistOverviewProps) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia

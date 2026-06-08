@@ -6,11 +6,11 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { PlaylistOverviewProps } from '../../../../shared/playlistOverview';
 
-export default function MediaCard({name, avaterPicture}: PlaylistOverviewProps) {
+export default function LastPlaylistCard({name, avaterPicture}: PlaylistOverviewProps) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
-        sx={{ height: 50 }}
+        sx={{ height: 20 }}
         image={avaterPicture}
       />
       <CardContent>
