@@ -8,13 +8,13 @@ const app: SxProps = {
 };
 
 const loading: SxProps = {
-  minHeight: "100vh",
+  minHeight: "100%",
   display: "grid",
   placeItems: "center",
 };
 
 const backgound: SxProps = {
-  minHeight: "100vh",
+  minHeight: "100%",
   bgcolor: "#000000",
   width: { xs: "100%", sm: "30%" },
 };

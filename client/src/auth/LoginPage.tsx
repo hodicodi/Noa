@@ -12,7 +12,7 @@ export function LoginPage() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        minHeight: "100vh",
+        minHeight: "100%",
       }}
     >
       <Card sx={{ maxWidth: 420, width: "100%", boxShadow: 3 }}>

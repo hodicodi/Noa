@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import PlaylistCard from "./suggestedPlaylist";
-import playlistInfo from "../../../../../shared/hardCodedInfo";
+import playlistInfo from "../../../../shared/hardCodedInfo";
 import style from "./suggestedPlaylists.style";
 
 const Item = styled(Paper)(({ theme }) => ({}));

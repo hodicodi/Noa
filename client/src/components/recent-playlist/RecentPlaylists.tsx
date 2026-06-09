@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import playlistInfo from "../../../../../shared/hardCodedInfo";
+import playlistInfo from "../../../../shared/hardCodedInfo.ts";
 import LastPlaylistCard from "./lastPlaylist";
 
 const LastPlaylists: React.FC = () => {

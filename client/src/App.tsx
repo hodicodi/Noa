@@ -14,18 +14,19 @@ import { LoginPage } from "./auth/LoginPage";
 import HomePage from "./pages/home-page/HomaPage";
 import style from "./app.style";
 import { FC } from "react";
+import { AuthStatus } from "../../shared/Enums";
 
 const theme = createTheme({ palette: { primary: { main: "#ffffff" } } });
 
 const Shell: FC = () => {
   const { status, user, logout } = useAuth();
-  if (status === "loading")
+  if (status === AuthStatus.Loading)
     return (
       <Box sx={style.loading}>
         <CircularProgress />
       </Box>
     );
-  if (status === "unauthenticated") return <LoginPage />;
+  if (status === AuthStatus.Unauthenticated) return <LoginPage />;
 
   return (
     <Box sx={style.backgound}>
