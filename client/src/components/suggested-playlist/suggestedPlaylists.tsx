@@ -27,6 +27,7 @@ const SuggestedPlaylists: React.FC = () => {
               <PlaylistCard
                 name={playlist.name}
                 avaterPicture={playlist.avaterPicture}
+                artist={playlist.artist}
               />
             </Item>
           </Grid>

@@ -3,9 +3,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { PlaylistOverviewProps } from "../../../../shared/playlistProps.ts";
-import style from "./suggestedPlaylist.style.ts";
+import style from "./PlaylistPicture.Style.ts";
 
-const PlaylistCard: React.FC<PlaylistOverviewProps> = ({
+const PlaylistPicture: React.FC<PlaylistOverviewProps> = ({
   name,
   avaterPicture,
 }: PlaylistOverviewProps) => {
@@ -29,4 +29,4 @@ const PlaylistCard: React.FC<PlaylistOverviewProps> = ({
   );
 };
 
-export default PlaylistCard;
+export default PlaylistPicture;

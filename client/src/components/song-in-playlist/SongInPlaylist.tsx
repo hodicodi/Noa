@@ -5,42 +5,36 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { PlaylistOverviewProps } from "../../../../shared/playlistProps.ts";
-import style from "./recentPlaylist.style.ts";
+import style from "./SongInPlaylist.style.ts";
 
-const LastPlaylistCard: React.FC<PlaylistOverviewProps> = ({
+const SongInPlaylist: React.FC<PlaylistOverviewProps> = ({
   name,
   avaterPicture,
+  artist
 }: PlaylistOverviewProps) => {
   {
     return (
-      <Card sx={style.card}>
         <Box sx={style.box}>
-          <Grid container spacing={0}>
-            <Grid size={1.9}>
-              <CardMedia
-                sx={style.cardMedia}
-                component="img"
-                image={avaterPicture}
-                alt="Beautiful Sunrise"
-              />
-            </Grid>
-            <Grid size={10.1}>
-              <CardContent sx={style.cardContent}>
+                <Typography
+                  sx={style.playlistName}
+                  gutterBottom
+                  variant="h6"
+                  component="div"
+                >
+                  {name}
+                </Typography>
                 <Typography
                   sx={style.playlistName}
                   gutterBottom
                   variant="body2"
                   component="div"
+                  justify-contenr="flex-start"
                 >
-                  {name}
+                  {artist}
                 </Typography>
-              </CardContent>
-            </Grid>
-          </Grid>
         </Box>
-      </Card>
     );
   }
 };
 
-export default LastPlaylistCard;
+export default SongInPlaylist;

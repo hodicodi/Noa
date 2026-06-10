@@ -1,8 +1,7 @@
- type PlaylistOverviewProps = {
+export type PlaylistOverviewProps = {
   name: string;
   avaterPicture: string;
+  artist: string;
 };
-
-export default PlaylistOverviewProps;
 
 
