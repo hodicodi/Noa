@@ -1,32 +1,27 @@
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
+import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { PlaylistOverviewProps } from "../../../../shared/playlistProps.ts";
-import style from "./PlaylistPicture.Style.ts";
+import Styles from "./PlaylistPicture.style.ts";
+import { FC } from "react";
 
-const PlaylistPicture: React.FC<PlaylistOverviewProps> = ({
+const PlaylistPicture: FC<PlaylistOverviewProps> = ({
   name,
   avaterPicture,
-}: PlaylistOverviewProps) => {
-  return (
-    <Card sx={style.card}>
-      <CardContent sx={style.cardContent}>
-        <Typography
-          sx={style.playlistName}
-          gutterBottom
-          variant="h6"
-        >
-          {name}
-        </Typography>
-      </CardContent>
-      <CardMedia
-        sx={style.cardMedia}
-        component="img"
-        image={avaterPicture}
-      />
-    </Card>
-  );
-};
+  artist,
+}) => (
+  <Box sx={Styles.playlistMainPreview}>
+    <Box sx={Styles.imgContainer}>
+      <Box sx={Styles.playlistImg} component="img" src={avaterPicture} />
+    </Box>
+    <Box>
+      <Typography sx={Styles.playlistName} variant="h4">
+        {name}
+      </Typography>
+      <Typography sx={Styles.artistName} variant="body2">
+        {artist}
+      </Typography>
+    </Box>
+  </Box>
+);
 
 export default PlaylistPicture;

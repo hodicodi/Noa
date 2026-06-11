@@ -16,7 +16,6 @@ const PlaylistPage: FC = () => {
             avaterPicture={playlistInfo[0].avaterPicture}
             artist={playlistInfo[0].artist}
             />
-            
             <SongsInPlaylist/>
     </Box>
   );

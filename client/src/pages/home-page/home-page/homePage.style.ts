@@ -3,7 +3,7 @@ import { SxProps } from "@mui/material";
 const homePage: SxProps = {
     display: "flex",
     flexDirection: "column",
-    rowGap: 5,
+    rowGap: 7,
     borderRadius: 7
 }
 

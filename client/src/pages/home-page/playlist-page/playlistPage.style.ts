@@ -3,8 +3,9 @@ import { SxProps } from "@mui/material";
 const playlistPage: SxProps = {
     display: "flex",
     flexDirection: "column",
-    rowGap: 5,
-    borderRadius: 7
+    rowGap: 8,
+    borderRadius: 7, 
+    mt: 4
 }
 
 export default {playlistPage};

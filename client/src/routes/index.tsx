@@ -18,6 +18,5 @@ const router = createBrowserRouter([
     },
 ]);
 
-//             { path: PathConstants.ABOUT, element: <About /> },
 
 export default router;

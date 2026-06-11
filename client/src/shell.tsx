@@ -4,7 +4,6 @@ import {
 } from "@mui/material";
 import { FC } from "react";
 import { AuthStatus } from "../../shared/Enums";
-import App from "./App";
 import { useAuth } from "./auth/AuthContext";
 import { LoginPage } from "./auth/LoginPage";
 import style from "./layouts/rootLayout.style";
@@ -22,5 +21,4 @@ const Shell: FC = () => {
 };
 
 
-<App/>
 export default Shell;

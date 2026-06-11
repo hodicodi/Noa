@@ -6,14 +6,23 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { PlaylistOverviewProps } from "../../../../shared/playlistProps.ts";
 import style from "./recentPlaylist.style.ts";
+import { useNavigate } from "react-router-dom";
+import {FC} from "react";
 
-const LastPlaylistCard: React.FC<PlaylistOverviewProps> = ({
+const LastPlaylistCard: FC<PlaylistOverviewProps> = ({
   name,
   avaterPicture,
+  artist
 }: PlaylistOverviewProps) => {
+  const navigate = useNavigate();
+
+  const suggestedPlaylistClick = () => {
+    navigate("/playlist");
+  };
+
   {
     return (
-      <Card sx={style.card}>
+      <Card sx={style.card} onClick={suggestedPlaylistClick}>
         <Box sx={style.box}>
           <Grid container spacing={0}>
             <Grid size={1.9}>

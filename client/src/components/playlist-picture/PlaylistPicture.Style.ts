@@ -1,17 +1,28 @@
 import { SxProps } from "@mui/material";
 
-const card: SxProps = {
+const playlistMainPreview: SxProps = {
+  display: "flex",
+  flexDirection: "column",
+  rowGap: 4,
 };
 
-const cardMedia: SxProps = {
-  height: '100%',
-  width: '100%',
+const imgContainer: SxProps = {
+  display: "flex",
+  justifyContent: "center",
 };
 
-const cardContent: SxProps = {
-  position: "absolute",
-  backgroundColor: "rgba(83, 3, 79, 0.5)",
-  width: "28.4%",
+const playlistImg: SxProps = {
+  height: "60%",
+  width: "60%",
+};
+
+const icon: SxProps = {
+  height: "10%",
+  width: "10%",
+};
+
+const icons: SxProps = {
+  columnGap: 4,
 };
 
 const playlistName: SxProps = {
@@ -19,4 +30,17 @@ const playlistName: SxProps = {
   position: "top",
 };
 
-export default { card, cardMedia, cardContent, playlistName};
+const artistName: SxProps = {
+  color: "#ffffff",
+  position: "top",
+};
+
+export default {
+  playlistMainPreview,
+  imgContainer,
+  playlistImg,
+  playlistName,
+  artistName,
+  icon,
+  icons
+};

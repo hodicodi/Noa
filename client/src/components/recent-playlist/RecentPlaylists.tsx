@@ -2,8 +2,10 @@ import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import playlistInfo from "../../../../shared/hardCodedInfo.ts";
 import LastPlaylistCard from "./lastPlaylist";
+import {FC} from "react";
 
-const LastPlaylists: React.FC = () => {
+
+const LastPlaylists: FC = () => {
   return (
     <Box>
       <Typography color="primary" gutterBottom variant="h6" component="div">
@@ -15,6 +17,7 @@ const LastPlaylists: React.FC = () => {
             <LastPlaylistCard
               name={playlist.name}
               avaterPicture={playlist.avaterPicture}
+              artist={playlist.artist}
             ></LastPlaylistCard>
           </Grid>
         ))}
