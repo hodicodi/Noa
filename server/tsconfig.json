@@ -11,6 +11,11 @@
     "verbatimModuleSyntax": true, // forces `import type` for types
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
+    "allowImportingTsExtensions": true,
+    "noEmit": true
   },
   "include": ["src"],
 }

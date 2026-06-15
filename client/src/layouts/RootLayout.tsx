@@ -22,12 +22,6 @@ const RootLayout: FC = () => {
       <CssBaseline />
       <Paper sx={style.app}>
         <Box sx={style.backgound}>
-          <Box sx={style.userBar}>
-            <Typography color="primary">{user?.name ?? user?.email}</Typography>
-            <Button variant="outlined" onClick={logout}>
-              Sign out
-            </Button>
-          </Box>
           <Box sx={style.appContent}>
             <Outlet />
           </Box>

@@ -19,16 +19,10 @@ const backgound: SxProps = {
   width: { xs: "100%", sm: "30%" },
 };
 
-const userBar: SxProps = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  p: 2,
-  bgcolor: "rgba(83, 3, 79, 0.5)",
-};
+
 
 const appContent: SxProps = {
   p: 2,
 };
 
-export default { app, loading, backgound, userBar, appContent };
+export default { app, loading, backgound, appContent };

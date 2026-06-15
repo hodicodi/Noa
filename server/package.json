@@ -30,6 +30,8 @@
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "oauth-entra-id": "^4.2.0"
+    "oauth-entra-id": "^4.2.0",
+    "pg": "^8.21.0",
+    "typeorm": "^1.0.0"
   }
 }
