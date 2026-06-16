@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "src",
+    "rootDir": "../",
     "outDir": "dist",
     "target": "ES2022",
     "module": "NodeNext", // ⚠ NOT "CommonJS" – see §5.2
@@ -15,7 +15,10 @@
     "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false,
     "allowImportingTsExtensions": true,
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "@shared/*": ["../shared/*"]
+    },
   },
-  "include": ["src"],
+  "include": ["src", "migration","../shared/*"],
 }

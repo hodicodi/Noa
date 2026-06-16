@@ -11,7 +11,12 @@
     "prebuild": "npm run clean",
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:create": "cd migrations && typeorm migration:create migrations",
+    "migration:generate": "tsx ./node_modules/typeorm/cli.js migration:generate -d src/dataSource.ts ./migrations/generated",
+    "migration:revert": "tsx ./node_modules/typeorm/cli.js  migration:revert -d src/dataSource.ts",
+    "migration:run": "tsx ./node_modules/typeorm/cli.js migration:run -d src/dataSource.ts"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +28,7 @@
     "rimraf": "^5.0.0",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
     "tsx": "^4.0.0",
     "typescript": "^5.9.3"
   },
@@ -32,6 +38,7 @@
     "express": "^5.2.1",
     "oauth-entra-id": "^4.2.0",
     "pg": "^8.21.0",
-    "typeorm": "^1.0.0"
+    "typeorm": "^1.0.0",
+    "typeorm-naming-strategies": "^4.1.0"
   }
 }

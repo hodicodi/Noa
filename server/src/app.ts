@@ -1,3 +1,4 @@
+/*
 import * as dotenv from 'dotenv';
 import "reflect-metadata";
 import { DataSource } from "typeorm";
@@ -21,8 +22,10 @@ type: "postgres",
   username: process.env.DB_USER || "postgres",
   password: process.env.DB_PASSWORD || "password",
   database: process.env.DB_NAME || "my_database",
-  entities: [__dirname + "/entities/**/*{.js,.ts}"],
-  migrations: [__dirname + "/migrations/**/*{.js,.ts}"],
+
+
+  entities: [__dirname + "/entities/{.js,.ts}"],
+  migrations: [__dirname + "/migrations/={.js,.ts}"],
   synchronize: true, // Set false for production 
   });
 
@@ -69,3 +72,4 @@ AppDataSource.initialize().then(() => {
     console.log(`🚀 Express server running at http://localhost:${port}`);
   });
 });
+*/

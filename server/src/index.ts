@@ -1,13 +1,13 @@
-import "reflect-metadata";
+import cors from "cors";
+import dotenv from "dotenv";
 import express, {
   type Express,
+  type NextFunction,
   type Request,
   type Response,
-  type NextFunction,
   Router,
 } from "express";
-import dotenv from "dotenv";
-import cors from "cors";
+import { OAuthError } from "oauth-entra-id";
 import {
   authConfig,
   handleAuthentication,
@@ -15,26 +15,11 @@ import {
   handleLogout,
   protectRoute,
 } from "oauth-entra-id/express";
-import { OAuthError } from "oauth-entra-id";
-import { DataSource } from "typeorm";
-import { User } from './entities/user.entity.ts';
-import { UserService } from './Services/user.service.ts';
-import { UserController } from './Controllers/user.controller.ts';
-
-
+import "reflect-metadata";
+import { User } from "./user/user.entity.ts";
+import { UserService } from "./user/user.service.ts";
+import { AppDataSource } from "./dataSource.ts";
 dotenv.config();
-
-export const AppDataSource = new DataSource({
-type: "postgres",
-  host: process.env.DB_HOST || "localhost",
-  port: parseInt(process.env.DB_PORT || "5432"),
-  username: process.env.DB_USER || "postgres",
-  password: process.env.DB_PASSWORD || "postgres",
-  database: process.env.DB_NAME || "postgres",
-  entities: [User],
-  migrations: ["../migrations/**/*{.js,.ts}"],
-  synchronize: true, // Set false for production 
-  });
 
 const {
   PORT,
@@ -44,12 +29,9 @@ const {
   AZURE_CLIENT_SECRET = "",
   ENCRYPTION_KEY = "",
   FRONTEND_URL = "",
-  SERVER_URL = "",
 } = process.env;
 
-
 AppDataSource.initialize().then(() => {
-
   const app: Express = express();
   const port = Number(PORT) || 3000;
 
@@ -57,6 +39,8 @@ AppDataSource.initialize().then(() => {
   app.use(express.urlencoded({ extended: true }));
 
   // ⚠️ origin must be exact, and credentials MUST be true.
+
+  // Patch?
   app.use(
     cors({
       origin: "http://localhost:5173",
@@ -65,7 +49,7 @@ AppDataSource.initialize().then(() => {
       credentials: true,
     }),
   );
-  console.log("fronted url "+ FRONTEND_URL);
+  console.log("fronted url " + FRONTEND_URL);
 
   // Microsoft Entra ID configuration (singleton OAuthProvider attached to req)
   app.use(
@@ -76,7 +60,7 @@ AppDataSource.initialize().then(() => {
         scopes: [AZURE_CLIENT_SCOPE],
         clientSecret: AZURE_CLIENT_SECRET,
       },
-      frontendUrl:  "http://localhost:5173",
+      frontendUrl: "http://localhost:5173",
       serverCallbackUrl: `${"http://localhost:3000"}/auth/callback`,
       encryptionKey: ENCRYPTION_KEY,
     }),
@@ -109,14 +93,19 @@ AppDataSource.initialize().then(() => {
   });
   app.use("/protected", protectedRouter);
 
-
   // Db
+
+  // TODO: Only base router
+  /*
   const userRepository = AppDataSource.getRepository(User);
   const userService = new UserService(userRepository);
   const userController = new UserController(userService);
 
-  app.patch("/users/:id/toggle", (req, res) => userController.handleToggleIsAdministor(req, res));
+  app.patch("/users/:id/toggle", (req, res) =>
+    userController.handleToggleIsAdministor(req, res),
+  );
 
+  */
 
   // ----- Error handler (must be LAST) -----
   app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
@@ -128,6 +117,4 @@ AppDataSource.initialize().then(() => {
   });
 
   app.listen(port, () => console.log(`server: http://localhost:${port}`));
-})
-
-
+});

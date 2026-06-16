@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "paths": {
+      "zod": ["../client/node_modules/zod"],
+      "dayjs": ["../client/node_modules/dayjs"],
+      "dayjs/plugin/utc": ["../client/node_modules/dayjs/plugin/utc"],
+      "dayjs/plugin/timezone": ["../client/node_modules/dayjs/plugin/timezone"],
+      "casl/ability": ["../client/node_modules/@casl/ability"],
+      "jewish-date": ["../client/node_modules/jewish-date"]
+    },
+    "typeRoots": ["../server/node_modules/@types"],
+    "lib": ["ES2023"]
+    // other options
+  }
+}
