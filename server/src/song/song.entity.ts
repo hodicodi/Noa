@@ -1,3 +1,4 @@
+import { songType } from "@shared/src/enums/songType.enum.ts";
 import {
   Column,
   Entity,
@@ -5,9 +6,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Artist } from "../artist/artist.entity.ts";
-import { Playlist } from "../playlist/playlist.entity.ts";
-import {songType} from "@shared/src/enums/songType.enum.ts";
+import { Album } from "../album/album.entity.ts";
+import { PersonalPlaylist } from "../personalPlaylist/personalPlaylist.entity.ts";
 
 
 @Entity()
@@ -15,13 +15,13 @@ export class Song {
   @PrimaryGeneratedColumn('uuid')
   uuid: number;
 
-  @ManyToOne(() => Artist, (artist) => artist.songs, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "uuid" })
-  artist: Artist;
-
-  @ManyToOne(() => Playlist, (playlist) => playlist.songs, { onDelete: "CASCADE" })
+  @ManyToOne(() => PersonalPlaylist, (personalPlaylist) => personalPlaylist.songs, { onDelete: "CASCADE" })
   @JoinColumn()
-  playlist: Playlist;
+  personalPlaylist: PersonalPlaylist;
+
+  @ManyToOne(() => Album, (album) => album.songs, { onDelete: "CASCADE"})
+  @JoinColumn()
+  album: Album;
 
   @Column({ type: "timestamptz", default: () => "CURRENT_DATE" })
   publishDate: string;
@@ -38,4 +38,8 @@ export class Song {
     default: songType.ROCK,
   })
   genere: songType;
+
+  
+
+
 }

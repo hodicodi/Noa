@@ -19,8 +19,7 @@ export class Artist {
   })
   artistType: artistType;
 
-  @OneToMany(() => Song, (song) => song.artist)
-  songs: Song[];
+
 
   @OneToMany(() => Album, (album) => album.artist)
   albums: Album[];

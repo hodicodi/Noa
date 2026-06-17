@@ -1,16 +1,23 @@
+import { personalPlaylistType } from "@shared/src/enums/personalPlaylistType.enum.ts";
 import {
   Column,
   Entity,
   JoinColumn,
-  ManyToOne
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
 } from "typeorm";
-import { Playlist } from "../playlist/playlist.entity.ts";
+import { Song } from "../song/song.entity.ts";
 import { User } from "../user/user.entity.ts";
-import {personalPlaylistType} from "@shared/src/enums/personalPlaylistType.enum.ts"
-
 
 @Entity()
-export class PersonalPlaylist extends Playlist {
+export class PersonalPlaylist {
+  @PrimaryGeneratedColumn("uuid")
+  uuid: number;
+
+  @OneToMany(() => Song, (song) => song.personalPlaylist)
+  songs: Song[];
+
   // TODO make note virtual columns
 
   /*

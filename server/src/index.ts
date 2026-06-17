@@ -19,6 +19,7 @@ import "reflect-metadata";
 import { User } from "./user/user.entity.ts";
 import { UserService } from "./user/user.service.ts";
 import { AppDataSource } from "./dataSource.ts";
+import rootRouter from "./baseRouter.ts";
 dotenv.config();
 
 const {
@@ -106,6 +107,8 @@ AppDataSource.initialize().then(() => {
   );
 
   */
+
+  app.use("/", rootRouter);
 
   // ----- Error handler (must be LAST) -----
   app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {

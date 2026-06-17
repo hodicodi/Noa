@@ -13,5 +13,15 @@ artistRouter.get("/", async (req, res) => {
     }
 });
 
+artistRouter.post("/", async (req, res) => {
+    try {
+        const {artistType } = req.body;
+        const newArtist = await artistService.createArtist(artistType);
+        res.status(201).json(newArtist);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to create user" });
+    }
+});
+
 
 export default artistRouter;

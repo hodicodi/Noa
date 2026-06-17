@@ -15,7 +15,7 @@ const {
   DB_USER = "",
   DB_PASSWORD = "",
   DB_NAME = "",
-  DB_SCHEMA = "",
+  DB_SCHEMA ,
 } = process.env;
 
 export const AppDataSource = new DataSource({
@@ -25,8 +25,8 @@ export const AppDataSource = new DataSource({
   username: DB_USER || "postgres",
   password: DB_PASSWORD || "postgres",
   database: DB_NAME || "postgres",
-  schema: DB_SCHEMA,
-  entities: [User, Album, Artist, PersonalPlaylist, Song],
+  schema: DB_SCHEMA || "noa",
+  entities: [User, Song, Album, Artist, PersonalPlaylist],
   migrations: ["migrations/*"],
   synchronize: false, // Set false for production
   migrationsTransactionMode: "each",
