@@ -1,9 +1,9 @@
 ---
-name: 🚀 משימת פרוייקט / Task
-description: תבנית ליצירת משימה חדשה בפרוייקט
-title: '[TASK]: <נושא המשימה>'
-labels: 'TASK'
-assignees: ''
+name: "🚀 משימת פרוייקט / Task"
+description: "תבנית ליצירת משימה חדשה בפרוייקט"
+title: "[TASK]: נושא המשימה"
+labels: ["TASK"]
+assignees: []
 ---
 
 ## 📝 תיאור המשימה
