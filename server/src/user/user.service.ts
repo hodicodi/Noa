@@ -8,7 +8,7 @@ export class UserService {
         return await this.userRepository.find();
     }
 
-    async createUser(isAdministor: boolean) {
+    async createUser(isAdministor: boolean, userName: string) {
         const user = new User();
         user.isAdministor = isAdministor;
         return await this.userRepository.save(user);

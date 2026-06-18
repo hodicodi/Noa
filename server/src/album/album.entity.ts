@@ -4,7 +4,7 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
-  PrimaryGeneratedColumn,
+  PrimaryGeneratedColumn
 } from "typeorm";
 import { Artist } from "../artist/artist.entity.ts";
 import { Song } from "../song/song.entity.ts";
@@ -12,16 +12,13 @@ import { Song } from "../song/song.entity.ts";
 @Entity()
 export class Album {
   @PrimaryGeneratedColumn("uuid")
-  uuid: number;
+  albumUuid: number;
 
-  @OneToMany(() => Song, (song) => song.album)
+  @Column({ type: "text", unique: true })
+  albumName: string;
+
+  @OneToMany(() => Song, (song) => song.album, {cascade: true})
   songs: Song[];
-
-  @Column({ type: "int" })
-  views: number;
-
-  @Column({ type: "int" })
-  length: number;
 
   @ManyToOne(() => Artist, (artist) => artist.albums, { onDelete: "CASCADE" })
   @JoinColumn()

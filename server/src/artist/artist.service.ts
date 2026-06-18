@@ -9,9 +9,18 @@ export class ArtistService {
         return await this.artistRepository.find();
     }
 
-    async createArtist(artistType:  artistType) {
+    async getArtistById(artistUuid: number) {
+    return await this.artistRepository.findOneBy({artistUuid: artistUuid});
+    }
+
+    async getArtistByName(artistName: string) {
+    return await this.artistRepository.findOneBy({artistName: artistName});
+    }
+
+    async createArtist(artistType:  artistType, artistName: string) {
         const artist = new Artist();
         artist.artistType = artistType;
+        artist.artistName = artistName;
         return await this.artistRepository.save(artist);
     }
 }

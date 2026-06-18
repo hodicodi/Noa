@@ -3,6 +3,7 @@ import {
   Column,
   Entity,
   JoinColumn,
+  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
@@ -13,24 +14,13 @@ import { PersonalPlaylist } from "../personalPlaylist/personalPlaylist.entity.ts
 @Entity()
 export class Song {
   @PrimaryGeneratedColumn('uuid')
-  uuid: number;
+  songUuid: number;
 
-  @ManyToOne(() => PersonalPlaylist, (personalPlaylist) => personalPlaylist.songs, { onDelete: "CASCADE" })
-  @JoinColumn()
-  personalPlaylist: PersonalPlaylist;
-
-  @ManyToOne(() => Album, (album) => album.songs, { onDelete: "CASCADE"})
-  @JoinColumn()
-  album: Album;
+  @Column({ type: "text" })
+  songName: string;
 
   @Column({ type: "timestamptz", default: () => "CURRENT_DATE" })
   publishDate: string;
-
-  @Column({ type: "int" })
-  views: number;
-
-  @Column({ type: "int" })
-  length: number;
 
   @Column({
     type: "enum",
@@ -39,7 +29,10 @@ export class Song {
   })
   genere: songType;
 
-  
+  @ManyToMany(() => PersonalPlaylist, (personalPlaylist) => personalPlaylist.songs, { onDelete: "CASCADE" })
+  personalPlaylist: PersonalPlaylist;
 
-
+  @ManyToOne(() => Album, (album) => album.songs, { onDelete: "CASCADE", nullable: false })
+  @JoinColumn()
+  album: Album;
 }

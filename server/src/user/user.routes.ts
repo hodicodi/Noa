@@ -15,8 +15,8 @@ userRouter.get("/", async (req, res) => {
 
 userRouter.post("/", async (req, res) => {
     try {
-        const {isAdministor } = req.body;
-        const newUser = await userService.createUser(isAdministor);
+        const {isAdministor, userName } = req.body;
+        const newUser = await userService.createUser(isAdministor, userName);
         res.status(201).json(newUser);
     } catch (error) {
         res.status(500).json({ error: "Failed to create user" });

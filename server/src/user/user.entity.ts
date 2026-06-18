@@ -5,11 +5,14 @@ import { PersonalPlaylist } from "../personalPlaylist/personalPlaylist.entity.ts
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid') 
-  uuid: number;
+  userUuid: number;
 
   @Column({type: "boolean"})
   isAdministor: boolean;
 
+  @Column({ type: "text", unique: true })
+  userName: string;
+  
   toggleStatus() {
     this.isAdministor = !this.isAdministor;
   }

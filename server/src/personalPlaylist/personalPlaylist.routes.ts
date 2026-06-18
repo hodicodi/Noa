@@ -13,5 +13,24 @@ personalPlaylistRouter.get("/", async (req, res) => {
     }
 });
 
+personalPlaylistRouter.post("/create-empty-personal-playlist", async (req, res) => {
+    try {
+        const { personalPlaylistType } = req.body;
+        const newPersonalPlaylist = await personalPlaylistService.createPersonalPlaylist(personalPlaylistType);
+        res.status(201).json(newPersonalPlaylist);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to create personal playlist" });
+    }
+});
+
+personalPlaylistRouter.post("/personal-playlist-add-song", async (req, res) => {
+    try {
+        const { personalPlaylistUuid, song } = req.body;
+        const patchedPersonalPlaylist = await personalPlaylistService.addSongToPersonalPlaylist(personalPlaylistUuid, song);
+        res.status(201).json(patchedPersonalPlaylist);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to create personal playlist" });
+    }
+});
 
 export default personalPlaylistRouter;

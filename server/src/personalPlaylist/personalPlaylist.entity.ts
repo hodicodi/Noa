@@ -3,6 +3,8 @@ import {
   Column,
   Entity,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -13,23 +15,7 @@ import { User } from "../user/user.entity.ts";
 @Entity()
 export class PersonalPlaylist {
   @PrimaryGeneratedColumn("uuid")
-  uuid: number;
-
-  @OneToMany(() => Song, (song) => song.personalPlaylist)
-  songs: Song[];
-
-  // TODO make note virtual columns
-
-  /*
-  @Column({ type: "int" })
-  length: number;
-  */
-
-  @ManyToOne(() => User, (user) => user.personalPlaylists, {
-    onDelete: "CASCADE",
-  })
-  @JoinColumn()
-  user: User;
+  personalPlaylistUuid: number;
 
   @Column({
     type: "enum",
@@ -37,4 +23,14 @@ export class PersonalPlaylist {
     default: personalPlaylistType.HISTORY,
   })
   platlistType: personalPlaylistType;
+
+  @ManyToMany(() => Song, (song) => song.personalPlaylist)
+  @JoinTable()
+  songs: Song[];
+
+  @ManyToOne(() => User, (user) => user.personalPlaylists, {
+    onDelete: "CASCADE",
+  })
+  @JoinColumn()
+  user: User;
 }

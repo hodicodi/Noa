@@ -7,5 +7,4 @@ export class SongService {
     async getAllSongs() {
         return await this.songRepository.find();
     }
-
 }
