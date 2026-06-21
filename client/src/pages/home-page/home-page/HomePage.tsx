@@ -1,10 +1,14 @@
 import { Box } from "@mui/material";
-import SuggestedPlaylists from "../../../components/suggested-playlist/suggestedPlaylists";
-import style from "./homePage.style";
-import LastPlaylists from "../../../components/recent-playlist/recentPlaylists";
-import NavBar from "../../../components/nav-bar/navBar";
+import SuggestedPlaylists from "../../../components/suggested-playlist/SuggestedPlaylists.tsx";
+import style from "../home-page/homePage.style.ts";
+import LastPlaylists from "../../../components/recent-playlist/RecentPlaylists.tsx";
+import NavBar from "../../../components/nav-bar/navBar.tsx";
+import { albumService } from "../../../api/services/albumService.ts";
+import {GetAlbumRequest} from "@shared/src/types/album.types.ts";
+
 
 const HomePage: React.FC = () => {
+  console.log("recieved album: " + albumService.getAlbumByName({albumName:"Torah lesson"}));
   return (
     <>
       <NavBar />

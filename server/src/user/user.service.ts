@@ -11,6 +11,7 @@ export class UserService {
     async createUser(isAdministor: boolean, userName: string) {
         const user = new User();
         user.isAdministor = isAdministor;
+        user.userName = userName;
         return await this.userRepository.save(user);
     }
 }

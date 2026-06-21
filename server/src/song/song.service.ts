@@ -7,4 +7,8 @@ export class SongService {
     async getAllSongs() {
         return await this.songRepository.find();
     }
+
+    async getSongByName(songName: string) {
+        return await this.songRepository.findOneBy({songName: songName});
+    }
 }

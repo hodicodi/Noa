@@ -2,13 +2,26 @@ import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import PlaylistCard from "./suggestedPlaylist";
-import playlistInfo from "../../../../shared/hardCodedInfo";
-import style from "./suggestedPlaylists.style";
+import PlaylistCard from "./suggestedPlaylist.tsx";
+import playlistInfo from "@shared/hardCodedInfo.ts";
+import style from "./suggestedPlaylist.style.ts";
+import { AlbumResponseDTO } from "@shared/src/types/album.types.ts";
+import { useAlbum } from "../../hooks/useAlbum.ts";
 
 const Item = styled(Paper)(({ theme }) => ({}));
 
 const SuggestedPlaylists: React.FC = () => {
+
+    // Should be fetching from db off all latest albums
+  const {data:album, isLoading}  = useAlbum("Torah lesson");
+  const latestAlbums: AlbumResponseDTO[] =  Array(8).fill(album);
+  const avatarImage = "https://images.unsplash.com/photo-1494548162494-384bba4ab999";
+  
+
+  if (isLoading) {
+    return <></>;
+  }
+  
   return (
     <Box>
       <Typography
@@ -21,13 +34,13 @@ const SuggestedPlaylists: React.FC = () => {
         Suggested playlists
       </Typography>
       <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        {playlistInfo.map((playlist) => (
-          <Grid size={6} key={playlist.name}>
+        {latestAlbums?.map((album) => (
+          <Grid size={6} key={album.albumName}>
             <Item>
               <PlaylistCard
-                name={playlist.name}
-                avaterPicture={playlist.avaterPicture}
-                artist={playlist.artist}
+                name={album.albumName}
+                avaterPicture={avatarImage}
+                artist={album.artist.artistName}
               />
             </Item>
           </Grid>

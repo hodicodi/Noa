@@ -16,6 +16,7 @@ export class Artist {
   artistName: string;
 
   @Column({
+    enumName: "artist_type",
     type: "enum",
     enum: artistType, // Points to the TS enum
     default: artistType.SINGER,

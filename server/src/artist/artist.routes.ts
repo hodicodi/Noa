@@ -13,17 +13,17 @@ artistRouter.get("/", async (req, res) => {
     }
 });
 
-/*
-artistRouter.get("/", async (req, res) => {
+
+artistRouter.get("/artist-by-name", async (req, res) => {
     try {
-        const {}
-        const artist = await artistService.getArtistById();
-        res.json(albums);
+        const {artistName} = req.body;
+        const artist = await artistService.getArtistByName(artistName);
+        res.json(artist);
     } catch (error) {
-        res.status(500).json({ error: "Failed to fetch albums" });
+        res.status(500).json({ error: "Couldn't find artist" });
     }
 });
-*/
+
 
 artistRouter.post("/", async (req, res) => {
     try {

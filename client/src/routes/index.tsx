@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
-import PathConstants from "./pathConstants";
-import RootLayout from "../layouts/RootLayout";
+import PathConstants from "./pathConstants.ts";
+import RootLayout from "../layouts/RootLayout.tsx";
 
 // Pages
-import HomePage from "../pages/home-page/home-page/HomePage";
-import PlaylistPage from "../pages/home-page/playlist-page/playlistPage";
+import HomePage from "../pages/home-page/home-page/HomePage.tsx";
+import PlaylistPage from "../pages/home-page/playlist-page/PlaylistPage.tsx";
 
 
 const router = createBrowserRouter([

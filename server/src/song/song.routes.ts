@@ -13,5 +13,15 @@ songRouter.get("/", async (req, res) => {
     }
 });
 
+songRouter.get("/song-by-name", async (req, res) => {
+    try {
+        const {songName} = req.body;
+        const song = await songService.getSongByName(songName);
+        res.json(song);
+    } catch (error) {
+        res.status(500).json({ error: "Couldn't find song" });
+    }
+});
+
 
 export default songRouter;
