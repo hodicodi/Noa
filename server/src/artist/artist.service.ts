@@ -9,8 +9,14 @@ export class ArtistService {
         return await this.artistRepository.find();
     }
 
-    async getArtistById(artistUuid: number) {
-    return await this.artistRepository.findOneBy({artistUuid: artistUuid});
+    async getArtistById(artistUuid: string) {
+        const artist =  await this.artistRepository.findOneBy({artistUuid: artistUuid});
+
+        if(!artist) {
+            return null;
+        }
+
+        return artist;
     }
 
     async getArtistByName(artistName: string) {

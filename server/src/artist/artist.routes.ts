@@ -1,8 +1,23 @@
 import { Router } from "express";
 import { ArtistService } from "./artist.service.ts";
+import { Request, Response } from 'express';
+import { ArtistRes } from "@shared/src/types/artist.type.ts";
+import { StatusCodes, ReasonPhrases } from 'http-status-codes';
 
 const artistRouter = Router();
 const artistService = new ArtistService();
+
+
+artistRouter.get('/:artistUuid', async (req: Request<ArtistParams, unknown, unknown>, res: Response<ArtistRes>) => {
+    try {
+        const {artistUuid} = req.params;
+        const artist = await artistService.getArtistById(artistUuid);
+        res.json({artist});
+        
+    } catch (error) {
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+});
 
 artistRouter.get("/", async (req, res) => {
     try {
@@ -13,16 +28,9 @@ artistRouter.get("/", async (req, res) => {
     }
 });
 
-
-artistRouter.get("/artist-by-name", async (req, res) => {
-    try {
-        const {artistName} = req.body;
-        const artist = await artistService.getArtistByName(artistName);
-        res.json(artist);
-    } catch (error) {
-        res.status(500).json({ error: "Couldn't find artist" });
-    }
-});
+interface ArtistParams {
+  artistUuid: string;
+}
 
 
 artistRouter.post("/", async (req, res) => {

@@ -12,4 +12,7 @@ export default defineConfig({
       '@shared': path.resolve('../shared'), 
     },
   },
+  build: {
+    sourcemap: true
+  }
 })

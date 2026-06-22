@@ -14,7 +14,7 @@ const SuggestedPlaylists: React.FC = () => {
 
     // Should be fetching from db off all latest albums
   const {data:album, isLoading}  = useAlbum("Torah lesson");
-  const latestAlbums: AlbumResponseDTO[] =  Array(8).fill(album);
+  const latestAlbums: AlbumResponseDTO[] =  Array(8).fill(album) ?? [];
   const avatarImage = "https://images.unsplash.com/photo-1494548162494-384bba4ab999";
   
 
@@ -35,12 +35,12 @@ const SuggestedPlaylists: React.FC = () => {
       </Typography>
       <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         {latestAlbums?.map((album) => (
-          <Grid size={6} key={album.albumName}>
+          <Grid size={6} key={album.album.albumName}>
             <Item>
               <PlaylistCard
-                name={album.albumName}
+                name={album.album.albumName}
                 avaterPicture={avatarImage}
-                artist={album.artist.artistName}
+                artist={album.album.artist?.artistName}
               />
             </Item>
           </Grid>
@@ -51,3 +51,4 @@ const SuggestedPlaylists: React.FC = () => {
 };
 
 export default SuggestedPlaylists;
+  

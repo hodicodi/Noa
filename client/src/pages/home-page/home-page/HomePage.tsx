@@ -8,7 +8,7 @@ import {GetAlbumRequest} from "@shared/src/types/album.types.ts";
 
 
 const HomePage: React.FC = () => {
-  console.log("recieved album: " + albumService.getAlbumByName({albumName:"Torah lesson"}));
+  // console.log("recieved album: " + albumService.getAlbumByName({albumName:"Torah lesson"}));
   return (
     <>
       <NavBar />

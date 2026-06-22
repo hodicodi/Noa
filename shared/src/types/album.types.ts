@@ -6,12 +6,14 @@ export interface CreateAlbumRequest {
 }
 
 export interface GetAlbumRequest {
-  albumName: string;
+  albumUuid: string;
 }
 
 export interface AlbumResponseDTO {
-  albumName: string;
-  createdAt: string;
-  songs: SongResponseDTO;
-  artist: ArtistResponseDTO;
+  album: {
+    albumName: string;
+    createdAt: string;
+    songs: SongResponseDTO;
+    artist: ArtistResponseDTO;
+  }
 }

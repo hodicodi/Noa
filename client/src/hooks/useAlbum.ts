@@ -5,11 +5,11 @@ import {AlbumResponseDTO} from "@shared/src/types/album.types.ts";
 
 
 // Fetching a single record dynamically
-export const useAlbum = (albumName: string) => {
+export const useAlbum = (albumUuid: string) => {
   return useQuery<AlbumResponseDTO, Error>({
-    queryKey: ['albums', albumName],
-    queryFn: () => albumService.getAlbumByName({albumName:albumName}),
-    enabled: !!albumName, // Prevent automatic execution if id is missing
+    queryKey: ['albums', albumUuid],
+    queryFn: () => albumService.getAlbumById({albumUuid}),
+    enabled: !!albumUuid, // Prevent automatic execution if id is missing
   });
 };
 

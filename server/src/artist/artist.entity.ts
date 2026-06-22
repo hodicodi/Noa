@@ -10,7 +10,7 @@ import type test from "node:test";
 @Entity()
 export class Artist {
   @PrimaryGeneratedColumn("uuid")
-  artistUuid: number;
+  artistUuid: string;
 
   @Column({ type: "text" , unique: true})
   artistName: string;

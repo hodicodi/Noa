@@ -15,25 +15,19 @@ albumRouter.get("/", async (req, res) => {
     }
 });
 
-albumRouter.get("/album-by-id", async (req, res) => {
+/*
+albumRouter.get<unknown, unknown, unknown, GetAlbumRequest>("/album-by-id", async (req, res) => {
     try {
-        const {albumUuid} = req.body;
+        const {albumUuid} = req.params;
         const album = await albumService.getAlbumById(albumUuid);
         res.json(album);
-    } catch (error) {
+    } catch (ersror) {
         res.status(500).json({ error: "Failed to fetch album" });
     }
 });
 
-albumRouter.get<{}, any, any, GetAlbumRequest>("/album-by-name", async (req, res) => {
-    try {
-        const {albumName} = req.query;
-         const album = await albumService.getAlbumByName(albumName);
-        res.json({album});
-    } catch (error) {
-        res.status(500).json({ error: "Failed to fetch album" });
-    }
-});
+
+/*
 
 albumRouter.post("/create-album", async (req, res) => {
     try {
@@ -44,6 +38,8 @@ albumRouter.post("/create-album", async (req, res) => {
         res.status(500).json({ error: "Failed to create album" });
     }
 });
+
+*/
 
 
 albumRouter.patch("/add-song", async (req, res) => {

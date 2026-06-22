@@ -11,20 +11,17 @@ export class AlbumService {
     return await this.albumRepository.find();
   }
 
-  async getAlbumById(albumUuid: number) {
-    return await this.albumRepository.findOneBy({ albumUuid: albumUuid });
-  }
-
-  async getAlbumByName(albumName: string) {
-    return await this.albumRepository.findOne({
-      where: { albumName: albumName },
+  async getAlbumById(albumUuid: string) {
+    return await this.albumRepository.findOne({  
+      where: { albumUuid: albumUuid },
       relations: {
         songs: true,
         artist: true,
       },
-    });
+     });
   }
 
+  /*
   async createAlbum(albumName: string, artistUuid: number, songs: Song[]) {
     const album = new Album();
     const artist = await this.artistService.getArtistById(artistUuid);
@@ -33,10 +30,12 @@ export class AlbumService {
     album.songs = songs;
     return await this.albumRepository.save({ albumName, artist: artist!, songs });
   }
+  */
 
-  async addSongToAlbum(albumUuid: number, song: Song) {
+  async addSongToAlbum(albumUuid: string, song: Song) {
     const album = await this.getAlbumById(albumUuid);
     album?.songs.push(song);
     return await this.albumRepository.save(album!);
   }
 }
+

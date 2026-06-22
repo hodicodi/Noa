@@ -12,7 +12,7 @@ import { Song } from "../song/song.entity.ts";
 @Entity()
 export class Album {
   @PrimaryGeneratedColumn("uuid")
-  albumUuid: number;
+  albumUuid: string;
 
   @Column({ type: "text", unique: true })
   albumName: string;
