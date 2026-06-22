@@ -5,20 +5,17 @@ import { PersonalPlaylist } from "../personalPlaylist/personalPlaylist.entity.ts
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid') 
-  userUuid: number;
+  uuid: string;
 
   @Column({type: "boolean"})
   isAdministor: boolean;
 
-  @Column({ type: "text", unique: true })
+  @Column({ type: "varchar", unique: true })
   userName: string;
+
+  @Column({ type: "varchar", unique: true })
+  id: string;
   
-  toggleStatus() {
-    this.isAdministor = !this.isAdministor;
-  }
-
   @OneToMany(() => PersonalPlaylist, (personalPlaylist) => personalPlaylist.user)
-  personalPlaylists: PersonalPlaylist[];
-
-
+  personalPlaylists: PersonalPlaylist[];  
 }

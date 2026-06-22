@@ -14,10 +14,10 @@ import { PersonalPlaylist } from "../personalPlaylist/personalPlaylist.entity.ts
 @Entity()
 export class Song {
   @PrimaryGeneratedColumn('uuid')
-  songUuid: number;
+  uuid: string;
 
-  @Column({ type: "text" })
-  songName: string;
+  @Column({ type: "varchar" })
+  name: string;
 
   @Column({ type: "timestamptz", default: () => "CURRENT_DATE" })
   publishDate: string;
@@ -27,7 +27,7 @@ export class Song {
     enum: songType, // Points to the TS enum
     default: songType.ROCK,
   })
-  genere: songType;
+  genre: songType;
 
   @ManyToMany(() => PersonalPlaylist, (personalPlaylist) => personalPlaylist.songs, { onDelete: "CASCADE" })
   personalPlaylist: PersonalPlaylist;

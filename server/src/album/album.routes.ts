@@ -1,45 +1,44 @@
-import { Router } from "express";
-import { AlbumService } from "./album.service.ts";
-import { GetAlbumRequest } from "@shared/src/types/album.types.ts";
+import { Request, Response, Router } from "express";
+import { albumService } from "./album.service.ts";
+import { AlbumParams, AlbumRes, AlbumsRes, SaveAlbumReqBody } from "@shared/src/types/album.types.ts";
+import { StatusCodes } from "http-status-codes";
 
 
 const albumRouter = Router();
-const albumService = new AlbumService();
 
-albumRouter.get("/", async (req, res) => {
+albumRouter.get('/:uuid', async (req: Request<AlbumParams, unknown, unknown>, res: Response<AlbumRes>) => {
+    try {
+        const {uuid} = req.params;
+        const album = await albumService.getAlbumById(uuid);
+        res.json({album});
+        
+    } catch (error) {
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+});
+
+
+albumRouter.get("/", async (req: Request<AlbumParams, unknown, unknown>, res: Response<AlbumsRes>) => {
     try {
         const albums = await albumService.getAllAlbum();
-        res.json(albums);
+        res.json({albums});
     } catch (error) {
-        res.status(500).json({ error: "Failed to fetch albums" });
-    }
-});
-
-/*
-albumRouter.get<unknown, unknown, unknown, GetAlbumRequest>("/album-by-id", async (req, res) => {
-    try {
-        const {albumUuid} = req.params;
-        const album = await albumService.getAlbumById(albumUuid);
-        res.json(album);
-    } catch (ersror) {
-        res.status(500).json({ error: "Failed to fetch album" });
+        res.status(500);
     }
 });
 
 
-/*
-
-albumRouter.post("/create-album", async (req, res) => {
+albumRouter.post("/create-album", async (req: Request<unknown, unknown, SaveAlbumReqBody>, res: Response) => {
     try {
-        const { albumName, artistUuid,  songs} = req.body;
-        const newAlbum = await albumService.createAlbum(albumName, artistUuid, songs);
-        res.status(201).json(newAlbum);
+        const { name, artist,  songs} = req.body;
+        const newAlbum = await albumService.createAlbum(name, songs, artist);
+        res.status(201).json({newAlbum});
     } catch (error) {
         res.status(500).json({ error: "Failed to create album" });
     }
 });
 
-*/
+
 
 
 albumRouter.patch("/add-song", async (req, res) => {

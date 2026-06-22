@@ -12,10 +12,10 @@ import { Song } from "../song/song.entity.ts";
 @Entity()
 export class Album {
   @PrimaryGeneratedColumn("uuid")
-  albumUuid: string;
+  uuid: string;
 
-  @Column({ type: "text", unique: true })
-  albumName: string;
+  @Column({ type: "varchar", unique: true })
+  name: string;
 
   @OneToMany(() => Song, (song) => song.album, {cascade: true})
   songs: Song[];

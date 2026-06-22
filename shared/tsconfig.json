@@ -10,7 +10,9 @@
       "jewish-date": ["../client/node_modules/jewish-date"]
     },
     "typeRoots": ["../server/node_modules/@types"],
-    "lib": ["ES2023"]
+    "lib": ["ES2023"],
+    "noEmit": true,
+    "allowImportingTsExtensions":true,
     // other options
   }
 }

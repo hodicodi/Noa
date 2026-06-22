@@ -1,8 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import { Song } from "../song/song.entity.ts";
-import { Album } from "../album/album.entity.ts";
 import { artistType } from "@shared/src/enums/artistType.enum.ts";
-import type test from "node:test";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Album } from "../album/album.entity.ts";
 
 // TODO: Only first letter upper case
 // TODO: Different enum file, folder
@@ -10,10 +8,10 @@ import type test from "node:test";
 @Entity()
 export class Artist {
   @PrimaryGeneratedColumn("uuid")
-  artistUuid: string;
+  uuid: string;
 
-  @Column({ type: "text" , unique: true})
-  artistName: string;
+  @Column({ type: "varchar" , unique: true})
+  name: string;
 
   @Column({
     enumName: "artist_type",
@@ -21,7 +19,7 @@ export class Artist {
     enum: artistType, // Points to the TS enum
     default: artistType.SINGER,
   })
-  artistType: artistType;
+  type: artistType;
 
   @OneToMany(() => Album, (album) => album.artist)
   albums: Album[];

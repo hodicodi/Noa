@@ -1,11 +1,26 @@
 import { artistType } from "../enums/artistType.enum";
+import { Album } from "./album.types";
 
 export type Artist = {
-  artistUuid: string
-  artistName: string;
-  artistType: artistType;
+  uuid: string
+  name: string;
+  type: artistType;
+  albums: Album[];
 }
 
 export type ArtistRes = {
   artist: Artist | null
+}
+
+export type ArtistParams = {
+  uuid: string;
+}
+
+export type ArtistsRes = {
+  artists: Artist[] | null
+}
+
+export type SaveArtistReqBody = {
+  name: string;
+  type: artistType;
 }

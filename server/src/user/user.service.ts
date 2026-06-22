@@ -1,17 +1,19 @@
 import { AppDataSource } from "../dataSource.ts";
 import { User } from "./user.entity.ts";
 
-export class UserService {
-    private userRepository = AppDataSource.getRepository(User);
+const userRepository = AppDataSource.getRepository(User);
+
+export const userService = {
 
     async getAllUsers() {
-        return await this.userRepository.find();
-    }
+        return await userRepository.find();
+    },
 
-    async createUser(isAdministor: boolean, userName: string) {
+    async createUser(isAdministor: boolean, userName: string, id: string) {
         const user = new User();
         user.isAdministor = isAdministor;
         user.userName = userName;
-        return await this.userRepository.save(user);
+        user.id = id
+        return await userRepository.save(user);
     }
 }

@@ -15,14 +15,14 @@ import { User } from "../user/user.entity.ts";
 @Entity()
 export class PersonalPlaylist {
   @PrimaryGeneratedColumn("uuid")
-  personalPlaylistUuid: number;
+  uuid: string;
 
   @Column({
     type: "enum",
     enum: personalPlaylistType, // Points to the TS enum
     default: personalPlaylistType.HISTORY,
   })
-  platlistType: personalPlaylistType;
+  type: personalPlaylistType;
 
   @ManyToMany(() => Song, (song) => song.personalPlaylist)
   @JoinTable()

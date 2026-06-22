@@ -1,25 +1,25 @@
-import { Router } from "express";
-import { UserService } from "./user.service.ts";
+import { Request, Response, Router } from "express";
+import { userService, } from "./user.service.ts";
+import { SaveUserReqBody, UserRes, UsersRes } from "@shared/src/types/user.type.ts";
 
 const userRouter = Router();
-const userService = new UserService();
 
-userRouter.get("/", async (req, res) => {
+userRouter.get("/", async (req: Request<unknown, unknown, unknown>, res: Response<UsersRes>) => {
     try {
         const users = await userService.getAllUsers();
-        res.json(users);
+        res.json({users});
     } catch (error) {
-        res.status(500).json({ error: "Failed to fetch users" });
+        res.status(500);
     }
 });
 
-userRouter.post("/", async (req, res) => {
+userRouter.post("/", async (req: Request<unknown, unknown, SaveUserReqBody>, res: Response) => {
     try {
-        const {isAdministor, userName } = req.body;
-        const newUser = await userService.createUser(isAdministor, userName);
-        res.status(201).json(newUser);
+        const { isAdministor, userName, id} = req.body;
+        const newUser = await userService.createUser(isAdministor, userName, id);
+        res.status(201).json({newUser});
     } catch (error) {
-        res.status(500).json({ error: "Failed to create user" });
+        res.status(500);
     }
 });
 

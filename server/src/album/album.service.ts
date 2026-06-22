@@ -1,41 +1,42 @@
-import { ArtistService } from "../artist/artist.service.ts";
+import { Artist } from "../artist/artist.entity.ts";
+import { artistService } from "../artist/artist.service.ts";
 import { AppDataSource } from "../dataSource.ts";
 import { Song } from "../song/song.entity.ts";
 import { Album } from "./album.entity.ts";
 
-export class AlbumService {
-  private albumRepository = AppDataSource.getRepository(Album);
-  artistService = new ArtistService();
+const albumRepository = AppDataSource.getRepository(Album);
+
+
+export const albumService =  {
 
   async getAllAlbum() {
-    return await this.albumRepository.find();
-  }
+    return await albumRepository.find();
+  },
 
-  async getAlbumById(albumUuid: string) {
-    return await this.albumRepository.findOne({  
-      where: { albumUuid: albumUuid },
+  async getAlbumById(uuid: string) {
+    return await albumRepository.findOne({  
+      where: { uuid: uuid },
       relations: {
         songs: true,
         artist: true,
       },
      });
-  }
+  },
 
-  /*
-  async createAlbum(albumName: string, artistUuid: number, songs: Song[]) {
+  
+  async createAlbum(name: string,  songs: Song[],  artist: Artist) {
     const album = new Album();
-    const artist = await this.artistService.getArtistById(artistUuid);
-    album.albumName = albumName;
+    album.name = name;
     album.artist = artist!;
     album.songs = songs;
-    return await this.albumRepository.save({ albumName, artist: artist!, songs });
-  }
-  */
+    return await albumRepository.save(album);
+  },
+  
 
   async addSongToAlbum(albumUuid: string, song: Song) {
     const album = await this.getAlbumById(albumUuid);
     album?.songs.push(song);
-    return await this.albumRepository.save(album!);
+    return await albumRepository.save(album!);
   }
 }
 

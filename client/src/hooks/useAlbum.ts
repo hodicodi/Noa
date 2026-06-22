@@ -1,12 +1,12 @@
 // hooks/useTodos.ts
 import { useQuery } from '@tanstack/react-query';
 import { albumService } from '../api/services/albumService.ts';
-import {AlbumResponseDTO} from "@shared/src/types/album.types.ts";
+import {AlbumRes} from "@shared/src/types/album.types.ts";
 
 
 // Fetching a single record dynamically
 export const useAlbum = (albumUuid: string) => {
-  return useQuery<AlbumResponseDTO, Error>({
+  return useQuery<AlbumRes, Error>({
     queryKey: ['albums', albumUuid],
     queryFn: () => albumService.getAlbumById({albumUuid}),
     enabled: !!albumUuid, // Prevent automatic execution if id is missing
