@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   Entity,
   JoinColumn,
@@ -10,7 +11,7 @@ import { Artist } from "../artist/artist.entity.ts";
 import { Song } from "../song/song.entity.ts";
 
 @Entity()
-export class Album {
+export class Album extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   uuid: string;
 

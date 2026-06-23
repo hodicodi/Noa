@@ -3,27 +3,26 @@ import { AppDataSource } from "../dataSource.ts";
 import type { Song } from "../song/song.entity.ts";
 import { PersonalPlaylist } from "./personalPlaylist.entity.ts";
 
-export class PersonalPlaylistService {
-  private personalPlaylistRepository =
-    AppDataSource.getRepository(PersonalPlaylist);
+
+export const PersonalPlaylistService  = {
 
   async getAllPersonalPlaylist() {
-    return await this.personalPlaylistRepository.find();
-  }
+    return await PersonalPlaylist.find();
+  },
 
-  async getPersonalPlaylistById(personalPlaylistUuid: number) {
-    return await this.personalPlaylistRepository.findOneBy({personalPlaylistUuid: personalPlaylistUuid});
-  }
+  async getPersonalPlaylistById(uuid: string) {
+    return await PersonalPlaylist.findOneBy({uuid: uuid});
+  },
 
-  async createPersonalPlaylist(platlistType: personalPlaylistType) {
+  async createPersonalPlaylist(type: personalPlaylistType) {
       const personal_playlist = new PersonalPlaylist();
-      personal_playlist.platlistType = platlistType;
-      return await this.personalPlaylistRepository.save(personal_playlist);
-  }
+      personal_playlist.type = type;
+      return await PersonalPlaylist.save(personal_playlist);
+  },
   
-  async addSongToPersonalPlaylist(personalPlaylistUuid: number, song: Song) {
-      const personalPlaylist = await this.getPersonalPlaylistById(personalPlaylistUuid);
+  async addSongToPersonalPlaylist(uuid: string, song: Song) {
+      const personalPlaylist = await this.getPersonalPlaylistById(uuid);
       personalPlaylist?.songs.push(song);
-      return await this.personalPlaylistRepository.save(personalPlaylist!);
+      return await PersonalPlaylist.save(personalPlaylist!);
     }  
 }

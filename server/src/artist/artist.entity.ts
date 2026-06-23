@@ -1,12 +1,12 @@
 import { artistType } from "@shared/src/enums/artistType.enum.ts";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Album } from "../album/album.entity.ts";
 
 // TODO: Only first letter upper case
 // TODO: Different enum file, folder
 
 @Entity()
-export class Artist {
+export class Artist extends BaseEntity{
   @PrimaryGeneratedColumn("uuid")
   uuid: string;
 

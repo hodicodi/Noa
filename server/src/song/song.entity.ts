@@ -1,5 +1,6 @@
 import { songType } from "@shared/src/enums/songType.enum.ts";
 import {
+  BaseEntity,
   Column,
   Entity,
   JoinColumn,
@@ -12,7 +13,7 @@ import { PersonalPlaylist } from "../personalPlaylist/personalPlaylist.entity.ts
 
 
 @Entity()
-export class Song {
+export class Song extends BaseEntity{
   @PrimaryGeneratedColumn('uuid')
   uuid: string;
 

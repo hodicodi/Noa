@@ -1,12 +1,13 @@
 import {
-    Box,
-    CircularProgress
+  Box,
+  CircularProgress
 } from "@mui/material";
-import { FC } from "react";
 import { AuthStatus } from "@shared/Enums.ts";
+import { FC } from "react";
+import App from "./App.tsx";
 import { useAuth } from "./auth/AuthContext.tsx";
 import { LoginPage } from "./auth/LoginPage.tsx";
-import style from "./layouts/rootLayout.style.ts"
+import style from "./layouts/rootLayout.style.ts";
 
 
 const Shell: FC = () => {
@@ -18,6 +19,10 @@ const Shell: FC = () => {
       </Box>
     );
   if (status === AuthStatus.Unauthenticated) return <LoginPage />;
+
+  return (
+    <App/>
+  )
 };
 
 

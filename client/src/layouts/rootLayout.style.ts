@@ -20,9 +20,4 @@ const backgound: SxProps = {
 };
 
 
-
-const appContent: SxProps = {
-  p: 2,
-};
-
-export default { app, loading, backgound, appContent };
+export default { app, loading, backgound };

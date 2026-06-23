@@ -1,8 +1,8 @@
 import { Button, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { FC } from "react";
-import { useAuth } from "../../auth/AuthContext";
-import Styles from "./navBar.style";
+import { useAuth } from "../../auth/AuthContext.tsx";
+import Styles from "./navBar.style.ts"
 
 const NavBar: FC = () => {
   const { status, user, logout } = useAuth();

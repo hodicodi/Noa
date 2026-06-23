@@ -13,7 +13,6 @@ const LastPlaylists: FC = () => {
   const latestAlbums: AlbumRes[] = Array(8).fill(album) ?? [];
   const avatarImage =
     "https://images.unsplash.com/photo-1494548162494-384bba4ab999";
-    console.log(latestAlbums)
 
   if (isLoading) {
     return <></>;

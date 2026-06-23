@@ -15,7 +15,7 @@ const cardMedia: SxProps = {
 };
 
 const cardContent: SxProps = {
-  backgroundColor: "rgba(83, 3, 79, 0.5)",
+  backgroundColor: "#47025c",
   height: 40,
   alignItems: "center",
 };

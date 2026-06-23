@@ -16,10 +16,8 @@ import {
   protectRoute,
 } from "oauth-entra-id/express";
 import "reflect-metadata";
-import { User } from "./user/user.entity.ts";
-import { UserService } from "./user/user.service.ts";
-import { AppDataSource } from "./dataSource.ts";
 import rootRouter from "./baseRouter.ts";
+import { AppDataSource } from "./dataSource.ts";
 dotenv.config();
 
 const {

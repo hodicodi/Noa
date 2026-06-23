@@ -1,30 +1,27 @@
 import type { artistType } from "@shared/src/enums/artistType.enum.ts";
-import { AppDataSource } from "../dataSource.ts";
 import { Artist } from "./artist.entity.ts";
-
-const artistRepository = AppDataSource.getRepository(Artist);
 
 
 export const artistService =  {
 
     async getAllArtist() {
-        return await artistRepository.find();
+        return await Artist.find();
     }, 
 
     async getArtistById(uuid: string) {
-        const artist =  await artistRepository.findOneBy({uuid: uuid});
+        const artist =  await Artist.findOneBy({uuid: uuid});
 
         return artist;
     },
 
     async getArtistByName(artistName: string) {
-    return await artistRepository.findOneBy({name: artistName});
+    return await Artist.findOneBy({name: artistName});
     },
 
     async createArtist(type:  artistType, name: string) {
-        const artist = new Artist();
+        const artist = await Artist.create();
         artist.type = type;
         artist.name = name;
-        return await artistRepository.save(artist);
+        return await Artist.save(artist);
     }
 }

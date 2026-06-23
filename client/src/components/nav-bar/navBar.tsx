@@ -1,7 +1,7 @@
 import { Box, Button, Typography, createTheme } from "@mui/material";
-import Styles from './navBar.style';
+import Styles from './navBar.style.ts'
 import {FC} from 'react';
-import { useAuth } from "../../auth/AuthContext";
+import { useAuth } from "../../auth/AuthContext.tsx";
 
 const theme = createTheme({ palette: { primary: { main: "#ffffff" } } });
 

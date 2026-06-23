@@ -1,10 +1,9 @@
 import { Box } from "@mui/material";
+import NavBar from "../../../components/nav-bar/navBar.tsx";
+import LastPlaylists from "../../../components/recent-playlist/RecentPlaylists.tsx";
 import SuggestedPlaylists from "../../../components/suggested-playlist/suggestedPlaylists.tsx";
 import style from "../home-page/homePage.style.ts";
-import LastPlaylists from "../../../components/recent-playlist/RecentPlaylists.tsx";
-import NavBar from "../../../components/nav-bar/navBar.tsx";
-import { albumService } from "../../../api/services/albumService.ts";
-import {GetAlbumRequest} from "@shared/src/types/album.types.ts";
+import SongDrawer from "../../../components/song-drawer/songDrawer.tsx";
 
 
 const HomePage: React.FC = () => {
@@ -12,10 +11,11 @@ const HomePage: React.FC = () => {
   return (
     <>
       <NavBar />
-      <Box sx={style.homePage}>
-        <LastPlaylists />
-        <SuggestedPlaylists />
-      </Box>
+        <Box sx={style.homePage}>
+          <LastPlaylists />
+          <SuggestedPlaylists />
+        </Box>
+      <SongDrawer/>
     </>
   );
 };

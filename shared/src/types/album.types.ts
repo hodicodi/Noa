@@ -36,3 +36,8 @@ export type SaveAlbumReqBody = {
   songs: Song[];
   artistUuid: string;
 };
+
+export type AddSongReqBody = {
+  uuid: string;
+  song: Song;
+};

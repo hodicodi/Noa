@@ -4,17 +4,16 @@ import { AppDataSource } from "../dataSource.ts";
 import { Song } from "../song/song.entity.ts";
 import { Album } from "./album.entity.ts";
 
-const albumRepository = AppDataSource.getRepository(Album);
 
 
 export const albumService =  {
 
   async getAllAlbum() {
-    return await albumRepository.find();
+    return await Album.find();
   },
 
   async getAlbumById(uuid: string) {
-    return await albumRepository.findOne({  
+    return await Album.findOne({  
       where: { uuid: uuid },
       relations: {
         songs: true,
@@ -25,19 +24,19 @@ export const albumService =  {
 
   
   async createAlbum(name: string,  songs: Song[],  artistUuid: string) {
-    const album = new Album();
+    const album = Album.create();
     const artist =  await artistService.getArtistById(artistUuid);
     album.name = name;
     album.artist = artist!;
     album.songs = songs;
-    return await albumRepository.save(album);
+    return await Album.save(album);
   },
   
 
   async addSongToAlbum(albumUuid: string, song: Song) {
     const album = await this.getAlbumById(albumUuid);
     album?.songs.push(song);
-    return await albumRepository.save(album!);
+    return await Album.save(album!);
   }
 }
 

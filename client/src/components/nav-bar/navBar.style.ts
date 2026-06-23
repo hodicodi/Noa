@@ -5,7 +5,7 @@ const userBar: SxProps = {
   justifyContent: "space-between",
   alignItems: "center",
   p: 2,
-  bgcolor: "rgba(83, 3, 79, 0.5)",
+  bgcolor: "#47025c",
 };
 
 export default {userBar}

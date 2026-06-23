@@ -11,8 +11,9 @@ const cardMedia: SxProps = {
 
 const cardContent: SxProps = {
   position: "absolute",
-  backgroundColor: "rgba(83, 3, 79, 0.5)",
+  backgroundColor: "rgba(169, 15, 216, 0.5)",
   width: "13.7%",
+  
 };
 
 const playlistName: SxProps = {
