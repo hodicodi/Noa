@@ -24,8 +24,9 @@ export const albumService =  {
   },
 
   
-  async createAlbum(name: string,  songs: Song[],  artist: Artist) {
+  async createAlbum(name: string,  songs: Song[],  artistUuid: string) {
     const album = new Album();
+    const artist =  await artistService.getArtistById(artistUuid);
     album.name = name;
     album.artist = artist!;
     album.songs = songs;

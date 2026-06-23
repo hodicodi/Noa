@@ -3,10 +3,10 @@ import {
     CircularProgress
 } from "@mui/material";
 import { FC } from "react";
-import { AuthStatus } from "../../shared/Enums";
-import { useAuth } from "./auth/AuthContext";
-import { LoginPage } from "./auth/LoginPage";
-import style from "./layouts/rootLayout.style";
+import { AuthStatus } from "@shared/Enums.ts";
+import { useAuth } from "./auth/AuthContext.tsx";
+import { LoginPage } from "./auth/LoginPage.tsx";
+import style from "./layouts/rootLayout.style.ts"
 
 
 const Shell: FC = () => {

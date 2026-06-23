@@ -13,7 +13,7 @@ const Item = styled(Paper)(({ theme }) => ({}));
 const SuggestedPlaylists: React.FC = () => {
 
     // Should be fetching from db off all latest albums
-  const {data:album, isLoading}  = useAlbum("Torah lesson");
+  const {data:album, isLoading}  = useAlbum("b9999aa3-25c5-41b8-ac4e-d9c57fdb148c");
   const latestAlbums: AlbumRes[] =  Array(8).fill(album) ?? [];
   const avatarImage = "https://images.unsplash.com/photo-1494548162494-384bba4ab999";
   

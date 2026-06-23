@@ -1,6 +1,6 @@
 import { Box, Button, Card, CardContent, Typography } from "@mui/material";
 import { useState } from "react";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "./AuthContext.tsx";
 
 export function LoginPage() {
   const { login } = useAuth();

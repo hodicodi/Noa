@@ -34,5 +34,5 @@ export type AlbumsRes = {
 export type SaveAlbumReqBody = {
   name: string;
   songs: Song[];
-  artist: Artist;
+  artistUuid: string;
 };

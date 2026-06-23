@@ -12,7 +12,7 @@ import {
   loginWithMicrosoft,
   logout as logoutRequest,
   type AuthUser,
-} from "../services/auth.service";
+} from "../services/auth.service.ts";
 
 type Status = "loading" | "authenticated" | "unauthenticated";
 

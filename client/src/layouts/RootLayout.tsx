@@ -9,8 +9,8 @@ import {
 } from "@mui/material";
 import { FC } from "react";
 import { Outlet } from "react-router-dom";
-import style from "./rootLayout.style"
-import { useAuth } from "../auth/AuthContext";
+import style from "./rootLayout.style.ts"
+import { useAuth } from "../auth/AuthContext.tsx";
 
 const theme = createTheme({ palette: { primary: { main: "#ffffff" } } });
 

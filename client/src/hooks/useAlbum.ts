@@ -5,11 +5,11 @@ import {AlbumRes} from "@shared/src/types/album.types.ts";
 
 
 // Fetching a single record dynamically
-export const useAlbum = (albumUuid: string) => {
+export const useAlbum = (uuid: string) => {
   return useQuery<AlbumRes, Error>({
-    queryKey: ['albums', albumUuid],
-    queryFn: () => albumService.getAlbumById({albumUuid}),
-    enabled: !!albumUuid, // Prevent automatic execution if id is missing
+    queryKey: ['albums', uuid],
+    queryFn: () => albumService.getAlbumById({uuid}),
+    enabled: !!uuid, // Prevent automatic execution if id is missing
   });
 };
 

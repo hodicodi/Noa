@@ -18,7 +18,7 @@ albumRouter.get('/:uuid', async (req: Request<AlbumParams, unknown, unknown>, re
 });
 
 
-albumRouter.get("/", async (req: Request<AlbumParams, unknown, unknown>, res: Response<AlbumsRes>) => {
+albumRouter.get("/", async (req: Request<unknown, unknown, unknown>, res: Response<AlbumsRes>) => {
     try {
         const albums = await albumService.getAllAlbum();
         res.json({albums});
@@ -30,8 +30,8 @@ albumRouter.get("/", async (req: Request<AlbumParams, unknown, unknown>, res: Re
 
 albumRouter.post("/create-album", async (req: Request<unknown, unknown, SaveAlbumReqBody>, res: Response) => {
     try {
-        const { name, artist,  songs} = req.body;
-        const newAlbum = await albumService.createAlbum(name, songs, artist);
+        const { name, artistUuid,  songs} = req.body;
+        const newAlbum = await albumService.createAlbum(name, songs, artistUuid);
         res.status(201).json({newAlbum});
     } catch (error) {
         res.status(500).json({ error: "Failed to create album" });
