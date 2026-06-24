@@ -1,22 +1,11 @@
 import { songType } from "@shared/src/enums/songType.enum.ts";
-import {
-  BaseEntity,
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToMany,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from "typeorm";
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne } from "typeorm";
 import { Album } from "../album/album.entity.ts";
-import { PersonalPlaylist } from "../personalPlaylist/personalPlaylist.entity.ts";
-
+import { BaseCustomEntity } from "../base-custom-entity/baseCustomEntity.entity.ts";
+import { PersonalPlaylist } from "../personal-playlist/personalPlaylist.entity.ts";
 
 @Entity()
-export class Song extends BaseEntity{
-  @PrimaryGeneratedColumn('uuid')
-  uuid: string;
-
+export class Song extends BaseCustomEntity {
   @Column({ type: "varchar" })
   name: string;
 
@@ -26,7 +15,7 @@ export class Song extends BaseEntity{
   @Column({
     type: "enum",
     enum: songType, // Points to the TS enum
-    default: songType.ROCK,
+    default: songType.Rock,
   })
   genre: songType;
 

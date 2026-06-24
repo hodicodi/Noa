@@ -1,25 +1,20 @@
-import { AppDataSource } from "../dataSource.ts";
+import { DeepPartial } from "typeorm";
 import { User } from "./user.entity.ts";
+import { HttpError } from "../errors/httpError.ts";
+import { StatusCodes } from "http-status-codes";
 
-const userRepository = AppDataSource.getRepository(User);
+const getUserByTz = async (tz: string) => {
+  const user = await User.findOneBy({ tz });
 
-export const userService = {
+  if (!user) {
+    throw new HttpError(StatusCodes.NOT_FOUND, "user not found");
+  }
 
-    async getUserById(id: string) {
-        const user =  await User.findOneBy({id: id});
+  return user;
+};
 
-        return user;
-    },
+const getAllUsers = () => User.find();
 
-    async getAllUsers() {
-        return await User.find();
-    },
+const createUser = (user: DeepPartial<User>) => User.save(user);
 
-    async createUser(isAdministor: boolean, userName: string, id: string) {
-        const user = User.create();
-        user.isAdministor = isAdministor;
-        user.userName = userName;
-        user.id = id
-        return await User.save(user);
-    }
-}
+export default { getUserByTz, getAllUsers, createUser };

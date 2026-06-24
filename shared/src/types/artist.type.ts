@@ -21,6 +21,10 @@ export type ArtistsRes = {
 }
 
 export type SaveArtistReqBody = {
+  artist: SaveArtist;
+}
+
+export type SaveArtist = {
   name: string;
   type: artistType;
 }

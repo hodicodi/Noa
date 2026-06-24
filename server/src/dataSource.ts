@@ -3,7 +3,7 @@ import { DataSource } from "typeorm";
 import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 import { Album } from "./album/album.entity.ts";
 import { Artist } from "./artist/artist.entity.ts";
-import { PersonalPlaylist } from "./personalPlaylist/personalPlaylist.entity.ts";
+import { PersonalPlaylist } from "./personal-playlist/personalPlaylist.entity.ts";
 import { Song } from "./song/song.entity.ts";
 import { User } from "./user/user.entity.ts";
 

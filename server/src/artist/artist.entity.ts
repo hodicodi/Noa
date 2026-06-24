@@ -1,23 +1,18 @@
 import { artistType } from "@shared/src/enums/artistType.enum.ts";
-import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany } from "typeorm";
 import { Album } from "../album/album.entity.ts";
-
-// TODO: Only first letter upper case
-// TODO: Different enum file, folder
+import { BaseCustomEntity } from "../base-custom-entity/baseCustomEntity.entity.ts";
 
 @Entity()
-export class Artist extends BaseEntity{
-  @PrimaryGeneratedColumn("uuid")
-  uuid: string;
-
-  @Column({ type: "varchar" , unique: true})
+export class Artist extends BaseCustomEntity {
+  @Column({ type: "varchar", unique: true })
   name: string;
 
   @Column({
     enumName: "artist_type",
     type: "enum",
     enum: artistType, // Points to the TS enum
-    default: artistType.SINGER,
+    default: artistType.Singer,
   })
   type: artistType;
 

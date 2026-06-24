@@ -1,5 +1,5 @@
 import { songType } from "../enums/songType.enum";
-import { PersonalPlaylist } from "../../../server/src/personalPlaylist/personalPlaylist.entity.ts";
+import { PersonalPlaylist } from "../../../server/src/personal-playlist/personalPlaylist.entity.ts";
 import { Album } from "../../../server/src/album/album.entity.ts";
 
 export type Song = {
@@ -21,4 +21,30 @@ export type SongParams = {
 
 export type SongsRes = {
   songs: Song[] | null
+}
+
+export type AddSongToAlbumReqBody = {
+  song: AddSongToAlbum;
+};
+
+export type AddSongToAlbum = {
+      name: string;
+      publishDate: string;
+      genre: songType;
+      album: {
+        uuid: string
+      }
+}
+
+export type AddSongToPersonalPlaylistReqBody = {
+  song: AddSongToPersonalPlaylist;
+};
+
+export type AddSongToPersonalPlaylist = {
+      name: string;
+      publishDate: string;
+      genre: songType;
+      personalPlaylist: {
+        uuid: string
+      }
 }

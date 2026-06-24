@@ -1,4 +1,5 @@
 import { personalPlaylistType } from "../enums/personalPlaylistType.enum";
+import { Song } from "./song.types";
 import { User } from "./user.type";
 
 export type PersonalPlaylist = {
@@ -20,8 +21,13 @@ export type PersonalPlaylistsRes = {
   personalPlaylists: PersonalPlaylist[] | null
 }
 
-export type SavePersonalPlaylistsReqBody = {
+export type SavePersonalPlaylistReqBody = {
+  personalPlaylist: SavePersonalPlaylist;
+}
+
+export type SavePersonalPlaylist = {
   name: string;
   type: personalPlaylistType;
   user: User;
+  songs?: Song[];
 }

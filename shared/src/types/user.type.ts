@@ -1,8 +1,8 @@
 export type User = {
   uuid: string
   isAdministor: boolean;
-  userName: string;
-  id: string;
+  name: string;
+  tz: string;
 }
 
 export type UserRes = {
@@ -10,7 +10,7 @@ export type UserRes = {
 }
 
 export type UserParams = {
-  id: string;
+  tz: string;
 }
 
 export type UsersRes = {
@@ -18,7 +18,11 @@ export type UsersRes = {
 }
 
 export type SaveUserReqBody = {
+  user: SaveUser;
+}
+
+export type SaveUser = {
   isAdministor: boolean;
-  userName: string;
-  id: string;
+  name: string;
+  tz: string;
 }

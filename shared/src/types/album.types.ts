@@ -1,17 +1,6 @@
 import { Artist } from "./artist.type";
 import { Song } from "./song.types";
 
-/*
-export interface AlbumResponseDTO {
-  album: {
-    albumName: string;
-    createdAt: string;
-    songs: SongResponseDTO;
-    artist: ArtistResponseDTO;
-  }
-}
-*/
-
 export type Album = {
   uuid: string;
   name: string;
@@ -32,12 +21,11 @@ export type AlbumsRes = {
 };
 
 export type SaveAlbumReqBody = {
-  name: string;
-  songs: Song[];
-  artistUuid: string;
+  album: SaveAlbum;
 };
 
-export type AddSongReqBody = {
-  uuid: string;
-  song: Song;
+export type SaveAlbum = {
+  name: string;
+  songs: Song[];
+  artist: { uuid: string };
 };

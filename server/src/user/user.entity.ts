@@ -1,21 +1,18 @@
-import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { PersonalPlaylist } from "../personalPlaylist/personalPlaylist.entity.ts";
-
+import { Column, Entity, OneToMany } from "typeorm";
+import { BaseCustomEntity } from "../base-custom-entity/baseCustomEntity.entity.ts";
+import { PersonalPlaylist } from "../personal-playlist/personalPlaylist.entity.ts";
 
 @Entity()
-export class User extends BaseEntity{
-  @PrimaryGeneratedColumn('uuid') 
-  uuid: string;
-
-  @Column({type: "boolean"})
+export class User extends BaseCustomEntity {
+  @Column({ type: "boolean" })
   isAdministor: boolean;
 
   @Column({ type: "varchar", unique: true })
-  userName: string;
+  name: string;
 
   @Column({ type: "varchar", unique: true })
-  id: string;
-  
+  tz: string;
+
   @OneToMany(() => PersonalPlaylist, (personalPlaylist) => personalPlaylist.user)
-  personalPlaylists: PersonalPlaylist[];  
+  personalPlaylists: PersonalPlaylist[];
 }

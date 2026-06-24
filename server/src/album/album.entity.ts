@@ -1,24 +1,15 @@
-import {
-  BaseEntity,
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn
-} from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, Unique } from "typeorm";
 import { Artist } from "../artist/artist.entity.ts";
+import { BaseCustomEntity } from "../base-custom-entity/baseCustomEntity.entity.ts";
 import { Song } from "../song/song.entity.ts";
 
 @Entity()
-export class Album extends BaseEntity {
-  @PrimaryGeneratedColumn("uuid")
-  uuid: string;
-
+@Unique(['name', 'artist'])
+export class Album extends BaseCustomEntity {
   @Column({ type: "varchar", unique: true })
   name: string;
 
-  @OneToMany(() => Song, (song) => song.album, {cascade: true})
+  @OneToMany(() => Song, (song) => song.album, { cascade: true })
   songs: Song[];
 
   @ManyToOne(() => Artist, (artist) => artist.albums, { onDelete: "CASCADE" })
