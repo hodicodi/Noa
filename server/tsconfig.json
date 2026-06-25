@@ -1,16 +1,24 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "module": "NodeNext",
+    "rootDir": "../",
+    "outDir": "dist",
+    "target": "ES2022",
+    "module": "NodeNext", // ⚠ NOT "CommonJS" – see §5.2
     "moduleResolution": "NodeNext",
-    "verbatimModuleSyntax": false,
-    "lib": ["es6", "dom"],
+    "types": ["node"],
     "strict": true,
     "esModuleInterop": true,
+    "verbatimModuleSyntax": false, // forces `import type` for types
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist"
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "paths": {
+      "@shared/*": ["../shared/*"]
+    },
   },
-  "include": ["../**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "include": ["src", "migration","../shared/*"],
 }
