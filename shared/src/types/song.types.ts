@@ -1,6 +1,5 @@
+import { Album } from "./album.types.ts";
 import { SongType } from "../enums/songType.enum";
-import { PersonalPlaylist } from "../../../server/src/personal-playlist/personalPlaylist.entity.ts";
-import { Album } from "../../../server/src/album/album.entity.ts";
 
 export type Song = {
   uuid: string;

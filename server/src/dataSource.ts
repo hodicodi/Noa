@@ -13,7 +13,7 @@ const {
   DB_USER = "",
   DB_PASSWORD = "",
   DB_NAME = "",
-  DB_SCHEMA ,
+  DB_SCHEMA = "",
 } = process.env;
 
 export const AppDataSource = new DataSource({
