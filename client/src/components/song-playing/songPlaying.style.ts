@@ -28,11 +28,15 @@ const cardContent: SxProps = {
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
-  height: 40,
+  height: 40
 };
 
 const playlistName: SxProps = {
   color: "#ffffff",
-  
+  fontWeight: "bold"
 };
-export default { songDrawer, card, box, cardMedia, cardContent, playlistName };
+
+const artistName: SxProps = {
+  color: "#ffffff"
+};
+export default { songDrawer, card, box, cardMedia, cardContent, playlistName, artistName };

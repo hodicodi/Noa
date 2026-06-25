@@ -9,7 +9,9 @@ import { FC } from "react";
 import { Outlet } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext.tsx";
 import style from "./rootLayout.style.ts";
-import SongDrawer from "../components/song-drawer/SongDrawer.tsx";
+import SongPlaying from "../components/song-playing/SongPlaying.tsx";
+import { DrawerProvider } from "../components/song-drawer/DrawerContext.tsx";
+import { GlobalDrawer } from "../components/song-drawer/globalDrawerContext.tsx";
 
 const theme = createTheme({ palette: { primary: { main: "#ffffff" } } });
 
@@ -21,8 +23,11 @@ const RootLayout: FC = () => {
       <CssBaseline />
       <Paper sx={style.app}>
         <Box sx={style.backgound}>
-          <Outlet />
-          <SongDrawer/>
+          <DrawerProvider>
+            <Outlet />
+            <SongPlaying/>
+            <GlobalDrawer />
+          </DrawerProvider>
         </Box>
       </Paper>
     </ThemeProvider>
