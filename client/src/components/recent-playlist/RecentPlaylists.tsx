@@ -8,7 +8,7 @@ import { FC } from "react";
 
 const LastPlaylists: FC = () => {
   // Should be fetching from db off all latest albums
-  const { data: album, isLoading } = useAlbum("b9999aa3-25c5-41b8-ac4e-d9c57fdb148c");
+  const { data: album, isLoading } = useAlbum("8e64586a-26c6-4e6f-a0fa-6d741f3b069d");
 
   const latestAlbums: Album[] = Array(8).fill(album) ?? [];
   const avatarImage =

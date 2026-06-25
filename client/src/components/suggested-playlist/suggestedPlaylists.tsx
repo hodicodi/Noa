@@ -8,10 +8,9 @@ import style from "./suggestedPlaylist.style.ts";
 import { Album, AlbumRes } from "@shared/src/types/album.types.ts";
 import { useAlbum } from "../../hooks/useAlbum.ts";
 
-const Item = styled(Paper)(({ theme }) => ({}));
 
 const SuggestedPlaylists: React.FC = () => {
-  const { data: album, isLoading } = useAlbum("b9999aa3-25c5-41b8-ac4e-d9c57fdb148c");
+  const { data: album, isLoading } = useAlbum("8e64586a-26c6-4e6f-a0fa-6d741f3b069d");
   const latestAlbums: Album[] = Array(8).fill(album) ?? [];
   const avatarImage = "https://images.unsplash.com/photo-1494548162494-384bba4ab999";
 
@@ -27,9 +26,7 @@ const SuggestedPlaylists: React.FC = () => {
       <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         {latestAlbums?.map((album) => (
           <Grid size={6} key={album?.name!}>
-            <Item>
               <PlaylistCard name={album?.name!} avaterPicture={avatarImage} artist={album?.artist.name!} />
-            </Item>
           </Grid>
         ))}
       </Grid>

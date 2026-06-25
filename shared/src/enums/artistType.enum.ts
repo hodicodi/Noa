@@ -1,6 +1,6 @@
 export enum ArtistType {
-  Singer= "singer",
-  Band = "band",
-  Pair = "pair",
+  Singer= "Singer",
+  Band = "Band",
+  Pair = "Pair",
 }
 
