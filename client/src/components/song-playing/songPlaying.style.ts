@@ -33,10 +33,14 @@ const cardContent: SxProps = {
 
 const playlistName: SxProps = {
   color: "#ffffff",
-  fontWeight: "bold"
+  fontWeight: "bold",
+  height: 18,
+     display: 'flex', alignItems: 'center' 
 };
 
 const artistName: SxProps = {
-  color: "#ffffff"
+  color: "#ffffff",
+  height: 18,
+
 };
 export default { songDrawer, card, box, cardMedia, cardContent, playlistName, artistName };

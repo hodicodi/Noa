@@ -14,7 +14,7 @@ import {
 import { FC, useState } from "react";
 import Styles from "./songPlaying.style.ts";
 import { useGlobalDrawer } from "../song-drawer/DrawerContext.tsx";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
 const SongDrawer: FC = () => {
   const { isOpen, openDrawer } = useGlobalDrawer();
@@ -36,6 +36,9 @@ const SongDrawer: FC = () => {
                     <CardContent sx={Styles.cardContent}>
                       <Typography sx={Styles.playlistName} variant="body2" component="div">
                         {"song name"}
+                        <IconButton style={{ marginLeft: "auto" }} color="inherit" aria-label="your action">
+                          <PlayArrowIcon fontSize="large" />
+                        </IconButton>
                       </Typography>
                       <Typography sx={Styles.artistName} variant="body2" component="div">
                         {"artist"}
