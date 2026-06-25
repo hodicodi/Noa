@@ -10,7 +10,7 @@ class Playlist {
   }
 }
 
-const playlistInfo: Playlist[] = [
+export const playlistInfo: Playlist[] = [
   new Playlist(
     "Hevel Havalim",
     "https://images.unsplash.com/photo-1494548162494-384bba4ab999",
@@ -52,5 +52,3 @@ const playlistInfo: Playlist[] = [
     "Amgosha"
   ),
 ];
-
-export default playlistInfo;

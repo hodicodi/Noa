@@ -6,7 +6,6 @@ import style from "../home-page/homePage.style.ts";
 
 
 const HomePage: React.FC = () => {
-  // console.log("recieved album: " + albumService.getAlbumByName({albumName:"Torah lesson"}));
   return (
     <>
       <NavBar />

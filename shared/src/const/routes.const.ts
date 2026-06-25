@@ -1,6 +1,6 @@
 const usersRoute = "/users";
-const artistRoute = "artists";
-const personalPlaylistsRoute = "personalPlaylists";
+const artistRoute = "/artists";
+const personalPlaylistsRoute = "/personalPlaylists";
 const albumsRoute = "/albums";
 const songsRoute = "/songs";
 

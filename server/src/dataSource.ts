@@ -7,8 +7,6 @@ import { PersonalPlaylist } from "./personal-playlist/personalPlaylist.entity.ts
 import { Song } from "./song/song.entity.ts";
 import { User } from "./user/user.entity.ts";
 
-// TODO: process destruct
-
 const {
   DB_HOST = "",
   DB_PORT = "",

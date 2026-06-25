@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import { PlaylistOverviewProps } from "../../../../shared/playlistProps.ts";
+import { PlaylistOverviewProps } from "@shared/playlistProps.ts";
 import Styles from "./PlaylistPicture.style.ts";
 import { FC } from "react";
 

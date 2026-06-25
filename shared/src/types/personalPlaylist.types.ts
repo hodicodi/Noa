@@ -1,33 +1,29 @@
-import { personalPlaylistType } from "../enums/personalPlaylistType.enum";
+import { PersonalPlaylistType } from "../enums/personalPlaylistType.enum";
 import { Song } from "./song.types";
 import { User } from "./user.type";
 
 export type PersonalPlaylist = {
-  uuid: string
+  uuid: string;
   name: string;
-  type: personalPlaylistType;
-  user: User
-}
+  type: PersonalPlaylistType;
+  user: User;
+};
 
 export type PersonalPlaylistRes = {
-  personalPlaylist: PersonalPlaylist | null
-}
-
-export type PersonalPlaylistParams = {
-  uuid: string;
-}
+  personalPlaylist: PersonalPlaylist | null;
+};
 
 export type PersonalPlaylistsRes = {
-  personalPlaylists: PersonalPlaylist[] | null
-}
+  personalPlaylists: PersonalPlaylist[] | null;
+};
 
 export type SavePersonalPlaylistReqBody = {
   personalPlaylist: SavePersonalPlaylist;
-}
+};
 
 export type SavePersonalPlaylist = {
   name: string;
-  type: personalPlaylistType;
+  type: PersonalPlaylistType;
   user: User;
   songs?: Song[];
-}
+};

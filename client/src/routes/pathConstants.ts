@@ -1,6 +1,6 @@
-const PathConstants = {
+const Path = {
   HOME: "/",
   PLAYLIST: "/playlist",
 };
 
-export default PathConstants;
+export default Path;

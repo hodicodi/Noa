@@ -1,11 +1,13 @@
-import { AddSongToPersonalPlaylistReqBody, SongParams, SongRes, SongsRes } from "@shared/src/types/song.types.ts";
+import { AddSongToPersonalPlaylistReqBody, SongRes, SongsRes } from "@shared/src/types/song.types.ts";
 import { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
 import songService from "./song.service.ts";
+import {GeneralParams} from "@shared/src/types/general.types.ts";
+
 
 const songRouter = Router();
 
-songRouter.get("/:uuid", async (req: Request<SongParams, unknown, unknown>, res: Response<SongRes>, next) => {
+songRouter.get("/:uuid", async (req: Request<GeneralParams, unknown, unknown>, res: Response<SongRes>, next) => {
   const { uuid } = req.params;
   const song = await songService.getSongByUuid(uuid);
 

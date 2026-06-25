@@ -5,43 +5,30 @@ import Paper from "@mui/material/Paper";
 import PlaylistCard from "./suggestedPlaylist.tsx";
 import playlistInfo from "@shared/hardCodedInfo.ts";
 import style from "./suggestedPlaylist.style.ts";
-import { AlbumRes } from "@shared/src/types/album.types.ts";
+import { Album, AlbumRes } from "@shared/src/types/album.types.ts";
 import { useAlbum } from "../../hooks/useAlbum.ts";
 
 const Item = styled(Paper)(({ theme }) => ({}));
 
 const SuggestedPlaylists: React.FC = () => {
-
-    // Should be fetching from db off all latest albums
-  const {data:album, isLoading}  = useAlbum("b9999aa3-25c5-41b8-ac4e-d9c57fdb148c");
-  const latestAlbums: AlbumRes[] =  Array(8).fill(album) ?? [];
+  const { data: album, isLoading } = useAlbum("b9999aa3-25c5-41b8-ac4e-d9c57fdb148c");
+  const latestAlbums: Album[] = Array(8).fill(album) ?? [];
   const avatarImage = "https://images.unsplash.com/photo-1494548162494-384bba4ab999";
-  
 
   if (isLoading) {
     return <></>;
   }
-  
+
   return (
     <Box>
-      <Typography
-        sx={style}
-        color="primary"
-        gutterBottom
-        variant="h6"
-        component="div"
-      >
+      <Typography sx={style} color="primary" gutterBottom variant="h6" component="div">
         Suggested playlists
       </Typography>
       <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         {latestAlbums?.map((album) => (
-          <Grid size={6} key={album.album?.name!}>
+          <Grid size={6} key={album?.name!}>
             <Item>
-              <PlaylistCard
-                name={album.album?.name!}
-                avaterPicture={avatarImage}
-                artist={album.album?.artist.name!}
-              />
+              <PlaylistCard name={album?.name!} avaterPicture={avatarImage} artist={album?.artist.name!} />
             </Item>
           </Grid>
         ))}
@@ -51,4 +38,3 @@ const SuggestedPlaylists: React.FC = () => {
 };
 
 export default SuggestedPlaylists;
-  

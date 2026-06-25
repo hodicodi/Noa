@@ -1,4 +1,4 @@
-import { artistType } from "@shared/src/enums/artistType.enum.ts";
+import { ArtistType } from "@shared/src/enums/artistType.enum.ts";
 import { Column, Entity, OneToMany } from "typeorm";
 import { Album } from "../album/album.entity.ts";
 import { BaseCustomEntity } from "../base-custom-entity/baseCustomEntity.entity.ts";
@@ -11,10 +11,10 @@ export class Artist extends BaseCustomEntity {
   @Column({
     enumName: "artist_type",
     type: "enum",
-    enum: artistType, // Points to the TS enum
-    default: artistType.Singer,
+    enum: ArtistType, 
+    default: ArtistType.Singer,
   })
-  type: artistType;
+  type: ArtistType;
 
   @OneToMany(() => Album, (album) => album.artist)
   albums: Album[];

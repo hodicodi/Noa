@@ -1,6 +1,7 @@
 import { Box, Button, Card, CardContent, Typography } from "@mui/material";
 import { useState } from "react";
 import { useAuth } from "./AuthContext.tsx";
+import Styles from "./loginPage.style.ts"
 
 export function LoginPage() {
   const { login } = useAuth();
@@ -8,19 +9,14 @@ export function LoginPage() {
 
   return (
     <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "100%",
-      }}
+      sx={Styles.loginPage}
     >
-      <Card sx={{ maxWidth: 420, width: "100%", boxShadow: 3 }}>
-        <CardContent sx={{ textAlign: "center", p: 4 }}>
-          <Typography variant="h4" sx={{ fontWeight: "bold", mb: 1 }}>
+      <Card sx={Styles.card}>
+        <CardContent sx={Styles.cardContent}>
+          <Typography variant="h4" sx={Styles.welcome}>
             Welcome
           </Typography>
-          <Typography sx={{ color: "text.secondary", mb: 3 }}>
+          <Typography sx={Styles.sign}>
             Sign in with your Microsoft Entra ID account.
           </Typography>
           <Button

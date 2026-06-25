@@ -3,6 +3,7 @@ import { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
 import userService from "./user.service.ts";
 
+
 const userRouter = Router();
 
 userRouter.get("/:tz", async (req: Request<UserParams, unknown, unknown>, res: Response<UserRes>) => {

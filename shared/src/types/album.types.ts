@@ -12,10 +12,6 @@ export type AlbumRes = {
   album: Album | null;
 };
 
-export type AlbumParams = {
-  uuid: string;
-};
-
 export type AlbumsRes = {
   albums: Album[] | null;
 };

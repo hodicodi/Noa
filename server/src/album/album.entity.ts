@@ -6,7 +6,7 @@ import { Song } from "../song/song.entity.ts";
 @Entity()
 @Unique(['name', 'artist'])
 export class Album extends BaseCustomEntity {
-  @Column({ type: "varchar", unique: true })
+  @Column({ type: "varchar"})
   name: string;
 
   @OneToMany(() => Song, (song) => song.album, { cascade: true })

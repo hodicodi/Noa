@@ -4,7 +4,7 @@ import artistRouter from './artist/artist.routes.ts';
 import personalPlaylistRouter from './personal-playlist/personalPlaylist.routes.ts';
 import albumRouter from './album/album.routes.ts';
 import { errorHandler } from './middleware/errorHandler.ts';
-import {usersRoute, artistRoute, albumsRoute, personalPlaylistsRoute, songsRoute} from "@shared/src/const/routes.const.ts"
+import {usersRoute, albumsRoute, artistRoute ,personalPlaylistsRoute, songsRoute} from "@shared/src/const/routes.const.ts"
 
 const rootRouter = Router();
 

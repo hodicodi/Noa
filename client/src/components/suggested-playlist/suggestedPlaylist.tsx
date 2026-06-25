@@ -23,7 +23,7 @@ const PlaylistCard: React.FC<PlaylistOverviewProps> = ({
           {name}
         </Typography>
       </CardContent>
-      <CardMedia sx={style.cardMedia} component="img" image={avaterPicture} />
+      <CardMedia component="img" image={avaterPicture} />
     </Card>
   );
 };

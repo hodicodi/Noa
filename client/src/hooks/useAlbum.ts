@@ -1,41 +1,20 @@
-// hooks/useTodos.ts
+import { Album, AlbumRes } from "@shared/src/types/album.types.ts";
 import { useQuery } from "@tanstack/react-query";
-import { albumService } from "../api/services/albumService.ts";
-import { AlbumRes, SaveAlbum, SaveAlbumReqBody } from "@shared/src/types/album.types.ts";
-import axios from "axios";
+import { API } from "../api/services/albumService.ts";
+import { GeneralParams } from "@shared/src/types/general.types.ts";
 
-// Fetching a single record dynamically
-export const useAlbum = (uuid: string) => {
-  return useQuery<AlbumRes, Error>({
-    queryKey: ["albums", uuid],
-    queryFn: () => albumService.getAlbumById({ uuid }),
-    enabled: !!uuid, // Prevent automatic execution if id is missing
-  });
+
+export const albumService = {
+  getAlbumById: async (albumData: GeneralParams): Promise<Album | null> => {
+    const response = await API.get<AlbumRes>(`/albums/${albumData.uuid}`, { params: { uuid: albumData.uuid } });
+    return response.data?.album;
+  },
 };
 
-
-/*
-const mapAlbum = (): SaveAlbumReqBody => ({
-  album: {
-    name: "Torah lesson",
-    artist: {
-      uuid: "d697ce21-b1f6-449e-b55e-1f70277f3add",
-    },
-    songs: [
-      {
-        name: "Hevel Havalim",
-        genre: "rock",
-      },
-      {
-        name: "Rabi Nahman",
-        genre: "rock",
-      },
-    ],
-  }
-}) 
-
-axios.post("/", {
-,
-});
-
-*/
+export const useAlbum = (uuid: string) => {
+  return useQuery<Album | null, Error>({
+    queryKey: ["albums", uuid],
+    queryFn: () => albumService.getAlbumById({ uuid }),
+    enabled: !!uuid,
+  });
+};

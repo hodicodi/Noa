@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import PathConstants from "./pathConstants.ts";
+import Path from "./pathConstants.ts";
 import RootLayout from "../layouts/RootLayout.tsx";
 
 // Pages
@@ -9,11 +9,11 @@ import PlaylistPage from "../pages/home-page/playlist-page/PlaylistPage.tsx";
 
 const router = createBrowserRouter([
     {
-        path: PathConstants.HOME,
+        path: Path.HOME,
         element: <RootLayout />,
         children: [
             { index: true, element: <HomePage/> }, // Matches "/"
-             { path: PathConstants.PLAYLIST, element: <PlaylistPage /> }
+             { path: Path.PLAYLIST, element: <PlaylistPage /> }
         ],
     },
 ]);

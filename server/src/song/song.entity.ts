@@ -1,4 +1,4 @@
-import { songType } from "@shared/src/enums/songType.enum.ts";
+import { SongType } from "@shared/src/enums/songType.enum.ts";
 import { Column, Entity, JoinColumn, ManyToMany, ManyToOne } from "typeorm";
 import { Album } from "../album/album.entity.ts";
 import { BaseCustomEntity } from "../base-custom-entity/baseCustomEntity.entity.ts";
@@ -14,10 +14,10 @@ export class Song extends BaseCustomEntity {
 
   @Column({
     type: "enum",
-    enum: songType, // Points to the TS enum
-    default: songType.Rock,
+    enum: SongType, 
+    default: SongType.Rock,
   })
-  genre: songType;
+  genre: SongType;
 
   @ManyToMany(() => PersonalPlaylist, (personalPlaylist) => personalPlaylist.songs, { onDelete: "CASCADE" })
   personalPlaylist: PersonalPlaylist;

@@ -1,13 +1,12 @@
+import { AlbumRes, AlbumsRes, SaveAlbumReqBody } from "@shared/src/types/album.types.ts";
+import { GeneralParams } from "@shared/src/types/general.types.ts";
 import { Request, Response, Router } from "express";
-import albumService from "./album.service.ts";
-import { AlbumParams, AlbumRes, AlbumsRes, SaveAlbumReqBody } from "@shared/src/types/album.types.ts";
-import { AddSongToAlbumReqBody } from "@shared/src/types/song.types.ts";
 import { StatusCodes } from "http-status-codes";
-import { HttpError } from "../errors/httpError.ts";
+import albumService from "./album.service.ts";
 
 const albumRouter = Router();
 
-albumRouter.get("/:uuid", async (req: Request<AlbumParams, unknown, unknown>, res: Response<AlbumRes>, next) => {
+albumRouter.get("/:uuid", async (req: Request<GeneralParams, unknown, unknown>, res: Response<AlbumRes>, next) => {
   const { uuid } = req.params;
   const album = await albumService.getAlbumById(uuid);
   res.status(StatusCodes.OK).json({ album });

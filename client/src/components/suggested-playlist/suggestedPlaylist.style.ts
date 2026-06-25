@@ -4,16 +4,10 @@ const card: SxProps = {
   maxWidth: 345,
 };
 
-const cardMedia: SxProps = {
-  height: 260,
-  width: 260,
-};
-
 const cardContent: SxProps = {
   position: "absolute",
   backgroundColor: "rgba(169, 15, 216, 0.5)",
   width: "13.7%",
-  
 };
 
 const playlistName: SxProps = {
@@ -21,4 +15,4 @@ const playlistName: SxProps = {
   position: "top",
 };
 
-export default { card, cardMedia, cardContent, playlistName};
+export default { card, cardContent, playlistName };

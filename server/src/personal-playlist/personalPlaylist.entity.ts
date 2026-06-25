@@ -1,4 +1,4 @@
-import { personalPlaylistType } from "@shared/src/enums/personalPlaylistType.enum.ts";
+import { PersonalPlaylistType } from "@shared/src/enums/personalPlaylistType.enum.ts";
 import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne } from "typeorm";
 import { BaseCustomEntity } from "../base-custom-entity/baseCustomEntity.entity.ts";
 import { Song } from "../song/song.entity.ts";
@@ -11,10 +11,10 @@ export class PersonalPlaylist extends BaseCustomEntity {
 
   @Column({
     type: "enum",
-    enum: personalPlaylistType, // Points to the TS enum
-    default: personalPlaylistType.History,
+    enum: PersonalPlaylistType, 
+    default: PersonalPlaylistType.History,
   })
-  type: personalPlaylistType;
+  type: PersonalPlaylistType;
 
   @ManyToMany(() => Song, (song) => song.personalPlaylist)
   @JoinTable()
