@@ -1,6 +1,6 @@
 export enum SongType {
   Rock = "Rock",
   Pop = "Pop",
-  Hip_hop = "Hip-hop",
+  HipHop = "Hip-hop",
   Country = "Country",
 }

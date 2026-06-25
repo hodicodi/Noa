@@ -30,7 +30,7 @@ const LastPlaylists: FC = () => {
               name={album.name!}
               avaterPicture={avatarImage}
               artist={album.artist.name!}
-            ></LastPlaylistCard>
+            />
           </Grid>
         ))}
       </Grid>

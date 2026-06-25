@@ -1,5 +1,5 @@
 export enum PersonalPlaylistType {
-  User_playlist = "UserPlaylist",
+  UserPlaylist = "UserPlaylist",
   History = "History",
-  Liked_songs = "LikedSongs",
+  LikedSongs = "LikedSongs",
 }
