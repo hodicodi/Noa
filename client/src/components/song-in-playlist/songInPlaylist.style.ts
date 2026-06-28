@@ -8,7 +8,7 @@ const card: SxProps = {
 const box: SxProps = {
   flexGrow: 1,
   bgcolor: "#000000",
-  width:'100%',
+  width: "100%",
   height: 60,
 };
 
@@ -25,6 +25,7 @@ const cardContent: SxProps = {
 
 const playlistName: SxProps = {
   color: "#ffffff",
+  fontFamily: "Georgia",
 };
 
 export default { card, box, cardMedia, cardContent, playlistName };

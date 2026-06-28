@@ -1,7 +1,7 @@
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import {
   AppBar,
   Box,
-  Button,
   ButtonBase,
   Card,
   CardContent,
@@ -11,20 +11,20 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { FC, useState } from "react";
-import Styles from "./songPlaying.style.ts";
+import { FC } from "react";
 import { useGlobalDrawer } from "../song-drawer/DrawerContext.tsx";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import Styles from "./songPlaying.style.ts";
 
-const SongDrawer: FC = () => {
+const SongPlaying: FC = () => {
   const { isOpen, openDrawer } = useGlobalDrawer();
 
-  const avatarImage = "https://images.unsplash.com/photo-1494548162494-384bba4ab999";
+  const avatarImage =
+    "https://t2.genius.com/unsafe/344x344/https%3A%2F%2Fimages.genius.com%2F890d5a9fbbe79b45c3cee4d7b086accd.1000x563x1.jpg";
 
   return (
     <>
       <ButtonBase component={AppBar} onClick={openDrawer}>
-        <AppBar position="fixed" sx={Styles.songDrawer}>
+        <AppBar position="fixed" sx={Styles.songPlaying}>
           <Toolbar>
             <Card sx={Styles.card}>
               <Box sx={Styles.box}>
@@ -34,15 +34,22 @@ const SongDrawer: FC = () => {
                   </Grid>
                   <Grid size={10.5}>
                     <CardContent sx={Styles.cardContent}>
-                      <Typography sx={Styles.playlistName} variant="body2" component="div">
-                        {"song name"}
-                        <IconButton style={{ marginLeft: "auto" }} color="inherit" aria-label="your action">
-                          <PlayArrowIcon fontSize="large" />
-                        </IconButton>
-                      </Typography>
-                      <Typography sx={Styles.artistName} variant="body2" component="div">
-                        {"artist"}
-                      </Typography>
+                      <Box>
+                        <Typography sx={Styles.playlistName} variant="body2" component="div">
+                          {"song name"}
+                        </Typography>
+                        <Typography sx={Styles.artistName} variant="body2" component="div">
+                          {"artist"}
+                        </Typography>
+                      </Box>
+                      <IconButton
+                        sx={Styles.playIcon}
+                        style={{ marginLeft: "auto" }}
+                        color="inherit"
+                        aria-label="your action"
+                      >
+                        <PlayArrowIcon fontSize="large" />
+                      </IconButton>
                     </CardContent>
                   </Grid>
                 </Grid>
@@ -57,4 +64,4 @@ const SongDrawer: FC = () => {
   );
 };
 
-export default SongDrawer;
+export default SongPlaying;

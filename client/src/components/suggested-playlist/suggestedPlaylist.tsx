@@ -19,9 +19,9 @@ const PlaylistCard: React.FC<PlaylistOverviewProps> = ({
   return (
     <Card sx={style.card} onClick={suggestedPlaylistClick}>
       <CardContent sx={style.cardContent}>
-        <Typography sx={style.playlistName} gutterBottom variant="h6">
+        <Typography sx={style.playlistName}  variant="h6">
           {name}
-        </Typography>
+        </Typography> 
       </CardContent>
       <CardMedia component="img" image={avaterPicture} />
     </Card>

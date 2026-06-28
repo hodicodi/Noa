@@ -1,10 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import playlistInfo from "../../../../shared/hardCodedInfo.ts";
-import LastPlaylistCard from "./lastPlaylist.tsx";
-import { useAlbum } from "../../hooks/useAlbum.ts";
-import { Album, AlbumRes } from "@shared/src/types/album.types.ts";
+import { Album } from "@shared/src/types/album.types.ts";
 import { FC } from "react";
+import { useAlbum } from "../../hooks/useAlbum.ts";
+import LastPlaylistCard from "./lastPlaylist.tsx";
 
 const LastPlaylists: FC = () => {
   // Should be fetching from db off all latest albums
@@ -12,7 +11,7 @@ const LastPlaylists: FC = () => {
 
   const latestAlbums: Album[] = Array(8).fill(album) ?? [];
   const avatarImage =
-    "https://images.unsplash.com/photo-1494548162494-384bba4ab999";
+    "https://t2.genius.com/unsafe/344x344/https%3A%2F%2Fimages.genius.com%2F890d5a9fbbe79b45c3cee4d7b086accd.1000x563x1.jpg";
 
   if (isLoading) {
     return <></>;

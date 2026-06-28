@@ -12,8 +12,9 @@ const imgContainer: SxProps = {
 };
 
 const playlistImg: SxProps = {
-  height: "60%",
-  width: "60%",
+  height: "70%",
+  width: "70%",
+  borderRadius: 3,
 };
 
 const icon: SxProps = {
@@ -28,11 +29,13 @@ const icons: SxProps = {
 const playlistName: SxProps = {
   color: "#ffffff",
   position: "top",
+  fontFamily: "Georgia",
 };
 
 const artistName: SxProps = {
   color: "#ffffff",
   position: "top",
+  fontFamily: "Georgia",
 };
 
 export default {
@@ -42,5 +45,5 @@ export default {
   playlistName,
   artistName,
   icon,
-  icons
+  icons,
 };

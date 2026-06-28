@@ -11,8 +11,9 @@ import { useAuth } from "../auth/AuthContext.tsx";
 import style from "./rootLayout.style.ts";
 import SongPlaying from "../components/song-playing/SongPlaying.tsx";
 import { DrawerProvider } from "../components/song-drawer/DrawerContext.tsx";
-import { GlobalDrawer } from "../components/song-drawer/globalDrawerContext.tsx";
+import { SongDrawer
 
+ } from "../components/song-drawer/songDrawer.tsx";
 const theme = createTheme({ palette: { primary: { main: "#ffffff" } } });
 
 const RootLayout: FC = () => {
@@ -26,7 +27,7 @@ const RootLayout: FC = () => {
           <DrawerProvider>
             <Outlet />
             <SongPlaying/>
-            <GlobalDrawer />
+            <SongDrawer />
           </DrawerProvider>
         </Box>
       </Paper>
