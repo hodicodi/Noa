@@ -8,4 +8,10 @@ const songDrawerPage: SxProps = {
     mt: 15
 }
 
-export default {songDrawerPage};
+const songMainPreview: SxProps = {
+  display: "flex",
+  flexDirection: "column",
+  rowGap: 5,
+};
+
+export default {songDrawerPage, songMainPreview};
