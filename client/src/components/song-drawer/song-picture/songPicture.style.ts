@@ -12,8 +12,8 @@ const imgContainer: SxProps = {
 };
 
 const songImg: SxProps = {
-  height: "80%",
-  width: "80%",
+  height: "90%",
+  width: "90%",
   borderRadius: 3,
 };
 

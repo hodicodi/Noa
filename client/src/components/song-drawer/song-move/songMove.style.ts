@@ -1,57 +1,13 @@
 import { SxProps } from "@mui/material";
 
-const songMainPreview: SxProps = {
-  display: "flex",
-  flexDirection: "column",
-  rowGap: 5,
-};
-
-const imgContainer: SxProps = {
-  display: "flex",
-  justifyContent: "center",
-};
-
-const songImg: SxProps = {
-  height: "80%",
-  width: "80%",
-  borderRadius: 3,
-};
-
-const artistName: SxProps = {
-  color: "#ffffff",
-  width: "40%",
-  fontFamily: "Georgia",
-};
-
-const songInfoContainer: SxProps = {
-  display: "flex",
-  justifyContent: "center",
-};
-
-const card: SxProps = {
-  width: "80%",
-  alignSelf: "center",
-  bgcolor: "#000",
-};
 
 const box: SxProps = {
-  width: "80%",
-  alignSelf: "center",
-  bgcolor: "#000",
-};
-
-const cardContent: SxProps = {
-  display: "flex",
+  display: "flex" /* Aligns children horizontally */,
+  justifyContent: "space-between" /* Distributes items evenly across the box */,
+  gap: 2 /* Optional: adds a gap between the items */,
   height: 40,
   alignItems: "center",
-};
-
-const songName: SxProps = {
-  fontWeight: "bold",
-  height: 28,
-  width: 150,
-  fontFamily: "Georgia",
-  color: "rgb(238, 229, 229)",
+  alignSelf: "center",
 };
 
 const plusIcon: SxProps = {
@@ -63,20 +19,12 @@ const plusIcon: SxProps = {
 
 const moveIcon: SxProps = {
   color: "#fffefe",
-  width: 60,
-  height: 60,
+  width: 80,
+  height: 80,
 };
 
 export default {
-  songMainPreview,
-  imgContainer,
-  songImg,
-  artistName,
-  card,
-  cardContent,
-  songInfoContainer,
   plusIcon,
-  songName,
   box,
   moveIcon,
 };

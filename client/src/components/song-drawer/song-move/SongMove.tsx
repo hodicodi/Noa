@@ -8,9 +8,7 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 
 const SongMove: FC = () => (
   <>
-    <Box sx={Styles.songInfoContainer} />
       <Box sx = {Styles.box}>
-        <CardContent sx={Styles.cardContent}>
           <IconButton sx={Styles.moveIcon}  color="inherit" aria-label="your action">
             <SkipPreviousIcon fontSize="large" />
           </IconButton>
@@ -20,9 +18,7 @@ const SongMove: FC = () => (
           <IconButton sx={Styles.moveIcon} style={{ marginLeft: "auto" }} color="inherit" aria-label="your action">
             <SkipNextIcon fontSize="large" />
           </IconButton>
-        </CardContent>
       </Box>
-    <Box />
   </>
 );
 
