@@ -15,7 +15,6 @@ const cardContent: SxProps = {
 const playlistName: SxProps = {
   color: "#ffffff",
   position: "top",
-  fontFamily: "Georgia",
 };
 
 export default { card, cardContent, playlistName };

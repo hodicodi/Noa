@@ -5,7 +5,7 @@ const songDrawerPage: SxProps = {
   flexDirection: "column",
   rowGap: 12,
   borderRadius: 7,
-  mt: 15,
+  mt: '27%',
 };
 
 const songMainPreview: SxProps = {

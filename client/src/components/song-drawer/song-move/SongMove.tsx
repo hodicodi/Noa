@@ -18,10 +18,10 @@ const SongMove: FC = () => {
           <IconButton sx={Styles.moveIcon}  color="inherit" aria-label="your action">
             <SkipPreviousIcon fontSize="large" />
           </IconButton>
-          <IconButton onClick={handleIconClick} sx={Styles.plusIcon} style={{ marginLeft: "auto" }} color="inherit" aria-label="your action">
+          <IconButton onClick={handleIconClick} sx={Styles.plusIcon} color="inherit" aria-label="your action">
             {isplayIconMarked ? <PlayArrowIcon fontSize="large" /> : <PauseIcon fontSize="large" />}
           </IconButton>
-          <IconButton sx={Styles.moveIcon} style={{ marginLeft: "auto" }} color="inherit" aria-label="your action">
+          <IconButton sx={Styles.moveIcon} color="inherit" aria-label="your action">
             <SkipNextIcon fontSize="large" />
           </IconButton>
       </Box>

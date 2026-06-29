@@ -29,13 +29,12 @@ const icons: SxProps = {
 const playlistName: SxProps = {
   color: "#ffffff",
   position: "top",
-  fontFamily: "Georgia",
 };
 
 const artistName: SxProps = {
   color: "#ffffff",
   position: "top",
-  fontFamily: "Georgia",
+  fontFamily: "Courier New",
 };
 
 export default {

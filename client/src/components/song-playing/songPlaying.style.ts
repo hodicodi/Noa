@@ -12,6 +12,7 @@ const songPlaying: SxProps = {
 const card: SxProps = {
   bgcolor: "#47025c",
   width: 540,
+  boxShadow: "none"
 };
 
 const box: SxProps = {
@@ -19,8 +20,8 @@ const box: SxProps = {
 };
 
 const cardMedia: SxProps = {
-  height: 40,
-  width: 40,
+  height: '40px',
+  width: '40px',
   borderRadius: 2,
 };
 
@@ -35,7 +36,6 @@ const playlistName: SxProps = {
   fontWeight: "bold",
   height: 18,
   width: 150,
-  fontFamily: "Georgia",
 };
 
 const artistName: SxProps = {
@@ -47,5 +47,6 @@ const artistName: SxProps = {
 
 const playIcon: SxProps = {
   color: "#fffbfb",
+  marginLeft: "auto"
 };
 export default { songPlaying, card, box, cardMedia, cardContent, playlistName, artistName, playIcon };

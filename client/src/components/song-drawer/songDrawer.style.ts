@@ -1,5 +1,5 @@
 import { SxProps } from "@mui/material";
-const drawerWidth = { xs: "100%", sm: "30%" }; // Define your custom width here
+const drawerWidth = { xs: "100%", sm: "30%" };
 
 const songDrawer: SxProps = {
   width: drawerWidth,

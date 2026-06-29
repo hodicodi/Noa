@@ -6,13 +6,13 @@ import Styles from "./songPlaying.style.ts";
 import PauseIcon from "@mui/icons-material/Pause";
 
 const SongPlaying: FC = () => {
-  const { isOpen, openDrawer, isplayIconMarked, handleIconClick, closeDrawer } = useGlobalDrawer();
+  const { isOpen, handleDrawerToggle, isplayIconMarked, handleIconClick } = useGlobalDrawer();
 
   const avatarImage = "https://t2.genius.com/unsafe/344x344/https%3A%2F%2Fimages.genius.com%2F890d5a9fbbe79b45c3cee4d7b086accd.1000x563x1.jpg";
 
   return (
     <>
-      <ButtonBase component={AppBar} onClick={openDrawer}>
+      <ButtonBase component={AppBar} onClick={handleDrawerToggle}>
         <AppBar position="fixed" sx={Styles.songPlaying}>
           <Toolbar>
             <Card sx={Styles.card}>
@@ -37,7 +37,6 @@ const SongPlaying: FC = () => {
                           e.stopPropagation();
                         }}
                         sx={Styles.playIcon}
-                        style={{ marginLeft: "auto" }}
                         color="inherit"
                         aria-label="your action"
                       >

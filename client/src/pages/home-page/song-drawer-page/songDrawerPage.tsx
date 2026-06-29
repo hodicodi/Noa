@@ -9,12 +9,12 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useGlobalDrawer } from "../../../components/song-drawer/DrawerContext.tsx";
 
 const SongDrawerPage: FC = () => {
-  const { isOpen, closeDrawer } = useGlobalDrawer();
+  const { isOpen, handleDrawerToggle } = useGlobalDrawer();
 
 
   return (
     <>
-      <ArrowBackIcon sx={Styles.backIcon}  onClick={() => closeDrawer()}/>
+      <ArrowBackIcon sx={Styles.backIcon}  onClick={() => handleDrawerToggle()}/>
       <Box sx={Styles.songDrawerPage}>
         <SongPicture
           name={playlistInfo?.[0]?.name ?? ""}

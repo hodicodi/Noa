@@ -23,16 +23,11 @@ const artistName: SxProps = {
   fontFamily: "Courier New",
 };
 
-const songInfoContainer: SxProps = {
-  display: "flex",
-  justifyContent: "center",
-};
-
 const card: SxProps = {
   width: "80%",
   alignSelf: "center",
   bgcolor: "#000000",
-  boxShadow: 'none'
+  boxShadow: "none",
 };
 
 const cardContent: SxProps = {
@@ -45,12 +40,12 @@ const songName: SxProps = {
   fontWeight: "bold",
   height: 28,
   width: 150,
-  fontFamily: "Georgia",
   color: "rgb(238, 229, 229)",
 };
 
 const plusIcon: SxProps = {
   color: "#fffbfb",
+  marginLeft: "auto",
 };
 
 export default {
@@ -60,7 +55,6 @@ export default {
   artistName,
   card,
   cardContent,
-  songInfoContainer,
   plusIcon,
   songName,
 };
