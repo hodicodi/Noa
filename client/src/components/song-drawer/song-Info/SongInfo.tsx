@@ -13,10 +13,10 @@ const SongInfo: FC<PlaylistOverviewProps> = ({ name, avaterPicture, artist }) =>
         <CardContent sx={Styles.cardContent}>
           <Box>
             <Typography sx={Styles.songName} variant="h6" component="div">
-              {"song name"}
+              {"Nahman"}
             </Typography>
             <Typography sx={Styles.artistName} variant="body2" component="div">
-              {"artist"}
+              {"Amgosha"}
             </Typography>
           </Box>
           <IconButton sx={Styles.plusIcon} style={{ marginLeft: "auto" }} color="inherit" aria-label="your action">

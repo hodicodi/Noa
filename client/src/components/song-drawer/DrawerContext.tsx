@@ -4,18 +4,27 @@ type DrawerContextType = {
   isOpen: boolean;
   openDrawer: () => void;
   closeDrawer: () => void;
+  isplayIconMarked: boolean;
+  handleIconClick: () => void;
 };
 
 const DrawerContext = createContext<DrawerContextType | undefined>(undefined);
 
 export const DrawerProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
+  
+  const [isplayIconMarked, setIsplayIconMarked] = useState<boolean>(true);
+
+  const handleIconClick = (): void => {
+    setIsplayIconMarked((prev) => !prev);
+  };
+
 
   const openDrawer = () => setIsOpen(true);
   const closeDrawer = () => setIsOpen(false);
 
   return (
-    <DrawerContext.Provider value={{ isOpen, openDrawer, closeDrawer }}>
+    <DrawerContext.Provider value={{ isOpen, isplayIconMarked, openDrawer, closeDrawer, handleIconClick }}>
       {children}
     </DrawerContext.Provider>
   );

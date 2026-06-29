@@ -1,17 +1,17 @@
 import { SxProps } from "@mui/material";
 
 const songDrawerPage: SxProps = {
-    display: "flex",
-    flexDirection: "column",
-    rowGap: 12,
-    borderRadius: 7, 
-    mt: 15
-}
+  display: "flex",
+  flexDirection: "column",
+  rowGap: 12,
+  borderRadius: 7,
+  mt: 15,
+};
 
 const songMainPreview: SxProps = {
   display: "flex",
   flexDirection: "column",
-  rowGap: 5,
+  rowGap: 2,
 };
 
 const playMainPreview: SxProps = {
@@ -20,4 +20,13 @@ const playMainPreview: SxProps = {
   rowGap: 1,
 };
 
-export default {songDrawerPage, songMainPreview, playMainPreview};
+const backIcon: SxProps = {
+  position: "absolute",
+  color: "#ffffff",
+  mt: 4,
+  left: "7%",
+  width: 40,
+  cursor: "pointer",
+};
+
+export default { songDrawerPage, songMainPreview, playMainPreview, backIcon };

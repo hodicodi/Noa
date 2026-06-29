@@ -20,7 +20,7 @@ const songImg: SxProps = {
 const artistName: SxProps = {
   color: "#ffffff",
   width: "40%",
-  fontFamily: "Georgia",
+  fontFamily: "Courier New",
 };
 
 const songInfoContainer: SxProps = {
@@ -31,7 +31,8 @@ const songInfoContainer: SxProps = {
 const card: SxProps = {
   width: "80%",
   alignSelf: "center",
-  bgcolor: "#000",
+  bgcolor: "#000000",
+  boxShadow: 'none'
 };
 
 const cardContent: SxProps = {

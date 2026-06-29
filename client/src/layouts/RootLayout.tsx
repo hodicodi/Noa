@@ -14,6 +14,7 @@ import { DrawerProvider } from "../components/song-drawer/DrawerContext.tsx";
 import { SongDrawer
 
  } from "../components/song-drawer/songDrawer.tsx";
+import { playlistInfo } from "@shared/hardCodedInfo.ts";
 const theme = createTheme({ palette: { primary: { main: "#ffffff" } } });
 
 const RootLayout: FC = () => {
@@ -27,7 +28,7 @@ const RootLayout: FC = () => {
           <DrawerProvider>
             <Outlet />
             <SongPlaying/>
-            <SongDrawer />
+            <SongDrawer imageUrl={playlistInfo[0]!.avaterPicture}/>
           </DrawerProvider>
         </Box>
       </Paper>

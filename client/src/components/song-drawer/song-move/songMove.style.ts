@@ -15,7 +15,12 @@ const plusIcon: SxProps = {
   bgcolor: "#ffffff",
   width: 60,
   height: 60,
+  ":hover" : {
+      bgcolor: "#ffffff",
+  }
 };
+
+
 
 const moveIcon: SxProps = {
   color: "#fffefe",

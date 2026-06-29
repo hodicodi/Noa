@@ -12,7 +12,6 @@ const songPlaying: SxProps = {
 const card: SxProps = {
   bgcolor: "#47025c",
   width: 540,
-  
 };
 
 const box: SxProps = {
@@ -23,34 +22,30 @@ const cardMedia: SxProps = {
   height: 40,
   width: 40,
   borderRadius: 2,
-
 };
 
 const cardContent: SxProps = {
   display: "flex",
   height: 40,
-  alignItems: "center"
+  alignItems: "center",
 };
-
 
 const playlistName: SxProps = {
   color: "#ffffff",
   fontWeight: "bold",
   height: 18,
   width: 150,
-      fontFamily: "Georgia"
-
-
+  fontFamily: "Georgia",
 };
 
 const artistName: SxProps = {
   color: "#ffffff",
   height: 16,
   width: 150,
-  
+  fontFamily: "Courier New",
 };
 
 const playIcon: SxProps = {
-  color: "#fffbfb"
+  color: "#fffbfb",
 };
 export default { songPlaying, card, box, cardMedia, cardContent, playlistName, artistName, playIcon };

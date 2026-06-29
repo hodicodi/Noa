@@ -1,25 +1,14 @@
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import {
-  AppBar,
-  Box,
-  ButtonBase,
-  Card,
-  CardContent,
-  CardMedia,
-  Grid,
-  IconButton,
-  Toolbar,
-  Typography,
-} from "@mui/material";
-import { FC } from "react";
+import { AppBar, Box, ButtonBase, Card, CardContent, CardMedia, Grid, IconButton, Toolbar, Typography } from "@mui/material";
+import React, { FC } from "react";
 import { useGlobalDrawer } from "../song-drawer/DrawerContext.tsx";
 import Styles from "./songPlaying.style.ts";
+import PauseIcon from "@mui/icons-material/Pause";
 
 const SongPlaying: FC = () => {
-  const { isOpen, openDrawer } = useGlobalDrawer();
+  const { isOpen, openDrawer, isplayIconMarked, handleIconClick, closeDrawer } = useGlobalDrawer();
 
-  const avatarImage =
-    "https://t2.genius.com/unsafe/344x344/https%3A%2F%2Fimages.genius.com%2F890d5a9fbbe79b45c3cee4d7b086accd.1000x563x1.jpg";
+  const avatarImage = "https://t2.genius.com/unsafe/344x344/https%3A%2F%2Fimages.genius.com%2F890d5a9fbbe79b45c3cee4d7b086accd.1000x563x1.jpg";
 
   return (
     <>
@@ -36,19 +25,23 @@ const SongPlaying: FC = () => {
                     <CardContent sx={Styles.cardContent}>
                       <Box>
                         <Typography sx={Styles.playlistName} variant="body2" component="div">
-                          {"song name"}
+                          {"Nehama"}
                         </Typography>
                         <Typography sx={Styles.artistName} variant="body2" component="div">
-                          {"artist"}
+                          {"Amgosha"}
                         </Typography>
                       </Box>
                       <IconButton
+                        onClick={(e) => {
+                          handleIconClick();
+                          e.stopPropagation();
+                        }}
                         sx={Styles.playIcon}
                         style={{ marginLeft: "auto" }}
                         color="inherit"
                         aria-label="your action"
                       >
-                        <PlayArrowIcon fontSize="large" />
+                        {isplayIconMarked ? <PlayArrowIcon fontSize="large" /> : <PauseIcon fontSize="large" />}
                       </IconButton>
                     </CardContent>
                   </Grid>
@@ -58,7 +51,6 @@ const SongPlaying: FC = () => {
           </Toolbar>
         </AppBar>
       </ButtonBase>
-
       <Toolbar />
     </>
   );
