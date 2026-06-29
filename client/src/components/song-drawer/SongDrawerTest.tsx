@@ -6,10 +6,10 @@ import Styles from "./songDrawer.style.ts";
 import { SongDrawerOverviewProps } from "./SongDrawerOverviewProps.ts";
 
 export const SongDrawer: FC<SongDrawerOverviewProps> = ({ imageUrl }) => {
-  const { isOpen, handleDrawerToggle } = useGlobalDrawer();
+  const { isOpen, ToggleDrawer } = useGlobalDrawer();
 
   return (
-    <Drawer sx={Styles.songDrawer} anchor="bottom" open={isOpen} onClose={handleDrawerToggle}>
+    <Drawer sx={Styles.songDrawer} anchor="bottom" open={isOpen} onClose={ToggleDrawer}>
       <Box role="presentation">
         <SongDrawerPage />
       </Box>

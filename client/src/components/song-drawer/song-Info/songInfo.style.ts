@@ -1,25 +1,7 @@
 import { SxProps } from "@mui/material";
 
-const songMainPreview: SxProps = {
-  display: "flex",
-  flexDirection: "column",
-  rowGap: 5,
-};
-
-const imgContainer: SxProps = {
-  display: "flex",
-  justifyContent: "center",
-};
-
-const songImg: SxProps = {
-  height: "80%",
-  width: "80%",
-  borderRadius: 3,
-};
-
 const artistName: SxProps = {
   color: "#ffffff",
-  width: "40%",
   fontFamily: "Courier New",
 };
 
@@ -32,14 +14,12 @@ const card: SxProps = {
 
 const cardContent: SxProps = {
   display: "flex",
-  height: 40,
+  height: '40px',
   alignItems: "center",
 };
 
 const songName: SxProps = {
   fontWeight: "bold",
-  height: 28,
-  width: 150,
   color: "rgb(238, 229, 229)",
 };
 
@@ -49,9 +29,6 @@ const plusIcon: SxProps = {
 };
 
 export default {
-  songMainPreview,
-  imgContainer,
-  songImg,
   artistName,
   card,
   cardContent,

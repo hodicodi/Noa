@@ -11,7 +11,7 @@ import { useAuth } from "../auth/AuthContext.tsx";
 import style from "./rootLayout.style.ts";
 import SongPlaying from "../components/song-playing/SongPlaying.tsx";
 import { DrawerProvider } from "../components/song-drawer/DrawerContext.tsx";
-import { SongDrawer } from "../components/song-drawer/SongDrawer.tsx";
+import { SongDrawer } from "../components/song-drawer/SongDrawerTest.tsx";
 import { playlistInfo } from "@shared/hardCodedInfo.ts";
 const theme = createTheme({ palette: { primary: { main: "#ffffff" } }, 
 typography: { fontFamily: ['Georgia'].join(',')} });

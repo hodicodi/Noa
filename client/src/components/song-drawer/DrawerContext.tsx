@@ -2,7 +2,7 @@ import React, { createContext, FC, ReactNode, useContext, useState } from "react
 
 type DrawerContextType = {
   isOpen: boolean;
-  handleDrawerToggle: () => void;
+  ToggleDrawer: () => void;
   isplayIconMarked: boolean;
   handleIconClick: () => void;
 };
@@ -18,11 +18,11 @@ export const DrawerProvider: FC<{ children: ReactNode }> = ({ children }) => {
     setIsplayIconMarked((prev) => !prev);
   };
 
-  const handleDrawerToggle = (): void => {
+  const ToggleDrawer = (): void => {
     setIsOpen((prev) => !prev);
   };
 
-  return <DrawerContext.Provider value={{ isOpen, isplayIconMarked, handleDrawerToggle, handleIconClick }}>{children}</DrawerContext.Provider>;
+  return <DrawerContext.Provider value={{ isOpen, isplayIconMarked, ToggleDrawer, handleIconClick }}>{children}</DrawerContext.Provider>;
 };
 
 export const useGlobalDrawer = () => {

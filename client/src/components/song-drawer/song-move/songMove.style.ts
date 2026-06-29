@@ -4,17 +4,17 @@ import { SxProps } from "@mui/material";
 const box: SxProps = {
   display: "flex",
   justifyContent: "space-between",
-  gap: 2,
-  height: 40,
+  gap: "px",
+  height: "40px",
   alignItems: "center",
   alignSelf: "center",
 };
 
-const plusIcon: SxProps = {
+const playIcon: SxProps = {
   color: "#000000",
   bgcolor: "#ffffff",
-  width: 60,
-  height: 60,
+  width: "60px",
+  height: "60px",
   ":hover" : {
       bgcolor: "#ffffff",
   },
@@ -22,16 +22,15 @@ const plusIcon: SxProps = {
 };
 
 
-
 const moveIcon: SxProps = {
   color: "#fffefe",
-  width: 80,
-  height: 80,
+  width: "80px",
+  height: "80px",
   marginLeft: "auto"
 };
 
 export default {
-  plusIcon,
+  playIcon,
   box,
   moveIcon,
 };

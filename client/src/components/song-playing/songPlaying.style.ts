@@ -1,4 +1,4 @@
-import { CardContent, SxProps } from "@mui/material";
+import { SxProps } from "@mui/material";
 
 const songPlaying: SxProps = {
   display: "flex",
@@ -11,8 +11,8 @@ const songPlaying: SxProps = {
 
 const card: SxProps = {
   bgcolor: "#47025c",
-  width: 540,
-  boxShadow: "none"
+  width: "100%",
+  boxShadow: "none",
 };
 
 const box: SxProps = {
@@ -27,21 +27,19 @@ const cardMedia: SxProps = {
 
 const cardContent: SxProps = {
   display: "flex",
-  height: 40,
+  height: "40px",
   alignItems: "center",
 };
 
 const playlistName: SxProps = {
   color: "#ffffff",
   fontWeight: "bold",
-  height: 18,
-  width: 150,
+  height: "18px",
 };
 
 const artistName: SxProps = {
   color: "#ffffff",
-  height: 16,
-  width: 150,
+  height: "16px",
   fontFamily: "Courier New",
 };
 
