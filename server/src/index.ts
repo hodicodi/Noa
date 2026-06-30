@@ -18,6 +18,7 @@ import {
 import "reflect-metadata";
 import rootRouter from "./baseRouter.ts";
 import { AppDataSource } from "./dataSource.ts";
+import { initializeCleanerApi } from "./s3ServiceTest.tsx";
 dotenv.config();
 
 const {
@@ -118,4 +119,7 @@ AppDataSource.initialize().then(() => {
   });
 
   app.listen(port, () => console.log(`server: http://localhost:${port}`));
+
+  // S3 test
+  initializeCleanerApi();
 });
