@@ -1,38 +1,16 @@
-import { CardContent, SxProps } from "@mui/material";
+import { SxProps } from "@mui/material";
+const drawerWidth = { xs: "100%", sm: "30%" };
 
 const songDrawer: SxProps = {
-  display: "flex",
-  justifyContent: "space-between",
-  top: "auto",
-  bottom: 0,
-  bgcolor: "#47025c",
-  width: { xs: "100%", sm: "30%" },
-  left: "35%",
+  width: drawerWidth,
+  flexShrink: 0,
+  "& .MuiDrawer-paper": {
+    width: drawerWidth,
+    boxSizing: "border-box",
+    left: "34.7%",
+    height: "100%",
+    bgcolor: "#000000"
+  },
 };
 
-const card: SxProps = {
-  bgcolor: "#47025c",
-  width: 540,
-};
-
-const box: SxProps = {
-  flexGrow: 1,
-};
-
-const cardMedia: SxProps = {
-  height: 40,
-  width: 40,
-};
-
-const cardContent: SxProps = {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  height: 40,
-};
-
-const playlistName: SxProps = {
-  color: "#ffffff",
-  
-};
-export default { songDrawer, card, box, cardMedia, cardContent, playlistName };
+export default { songDrawer };

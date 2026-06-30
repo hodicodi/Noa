@@ -1,59 +1,18 @@
-import {
-    AppBar,
-    Box,
-    Card,
-    CardContent,
-    CardMedia,
-    Grid,
-    Toolbar,
-    Typography
-} from "@mui/material";
-import { FC, useState } from "react";
+import { Box, Drawer } from "@mui/material";
+import { FC } from "react";
+import SongDrawerPage from "../../pages/home-page/song-drawer-page/songDrawerPage.tsx";
+import { useGlobalDrawer } from "./DrawerContext.tsx";
 import Styles from "./songDrawer.style.ts";
+import { SongDrawerOverviewProps } from "./SongDrawerOverviewProps.ts";
 
-const SongDrawer: FC = () => {
-  const [open, setOpen] = useState(true);
-
-    const avatarImage =
-    "https://images.unsplash.com/photo-1494548162494-384bba4ab999";
-
+export const SongDrawer: FC<SongDrawerOverviewProps> = ({ imageUrl }) => {
+  const { isOpen, ToggleDrawer } = useGlobalDrawer();
 
   return (
-    <>
-      <AppBar position="fixed" sx={Styles.songDrawer}>
-        <Toolbar>
-            <Card sx={Styles.card} >
-                    <Box sx={Styles.box}>
-                    <Grid container spacing={0}>
-                        <Grid size={1.9}>
-                        <CardMedia
-                            sx={Styles.cardMedia}
-                            component="img"
-                            image={avatarImage}
-                            alt="Beautiful Sunrise"
-                        />
-                        </Grid>
-                        <Grid size={10.1}>
-                        <CardContent sx={Styles.cardContent}>
-                            <Typography
-                            sx={Styles.playlistName}
-                            gutterBottom
-                            variant="h6"
-                            component="div"
-                            >
-                            {"Ahavat HInam"}
-                            </Typography>
-                        </CardContent>
-                        </Grid>
-                    </Grid>
-                    </Box>
-                </Card>        
-                </Toolbar>
-      </AppBar>
-      
-      <Toolbar />
-    </>
+    <Drawer sx={Styles.songDrawer} anchor="bottom" open={isOpen} onClose={ToggleDrawer}>
+      <Box role="presentation">
+        <SongDrawerPage />
+      </Box>
+    </Drawer>
   );
 };
-
-export default SongDrawer;

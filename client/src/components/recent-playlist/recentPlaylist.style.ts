@@ -3,6 +3,7 @@ import { SxProps } from "@mui/material";
 const card: SxProps = {
   maxWidth: 345,
   bgcolor: "#000000",
+  borderRadius: 2,
 };
 
 const box: SxProps = {
@@ -12,6 +13,7 @@ const box: SxProps = {
 const cardMedia: SxProps = {
   height: 40,
   width: 40,
+  borderRadius: 1,
 };
 
 const cardContent: SxProps = {
@@ -24,6 +26,7 @@ const cardContent: SxProps = {
 
 const playlistName: SxProps = {
   color: "#ffffff",
+  height: 8,
 };
 
 export default { card, box, cardMedia, cardContent, playlistName };

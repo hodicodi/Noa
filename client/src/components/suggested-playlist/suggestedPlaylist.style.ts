@@ -2,12 +2,14 @@ import { SxProps } from "@mui/material";
 
 const card: SxProps = {
   maxWidth: 345,
+  borderRadius: 2,
 };
 
 const cardContent: SxProps = {
   position: "absolute",
   backgroundColor: "rgba(169, 15, 216, 0.5)",
   width: "13.7%",
+  borderRadius: 2,
 };
 
 const playlistName: SxProps = {
