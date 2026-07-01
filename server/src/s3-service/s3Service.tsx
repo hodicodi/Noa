@@ -4,6 +4,7 @@ import querystring from "node:querystring";
 import { File } from "node:buffer";
 import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { S3File } from "../s3ServiceTest.ts";
 dotenv.config();
 
 const {
@@ -49,7 +50,8 @@ const cleanerApi = axios.create({
   timeout: 10000,
 });
 
-export const uploadFile = async (uploadUrl: string, content: string, contentType: string) => {
+export const uploadFile = async (uploadUrl: string, file: S3File, contentType?: string) => {
+  const {content} = file;
   return axios.put(uploadUrl, content, {
     headers: { "Content-Type": contentType || "application/octet-stream" },
   });

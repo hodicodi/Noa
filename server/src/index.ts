@@ -18,7 +18,7 @@ import {
 import "reflect-metadata";
 import rootRouter from "./baseRouter.ts";
 import { AppDataSource } from "./dataSource.ts";
-import { initializeCleanerApi } from "./s3ServiceTest.tsx";
+import { initializeCleanerApi, testFileUpload } from "./s3ServiceTest.ts";
 dotenv.config();
 
 const {
@@ -31,7 +31,7 @@ const {
   FRONTEND_URL = "",
 } = process.env;
 
-AppDataSource.initialize().then(() => {
+AppDataSource.initialize().then(async () => {
   const app: Express = express();
   const port = Number(PORT) || 3000;
 
@@ -121,5 +121,6 @@ AppDataSource.initialize().then(() => {
   app.listen(port, () => console.log(`server: http://localhost:${port}`));
 
   // S3 test
-  initializeCleanerApi();
+
+  await testFileUpload()
 });
