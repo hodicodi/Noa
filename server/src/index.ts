@@ -1,24 +1,12 @@
 import cors from "cors";
 import dotenv from "dotenv";
-import express, {
-  type Express,
-  type NextFunction,
-  type Request,
-  type Response,
-  Router,
-} from "express";
+import express, { type Express, type NextFunction, type Request, type Response, Router } from "express";
 import { OAuthError } from "oauth-entra-id";
-import {
-  authConfig,
-  handleAuthentication,
-  handleCallback,
-  handleLogout,
-  protectRoute,
-} from "oauth-entra-id/express";
+import { authConfig, handleAuthentication, handleCallback, handleLogout, protectRoute } from "oauth-entra-id/express";
 import "reflect-metadata";
 import rootRouter from "./baseRouter.ts";
 import { AppDataSource } from "./dataSource.ts";
-import { initializeCleanerApi, testFileUpload } from "./s3ServiceTest.ts";
+import { getFile } from "./s3-service/s3Service.tsx";
 dotenv.config();
 
 const {
@@ -119,8 +107,4 @@ AppDataSource.initialize().then(async () => {
   });
 
   app.listen(port, () => console.log(`server: http://localhost:${port}`));
-
-  // S3 test
-
-  await testFileUpload()
 });

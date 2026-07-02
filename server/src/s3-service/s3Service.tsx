@@ -5,6 +5,7 @@ import { File } from "node:buffer";
 import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { S3File } from "../s3ServiceTest.ts";
+import { Readable } from "typeorm/platform/PlatformTools.js";
 dotenv.config();
 
 const {
@@ -15,6 +16,9 @@ const {
   CLEANER_API_BASE_URL = "",
   BUCKET_IDENTIFIERS = "",
   BUCKET_NAME = "",
+  AWS_ACCESS_KEY_ID = "",
+  AWS_SECRET_ACCESS_KEY = ""
+
 } = process.env;
 
 export const getAccessToken = async () => {
@@ -71,13 +75,15 @@ const client = new S3Client({
   region: "il-central-1",
 });
 
-export const getFileOneTimeUrl = async (path: string): Promise<string> => {
-  const command = new GetObjectCommand({
-    Bucket: BUCKET_NAME,
-    Key: path,
-  });
+  type GetFileResult = {
+   contentType: string;
+   body: Readable; // a Node stream
+ };
 
-  const url = await getSignedUrl(client, command, { expiresIn: 60 });
-
-  return url
-};
+ export const getFile = async (path: string): Promise<GetFileResult> => {
+   const command = new GetObjectCommand({ Bucket: BUCKET_NAME, Key: path });
+ 
+   const file = await client.send(command);
+   const body = Readable.from(file.Body as AsyncIterable<Uint8Array>);
+ 
+   return { body, contentType: file.ContentType || '' }};

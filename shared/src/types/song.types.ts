@@ -6,8 +6,11 @@ export type Song = {
   name: string;
   publishDate: string;
   genre: SongType;
+  s3Url: string;
   album: Album;
 };
+
+
 
 export type SongRes = {
   song: Song | null;
@@ -25,6 +28,7 @@ export type AddSongToAlbum = {
   name: string;
   publishDate: string;
   genre: SongType;
+  s3Url: string;
   album: {
     uuid: string;
   };
@@ -38,6 +42,7 @@ export type AddSongToPersonalPlaylist = {
   name: string;
   publishDate: string;
   genre: SongType;
+  s3Url: string;
   personalPlaylist: {
     uuid: string;
   };

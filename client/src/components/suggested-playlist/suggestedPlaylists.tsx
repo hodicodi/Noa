@@ -10,7 +10,7 @@ import { useAlbum } from "../../hooks/useAlbum.ts";
 
 
 const SuggestedPlaylists: React.FC = () => {
-  const { data: album, isLoading } = useAlbum("8e64586a-26c6-4e6f-a0fa-6d741f3b069d");
+  const { data: album, isLoading } = useAlbum("9c609112-b8bc-4772-9f6b-9d828288bb66");
   const latestAlbums: Album[] = Array(8).fill(album) ?? [];
   const avatarImage = "https://t2.genius.com/unsafe/344x344/https%3A%2F%2Fimages.genius.com%2F890d5a9fbbe79b45c3cee4d7b086accd.1000x563x1.jpg";
 

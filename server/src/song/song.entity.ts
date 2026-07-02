@@ -14,10 +14,13 @@ export class Song extends BaseCustomEntity {
 
   @Column({
     type: "enum",
-    enum: SongType, 
+    enum: SongType,
     default: SongType.Rock,
   })
   genre: SongType;
+
+  @Column({ type: "varchar" , unique: true})
+  s3Url: string;
 
   @ManyToMany(() => PersonalPlaylist, (personalPlaylist) => personalPlaylist.songs, { onDelete: "CASCADE" })
   personalPlaylist: PersonalPlaylist;

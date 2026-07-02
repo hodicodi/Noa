@@ -7,7 +7,6 @@ const theme = createTheme({ palette: { primary: { main: "#ffffff" } } });
 
 const NavBar: FC = () => {
   const { status, user, logout } = useAuth();
-
   return (
     <Box sx={Styles.userBar}>
       <Typography color="primary">{user?.name ?? user?.email}</Typography>
