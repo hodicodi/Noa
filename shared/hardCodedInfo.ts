@@ -1,3 +1,5 @@
+import { SongOverviewProps } from "./src/types/song.types";
+
 class Playlist {
   name: string;
   avaterPicture: string;
@@ -52,3 +54,51 @@ export const playlistInfo: Playlist[] = [
     "Amgosha"
   ),
 ];
+
+export const songsInfo: SongOverviewProps[] = [
+  {
+    uuid: "4b687870-6350-4155-bd3d-217f59caddb4",
+    name: "One",
+    artistName: "Dudu tasa"
+  },
+    {
+    uuid: "4b687870-6350-4155-bd3d-217f59caddb4",
+    name: "Two",
+    artistName: "Dudu tasa"
+  },
+    {
+    uuid: "4b687870-6350-4155-bd3d-217f59caddb4",
+    name: "Three",
+    artistName: "Dudu tasa"
+  },
+    {
+    uuid: "4b687870-6350-4155-bd3d-217f59caddb4",
+    name: "Four",
+    artistName: "Dudu tasa"
+  },
+    {
+    uuid: "4b687870-6350-4155-bd3d-217f59caddb4",
+    name: "Five",
+    artistName: "Dudu tasa"
+  },
+    {
+    uuid: "4b687870-6350-4155-bd3d-217f59caddb4",
+    name: "Sixxxxx",
+    artistName: "Dudu tasa"
+  },
+    {
+    uuid: "4b687870-6350-4155-bd3d-217f59caddb4",
+    name: "Sevennnn",
+    artistName: "Dudu tasa"
+  },
+    {
+    uuid: "4b687870-6350-4155-bd3d-217f59caddb4",
+    name: "Eight",
+    artistName: "Dudu tasa"
+  },
+    {
+    uuid: "4b687870-6350-4155-bd3d-217f59caddb4",
+    name: "Nine",
+    artistName: "Dudu tasa"
+  },
+]

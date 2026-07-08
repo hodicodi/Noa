@@ -22,6 +22,7 @@ export class Song extends BaseCustomEntity {
   @Column({ type: "varchar" , unique: true})
   s3Url: string;
 
+
   @ManyToMany(() => PersonalPlaylist, (personalPlaylist) => personalPlaylist.songs, { onDelete: "CASCADE" })
   personalPlaylist: PersonalPlaylist;
 

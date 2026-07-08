@@ -10,7 +10,6 @@ const HomePage: React.FC = () => {
   return (
     <>
       <NavBar />
-      <AudioUpload/>
         <Box sx={style.homePage}>
           <LastPlaylists />
           <SuggestedPlaylists />

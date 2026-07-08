@@ -6,18 +6,18 @@ import albumService from "./album.service.ts";
 
 const albumRouter = Router();
 
-albumRouter.get("/:uuid", async (req: Request<GeneralParams, unknown, unknown>, res: Response<AlbumRes>, next) => {
+albumRouter.get("/:uuid", async (req: Request<GeneralParams, unknown, unknown>, res: Response<AlbumRes>) => {
   const { uuid } = req.params;
   const album = await albumService.getAlbumById(uuid);
   res.status(StatusCodes.OK).json({ album });
 });
 
-albumRouter.get("/", async (req: Request<unknown, unknown, unknown>, res: Response<AlbumsRes>, next) => {
+albumRouter.get("/", async (req: Request<unknown, unknown, unknown>, res: Response<AlbumsRes>) => {
   const albums = await albumService.getAllAlbums();
   res.status(StatusCodes.OK).json({ albums });
 });
 
-albumRouter.post("/", async (req: Request<unknown, unknown, SaveAlbumReqBody>, res: Response, next) => {
+albumRouter.post("/", async (req: Request<unknown, unknown, SaveAlbumReqBody>, res: Response) => {
   const { album } = req.body;
   const newAlbum = await albumService.createAlbum(album);
   res.status(StatusCodes.CREATED).json({ newAlbum });

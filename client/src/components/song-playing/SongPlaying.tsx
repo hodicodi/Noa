@@ -4,11 +4,30 @@ import React, { FC } from "react";
 import { useGlobalDrawer } from "../song-drawer/DrawerContext.tsx";
 import Styles from "./songPlaying.style.ts";
 import PauseIcon from "@mui/icons-material/Pause";
+import { usemp3, useSong } from "../../hooks/useSong.ts";
 
 const SongPlaying: FC = () => {
-  const { isOpen, ToggleDrawer, isplayIconMarked, handleIconClick } = useGlobalDrawer();
+  const { isOpen, ToggleDrawer, isplayIconMarked, handleIconClick, currentSong, RecievedaudioUrl } = useGlobalDrawer();
+  /*
+  console.log(currentSong.uuid);
+  const { data: song, isLoading } = useSong(currentSong.uuid);
+  const { data: audioUrl } = usemp3(song?.uuid!);
+  console.log("mp3Buffer:" + audioUrl);
+  const audio = new Audio(audioUrl!);
+  audio.onended = () => {
+    URL.revokeObjectURL(audioUrl!);
+  };
+      audio.play().catch(error => {
+      console.error("Playback failed", error);
+    });
+*/
   const avatarImage = "https://t2.genius.com/unsafe/344x344/https%3A%2F%2Fimages.genius.com%2F890d5a9fbbe79b45c3cee4d7b086accd.1000x563x1.jpg";
 
+ const temp = (): void => {
+      const audio = new Audio(RecievedaudioUrl!);
+      audio.play();
+    
+  };
   return (
     <>
       <ButtonBase component={AppBar} onClick={ToggleDrawer}>
@@ -24,15 +43,15 @@ const SongPlaying: FC = () => {
                     <CardContent sx={Styles.cardContent}>
                       <Box>
                         <Typography sx={Styles.playlistName} variant="body2" component="div">
-                          {"Nehama"}
+                          {currentSong.name}
                         </Typography>
                         <Typography sx={Styles.artistName} variant="body2" component="div">
-                          {"Amgosha"}
+                          {currentSong.artistName}
                         </Typography>
                       </Box>
                       <IconButton
                         onClick={(e) => {
-                          handleIconClick();
+                          temp();
                           e.stopPropagation();
                         }}
                         sx={Styles.playIcon}

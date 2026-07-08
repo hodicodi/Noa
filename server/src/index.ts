@@ -6,7 +6,6 @@ import { authConfig, handleAuthentication, handleCallback, handleLogout, protect
 import "reflect-metadata";
 import rootRouter from "./baseRouter.ts";
 import { AppDataSource } from "./dataSource.ts";
-import { getFile } from "./s3-service/s3Service.tsx";
 dotenv.config();
 
 const {
