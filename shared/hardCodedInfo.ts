@@ -57,7 +57,7 @@ export const playlistInfo: Playlist[] = [
 
 export const songsInfo: SongOverviewProps[] = [
   {
-    uuid: "4b687870-6350-4155-bd3d-217f59caddb4",
+    uuid: "ab38b12b-5025-4ca7-bd6f-ed8f795b3527",
     name: "One",
     artistName: "Dudu tasa"
   },

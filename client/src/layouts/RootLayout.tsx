@@ -1,10 +1,4 @@
-import {
-  Box,
-  CssBaseline,
-  Paper,
-  ThemeProvider,
-  createTheme
-} from "@mui/material";
+import { Box, CssBaseline, Paper, ThemeProvider, createTheme } from "@mui/material";
 import { FC } from "react";
 import { Outlet } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext.tsx";
@@ -13,8 +7,8 @@ import SongPlaying from "../components/song-playing/SongPlaying.tsx";
 import { DrawerProvider } from "../components/song-drawer/DrawerContext.tsx";
 import { SongDrawer } from "../components/song-drawer/SongDrawer.tsx";
 import { playlistInfo } from "@shared/hardCodedInfo.ts";
-const theme = createTheme({ palette: { primary: { main: "#ffffff" } }, 
-typography: { fontFamily: ['Georgia'].join(',')} });
+import DrawerAndSongPlayer from "../components/DrawerAndSongPlayer/DrawerAndSongPlayer.tsx";
+const theme = createTheme({ palette: { primary: { main: "#ffffff" } }, typography: { fontFamily: ["Georgia"].join(",") } });
 
 const RootLayout: FC = () => {
   const { status, user, logout } = useAuth();
@@ -26,8 +20,7 @@ const RootLayout: FC = () => {
         <Box sx={style.backgound}>
           <DrawerProvider>
             <Outlet />
-            <SongPlaying/>
-            <SongDrawer imageUrl={playlistInfo[0]!.avaterPicture}/>
+            <DrawerAndSongPlayer />
           </DrawerProvider>
         </Box>
       </Paper>

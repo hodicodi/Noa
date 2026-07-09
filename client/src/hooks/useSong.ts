@@ -19,10 +19,8 @@ export const useSong = (uuid: string) => {
 
 const getMp3BufferByUuid = async (songData: GeneralParams): Promise<string | null> => {
   const response = await API.get<ArrayBuffer>(`/songs/mp3/${songData.uuid}`, { params: { uuid: songData.uuid }, responseType: "arraybuffer" });
-  console.log("response.data" + response.data);
   const blob = new Blob([response.data], { type: "audio/mpeg" });
   const audioUrl = URL.createObjectURL(blob);
-  console.log("audioUrl: " + audioUrl);
   return audioUrl;
 };
 
