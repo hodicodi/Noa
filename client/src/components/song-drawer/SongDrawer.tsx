@@ -9,17 +9,17 @@ import { useGlobalDrawer } from "./DrawerContext.tsx";
 import Styles from "./songDrawer.style.ts";
 import { SongDrawerOverviewProps } from "./SongDrawerOverviewProps.ts";
 
-export const SongDrawer: FC<SongDrawerOverviewProps> = ({ isDrawerOpen, ToggleDrawer, handleIconClick, isPlay }) => {
+export const SongDrawer: FC<SongDrawerOverviewProps> = ({ isDrawerOpen, toggleDrawer, handleIconClick, isPlay }) => {
   const { currentSong } = useGlobalDrawer();
 
   return (
-    <Drawer sx={Styles.songDrawer} anchor="bottom" open={isDrawerOpen} onClose={ToggleDrawer}>
+    <Drawer sx={Styles.songDrawer} anchor="bottom" open={isDrawerOpen} onClose={toggleDrawer}>
       <Box role="presentation">
-        <ArrowBackIcon sx={Styles.backIcon} onClick={() => ToggleDrawer()} />
+        <ArrowBackIcon sx={Styles.backIcon} onClick={toggleDrawer} />
         <Box sx={Styles.songDrawerPage}>
-          <SongPicture uuid={currentSong.uuid!} name={currentSong.name!} avaterPicture={playlistInfo[0]!.avaterPicture} artistName={currentSong.artistName!} />
+          <SongPicture uuid={currentSong.uuid} name={currentSong.name} avaterPicture={playlistInfo[0]!.avaterPicture} artistName={currentSong.artistName} />
           <Box sx={Styles.songMainPreview}>
-            <SongInfo uuid={currentSong.uuid!} name={currentSong.name!} avaterPicture={playlistInfo[0]!.avaterPicture} artistName={currentSong.artistName!} />
+            <SongInfo uuid={currentSong.uuid} name={currentSong.name} avaterPicture={playlistInfo[0]!.avaterPicture} artistName={currentSong.artistName} />
             <SongMove isPlay={isPlay} handleIconClick={handleIconClick}/>
           </Box>
         </Box>

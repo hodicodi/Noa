@@ -1,6 +1,6 @@
 const Path = {
-  HOME: "/",
-  PLAYLIST: "/playlist",
+  Home: "/",
+  Playlist: "/playlist",
 };
 
 export default Path;

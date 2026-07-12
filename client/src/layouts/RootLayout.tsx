@@ -2,13 +2,10 @@ import { Box, CssBaseline, Paper, ThemeProvider, createTheme } from "@mui/materi
 import { FC } from "react";
 import { Outlet } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext.tsx";
-import style from "./rootLayout.style.ts";
-import SongPlaying from "../components/song-playing/SongPlaying.tsx";
-import { DrawerProvider } from "../components/song-drawer/DrawerContext.tsx";
-import { SongDrawer } from "../components/song-drawer/SongDrawer.tsx";
-import { playlistInfo } from "@shared/hardCodedInfo.ts";
 import DrawerAndSongPlayer from "../components/DrawerAndSongPlayer/DrawerAndSongPlayer.tsx";
-const theme = createTheme({ palette: { primary: { main: "#ffffff" } }, typography: { fontFamily: ["Georgia"].join(",") } });
+import { DrawerProvider } from "../components/song-drawer/DrawerContext.tsx";
+import style from "./rootLayout.style.ts";
+const theme = createTheme({ palette: { primary: { main: "#ffffff" } }, typography: { fontFamily: "Georgia"} });
 
 const RootLayout: FC = () => {
   const { status, user, logout } = useAuth();

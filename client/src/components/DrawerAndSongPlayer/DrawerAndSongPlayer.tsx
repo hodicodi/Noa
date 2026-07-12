@@ -6,43 +6,37 @@ import SongPlaying from "../song-playing/SongPlaying.tsx";
 
 export type DrawerInfoProps = {
   isDrawerOpen: boolean;
-  ToggleDrawer: () => void;
+  toggleDrawer: () => void;
   isPlay: boolean;
   handleIconClick: () => void;
 };
 
 const DrawerAndSongPlayer: FC = () => {
-  const { recievedaudioUrl } = useGlobalDrawer();
+  const { recievedAudioUrl } = useGlobalDrawer();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isPlay, setisPlay] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    if (recievedaudioUrl) {
-      audioRef.current = new Audio(recievedaudioUrl);
+    if (recievedAudioUrl) {
+      audioRef.current = new Audio(recievedAudioUrl);
     }
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-    };
-  }, [recievedaudioUrl]);
+  }, [recievedAudioUrl]);
 
   const playAudio = async () => {
     if (audioRef.current) {
-      await audioRef.current.play();
+       audioRef.current.play();
     }
   };
 
   const pauseAudio = (): void => {
     if (audioRef.current) {
-      audioRef.current.pause(); // Automatically pauses at the current time
+      audioRef.current.pause();
     }
   };
 
-  const ToggleDrawer = (): void => {
+  const toggleDrawer = (): void => {
     setIsDrawerOpen((prev) => !prev);
   };
 
@@ -50,19 +44,20 @@ const DrawerAndSongPlayer: FC = () => {
     setisPlay((prev) => !prev);
     if (!isPlay) {
       playAudio();
-    } else {
+      return
+    } 
       pauseAudio();
-    }
+
   };
 
   return (
     <>
-      <SongPlaying isDrawerOpen={isDrawerOpen} isPlay={isPlay} ToggleDrawer={ToggleDrawer} handleIconClick={handleIconClick} />
+      <SongPlaying isDrawerOpen={isDrawerOpen} isPlay={isPlay} toggleDrawer={toggleDrawer} handleIconClick={handleIconClick} />
       <SongDrawer
         imageUrl={playlistInfo[0]!.avaterPicture}
         isDrawerOpen={isDrawerOpen}
         isPlay={isPlay}
-        ToggleDrawer={ToggleDrawer}
+        toggleDrawer={toggleDrawer}
         handleIconClick={handleIconClick}
       />
     </>

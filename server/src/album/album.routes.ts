@@ -12,7 +12,7 @@ albumRouter.get("/:uuid", async (req: Request<GeneralParams, unknown, unknown>, 
   res.status(StatusCodes.OK).json({ album });
 });
 
-albumRouter.get("/", async (req: Request<unknown, unknown, unknown>, res: Response<AlbumsRes>) => {
+albumRouter.get("/", async (req: Request, res: Response<AlbumsRes>) => {
   const albums = await albumService.getAllAlbums();
   res.status(StatusCodes.OK).json({ albums });
 });

@@ -1,13 +1,12 @@
 import { songsInfo } from "@shared/hardCodedInfo.ts";
-import { Song } from "@shared/src/types/song.types.ts";
-import { SongOverviewProps } from "@shared/src/types/song.types.ts";
+import { Song, SongOverviewProps } from "@shared/src/types/song.types.ts";
 import { createContext, FC, ReactNode, useContext, useEffect, useState } from "react";
-import { usemp3, useSong } from "../../hooks/useSong.ts";
+import { usemp3 } from "../../hooks/useSong.ts";
 
 type DrawerContextType = {
   currentSong: SongOverviewProps;
   setCurrentSong: (currentSong: SongOverviewProps) => void;
-  recievedaudioUrl: string | undefined | null;
+  recievedAudioUrl: string | null;
   audioUrl: string | null;
 };
 
@@ -27,17 +26,17 @@ export const DrawerProvider: FC<{ children: ReactNode }> = ({ children }) => {
     artistName: songsInfo[0]?.artistName!,
   });
 
-  const { data: recievedaudioUrl } = usemp3(currentSong.uuid!);
+  const { data: recievedAudioUrl = null } = usemp3(currentSong.uuid!);
 
-  const [audioUrl, setAudioUrl] = useState<string | null>(recievedaudioUrl!);
+  const [audioUrl, setAudioUrl] = useState<string | null>(recievedAudioUrl!);
 
   useEffect(() => {
-    if (recievedaudioUrl) {
-      setAudioUrl(recievedaudioUrl!);
+    if (recievedAudioUrl) {
+      setAudioUrl(recievedAudioUrl!);
     }
-  }, [recievedaudioUrl]);
+  }, [recievedAudioUrl]);
 
-  return <DrawerContext.Provider value={{ recievedaudioUrl, currentSong, setCurrentSong, audioUrl }}>{children}</DrawerContext.Provider>;
+  return <DrawerContext.Provider value={{ recievedAudioUrl, currentSong, setCurrentSong, audioUrl }}>{children}</DrawerContext.Provider>;
 };
 
 export const useGlobalDrawer = () => {

@@ -18,7 +18,7 @@ const {
   FRONTEND_URL = "",
 } = process.env;
 
-AppDataSource.initialize().then(async () => {
+AppDataSource.initialize().then(() => {
   const app: Express = express();
   const port = Number(PORT) || 3000;
 
@@ -79,20 +79,6 @@ AppDataSource.initialize().then(async () => {
     ]);
   });
   app.use("/protected", protectedRouter);
-
-  // Db
-
-  // TODO: Only base router
-  /*
-  const userRepository = AppDataSource.getRepository(User);
-  const userService = new UserService(userRepository);
-  const userController = new UserController(userService);
-
-  app.patch("/users/:id/toggle", (req, res) =>
-    userController.handleToggleIsAdministor(req, res),
-  );
-
-  */
 
   app.use("/", rootRouter);
 

@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import { PlaylistOverviewProps } from "@shared/src/types/personalPlaylist.types.ts";
 import style from "./suggestedPlaylist.style.ts";
 import { useNavigate } from "react-router-dom";
-import Path from "../../routes/pathConstants.ts";
+import Path from "../../routes/path.constants.ts";
 
 const PlaylistCard: React.FC<PlaylistOverviewProps> = ({
   name,
@@ -14,7 +14,7 @@ const PlaylistCard: React.FC<PlaylistOverviewProps> = ({
   const navigate = useNavigate();
 
   const suggestedPlaylistClick = () => {
-    navigate(Path.PLAYLIST);
+    navigate(Path.Playlist);
   };
 
   return (

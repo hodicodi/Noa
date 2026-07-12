@@ -6,15 +6,15 @@ import { useGlobalDrawer } from "../song-drawer/DrawerContext.tsx";
 import Styles from "./songPlaying.style.ts";
 import { DrawerInfoProps } from "../DrawerAndSongPlayer/DrawerAndSongPlayer.tsx";
 
-const SongPlaying: FC<DrawerInfoProps> = ({ isPlay, ToggleDrawer, handleIconClick}) => {
-  const { currentSong, recievedaudioUrl } = useGlobalDrawer();
+const SongPlaying: FC<DrawerInfoProps> = ({ isPlay, toggleDrawer, handleIconClick}) => {
+  const { currentSong, recievedAudioUrl } = useGlobalDrawer();
 
   const avatarImage = "https://t2.genius.com/unsafe/344x344/https%3A%2F%2Fimages.genius.com%2F890d5a9fbbe79b45c3cee4d7b086accd.1000x563x1.jpg";
 
 
   return (
     <>
-      <ButtonBase component={AppBar} onClick={ToggleDrawer}>
+      <ButtonBase component={AppBar} onClick={toggleDrawer}>
         <AppBar position="fixed" sx={Styles.songPlaying}>
           <Toolbar>
             <Card sx={Styles.card}>

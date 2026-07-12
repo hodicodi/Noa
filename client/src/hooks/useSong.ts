@@ -6,16 +6,15 @@ import { blob } from "node:stream/consumers";
 
 const getSongById = async (songData: GeneralParams): Promise<Song | null> => {
   const response = await API.get<SongRes>(`/songs/${songData.uuid}`, { params: { uuid: songData.uuid } });
-  return response.data?.song;
+  return response?.data?.song;
 };
 
-export const useSong = (uuid: string) => {
-  return useQuery<Song | null, Error>({
+export const useSong = (uuid: string) =>
+  useQuery<Song | null, Error>({
     queryKey: ["songs", uuid],
     queryFn: () => getSongById({ uuid }),
     enabled: !!uuid,
   });
-};
 
 const getMp3BufferByUuid = async (songData: GeneralParams): Promise<string | null> => {
   const response = await API.get<ArrayBuffer>(`/songs/mp3/${songData.uuid}`, { params: { uuid: songData.uuid }, responseType: "arraybuffer" });
@@ -24,10 +23,9 @@ const getMp3BufferByUuid = async (songData: GeneralParams): Promise<string | nul
   return audioUrl;
 };
 
-export const usemp3 = (uuid: string) => {
-  return useQuery<string | null>({
+export const usemp3 = (uuid: string) =>
+  useQuery<string | null>({
     queryKey: ["mp3", uuid],
     queryFn: () => getMp3BufferByUuid({ uuid }),
     enabled: !!uuid,
   });
-};

@@ -7,9 +7,9 @@ import { FC } from "react";
 import { DrawerInfoProps } from "../../DrawerAndSongPlayer/DrawerAndSongPlayer.tsx";
 import Styles from "./songMove.style.ts";
 
-type songMoveProps = Partial<DrawerInfoProps>;
+type SongMoveProps = Partial<DrawerInfoProps>;
 
-const SongMove: FC<songMoveProps> = ({isPlay, handleIconClick}) => {
+const SongMove: FC<SongMoveProps> = ({isPlay, handleIconClick}) => {
 
   return (
     <Box sx={Styles.box}>
@@ -17,7 +17,7 @@ const SongMove: FC<songMoveProps> = ({isPlay, handleIconClick}) => {
         <SkipPreviousIcon fontSize="large" />
       </IconButton>
       <IconButton onClick={handleIconClick} sx={Styles.playIcon} color="inherit" aria-label="your action">
-        {isPlay ? <PlayArrowIcon fontSize="large" /> : <PauseIcon fontSize="large" />}
+        {isPlay ? <PauseIcon fontSize="large" /> : <PlayArrowIcon fontSize="large" />}
       </IconButton>
       <IconButton sx={Styles.moveIcon} color="inherit" aria-label="your action">
         <SkipNextIcon fontSize="large" />

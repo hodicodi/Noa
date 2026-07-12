@@ -1,8 +1,6 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class Generated1782977386234 implements MigrationInterface {
-    name = 'Generated1782977386234'
-
+export class CreateDB1782977386234 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TYPE "noa"."artist_type" AS ENUM('Singer', 'Band', 'Pair')`);
         await queryRunner.query(`CREATE TABLE "noa"."artist" ("uuid" uuid NOT NULL DEFAULT uuid_generate_v4(), "create_date" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(), "delete_date" TIMESTAMP WITH TIME ZONE, "name" character varying NOT NULL, "type" "noa"."artist_type" NOT NULL DEFAULT 'Singer', CONSTRAINT "UQ_dd5a88442cd2e068463fa03e496" UNIQUE ("name"), CONSTRAINT "PK_74d7294bff9579a42089ccfd82e" PRIMARY KEY ("uuid"))`);

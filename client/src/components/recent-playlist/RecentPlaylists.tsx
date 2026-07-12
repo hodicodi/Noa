@@ -3,10 +3,9 @@ import Grid from "@mui/material/Grid";
 import { Album } from "@shared/src/types/album.types.ts";
 import { FC } from "react";
 import { useAlbum } from "../../hooks/useAlbum.ts";
-import LastPlaylistCard from "./lastPlaylist.tsx";
+import LastPlaylistCard from "./LastPlaylist.tsx";
 
 const LastPlaylists: FC = () => {
-  // Should be fetching from db off all latest albums
   const { data: album, isLoading } = useAlbum("9c609112-b8bc-4772-9f6b-9d828288bb66");
 
   const latestAlbums: Album[] = Array(8).fill(album) ?? [];

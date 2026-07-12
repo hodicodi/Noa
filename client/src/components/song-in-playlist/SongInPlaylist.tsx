@@ -1,22 +1,21 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Album } from "@shared/src/types/album.types.ts";
 
-import { Song, SongOverviewProps } from "@shared/src/types/song.types.ts";
-import style from "./songInPlaylist.style.ts";
-import { useNavigate } from "react-router-dom";
-import Path from "../../routes/pathConstants.ts";
+import { SongOverviewProps } from "@shared/src/types/song.types.ts";
+import { FC } from "react";
 import { useGlobalDrawer } from "../song-drawer/DrawerContext.tsx";
+import style from "./songInPlaylist.style.ts";
 
-const SongInPlaylist: React.FC<SongOverviewProps> = ({
+const SongInPlaylist: FC<SongOverviewProps> = ({
   name,
-  artistName
+  artistName,
+  uuid
 }) => {
 
     const{setCurrentSong} = useGlobalDrawer();
 
     const songInPlaylistClick = () => {
-      setCurrentSong({uuid: "", name: name, artistName: artistName})
+      setCurrentSong({uuid, name, artistName})
   };
 
   {
