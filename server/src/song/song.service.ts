@@ -3,9 +3,10 @@ import { StatusCodes } from "http-status-codes";
 import "reflect-metadata";
 import { DeepPartial } from "typeorm";
 import { HttpError } from "../errors/httpError.ts";
-import { getFile, getFileOneTimeUrl, initializeCleanerApi, S3File, S3FileDescriptor, uploadFile } from "../s3-service/s3Service.ts";
-import generalS3Path from "./song.consts.ts";
+import { getFile, getFileOneTimeUrl, initializeCleanerApi, uploadFile } from "../s3-service/s3Service.ts";
+import GENERAL_S3_PATH from "./song.consts.ts";
 import { Song } from "./song.entity.ts";
+import { S3File, S3FileDescriptor } from "../s3-service/s3service.types.ts";
 dotenv.config();
 
 const getAllSongs = () => Song.find();
@@ -33,7 +34,7 @@ const getSongMp3ByUuid = async (uuid: string) => {
 };
 
 const addSong = async (song: DeepPartial<Song>) => {
-  const path =  generalS3Path + `${song.name}`;
+  const path =  GENERAL_S3_PATH + `${song.name}`;
   const s3Url = await getFileOneTimeUrl(path);
   song.s3Url = s3Url;
   Song.save(Song);
@@ -41,9 +42,9 @@ const addSong = async (song: DeepPartial<Song>) => {
 };
 
 const addMp3File = async(file: Express.Multer.File, title: string) => {
-  const myDescription: S3FileDescriptor = { name: title, extension: "mp3", path: generalS3Path, contentType: "audio/mpeg" };
+  const myDescription: S3FileDescriptor = { name: title, extension: "mp3", path: GENERAL_S3_PATH, contentType: "audio/mpeg" };
 
-  const myfile: S3File = { name: title, extension: "mp3", path: generalS3Path, contentType: "audio/mpeg", content: file.buffer };
+  const myfile: S3File = { name: title, extension: "mp3", path: GENERAL_S3_PATH, contentType: "audio/mpeg", content: file.buffer };
 
   const saveUrl = await initializeCleanerApi(myDescription);
 

@@ -14,7 +14,7 @@ export type DrawerInfoProps = {
 const DrawerAndSongPlayer: FC = () => {
   const { recievedAudioUrl } = useGlobalDrawer();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [isPlay, setisPlay] = useState(false);
+  const [isPlay, setIsPlay] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -41,7 +41,7 @@ const DrawerAndSongPlayer: FC = () => {
   };
 
   const handleIconClick = (): void => {
-    setisPlay((prev) => !prev);
+    setIsPlay((prev) => !prev);
     if (!isPlay) {
       playAudio();
       return

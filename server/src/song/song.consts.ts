@@ -1,3 +1,3 @@
-const generalS3Path = "noa/test/";
+const GENERAL_S3_PATH  = "noa/test/";
 
-export default generalS3Path;
+export default GENERAL_S3_PATH;

@@ -4,9 +4,9 @@ import axios from "axios";
 import dotenv from "dotenv";
 import { StatusCodes } from "http-status-codes";
 import querystring from "node:querystring";
-import { Readable } from "typeorm/platform/PlatformTools.js";
 import { HttpError } from "../errors/httpError.ts";
 import { Song } from "../song/song.entity.ts";
+import { S3File, S3FileDescriptor } from "./s3service.types.ts";
 
 dotenv.config();
 
@@ -53,20 +53,7 @@ export const initializeCleanerApi = async (myDescription: S3FileDescriptor) => {
   return response.data.url;
 };
 
-export type S3FileDescriptor = {
-  name: string;
-  extension: string;
-  path: string;
-  contentType?: string;
-};
 
-export type S3File = S3FileDescriptor & {
-  content: Buffer;
-};
-
-export type FileToUpload = S3FileDescriptor & {
-  Buffer: Buffer;
-};
 
 export const uploadFile = async (uploadUrl: string, file: S3File, contentType?: string) => {
   const { content } = file;
@@ -98,10 +85,7 @@ export const getFileOneTimeUrl = async (path: string): Promise<string> => {
   return url;
 };
 
-export type GetFileResult = {
-  contentType: string;
-  body: Readable;
-};
+
 
 export const getFile = async (path: string) => {
   const command = new GetObjectCommand({ Bucket: BUCKET_NAME, Key: path });
@@ -125,24 +109,3 @@ export const downloadFromS3Url = async (url: string, outputPath: string): Promis
   return buffer;
 };
 
-export const getSongByUuid = async (uuid: string) => {
-  const song = await Song.findOneBy({ uuid });
-
-  if (!song) {
-    throw new HttpError(StatusCodes.NOT_FOUND, "song not found");
-  }
-
-  return song;
-};
-
-export const getSongMp3ByUuid = async (uuid: string) => {
-  const song = await Song.findOneBy({ uuid });
-
-  if (!song) {
-    throw new HttpError(StatusCodes.NOT_FOUND, "song not found");
-  }
-
-  const songMp3: Buffer = await downloadFromS3Url(process.env.BUCKET_NAME!, song.s3Url);
-
-  return songMp3;
-};

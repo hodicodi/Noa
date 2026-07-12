@@ -1,20 +1,13 @@
 import { songsInfo } from "@shared/hardCodedInfo.ts";
 import { Song, SongOverviewProps } from "@shared/src/types/song.types.ts";
 import { createContext, FC, ReactNode, useContext, useEffect, useState } from "react";
-import { usemp3 } from "../../hooks/useSong.ts";
+import { usemp3 } from "../../hooks/useMp3.ts";
 
 type DrawerContextType = {
   currentSong: SongOverviewProps;
   setCurrentSong: (currentSong: SongOverviewProps) => void;
   recievedAudioUrl: string | null;
   audioUrl: string | null;
-};
-
-type CurrentPlayedSong = {
-  song: Partial<Song>;
-  artistName: string;
-  audioUrl: string | null | undefined;
-  currentTime: number;
 };
 
 const DrawerContext = createContext<DrawerContextType | undefined>(undefined);

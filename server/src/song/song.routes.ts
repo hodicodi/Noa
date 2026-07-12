@@ -1,17 +1,17 @@
+import upload from "@shared/src/routes.ts";
 import { GeneralParams } from "@shared/src/types/general.types.ts";
 import { SaveSongReqBody, SongRes, SongsRes } from "@shared/src/types/song.types.ts";
 import { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
 import multer from "multer";
-import { getSongByUuid, initializeCleanerApi, S3File, S3FileDescriptor, uploadFile } from "../s3-service/s3Service.ts";
-import songService from "./song.service.ts";
 import { HttpError } from "../errors/httpError.ts";
+import songService from "./song.service.ts";
 
 const songRouter = Router();
 
 songRouter.get("/:uuid", async (req: Request<GeneralParams, unknown, unknown>, res: Response<SongRes>) => {
   const { uuid } = req.params;
-  const song = await getSongByUuid(uuid);
+  const song = await songService.getSongByUuid(uuid);
 
   res.status(StatusCodes.OK).json({ song });
 });
@@ -36,9 +36,9 @@ songRouter.post("/", async (req: Request<unknown, unknown, SaveSongReqBody>, res
   res.status(StatusCodes.CREATED).json({ patchedSong });
 });
 
-const upload = multer({ storage: multer.memoryStorage() });
+const uploadMulter = multer({ storage: multer.memoryStorage() });
 
-songRouter.post("/api/upload", upload.single("audioFile"), async (req: Request, res: Response) => {
+songRouter.post(`${upload}`, uploadMulter.single("audioFile"), async (req: Request, res: Response) => {
   const { title } = req.body;
 
   const file = req.file;
