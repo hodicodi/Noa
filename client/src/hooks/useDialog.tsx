@@ -3,8 +3,6 @@ import * as React from 'react';
 export type DialogConfig  = {
   title: string;
   description: string;
-  disagreeText?: string;
-  agreeText?: string;
   onAgree?: () => void;
 }
 
@@ -28,8 +26,6 @@ export const useAlertDialog = () => {
     open,
     title: config.title,
     description: config.description,
-    disagreeText: config.disagreeText,
-    agreeText: config.agreeText,
     onAgree: config.onAgree,
     onClose: closeDialog,
   };

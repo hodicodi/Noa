@@ -1,4 +1,4 @@
-import upload from "@shared/src/routes.ts";
+import {upload} from "@shared/src/routes.ts";
 import { GeneralParams } from "@shared/src/types/general.types.ts";
 import { SaveSongReqBody, SongRes, SongsRes } from "@shared/src/types/song.types.ts";
 import { Request, Response, Router } from "express";
@@ -38,7 +38,7 @@ songRouter.post("/", async (req: Request<unknown, unknown, SaveSongReqBody>, res
 
 const uploadMulter = multer({ storage: multer.memoryStorage() });
 
-songRouter.post(`${upload}`, uploadMulter.single("audioFile"), async (req: Request, res: Response) => {
+songRouter.post(upload, uploadMulter.single("audioFile"), async (req: Request, res: Response) => {
   const { title } = req.body;
 
   const file = req.file;
