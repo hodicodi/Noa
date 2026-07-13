@@ -1,24 +1,26 @@
-import * as React from 'react';
+import { useCallback, useState } from "react";
 
-export type DialogConfig  = {
+type DialogConfig = {
   title: string;
   description: string;
   onAgree?: () => void;
-}
+};
+
+const defaultConfig = {
+  title: "",
+  description: "",
+};
 
 export const useAlertDialog = () => {
-  const [open, setOpen] = React.useState<boolean>(false);
-  const [config, setConfig] = React.useState<DialogConfig>({
-    title: '',
-    description: '',
-  });
+  const [open, setOpen] = useState<boolean>(false);
+  const [config, setConfig] = useState<DialogConfig>(defaultConfig);
 
-  const openDialog = React.useCallback((newConfig: DialogConfig) => {
+  const openDialog = useCallback((newConfig: DialogConfig) => {
     setConfig(newConfig);
     setOpen(true);
   }, []);
 
-  const closeDialog = React.useCallback(() => {
+  const closeDialog = useCallback(() => {
     setOpen(false);
   }, []);
 

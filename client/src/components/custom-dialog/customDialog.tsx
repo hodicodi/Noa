@@ -8,7 +8,7 @@ import Styles from "./customDialog.style.ts";
 import { FC } from "react";
 import { Box } from "@mui/material";
 
-export interface AlertDialogProps {
+type AlertDialogProps = {
   open: boolean;
   title: string;
   description: string;
@@ -25,11 +25,11 @@ const AlertDialog: FC<AlertDialogProps> = ({ open, title, description, onClose, 
   };
 
   return (
-    <Dialog sx={Styles.dialogModal} open={open} onClose={onClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description" role="alertdialog">
+    <Dialog sx={Styles.dialogModal} open={open} onClose={onClose}  aria-describedby="alert-dialog-description" role="alertdialog">
       <Box  sx={Styles.dialogContent}>
-        <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
+        <DialogTitle>{title}</DialogTitle>
         <DialogContent >
-          <DialogContentText sx={Styles.dialogText} id="alert-dialog-description">{description}</DialogContentText>
+          <DialogContentText sx={Styles.dialogText}>{description}</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleAgree}>
