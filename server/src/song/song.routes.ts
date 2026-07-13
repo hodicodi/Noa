@@ -44,7 +44,7 @@ songRouter.post(`${upload}`, uploadMulter.single("audioFile"), async (req: Reque
   const file = req.file;
 
   if (!file) {
-    throw new HttpError(StatusCodes.NOT_FOUND,"No audio file provided");
+    throw new HttpError(StatusCodes.NOT_FOUND, "No audio file provided");
   }
 
   songService.addMp3File(file, title);

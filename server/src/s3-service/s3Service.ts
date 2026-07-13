@@ -2,17 +2,14 @@ import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import axios from "axios";
 import dotenv from "dotenv";
-import { StatusCodes } from "http-status-codes";
 import querystring from "node:querystring";
-import { HttpError } from "../errors/httpError.ts";
-import { Song } from "../song/song.entity.ts";
 import { S3File, S3FileDescriptor } from "./s3service.types.ts";
 
 dotenv.config();
 
 const { APIGEE_BASE_URL = "", TOKEN_ENDPOINT = "", DIGIKEY = "", DIGISECRET = "", BUCKET_NAME = "" } = process.env;
 
-export const getAccessToken = async () => {
+const getAccessToken = async () => {
   const tokenUrl = `${APIGEE_BASE_URL}${TOKEN_ENDPOINT}`;
 
   const response = await axios.post(tokenUrl, querystring.stringify({ grant_type: "client_credentials" }), {
@@ -39,7 +36,7 @@ cleanerApi.interceptors.request.use(async (req) => {
   return req;
 });
 
-export const initializeCleanerApi = async (myDescription: S3FileDescriptor) => {
+const initializeCleanerApi = async (myDescription: S3FileDescriptor) => {
   const response = await cleanerApi.put("/file/upload", {
     file_name: myDescription.name,
     file_type: myDescription.extension,
@@ -53,28 +50,18 @@ export const initializeCleanerApi = async (myDescription: S3FileDescriptor) => {
   return response.data.url;
 };
 
-
-
-export const uploadFile = async (uploadUrl: string, file: S3File, contentType?: string) => {
+const uploadFile = async (uploadUrl: string, file: S3File, contentType?: string) => {
   const { content } = file;
   return axios.put(uploadUrl, content, {
     headers: { "Content-Type": contentType || "application/octet-stream" },
   });
 };
 
-export const testFileUpload = async () => {
-  const myDescription: S3FileDescriptor = { name: "example2", extension: "pdf", path: "noa/test", contentType: "application/pdf" };
-
-  const myfile: S3File = { name: "example2", extension: "pdf", path: "noa/test", contentType: "application/pdf", content: Buffer.from("Hello, S3!") };
-
-  uploadFile(await initializeCleanerApi(myDescription), myfile, myfile.contentType);
-};
-
 const client = new S3Client({
   region: "il-central-1",
 });
 
-export const getFileOneTimeUrl = async (path: string): Promise<string> => {
+const getFileOneTimeUrl = async (path: string): Promise<string> => {
   const command = new GetObjectCommand({
     Bucket: BUCKET_NAME,
     Key: path,
@@ -85,9 +72,7 @@ export const getFileOneTimeUrl = async (path: string): Promise<string> => {
   return url;
 };
 
-
-
-export const getFile = async (path: string) => {
+const getFile = async (path: string) => {
   const command = new GetObjectCommand({ Bucket: BUCKET_NAME, Key: path });
 
   const file = await client.send(command);
@@ -96,7 +81,7 @@ export const getFile = async (path: string) => {
   return { body, contentType: file.ContentType || "" };
 };
 
-export const downloadFromS3Url = async (url: string, outputPath: string): Promise<Buffer> => {
+const downloadFromS3Url = async (url: string, outputPath: string): Promise<Buffer> => {
   const response = await fetch("https://" + url + ".s3.il-central-1.amazonaws.com" + outputPath);
 
   if (!response.ok) {
@@ -109,3 +94,4 @@ export const downloadFromS3Url = async (url: string, outputPath: string): Promis
   return buffer;
 };
 
+export default {getFileOneTimeUrl, initializeCleanerApi, getFile, downloadFromS3Url, uploadFile, getAccessToken}
