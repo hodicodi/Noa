@@ -9,7 +9,7 @@ const getMp3BufferByUuid = async (songData: GeneralParams): Promise<string | nul
   return audioUrl;
 };
 
-export const usemp3 = (uuid: string) =>
+export const useMp3 = (uuid: string) =>
   useQuery<string | null>({
     queryKey: ["mp3", uuid],
     queryFn: () => getMp3BufferByUuid({ uuid }),
