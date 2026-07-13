@@ -6,6 +6,8 @@ import style from "../home-page/homePage.style.ts";
 
 
 const HomePage: React.FC = () => {
+
+  
   return (
     <>
       <NavBar />

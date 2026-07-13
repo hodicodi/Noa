@@ -4,9 +4,9 @@ import "reflect-metadata";
 import { DeepPartial } from "typeorm";
 import { HttpError } from "../errors/httpError.ts";
 import s3Service from "../s3-service/s3Service.ts"
-import {GENERAL_S3_PATH} from "./song.consts.ts";
 import { Song } from "./song.entity.ts";
 import { S3File, S3FileDescriptor } from "../s3-service/s3service.types.ts";
+import { GENERAL_S3_PATH } from "./song.consts.ts";
 dotenv.config();
 
 const getAllSongs = () => Song.find();
