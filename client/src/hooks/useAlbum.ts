@@ -4,7 +4,7 @@ import { API } from "../api/services/albumService.ts";
 import { GeneralParams } from "@shared/src/types/general.types.ts";
 
 
-  const getAlbumById  = async (albumData: GeneralParams): Promise<Album | null> => {
+const getAlbumById  = async (albumData: GeneralParams): Promise<Album | null> => {
     const response = await API.get<AlbumRes>(`/albums/${albumData.uuid}`, { params: { uuid: albumData.uuid } });
     return response.data?.album;
   };

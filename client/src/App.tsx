@@ -1,8 +1,9 @@
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/index.tsx";
+import { FC } from "react";
 
-function App() {
-    return <RouterProvider router={router} />;
+const App: FC = () => {
+     return <RouterProvider router={router} />;
 }
 
 export default App;

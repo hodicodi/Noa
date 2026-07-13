@@ -27,3 +27,10 @@ export type SavePersonalPlaylist = {
   user: User;
   songs?: Song[];
 };
+
+export type PlaylistOverviewProps = {
+  name: string;
+  avaterPicture: string;
+  artist: string;
+};
+

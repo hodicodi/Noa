@@ -2,9 +2,10 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { PlaylistOverviewProps } from "../../../../shared/playlistProps.ts";
+import { PlaylistOverviewProps } from "@shared/src/types/personalPlaylist.types.ts";
 import style from "./suggestedPlaylist.style.ts";
 import { useNavigate } from "react-router-dom";
+import Path from "../../routes/path.constants.ts";
 
 const PlaylistCard: React.FC<PlaylistOverviewProps> = ({
   name,
@@ -13,7 +14,7 @@ const PlaylistCard: React.FC<PlaylistOverviewProps> = ({
   const navigate = useNavigate();
 
   const suggestedPlaylistClick = () => {
-    navigate("/playlist");
+    navigate(Path.Playlist);
   };
 
   return (

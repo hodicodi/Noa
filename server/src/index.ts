@@ -1,20 +1,8 @@
 import cors from "cors";
 import dotenv from "dotenv";
-import express, {
-  type Express,
-  type NextFunction,
-  type Request,
-  type Response,
-  Router,
-} from "express";
+import express, { type Express, type NextFunction, type Request, type Response, Router } from "express";
 import { OAuthError } from "oauth-entra-id";
-import {
-  authConfig,
-  handleAuthentication,
-  handleCallback,
-  handleLogout,
-  protectRoute,
-} from "oauth-entra-id/express";
+import { authConfig, handleAuthentication, handleCallback, handleLogout, protectRoute } from "oauth-entra-id/express";
 import "reflect-metadata";
 import rootRouter from "./baseRouter.ts";
 import { AppDataSource } from "./dataSource.ts";
@@ -91,20 +79,6 @@ AppDataSource.initialize().then(() => {
     ]);
   });
   app.use("/protected", protectedRouter);
-
-  // Db
-
-  // TODO: Only base router
-  /*
-  const userRepository = AppDataSource.getRepository(User);
-  const userService = new UserService(userRepository);
-  const userController = new UserController(userService);
-
-  app.patch("/users/:id/toggle", (req, res) =>
-    userController.handleToggleIsAdministor(req, res),
-  );
-
-  */
 
   app.use("/", rootRouter);
 

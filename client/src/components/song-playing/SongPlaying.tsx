@@ -1,17 +1,20 @@
+import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { AppBar, Box, ButtonBase, Card, CardContent, CardMedia, Grid, IconButton, Toolbar, Typography } from "@mui/material";
-import React, { FC } from "react";
+import { FC } from "react";
 import { useGlobalDrawer } from "../song-drawer/DrawerContext.tsx";
 import Styles from "./songPlaying.style.ts";
-import PauseIcon from "@mui/icons-material/Pause";
+import { DrawerInfoProps } from "../DrawerAndSongPlayer/DrawerAndSongPlayer.tsx";
 
-const SongPlaying: FC = () => {
-  const { isOpen, ToggleDrawer, isplayIconMarked, handleIconClick } = useGlobalDrawer();
+const SongPlaying: FC<DrawerInfoProps> = ({ isPlay, toggleDrawer, handleIconClick}) => {
+  const { currentSong, recievedAudioUrl } = useGlobalDrawer();
+
   const avatarImage = "https://t2.genius.com/unsafe/344x344/https%3A%2F%2Fimages.genius.com%2F890d5a9fbbe79b45c3cee4d7b086accd.1000x563x1.jpg";
+
 
   return (
     <>
-      <ButtonBase component={AppBar} onClick={ToggleDrawer}>
+      <ButtonBase component={AppBar} onClick={toggleDrawer}>
         <AppBar position="fixed" sx={Styles.songPlaying}>
           <Toolbar>
             <Card sx={Styles.card}>
@@ -24,10 +27,10 @@ const SongPlaying: FC = () => {
                     <CardContent sx={Styles.cardContent}>
                       <Box>
                         <Typography sx={Styles.playlistName} variant="body2" component="div">
-                          {"Nehama"}
+                          {currentSong.name}
                         </Typography>
                         <Typography sx={Styles.artistName} variant="body2" component="div">
-                          {"Amgosha"}
+                          {currentSong.artistName}
                         </Typography>
                       </Box>
                       <IconButton
@@ -39,7 +42,7 @@ const SongPlaying: FC = () => {
                         color="inherit"
                         aria-label="your action"
                       >
-                        {isplayIconMarked ? <PlayArrowIcon fontSize="large" /> : <PauseIcon fontSize="large" />}
+                        {isPlay ? <PauseIcon fontSize="large" /> : <PlayArrowIcon fontSize="large" />}
                       </IconButton>
                     </CardContent>
                   </Grid>
