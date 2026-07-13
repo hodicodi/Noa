@@ -18,14 +18,12 @@ type AlertDialogProps = {
 
 const AlertDialog: FC<AlertDialogProps> = ({ open, title, description, onClose, onAgree }) => {
   const handleAgree = () => {
-    if (onAgree) {
-      onAgree();
-    }
+    onAgree?.();
     onClose();
   };
 
   return (
-    <Dialog sx={Styles.dialogModal} open={open} onClose={onClose}  aria-describedby="alert-dialog-description" role="alertdialog">
+    <Dialog sx={Styles.dialogModal} open={open} onClose={onClose} role="alertdialog">
       <Box  sx={Styles.dialogContent}>
         <DialogTitle>{title}</DialogTitle>
         <DialogContent >

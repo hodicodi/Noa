@@ -1,14 +1,10 @@
 import { useCallback, useState } from "react";
+import { defaultConfig } from "./useDialog.consts.ts";
 
 type DialogConfig = {
   title: string;
   description: string;
   onAgree?: () => void;
-};
-
-const defaultConfig = {
-  title: "",
-  description: "",
 };
 
 export const useAlertDialog = () => {
