@@ -1,4 +1,4 @@
-import { SxProps } from "@mui/material";
+import { MenuItem, SxProps } from "@mui/material";
 
 const userBar: SxProps = {
   display: "flex",
@@ -8,4 +8,19 @@ const userBar: SxProps = {
   bgcolor: "#47025c",
 };
 
-export default {userBar}
+const dropdown: SxProps = {
+  "& .MuiMenu-paper": {
+    justifyContent: "flex-start",
+    backgroundColor: "#47025c",
+    color: "#ffffff",
+  },
+  justifyContent: "flex-start",
+};
+
+const menuItem: SxProps = {
+  textAlign: "left",
+  alignSelf: "flex-start",
+  paddingLeft: 0,
+};
+
+export default { userBar, dropdown, menuItem };
