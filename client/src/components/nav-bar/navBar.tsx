@@ -34,7 +34,7 @@ const NavBar: FC = () => {
 
   return (
     <Box sx={Styles.userBar}>
-      <Button onClick={handleClick}>{user?.name ?? user?.email}</Button>
+      <Button sx={Styles.userName} onClick={handleClick}>{user?.name ?? user?.email}</Button>
       <Menu sx={Styles.dropdown} anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem sx={Styles.menuItem} onClick={signoutClick}>Sign out</MenuItem>
         <MenuItem sx={Styles.menuItem} onClick={administorClick}>
