@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { playlistInfo, songsInfo } from "@shared/hardCodedInfo.ts";
+import { songsInfo } from "@shared/hardCodedInfo.ts";
 import SongInPlaylist from "./SongInPlaylist.tsx";
 
 const SongsInPlaylist: React.FC = () => {

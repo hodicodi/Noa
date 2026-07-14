@@ -1,7 +1,8 @@
 const Path = {
   Home: "/",
   Playlist: "/playlist",
-  Administor: "/administor"
+  Administor: "/administor",
+  HandleUser: "/handleUsers"
 };
 
 export default Path;

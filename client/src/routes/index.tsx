@@ -3,7 +3,8 @@ import Path from "./path.constants.ts";
 import RootLayout from "../layouts/RootLayout.tsx";
 import HomePage from "../pages/home-page/home-page/HomePage.tsx";
 import PlaylistPage from "../pages/home-page/playlist-page/PlaylistPage.tsx";
-import AdministorPage from "../pages/home-page/administor-page/administorPage.tsx";
+import AdministorPage from "../pages/home-page/administor-page/AdministorPage.tsx";
+import AdministorLayout from "../layouts/AdministorLayout.tsx";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,13 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: Path.Playlist, element: <PlaylistPage /> },
+    ],
+  },
+  {
+    path: "/",
+    element: <AdministorLayout />,
+    children: [
+      { path: Path.Administor, element: <AdministorPage /> },
       { path: Path.Administor, element: <AdministorPage /> },
     ],
   },

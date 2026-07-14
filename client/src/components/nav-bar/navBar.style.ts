@@ -20,13 +20,13 @@ const dropdown: SxProps = {
 const menuItem: SxProps = {
   textAlign: "left",
   alignSelf: "flex-start",
-  paddingLeft: 1,
+  paddingLeft: '7%',
 };
 
 const userName: SxProps = {
   textAlign: "left",
   alignSelf: "flex-start",
-  paddingLeft: 1,
+  paddingLeft: '1%',
 };
 
 export default { userBar, dropdown, menuItem, userName };
