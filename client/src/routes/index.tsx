@@ -5,6 +5,7 @@ import HomePage from "../pages/home-page/home-page/HomePage.tsx";
 import PlaylistPage from "../pages/home-page/playlist-page/PlaylistPage.tsx";
 import AdministorPage from "../pages/home-page/administor-page/AdministorPage.tsx";
 import AdministorLayout from "../layouts/AdministorLayout.tsx";
+import HandleUsersPage from "../pages/home-page/handle-users-page/handleUsersPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
     element: <AdministorLayout />,
     children: [
       { path: Path.Administor, element: <AdministorPage /> },
-      { path: Path.Administor, element: <AdministorPage /> },
+      { path: Path.HandleUser, element: <HandleUsersPage /> },
     ],
   },
 ]);

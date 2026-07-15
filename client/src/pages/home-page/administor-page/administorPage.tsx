@@ -1,37 +1,22 @@
 import { Box, Typography } from "@mui/material";
-import Style from "./administorPage.styles.ts";
-import { playlistInfo } from "@shared/hardCodedInfo.ts";
-import PlaylistPicture from "../../../components/playlist-picture/PlaylistPicture.tsx";
-import SongsInPlaylist from "../../../components/song-in-playlist/SongsInPlaylist.tsx";
+import { FC } from "react";
 import AdministorAction from "../../../components/administor-action/AdministorAction.tsx";
 import NavBar from "../../../components/nav-bar/NavBar.tsx";
-import {AdministorActionsProps} from "@shared/src/types/administor.types.ts"
-import { FC } from "react";
+import Styles from "./administorPage.styles.ts";
+import utils  from "./administorPage.utils.ts"
 
 const AdministorPage: FC = () => {
-  const manageUsers:AdministorActionsProps = {
-    name: "Handle users",
-    path: "/handleUsers"
-  } 
-    const manageArtists:AdministorActionsProps = {
-    name: "Handle artists",
-    path: "/handleArtists"
-  } 
-    const manageSongs:AdministorActionsProps = {
-    name: "Handle songs",
-    path: "/handleSongs"
-  } 
 
   return (
     <>
       <NavBar />
-      <Box sx={Style.administorPage}>
-        <Typography variant="h3" sx={{ color: "#f8f8f8" }}>
+      <Box sx={Styles.administorPage}>
+        <Typography variant="h3" sx={Styles.title}>
           Administor actions
         </Typography>
-        <AdministorAction {...manageUsers}/>
-        <AdministorAction {...manageArtists}/>
-        <AdministorAction {...manageSongs}/>
+        <AdministorAction {...utils.manageUsers}/>
+        <AdministorAction {...utils.manageArtists}/>
+        <AdministorAction {...utils.manageSongs}/>
       </Box>
     </>
   );

@@ -10,4 +10,8 @@ const administorPage: SxProps = {
   bgcolor: "#0a0a0a",
 };
 
-export default { administorPage };
+const title: SxProps = {
+  color: "#f8f8f8",
+};
+
+export default { administorPage, title };
