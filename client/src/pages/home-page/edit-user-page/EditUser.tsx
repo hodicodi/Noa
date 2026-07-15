@@ -13,7 +13,7 @@ const FormGrid = styled(Grid)(() => ({
 
 const EditUserForm: FC = () =>{
   return (
-    <Grid  sx={{backgroundColor:"#fdfdfd"}} container spacing={3}>
+    <Grid sx={{backgroundColor:"#fdfdfd"}} container spacing={3}>
       <FormGrid size={{ xs: 12, md: 6 }}>
         <FormLabel htmlFor="first-name" required>
           First name
