@@ -2,7 +2,8 @@ const Path = {
   Home: "/",
   Playlist: "/playlist",
   Administor: "/administor",
-  HandleUser: "/handleUsers"
+  HandleUser: "/handleUsers",
+  EditUser: "/editUser"
 };
 
 export default Path;

@@ -19,7 +19,7 @@ userRouter.get("/", async (req: Request<unknown, unknown, unknown>, res: Respons
   res.status(StatusCodes.OK).json({ users });
 });
 
-userRouter.patch("/", async (req: Request<unknown, unknown, SaveUserReqBody>, res: Response<UserRes>) => {
+userRouter.post("/", async (req: Request<unknown, unknown, SaveUserReqBody>, res: Response<UserRes>) => {
   const { user } = req.body;
   const newUser = await userService.createUser(user);
   res.status(StatusCodes.CREATED).json({ user: newUser });
