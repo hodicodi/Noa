@@ -11,17 +11,11 @@ const RootLayout: FC = () => {
   const { status, user, logout } = useAuth();
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Paper sx={style.app}>
-        <Box sx={style.backgound}>
+
           <DrawerProvider>
             <Outlet />
             <DrawerAndSongPlayer />
           </DrawerProvider>
-        </Box>
-      </Paper>
-    </ThemeProvider>
   );
 };
 
