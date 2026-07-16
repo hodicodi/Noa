@@ -1,3 +1,5 @@
+import { DeepPartial } from "typeorm";
+
 export type User = {
   uuid: string;
   isAdministor: boolean;

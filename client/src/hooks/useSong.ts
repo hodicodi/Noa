@@ -2,7 +2,6 @@ import { GeneralParams } from "@shared/src/types/general.types.ts";
 import { Song, SongRes } from "@shared/src/types/song.types.ts";
 import { useQuery } from "@tanstack/react-query";
 import { API } from "../api/services/albumService.ts";
-import { blob } from "node:stream/consumers";
 
 const getSongById = async (songData: GeneralParams): Promise<Song | null> => {
   const response = await API.get<SongRes>(`/songs/${songData.uuid}`, { params: { uuid: songData.uuid } });
@@ -15,4 +14,3 @@ export const useSong = (uuid: string) =>
     queryFn: () => getSongById({ uuid }),
     enabled: !!uuid,
   });
-

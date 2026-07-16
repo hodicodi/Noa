@@ -17,4 +17,16 @@ const getAllUsers = () => User.find();
 
 const createUser = (user: DeepPartial<User>) => User.save(user);
 
-export default { getUserByTz, getAllUsers, createUser };
+const patchUser = async (tz: string, user: DeepPartial<User>) => {
+  const existingUser = await User.findOneBy({ tz });
+
+  if (!existingUser) {
+    throw new HttpError(StatusCodes.NOT_FOUND, "user not found");
+  }
+
+  const updatedUser = User.merge(existingUser, user);
+
+  return await User.save(updatedUser);
+};
+
+export default { getUserByTz, getAllUsers, createUser, patchUser };
