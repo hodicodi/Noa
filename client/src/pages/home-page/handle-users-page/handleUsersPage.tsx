@@ -16,12 +16,14 @@ import NavBar from "../../../components/nav-bar/NavBar.tsx";
 import { useUsers } from "../../../hooks/useUser.ts";
 import Path from "../../../routes/path.constants.ts";
 import Styles from "./handleUsersPage.styles.ts";
+import SaveIcon from '@mui/icons-material/Save';
 
 
 const HandleUsersPage: FC = () => {
   const { data: users = [] } = useUsers();
 
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [isEditIcon, setIsEditIcon] = useState<boolean>(true);
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
@@ -37,8 +39,9 @@ const HandleUsersPage: FC = () => {
 
   const navigate = useNavigate();
 
-  const editClick = () => {
-    navigate(Path.EditUser);
+  const toggleEditSaveClick = (): void => {
+    //navigate(Path.EditUser);
+    setIsEditIcon((prev) => !prev)
   }
 
   return (
@@ -83,12 +86,12 @@ const HandleUsersPage: FC = () => {
               <TableBody>
                 {filteredUsers?.map((user) => (
                   <TableRow key={user.tz} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                    <TableCell sx={Styles.tableCell} component="th" scope="row">
+                    <TableCell sx={Styles.tableCell} component="th" scope="row" contentEditable={!isEditIcon}>
                       {user.name}
                     </TableCell>
                     <TableCell sx={Styles.tableCell} align="center">{user.tz}</TableCell>
-                    <TableCell sx={Styles.tableCell} align="center">{user.isAdministor? <DoneIcon/>: <CloseIcon/>}</TableCell>
-                    <TableCell onClick={editClick} sx={Styles.tableCell} align="center"><EditIcon/></TableCell>
+                    <TableCell sx={Styles.tableCell} align="center" contentEditable={!isEditIcon}>{user.isAdministor? <DoneIcon/>: <CloseIcon/>}</TableCell>
+                    <TableCell onClick={toggleEditSaveClick} sx={Styles.tableCell} align="center">{isEditIcon ? <EditIcon/> : <SaveIcon/>}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

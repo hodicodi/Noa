@@ -5,6 +5,7 @@ import { useAuth } from "../../auth/AuthContext.tsx";
 import { MouseEvent, useState } from "react";
 import { Menu, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 
 const theme = createTheme({ palette: { primary: { main: "#ffffff" } } });
 

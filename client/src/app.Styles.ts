@@ -14,7 +14,7 @@ const loading: SxProps = {
 };
 
 const backgound: SxProps = {
-  minHeight: "100%",
+  minHeight: "100vh",
   bgcolor: "#000000",
   width: { xs: "100%", sm: "30%" },
 };
