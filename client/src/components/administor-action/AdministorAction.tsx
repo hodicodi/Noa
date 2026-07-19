@@ -1,12 +1,11 @@
-import { Box, Button, CardActionArea, CardMedia } from "@mui/material";
+import { Button, CardActionArea } from "@mui/material";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { AdministorActionsProps } from "@shared/src/types/administor.types.ts";
-import PersonIcon from "@mui/icons-material/Person";
 import { FC } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Styles from "./administorAction.style.ts";
 
 const AdministorAction: FC<AdministorActionsProps> = ({ name, path }) => {
     const navigate = useNavigate();
@@ -16,7 +15,7 @@ const AdministorAction: FC<AdministorActionsProps> = ({ name, path }) => {
   };
 
   return (
-    <Card sx={{ minWidth: 415, height: 100, backgroundColor: "#47025c", color: "#ffffff" }}>
+    <Card sx={Styles.card}>
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

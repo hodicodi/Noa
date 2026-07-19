@@ -5,7 +5,7 @@ const playlistPage: SxProps = {
     flexDirection: "column",
     rowGap: 8,
     borderRadius: 7, 
-    mt: 4
+    mt: 4,
 }
 
 export default {playlistPage};

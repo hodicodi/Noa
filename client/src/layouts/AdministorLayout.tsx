@@ -8,7 +8,11 @@ const theme = createTheme({ palette: { primary: { main: "#ffffff" } }, typograph
 const AdministorLayout: FC = () => {
   const { status, user, logout } = useAuth();
 
-  return <Outlet />;
+  return (
+
+          <Outlet />
+
+  );
 };
 
 export default AdministorLayout;

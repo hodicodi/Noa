@@ -24,9 +24,16 @@ const menuItem: SxProps = {
 };
 
 const userName: SxProps = {
+  textAlign: "right",
+  paddingRight: '1%',
+  color: "#faf5f5"
+};
+
+const supervisor: SxProps = {
   textAlign: "left",
   alignSelf: "flex-start",
   paddingLeft: '1%',
+  color: "#faf5f5"
 };
 
-export default { userBar, dropdown, menuItem, userName };
+export default { userBar, dropdown, menuItem, userName, supervisor };
