@@ -21,7 +21,6 @@ const tableCell: SxProps = {
 
 const searchableTable: SxProps = {
     width: '93%',
-
 }
 
 export default { handleUsersPage, table, tableCell, searchableTable };

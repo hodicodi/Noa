@@ -1,8 +1,6 @@
-import CloseIcon from "@mui/icons-material/Close";
-import DoneIcon from "@mui/icons-material/Done";
-import EditIcon from "@mui/icons-material/Edit";
+import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
-import { Box, Checkbox, InputAdornment, TextField, Typography } from "@mui/material";
+import { Box, InputAdornment, TextField, Typography } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -10,34 +8,46 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { ChangeEvent, FC, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { User } from "@shared/src/types/user.type.ts";
+import { ChangeEvent, FC, useEffect, useState } from "react";
+import HandleUserRow from "../../../components/handle-user-row/HandleUserRow.tsx";
 import NavBar from "../../../components/nav-bar/NavBar.tsx";
 import { useUsers } from "../../../hooks/useUser.ts";
-import Path from "../../../routes/path.constants.ts";
 import Styles from "./handleUsersPage.styles.ts";
-import SaveIcon from "@mui/icons-material/Save";
-import HandleUserRow from "../../../components/handle-user-row/HandleUserRow.tsx";
 
 const HandleUsersPage: FC = () => {
   const { data: users = [] } = useUsers();
+  const [currentUsers, setCurrentUsers] = useState(users ?? []);
+  console.log("////");
+  currentUsers.map((user) => console.log("uuid: " + user.uuid));
 
   const [searchQuery, setSearchQuery] = useState<string>("");
-
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
 
-  const filteredUsers = users!.filter((user) => {
+  const filteredUsers = currentUsers!.filter((user) => {
     const query = searchQuery.toLowerCase();
     return user.name.toLowerCase().includes(query) || user.tz.toLowerCase().includes(query);
   });
 
-  const navigate = useNavigate();
+  const handleAddRow = () => {
+    const newUser: User = {
+      isAdministor: false,
+      name: "",
+      tz: "",
+      uuid: "",
+      createDate: new Date(),
+      deleteDate: null,
+    };
 
+    setCurrentUsers((currentUsers) => [newUser, ...currentUsers!]);
+  };
 
-
+  useEffect(() => {
+    setCurrentUsers(users!);
+  }, [users]);
 
   return (
     <>
@@ -78,12 +88,14 @@ const HandleUsersPage: FC = () => {
                   <TableCell sx={Styles.tableCell} align="center">
                     Is administor
                   </TableCell>
-                  <TableCell sx={Styles.tableCell} align="center"></TableCell>
+                  <TableCell sx={Styles.tableCell} align="center">
+                    <AddIcon onClick={handleAddRow} />
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {filteredUsers?.map((user) => (
-                  <HandleUserRow user={user} />
+                  <HandleUserRow key= {user.uuid} user={user} edit={user.uuid === ""} />
                 ))}
               </TableBody>
             </Table>

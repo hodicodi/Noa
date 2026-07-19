@@ -5,23 +5,26 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { FC, useState } from "react";
 import Styles from "./handleUserRow.style.ts";
-import { User } from "@shared/src/types/user.type.ts";
-import { usePatchUser } from "../../hooks/useUser.ts";
+import { SaveUser, User } from "@shared/src/types/user.type.ts";
+import { saveUser } from "../../hooks/useUser.ts";
+import { useMutation } from "@tanstack/react-query";
 
 type handleUserRowProps = {
   user: User;
+  edit: boolean
 };
 
-const HandleUserRow: FC<handleUserRowProps> = ({ user }) => {
-  const [isEditMode, setIsEditMode] = useState<boolean>(false);
-  const [currentUser, setCurrentUser] = useState<User>(user);
+const HandleUserRow: FC<handleUserRowProps> = ({ user, edit }) => {
+  const [isEditMode, setIsEditMode] = useState<boolean>(edit);
+  const { createDate, deleteDate, uuid, ...saveUserProps } = user;
+  const [currentUser, setCurrentUser] = useState<SaveUser>(saveUserProps);
+
+  const mutationPatchUser = useMutation({ mutationFn: () => saveUser(currentUser) });
 
   const toggleEditSaveClick = (): void => {
-    //navigate(Path.EditUser);
     setIsEditMode((prev) => !prev);
-    if(!isEditMode) {
-      usePatchUser(currentUser.tz, currentUser)
-        // send patch user request
+    if (isEditMode) {
+      mutationPatchUser.mutate();
     }
   };
 
@@ -39,6 +42,13 @@ const HandleUserRow: FC<handleUserRowProps> = ({ user }) => {
     }));
   };
 
+  const handleTzChange = (newTz: string) => {
+    setCurrentUser((prev) => ({
+      ...prev,
+      tz: newTz,
+    }));
+  };
+
   return (
     <TableRow key={currentUser.tz} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
       <TableCell sx={Styles.tableCell} component="th" scope="row">
@@ -48,8 +58,12 @@ const HandleUserRow: FC<handleUserRowProps> = ({ user }) => {
           currentUser.name
         )}
       </TableCell>
-      <TableCell sx={Styles.tableCell} align="center">
-        {currentUser.tz}
+      <TableCell sx={Styles.tableCell} component="th" scope="row">
+        {isEditMode ? (
+          <TextField sx={Styles.textField} variant="standard" value={currentUser.tz} onChange={(e) => handleTzChange(e.target.value)} fullWidth />
+        ) : (
+          currentUser.tz
+        )}
       </TableCell>
       <TableCell sx={Styles.tableCell} align="center">
         <Checkbox

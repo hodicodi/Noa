@@ -15,8 +15,9 @@ const getUserByTz = async (tz: string) => {
 
 const getAllUsers = () => User.find();
 
-const createUser = (user: DeepPartial<User>) => User.save(user);
+const saveUser = (user: DeepPartial<User>) => User.save(user);
 
+/*
 const patchUser = async (tz: string, user: DeepPartial<User>) => {
   const existingUser = await User.findOneBy({ tz });
 
@@ -28,5 +29,6 @@ const patchUser = async (tz: string, user: DeepPartial<User>) => {
 
   return await User.save(updatedUser);
 };
+*/
 
-export default { getUserByTz, getAllUsers, createUser, patchUser };
+export default { getUserByTz, getAllUsers, saveUser };
