@@ -20,13 +20,10 @@ function validateIsraeliID(id: string) {
     return sum % 10 === 0;
 }
 
-
 export const UserRegistrationSchema = z.object({
   name: z.string().min(3, "Username must be at least 3 characters"),
   tz: z.string().refine((tz) => validateIsraeliID(tz), "Invalid email address"),
 });
-
-
 
 // Infer TypeScript types directly from the schema
 export type UserRegistrationInput = z.infer<typeof UserRegistrationSchema>;

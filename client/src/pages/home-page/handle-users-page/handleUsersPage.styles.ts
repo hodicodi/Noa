@@ -5,7 +5,7 @@ const handleUsersPage: SxProps = {
   flexDirection: "column",
   rowGap: 6,
   mt: 4,
-  minHeight: "100%",
+  minHeight: "100vh",
   alignItems: "center",
   
 };
