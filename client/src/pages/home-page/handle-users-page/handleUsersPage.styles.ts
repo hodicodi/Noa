@@ -7,20 +7,28 @@ const handleUsersPage: SxProps = {
   mt: 4,
   minHeight: "100vh",
   alignItems: "center",
-  
 };
 
 const table: SxProps = {
-    backgroundColor: "#47025c",
-}
+  backgroundColor: "#47025c",
+};
 
 const tableCell: SxProps = {
   color: "#fffefe",
-  width:'1%'
-}
+  width: "1%",
+};
 
 const searchableTable: SxProps = {
-    width: '93%',
-}
+  width: "93%",
+};
 
-export default { handleUsersPage, table, tableCell, searchableTable };
+const title: SxProps = {
+  color: "#f8f8f8",
+};
+
+const searchBarInputField = {
+  marginBottom: 3,
+  backgroundColor: "#fff",
+};
+
+export default { handleUsersPage, table, tableCell, searchableTable, title, searchBarInputField };

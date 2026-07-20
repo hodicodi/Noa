@@ -1,9 +1,9 @@
 import { SxProps } from "@mui/material";
 
 const checkbox: SxProps = {
-    color: '#f7f7f7', // Color when unchecked
+    color: '#f7f7f7', 
     '&.Mui-checked': {
-      color: '#ffffff', // Color when checked
+      color: '#ffffff', 
     },
 }
 

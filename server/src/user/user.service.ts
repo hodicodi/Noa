@@ -1,4 +1,4 @@
-import { DeepPartial } from "typeorm";
+import { DeepPartial, ILike, Repository } from "typeorm";
 import { User } from "./user.entity.ts";
 import { HttpError } from "../errors/httpError.ts";
 import { StatusCodes } from "http-status-codes";
@@ -15,20 +15,12 @@ const getUserByTz = async (tz: string) => {
 
 const getAllUsers = () => User.find();
 
+const getUsersWithQuery = async (searchQuery: string) => 
+  await User.find({
+    where: [{ name: ILike(`%${searchQuery}%`) }, { tz: ILike(`%${searchQuery}%`) }],
+  });
+
+
 const saveUser = (user: DeepPartial<User>) => User.save(user);
 
-/*
-const patchUser = async (tz: string, user: DeepPartial<User>) => {
-  const existingUser = await User.findOneBy({ tz });
-
-  if (!existingUser) {
-    throw new HttpError(StatusCodes.NOT_FOUND, "user not found");
-  }
-
-  const updatedUser = User.merge(existingUser, user);
-
-  return await User.save(updatedUser);
-};
-*/
-
-export default { getUserByTz, getAllUsers, saveUser };
+export default { getUserByTz, getAllUsers, saveUser, getUsersWithQuery };

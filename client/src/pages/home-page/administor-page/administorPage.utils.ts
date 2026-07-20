@@ -1,16 +1,17 @@
 import { AdministorActionsProps } from "@shared/src/types/administor.types.ts"
+import Path from "../../../routes/path.constants.ts";
 
   const manageUsers:AdministorActionsProps = {
     name: "Handle users",
-    path: "/handleUsers"
+    path: Path.HandleUser,
   } 
     const manageArtists:AdministorActionsProps = {
     name: "Handle artists",
-    path: "/handleArtists"
+    path: Path.HandleArtists,
   } 
     const manageSongs:AdministorActionsProps = {
     name: "Handle songs",
-    path: "/handleSongs"
+    path: Path.HandleSongs
   } 
 
 export default {manageUsers, manageArtists, manageSongs};

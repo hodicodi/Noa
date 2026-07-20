@@ -3,28 +3,32 @@ import SaveIcon from "@mui/icons-material/Save";
 import { Checkbox, TextField } from "@mui/material";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import { FC, useState } from "react";
-import Styles from "./handleUserRow.style.ts";
 import { SaveUser, User } from "@shared/src/types/user.type.ts";
-import { saveUser } from "../../hooks/useUser.ts";
-import { useMutation } from "@tanstack/react-query";
+import { FC, useState } from "react";
+import { useSaveUser } from "../../hooks/useSaveUser.ts";
+import Styles from "./handleUserRow.style.ts";
 
 type handleUserRowProps = {
   user: User;
-  edit: boolean
+  edit: boolean;
 };
 
 const HandleUserRow: FC<handleUserRowProps> = ({ user, edit }) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(edit);
-  const { createDate, deleteDate, uuid, ...saveUserProps } = user;
+  const { createDate, deleteDate, ...saveUserProps } = user;
   const [currentUser, setCurrentUser] = useState<SaveUser>(saveUserProps);
 
-  const mutationPatchUser = useMutation({ mutationFn: () => saveUser(currentUser) });
+  const toggleEditMode = (): void => setIsEditMode((prev) => !prev);
 
-  const toggleEditSaveClick = (): void => {
-    setIsEditMode((prev) => !prev);
+  const { mutate: saveUserMutation } = useSaveUser(toggleEditMode);
+
+
+
+  const editIconClick = (): void => {
     if (isEditMode) {
-      mutationPatchUser.mutate();
+      saveUserMutation(currentUser);
+    } else {
+      toggleEditMode();
     }
   };
 
@@ -73,7 +77,7 @@ const HandleUserRow: FC<handleUserRowProps> = ({ user, edit }) => {
           onChange={(event) => handleCheckboxChange(event.target.checked)}
         />
       </TableCell>
-      <TableCell onClick={toggleEditSaveClick} sx={Styles.tableCell} align="center">
+      <TableCell onClick={editIconClick} sx={Styles.tableCell} align="center">
         {!isEditMode ? <EditIcon /> : <SaveIcon />}
       </TableCell>
     </TableRow>

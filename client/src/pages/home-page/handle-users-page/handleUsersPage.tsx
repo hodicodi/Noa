@@ -8,40 +8,27 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { User } from "@shared/src/types/user.type.ts";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import HandleUserRow from "../../../components/handle-user-row/HandleUserRow.tsx";
-import NavBar from "../../../components/nav-bar/NavBar.tsx";
+import NavBar from "../../../components/nav-bar/navBar.tsx";
 import { useUsers } from "../../../hooks/useUser.ts";
+import newUser from "./handleUserPage.consts.ts";
 import Styles from "./handleUsersPage.styles.ts";
+import { useUserFilterQuery } from "../../../hooks/useUserFilterQuery.ts";
 
 const HandleUsersPage: FC = () => {
   const { data: users = [] } = useUsers();
-  const [currentUsers, setCurrentUsers] = useState(users ?? []);
-  console.log("////");
-  currentUsers.map((user) => console.log("uuid: " + user.uuid));
 
+  const [currentUsers, setCurrentUsers] = useState(users ?? []);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
 
-  const filteredUsers = currentUsers!.filter((user) => {
-    const query = searchQuery.toLowerCase();
-    return user.name.toLowerCase().includes(query) || user.tz.toLowerCase().includes(query);
-  });
+  const { data: filteredUsers } = useUserFilterQuery(searchQuery);
 
   const handleAddRow = () => {
-    const newUser: User = {
-      isAdministor: false,
-      name: "",
-      tz: "",
-      uuid: "",
-      createDate: new Date(),
-      deleteDate: null,
-    };
-
     setCurrentUsers((currentUsers) => [newUser, ...currentUsers!]);
   };
 
@@ -53,19 +40,18 @@ const HandleUsersPage: FC = () => {
     <>
       <NavBar />
       <Box sx={Styles.handleUsersPage}>
-        <Typography variant="h3" sx={{ color: "#f8f8f8" }}>
+        <Typography variant="h3" sx={Styles.title}>
           Users
         </Typography>
 
         <Box sx={Styles.searchableTable}>
-          {/* Search Input Bar */}
           <TextField
             fullWidth
             variant="outlined"
             placeholder="Search by name or id..."
             value={searchQuery}
             onChange={handleSearchChange}
-            sx={{ marginBottom: 3, backgroundColor: "#fff" }}
+            sx={Styles.searchBarInputField}
             slotProps={{
               input: {
                 startAdornment: (
@@ -95,7 +81,7 @@ const HandleUsersPage: FC = () => {
               </TableHead>
               <TableBody>
                 {filteredUsers?.map((user) => (
-                  <HandleUserRow key= {user.uuid} user={user} edit={user.uuid === ""} />
+                  <HandleUserRow key={user.uuid} user={user} edit={user.uuid === ""} />
                 ))}
               </TableBody>
             </Table>
