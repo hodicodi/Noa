@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { PlaylistOverviewProps } from "@shared/src/types/personalPlaylist.types.ts";
-import Styles from "./PlaylistPicture.style.ts";
+import Styles from "./PlaylistPicture.Style.ts";
 import { FC } from "react";
 
 const PlaylistPicture: FC<PlaylistOverviewProps> = ({ name, avaterPicture, artist }) => (

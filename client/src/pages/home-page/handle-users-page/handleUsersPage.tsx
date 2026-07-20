@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import NavBar from "../../../components/nav-bar/NavBar.tsx";
+import NavBar from "../../../components/nav-bar/navBar.tsx";
 import Style from "../administor-page/administorPage.styles.ts";
 
 const HandleUsersPage: React.FC = () => {
