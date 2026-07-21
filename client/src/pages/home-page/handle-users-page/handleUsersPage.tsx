@@ -17,15 +17,13 @@ import Styles from "./handleUsersPage.styles.ts";
 
 const HandleUsersPage: FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
-
   const { data: filteredUsers } = useUserFilterQuery(searchQuery);
-
   const [currentUsers, setCurrentUsers] = useState(filteredUsers);
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
-
+  
   const handleAddRow = () => {
     setCurrentUsers((currentUsers) => [newUser, ...currentUsers!]);
   };
@@ -79,7 +77,7 @@ const HandleUsersPage: FC = () => {
               </TableHead>
               <TableBody>
                 {currentUsers?.map((user) => (
-                  <HandleUserRow key={user.uuid} user={user} edit={user.uuid? false: true} />
+                  <HandleUserRow key={user.uuid} user={user} edit={user.uuid ? false : true} />
                 ))}
               </TableBody>
             </Table>

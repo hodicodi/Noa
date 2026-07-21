@@ -19,10 +19,12 @@ type handleUserRowProps = {
 const HandleUserRow: FC<handleUserRowProps> = ({ user, edit }) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(edit);
   const { createDate, deleteDate, ...saveUserProps } = user;
-
   const toggleEditMode = (): void => setIsEditMode((prev) => !prev);
-
   const { mutate: saveUser } = useSaveUser(toggleEditMode);
+
+  const formDefaultValues = {
+    name: "", tz: "", isAdministor: false
+  }
 
   const {
     control,
@@ -32,7 +34,7 @@ const HandleUserRow: FC<handleUserRowProps> = ({ user, edit }) => {
     reset,
   } = useForm<UserRegistrationInput>({
     resolver: zodResolver(UserRegistrationSchema),
-    defaultValues: { name: "", tz: "", isAdministor: false },
+    defaultValues: formDefaultValues,
   });
 
   const onSubmit = (formData: UserRegistrationInput) => {
