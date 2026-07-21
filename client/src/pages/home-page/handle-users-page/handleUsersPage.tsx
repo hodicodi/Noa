@@ -11,30 +11,28 @@ import TableRow from "@mui/material/TableRow";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import HandleUserRow from "../../../components/handle-user-row/HandleUserRow.tsx";
 import NavBar from "../../../components/nav-bar/navBar.tsx";
-import { useUsers } from "../../../hooks/useUser.ts";
+import { useUserFilterQuery } from "../../../hooks/useUserFilterQuery.ts";
 import newUser from "./handleUserPage.consts.ts";
 import Styles from "./handleUsersPage.styles.ts";
-import { useUserFilterQuery } from "../../../hooks/useUserFilterQuery.ts";
 
 const HandleUsersPage: FC = () => {
-  const { data: users = [] } = useUsers();
-
-  const [currentUsers, setCurrentUsers] = useState(users ?? []);
   const [searchQuery, setSearchQuery] = useState<string>("");
+
+  const { data: filteredUsers } = useUserFilterQuery(searchQuery);
+
+  const [currentUsers, setCurrentUsers] = useState(filteredUsers);
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
-
-  const { data: filteredUsers } = useUserFilterQuery(searchQuery);
 
   const handleAddRow = () => {
     setCurrentUsers((currentUsers) => [newUser, ...currentUsers!]);
   };
 
   useEffect(() => {
-    setCurrentUsers(users!);
-  }, [users]);
+    setCurrentUsers(filteredUsers!);
+  }, [filteredUsers]);
 
   return (
     <>
@@ -80,7 +78,7 @@ const HandleUsersPage: FC = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filteredUsers?.map((user) => (
+                {currentUsers?.map((user) => (
                   <HandleUserRow key={user.uuid} user={user} edit={user.uuid === ""} />
                 ))}
               </TableBody>

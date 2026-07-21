@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import Path from "./path.constants.ts";
+import {HOME, PLAYLIST, ADMINISTOR, HADNLE_USERS} from "./path.constants.ts";
 import RootLayout from "../layouts/RootLayout.tsx";
 import HomePage from "../pages/home-page/home-page/HomePage.tsx";
 import PlaylistPage from "../pages/home-page/playlist-page/PlaylistPage.tsx";
@@ -9,19 +9,19 @@ import HandleUsersPage from "../pages/home-page/handle-users-page/handleUsersPag
 
 const router = createBrowserRouter([
   {
-    path: Path.Home,
+    path: HOME,
     element: <RootLayout />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: Path.Playlist, element: <PlaylistPage /> },
+      { path: PLAYLIST, element: <PlaylistPage /> },
     ],
   },
   {
     path: "/",
     element: <AdministorLayout />,
     children: [
-      { path: Path.Administor, element: <AdministorPage /> },
-      { path: Path.HandleUser, element: <HandleUsersPage /> },
+      { path: ADMINISTOR, element: <AdministorPage /> },
+      { path: HADNLE_USERS, element: <HandleUsersPage /> },
     ],
   },
 ]);

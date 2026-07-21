@@ -7,7 +7,7 @@ import { Menu, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import AdministorAction from "../administor-action/AdministorAction.tsx";
-import Path from "../../routes/path.constants.ts";
+import {ADMINISTOR} from "../../routes/path.constants.ts";
 
 const theme = createTheme({ palette: { primary: { main: "#ffffff" } } });
 
@@ -27,7 +27,7 @@ const NavBar: FC = () => {
 
   const administorClick = () => {
     handleClose();
-    navigate(Path.Administor);
+    navigate(ADMINISTOR);
   };
 
   const signoutClick = () => {
