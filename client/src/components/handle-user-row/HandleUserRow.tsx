@@ -4,9 +4,12 @@ import { Checkbox, TextField } from "@mui/material";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { SaveUser, User } from "@shared/src/types/user.type.ts";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useSaveUser } from "../../hooks/useSaveUser.ts";
 import Styles from "./handleUserRow.style.ts";
+import { Controller, FormProvider, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { UserRegistrationInput, UserRegistrationSchema } from "@shared/src/schemas/userValidation.schema.ts";
 
 type handleUserRowProps = {
   user: User;
@@ -16,70 +19,73 @@ type handleUserRowProps = {
 const HandleUserRow: FC<handleUserRowProps> = ({ user, edit }) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(edit);
   const { createDate, deleteDate, ...saveUserProps } = user;
-  const [currentUser, setCurrentUser] = useState<SaveUser>(saveUserProps);
 
   const toggleEditMode = (): void => setIsEditMode((prev) => !prev);
 
   const { mutate: saveUserMutation } = useSaveUser(toggleEditMode);
 
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+    reset,
+  } = useForm<UserRegistrationInput>({
+    resolver: zodResolver(UserRegistrationSchema),
+    defaultValues: { name: "", tz: "", isAdministor: false },
+  });
 
-
-  const editIconClick = (): void => {
-    if (isEditMode) {
-      saveUserMutation(currentUser);
-    } else {
-      toggleEditMode();
-    }
+  const onSubmit = (formData: UserRegistrationInput) => {
+    saveUserMutation({ uuid: user.uuid, ...formData });
   };
 
-  const handleCheckboxChange = (isChecked: boolean) => {
-    setCurrentUser((prev) => ({
-      ...prev,
-      isAdministor: isChecked,
-    }));
-  };
-
-  const handleNameChange = (newName: string) => {
-    setCurrentUser((prev) => ({
-      ...prev,
-      name: newName,
-    }));
-  };
-
-  const handleTzChange = (newTz: string) => {
-    setCurrentUser((prev) => ({
-      ...prev,
-      tz: newTz,
-    }));
-  };
+  useEffect(() => {
+    reset({ name: user.name, tz: user.tz, isAdministor: user.isAdministor });
+  }, [user]);
 
   return (
-    <TableRow key={currentUser.tz} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+    <TableRow key={user.tz} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
       <TableCell sx={Styles.tableCell} component="th" scope="row">
         {isEditMode ? (
-          <TextField sx={Styles.textField} variant="standard" value={currentUser.name} onChange={(e) => handleNameChange(e.target.value)} fullWidth />
+          <Controller
+            name="name"
+            control={control}
+            render={({ field, fieldState: { error } }) => <TextField {...field} sx={Styles.textField} variant="standard" fullWidth />}
+          />
         ) : (
-          currentUser.name
+          user.name
         )}
       </TableCell>
       <TableCell sx={Styles.tableCell} component="th" scope="row">
         {isEditMode ? (
-          <TextField sx={Styles.textField} variant="standard" value={currentUser.tz} onChange={(e) => handleTzChange(e.target.value)} fullWidth />
+          <Controller
+            name="tz"
+            control={control}
+            render={({ field, fieldState: { error } }) => <TextField {...field} sx={Styles.textField} variant="standard" fullWidth />}
+          />
         ) : (
-          currentUser.tz
+          user.tz
         )}
       </TableCell>
       <TableCell sx={Styles.tableCell} align="center">
-        <Checkbox
-          sx={Styles.checkbox}
-          disabled={!isEditMode}
-          checked={Boolean(currentUser.isAdministor)}
-          onChange={(event) => handleCheckboxChange(event.target.checked)}
+        <Controller
+          name="isAdministor"
+          control={control}
+          render={({ field, fieldState: { error } }) => (
+            <Checkbox {...field} onChange={(e) => field.onChange(e.target.checked)} sx={Styles.checkbox} disabled={!isEditMode} checked={!!field.value} />
+          )}
         />
       </TableCell>
-      <TableCell onClick={editIconClick} sx={Styles.tableCell} align="center">
-        {!isEditMode ? <EditIcon /> : <SaveIcon />}
-      </TableCell>
+
+      {isEditMode ? (
+        <TableCell onClick={handleSubmit(onSubmit)} sx={Styles.tableCell} align="center">
+          <SaveIcon />
+        </TableCell>
+      ) : (
+        <TableCell onClick={toggleEditMode} sx={Styles.tableCell} align="center">
+          <EditIcon />
+        </TableCell>
+      )}
     </TableRow>
   );
 };

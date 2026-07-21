@@ -12,7 +12,7 @@ const getUserFilterQuery = async (searchQuery: string): Promise<User[] | null> =
 
 export const useUserFilterQuery = (searchQuery: string) => {
   return useQuery<User[] | null, Error>({
-    queryKey: ["users", searchQuery],
+    queryKey: ["users", ],
     queryFn: () => getUserFilterQuery(searchQuery),
   });
 };

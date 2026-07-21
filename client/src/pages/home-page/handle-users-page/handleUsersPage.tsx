@@ -10,7 +10,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import HandleUserRow from "../../../components/handle-user-row/HandleUserRow.tsx";
-import NavBar from "../../../components/nav-bar/navBar.tsx";
+import NavBar from "../../../components/nav-bar/NavBar.tsx";
 import { useUserFilterQuery } from "../../../hooks/useUserFilterQuery.ts";
 import newUser from "./handleUserPage.consts.ts";
 import Styles from "./handleUsersPage.styles.ts";
