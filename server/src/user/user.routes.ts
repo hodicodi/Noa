@@ -6,7 +6,7 @@ import userService from "./user.service.ts";
 const userRouter = Router();
 
 userRouter.get("/search", async (req: Request<unknown, unknown, unknown>, res: Response<UsersRes>) => {
-  const searchQuery = ((req.query.searchQuery as string) || "").toLowerCase();
+  const searchQuery = ((req.query.searchQuery as string) || "");
 
   const users = await userService.getUsersWithQuery(searchQuery);
 

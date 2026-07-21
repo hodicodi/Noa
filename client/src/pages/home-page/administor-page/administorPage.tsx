@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { FC } from "react";
 import AdministorAction from "../../../components/administor-action/AdministorAction.tsx";
-import NavBar from "../../../components/nav-bar/navBar.tsx";
+import NavBar from "../../../components/nav-bar/NavBar.tsx";
 import Styles from "./administorPage.styles.ts";
 import utils  from "./administorPage.utils.ts"
 

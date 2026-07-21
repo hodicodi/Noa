@@ -22,7 +22,7 @@ const HandleUserRow: FC<handleUserRowProps> = ({ user, edit }) => {
 
   const toggleEditMode = (): void => setIsEditMode((prev) => !prev);
 
-  const { mutate: saveUserMutation } = useSaveUser(toggleEditMode);
+  const { mutate: saveUser } = useSaveUser(toggleEditMode);
 
   const {
     control,
@@ -36,7 +36,7 @@ const HandleUserRow: FC<handleUserRowProps> = ({ user, edit }) => {
   });
 
   const onSubmit = (formData: UserRegistrationInput) => {
-    saveUserMutation({ uuid: user.uuid, ...formData });
+    saveUser({ uuid: user.uuid, ...formData });
   };
 
   useEffect(() => {

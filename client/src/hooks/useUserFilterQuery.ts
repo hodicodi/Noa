@@ -5,6 +5,8 @@ import { User, UsersRes } from "@shared/src/types/user.type.ts";
 import { useQuery } from "@tanstack/react-query";
 import { API } from "../api/services/albumService.ts";
 
+export const USERS = "user";
+
 const getUserFilterQuery = async (searchQuery: string): Promise<User[] | null> => {
   const response = await API.get<UsersRes>(USERS_PATH + `/search?searchQuery=${searchQuery}`);
   return response.data?.users ?? [];
@@ -12,7 +14,7 @@ const getUserFilterQuery = async (searchQuery: string): Promise<User[] | null> =
 
 export const useUserFilterQuery = (searchQuery: string) => {
   return useQuery<User[] | null, Error>({
-    queryKey: ["users", ],
+    queryKey: [USERS],
     queryFn: () => getUserFilterQuery(searchQuery),
   });
 };
