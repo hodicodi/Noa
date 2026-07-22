@@ -21,7 +21,6 @@ userRouter.get("/", async (req: Request<unknown, unknown, unknown>, res: Respons
 
 userRouter.post("/", async (req: Request<unknown, unknown, SaveUserReqBody>, res: Response<UserRes>) => {
   const { user } = req.body;
-  console.log(user);
   const newUser = await userService.saveUser(user);
   res.status(StatusCodes.CREATED).json({ user: newUser });
 });

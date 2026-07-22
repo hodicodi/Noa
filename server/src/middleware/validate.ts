@@ -1,4 +1,3 @@
-// middleware/validate.ts
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from "http-status-codes";
 import { AnyZodObject } from 'zod/v3';
