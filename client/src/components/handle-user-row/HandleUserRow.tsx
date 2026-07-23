@@ -20,8 +20,6 @@ const HandleUserRow: FC<handleUserRowProps> = ({ user, edit }) => {
     defaultValues: formDefaultValues,
   });
 
-
-
   const resetFormFields = () => {
     formMethods.reset({ name: user.name, tz: user.tz, isAdministor: user.isAdministor });
   };

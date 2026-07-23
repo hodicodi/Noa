@@ -6,8 +6,9 @@ import { PlaylistOverviewProps } from "@shared/src/types/personalPlaylist.types.
 import style from "./suggestedPlaylist.style.ts";
 import { useNavigate } from "react-router-dom";
 import {PLAYLIST_PATH} from "../../routes/path.constants.ts";
+import { FC } from "react";
 
-const PlaylistCard: React.FC<PlaylistOverviewProps> = ({
+const PlaylistCard: FC<PlaylistOverviewProps> = ({
   name,
   avaterPicture,
 }: PlaylistOverviewProps) => {
