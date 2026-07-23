@@ -1,16 +1,16 @@
-import { SaveUserReqBody, UserParams, UserRes, UsersRes } from "@shared/src/types/user.type.ts";
+import { SaveUserReqBody, UserParams, UserRes, UserSearchQueryParams, UsersRes } from "@shared/src/types/user.type.ts";
 import { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
 import userService from "./user.service.ts";
 
-
 const userRouter = Router();
 
-userRouter.get("/:tz", async (req: Request<UserParams, unknown, unknown>, res: Response<UserRes>) => {
-  const { tz } = req.params;
-  const user = await userService.getUserByTz(tz);
+userRouter.get("/search", async (req: Request<unknown, unknown, unknown, UserSearchQueryParams>, res: Response<UsersRes>) => {
+  const searchQuery = (req.query.searchQuery);
 
-  res.status(StatusCodes.OK).json({ user });
+  const users = await userService.getUsersWithQuery(searchQuery);
+
+  res.status(StatusCodes.OK).json({ users });
 });
 
 userRouter.get("/", async (req: Request<unknown, unknown, unknown>, res: Response<UsersRes>) => {
@@ -19,10 +19,17 @@ userRouter.get("/", async (req: Request<unknown, unknown, unknown>, res: Respons
   res.status(StatusCodes.OK).json({ users });
 });
 
-userRouter.patch("/", async (req: Request<unknown, unknown, SaveUserReqBody>, res: Response<UserRes>) => {
+userRouter.post("/", async (req: Request<unknown, unknown, SaveUserReqBody>, res: Response<UserRes>) => {
   const { user } = req.body;
-  const newUser = await userService.createUser(user);
+  const newUser = await userService.saveUser(user);
   res.status(StatusCodes.CREATED).json({ user: newUser });
+});
+
+userRouter.get("/:tz", async (req: Request<UserParams, unknown, unknown>, res: Response<UserRes>) => {
+  const { tz } = req.params;
+  const user = await userService.getUserByTz(tz);
+
+  res.status(StatusCodes.OK).json({ user });
 });
 
 export default userRouter;

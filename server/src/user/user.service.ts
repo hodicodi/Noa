@@ -1,4 +1,4 @@
-import { DeepPartial } from "typeorm";
+import { DeepPartial, ILike, Repository } from "typeorm";
 import { User } from "./user.entity.ts";
 import { HttpError } from "../errors/httpError.ts";
 import { StatusCodes } from "http-status-codes";
@@ -15,6 +15,12 @@ const getUserByTz = async (tz: string) => {
 
 const getAllUsers = () => User.find();
 
-const createUser = (user: DeepPartial<User>) => User.save(user);
+const getUsersWithQuery = async (searchQuery: string) => 
+  await User.find({
+    where: [{ name: ILike(`%${searchQuery}%`) }, { tz: ILike(`%${searchQuery}%`) }],
+  });
 
-export default { getUserByTz, getAllUsers, createUser };
+
+const saveUser = (user: DeepPartial<User>) => User.save(user);
+
+export default { getUserByTz, getAllUsers, saveUser, getUsersWithQuery };
