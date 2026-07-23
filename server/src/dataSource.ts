@@ -26,7 +26,7 @@ export const AppDataSource = new DataSource({
   schema: DB_SCHEMA || "noa",
   entities: [User, Song, Album, Artist, PersonalPlaylist],
   migrations: ["migrations/*"],
-  synchronize: false, // Set false for production
+  synchronize: false, 
   migrationsTransactionMode: "each",
   namingStrategy: new SnakeNamingStrategy(),
 });

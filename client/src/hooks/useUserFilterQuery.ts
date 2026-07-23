@@ -8,7 +8,7 @@ import { API } from "../api/services/albumService.ts";
 export const USE_USERS_FILTER_KEY = "user";
 
 const getUserFilterQuery = async (searchQuery: string): Promise<User[] | null> => {
-  const response = await API.get<UsersRes>(USERS_PATH + `/search?searchQuery=${searchQuery}`);
+  const response = await API.get<UsersRes>(USERS_PATH + `/search?searchQuery=${searchQuery}`); 
   return response.data?.users ?? [];
 };
 
@@ -18,4 +18,3 @@ export const useUserFilterQuery = (searchQuery: string) => {
     queryFn: () => getUserFilterQuery(searchQuery),
   });
 };
-

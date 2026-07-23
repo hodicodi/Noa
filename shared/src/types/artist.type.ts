@@ -5,7 +5,9 @@ export type Artist = {
   uuid: string;
   name: string;
   type: ArtistType;
-  albums: Album[];
+  albums?: Album[];
+  createDate: Date;
+  deleteDate: Date | null;
 };
 
 export type ArtistRes = {
