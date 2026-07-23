@@ -1,10 +1,9 @@
 import EditIcon from "@mui/icons-material/Edit";
-import { Checkbox, TableCell } from "@mui/material";
-import { FC } from "react";
-import { Controller, useFormContext } from "react-hook-form";
-import Styles from "../handle-user-row/handleUserRow.style.ts";
-import { User } from "@shared/src/types/user.type.ts";
+import { TableCell } from "@mui/material";
 import { Artist } from "@shared/src/types/artist.type.ts";
+import { FC } from "react";
+import { useFormContext } from "react-hook-form";
+import Styles from "../handle-user-row/handleUserRow.style.ts";
 
  type artistRowPreviewProps = {
   artist: Artist;
@@ -29,4 +28,4 @@ const ArtistRowPreview: FC<artistRowPreviewProps> = ({ artist, toggleEditMode })
   );
 };
 
-export default UserRowPreview;
+export default ArtistRowPreview;
