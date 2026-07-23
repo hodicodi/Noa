@@ -20,23 +20,21 @@ const HandleUserRow: FC<handleUserRowProps> = ({ user, edit }) => {
     defaultValues: formDefaultValues,
   });
 
-  const onSubmit = (formData: UserRegistrationInput) => {
-    saveUser({ uuid: user.uuid, ...formData });
-  };
 
-  const resetInput = () => {
+
+  const resetFormFields = () => {
     formMethods.reset({ name: user.name, tz: user.tz, isAdministor: user.isAdministor });
   };
 
   useEffect(() => {
-    resetInput();
+    resetFormFields();
   }, [user]);
 
   return (
     <TableRow key={user.tz} sx={Styles.TableRow}>
       <FormProvider {...formMethods}>
         {isEditMode ? (
-          <UserRowFrom user={user} onSubmit={onSubmit} handleSubmit={formMethods.handleSubmit} />
+          <UserRowFrom onSaveUseSucsses={toggleEditMode} user={user}/>
         ) : (
           <UserRowPreview user={user} toggleEditMode={toggleEditMode} />
         )}

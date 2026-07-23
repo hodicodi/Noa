@@ -42,7 +42,7 @@ const HandleUsersPage: FC = () => {
         </Typography>
 
         <Box sx={Styles.searchableTable}>
-          <SearchBar searchQuery={searchQuery} handleSearchChange={handleSearchChange}/>
+          <SearchBar searchQuery={searchQuery} handleSearchChange={handleSearchChange} placeHolder="Search by name or id..."/>
 
           <TableContainer sx={Styles.table} component={Paper}>
             <Table>

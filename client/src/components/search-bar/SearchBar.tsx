@@ -4,11 +4,11 @@ import { FC } from "react";
 import Styles from "./searchBar.styles.ts";
 import { SearchBarProps } from "./searchBar.type.ts";
 
-const SearchBar: FC<SearchBarProps> = ({ searchQuery, handleSearchChange }) => (
+const SearchBar: FC<SearchBarProps> = ({ searchQuery, handleSearchChange, placeHolder }) => (
   <TextField
     fullWidth
     variant="outlined"
-    placeholder="Search by name or id..."
+    placeholder={placeHolder}
     value={searchQuery}
     onChange={handleSearchChange}
     sx={Styles.searchBarInputField}

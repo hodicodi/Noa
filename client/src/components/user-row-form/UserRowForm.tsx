@@ -1,12 +1,24 @@
-import { Checkbox, TableCell, TextField } from "@mui/material";
-import { FC } from "react";
-import { Controller, FormProvider, useFormContext } from "react-hook-form";
-import Styles from "../handle-user-row/handleUserRow.style.ts";
-import { userRowFormProps } from "./userRowForm.consts.ts";
 import SaveIcon from "@mui/icons-material/Save";
+import { Checkbox, TableCell, TextField } from "@mui/material";
+import { UserRegistrationInput } from "@shared/src/schemas/userValidation.schema.ts";
+import { FC } from "react";
+import { Controller, useFormContext } from "react-hook-form";
+import { useSaveUser } from "../../hooks/useSaveUser.ts";
+import Styles from "../handle-user-row/handleUserRow.style.ts";
+import { User } from "@shared/src/types/user.type.ts";
 
-const UserRowFrom: FC<userRowFormProps> = ({ user, handleSubmit, onSubmit }) => {
-  const { control } = useFormContext();
+type userRowFormProps = {
+  onSaveUseSucsses: () => void;
+  user: User;
+};
+
+const UserRowFrom: FC<userRowFormProps> = ({ onSaveUseSucsses, user }) => {
+  const { control, handleSubmit } = useFormContext<UserRegistrationInput>();
+  const { mutate: saveUser } = useSaveUser(onSaveUseSucsses);
+
+  const onSubmit = (formData: UserRegistrationInput) => {
+    saveUser({ uuid: user.uuid, ...formData });
+  };
 
   return (
     <>
@@ -33,7 +45,6 @@ const UserRowFrom: FC<userRowFormProps> = ({ user, handleSubmit, onSubmit }) => 
           )}
         />
       </TableCell>
-
       <TableCell onClick={handleSubmit(onSubmit)} sx={Styles.tableCell} align="center">
         <SaveIcon />
       </TableCell>

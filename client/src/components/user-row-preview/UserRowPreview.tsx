@@ -1,10 +1,14 @@
-import { Checkbox, TableCell, TextField } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import { Checkbox, TableCell } from "@mui/material";
 import { FC } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import Styles from "../handle-user-row/handleUserRow.style.ts";
-import { userRowPreviewProps } from "./userRowPreview.consts.ts";
-import EditIcon from "@mui/icons-material/Edit";
-import { UserRegistrationInput } from "@shared/src/schemas/userValidation.schema.ts";
+import { User } from "@shared/src/types/user.type.ts";
+
+ type userRowPreviewProps = {
+  user: User;
+  toggleEditMode: () => void;
+};
 
 const UserRowPreview: FC<userRowPreviewProps> = ({ user, toggleEditMode }) => {
   const { control } = useFormContext();
@@ -26,7 +30,6 @@ const UserRowPreview: FC<userRowPreviewProps> = ({ user, toggleEditMode }) => {
           )}
         />
       </TableCell>
-
       <TableCell onClick={toggleEditMode} sx={Styles.tableCell} align="center">
         <EditIcon />
       </TableCell>
