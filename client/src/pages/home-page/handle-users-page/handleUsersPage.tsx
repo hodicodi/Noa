@@ -14,6 +14,7 @@ import NavBar from "../../../components/nav-bar/NavBar.tsx";
 import { useUserFilterQuery } from "../../../hooks/useUserFilterQuery.ts";
 import newUser from "./handleUserPage.consts.ts";
 import Styles from "./handleUsersPage.styles.ts";
+import SearchBar from "../../../components/search-bar/SearchBar.tsx"
 
 const HandleUsersPage: FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -41,23 +42,7 @@ const HandleUsersPage: FC = () => {
         </Typography>
 
         <Box sx={Styles.searchableTable}>
-          <TextField
-            fullWidth
-            variant="outlined"
-            placeholder="Search by name or id..."
-            value={searchQuery}
-            onChange={handleSearchChange}
-            sx={Styles.searchBarInputField}
-            slotProps={{
-              input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon color="action" />
-                  </InputAdornment>
-                ),
-              },
-            }}
-          />
+          <SearchBar searchQuery={searchQuery} handleSearchChange={handleSearchChange}/>
 
           <TableContainer sx={Styles.table} component={Paper}>
             <Table>
