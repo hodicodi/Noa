@@ -6,8 +6,19 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useSaveUser } from "../../hooks/useSaveUser.ts";
 import UserRowFrom from "../user-row-form/UserRowForm.tsx";
 import UserRowPreview from "../user-row-preview/UserRowPreview.tsx";
-import { formDefaultValues, handleUserRowProps } from "./HandleUserRow.consts.ts";
 import Styles from "./handleUserRow.style.ts";
+import { User } from "@shared/src/types/user.type.ts";
+
+type handleUserRowProps = {
+  user: User;
+  edit: boolean;
+};
+
+const formDefaultValues = {
+  name: "",
+  tz: "",
+  isAdministor: false,
+};
 
 const HandleUserRow: FC<handleUserRowProps> = ({ user, edit }) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(edit);
@@ -20,10 +31,8 @@ const HandleUserRow: FC<handleUserRowProps> = ({ user, edit }) => {
     defaultValues: formDefaultValues,
   });
 
-
-
   const resetFormFields = () => {
-    formMethods.reset({ name: user.name, tz: user.tz, isAdministor: user.isAdministor });
+    formMethods.reset(user);
   };
 
   useEffect(() => {
@@ -33,11 +42,7 @@ const HandleUserRow: FC<handleUserRowProps> = ({ user, edit }) => {
   return (
     <TableRow key={user.tz} sx={Styles.TableRow}>
       <FormProvider {...formMethods}>
-        {isEditMode ? (
-          <UserRowFrom onSaveUseSucsses={toggleEditMode} user={user}/>
-        ) : (
-          <UserRowPreview user={user} toggleEditMode={toggleEditMode} />
-        )}
+        {isEditMode ? <UserRowFrom onSaveUseSucsses={toggleEditMode} user={user} /> : <UserRowPreview user={user} toggleEditMode={toggleEditMode} />}
       </FormProvider>
     </TableRow>
   );

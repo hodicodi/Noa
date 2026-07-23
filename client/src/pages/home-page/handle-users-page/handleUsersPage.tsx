@@ -62,7 +62,7 @@ const HandleUsersPage: FC = () => {
               </TableHead>
               <TableBody>
                 {currentUsers?.map((user) => (
-                  <HandleUserRow key={user.uuid} user={user} edit={user.uuid ? false : true} />
+                  <HandleUserRow key={user.uuid} user={user} edit={!user?.uuid} />
                 ))}
               </TableBody>
             </Table>
