@@ -17,6 +17,7 @@ export const UserRegistrationSchema = z.object({
   name: z.string().min(3, "Username must be at least 3 characters"),
   tz: z.string().refine((tz) => validateIsraeliID(tz), "Invalid tz"),
   isAdministor: z.boolean(),
+  uuid: z.string().optional()
 });
 
 export type UserRegistrationInput = z.infer<typeof UserRegistrationSchema>;

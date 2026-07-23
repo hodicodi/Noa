@@ -17,7 +17,7 @@ const UserRowFrom: FC<userRowFormProps> = ({ onSaveUseSucsses, user }) => {
   const { mutate: saveUser } = useSaveUser(onSaveUseSucsses);
 
   const onSubmit = (formData: UserRegistrationInput) => {
-    saveUser({ uuid: user.uuid, ...formData });
+    saveUser(formData);
   };
 
   return (
