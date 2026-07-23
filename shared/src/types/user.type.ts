@@ -1,12 +1,12 @@
 import { DeepPartial } from "typeorm";
 
 export type User = {
-  uuid: string;
+  uuid?: string;
   isAdministor: boolean;
   name: string;
   tz: string;
-  createDate: Date;
-  deleteDate: Date | null;
+  createDate?: Date;
+  deleteDate?: Date | null;
 };
 
 export type UserRes = {
@@ -30,9 +30,8 @@ export type SaveUserReqBody = {
 };
 
 export type SaveUser = {
-  uuid: string
+  uuid: string;
   isAdministor: boolean;
   name: string;
   tz: string;
 };
-

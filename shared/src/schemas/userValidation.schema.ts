@@ -5,9 +5,8 @@ const validateIsraeliID = (id: string) => {
 
   const sum = id
     .split("")
-    .map(Number)
     .reduce((acc, digit, i) => {
-      const step = digit * ((i % 2) + 1);
+      const step = Number(digit) * ((i % 2) + 1);
       return acc + (step > 9 ? step - 9 : step);
     }, 0);
 
