@@ -7,7 +7,7 @@ type handleUserHeadTableProps = {
   handleAddRow: () => void;
 };
 
-const HandleUsersTableHead: FC<handleUserHeadTableProps> = ({ handleAddRow }) => {
+const HandleUsersTableHead: FC<handleUserHeadTableProps> = ({ handleAddRow }) => (
   <TableHead>
     <TableRow>
       <TableCell sx={Styles.tableCell}>User name</TableCell>
@@ -20,8 +20,10 @@ const HandleUsersTableHead: FC<handleUserHeadTableProps> = ({ handleAddRow }) =>
       <TableCell sx={Styles.tableCell} align="center">
         <AddIcon onClick={handleAddRow} />
       </TableCell>
+      <TableCell sx={Styles.tableCell} align="center">
+      </TableCell>
     </TableRow>
-  </TableHead>;
-};
+  </TableHead>
+);
 
 export default HandleUsersTableHead;

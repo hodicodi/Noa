@@ -20,7 +20,6 @@ const getUsersWithQuery = async (searchQuery: string) =>
     where: [{ name: ILike(`%${searchQuery}%`) }, { tz: ILike(`%${searchQuery}%`) }],
   });
 
-
 const saveUser = (user: DeepPartial<User>) => User.save(user);
 
 export default { getUserByTz, getAllUsers, saveUser, getUsersWithQuery };

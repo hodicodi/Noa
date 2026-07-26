@@ -1,15 +1,14 @@
-import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import { Box, Button, Menu, MenuItem, Typography, createTheme } from "@mui/material";
 import { FC, MouseEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext.tsx";
 import { ADMINISTOR_PATH } from "../../routes/path.constants.ts";
 import Styles from "./navBar.style.ts";
-
-const theme = createTheme({ palette: { primary: { main: "#ffffff" } } });
+import { useUserByTz } from "../../hooks/useUserByTz.ts";
 
 const NavBar: FC = () => {
-  const { status, user, logout } = useAuth();
+  const { logout } = useAuth();
   const navigate = useNavigate();
 
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -31,13 +30,19 @@ const NavBar: FC = () => {
     handleClose();
     logout();
   };
+  // TODO
+  const userName = useUserByTz().data?.data.user?.name;
 
   return (
     <Box sx={Styles.userBar}>
-      <Button sx={Styles.supervisor} onClick={handleClick}><SupervisorAccountIcon/></Button>
-      <Typography sx={Styles.userName} onClick={handleClick}>{user?.name ?? user?.email}</Typography>
+      <Button sx={Styles.supervisor} onClick={handleClick}>
+        <SupervisorAccountIcon />
+      </Button>
+      <Typography sx={Styles.userName}>{userName}</Typography>
       <Menu sx={Styles.dropdown} anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-        <MenuItem sx={Styles.menuItem} onClick={signoutClick}>Sign out</MenuItem>
+        <MenuItem sx={Styles.menuItem} onClick={signoutClick}>
+          Sign out
+        </MenuItem>
         <MenuItem sx={Styles.menuItem} onClick={administorClick}>
           Administor
         </MenuItem>

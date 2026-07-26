@@ -5,34 +5,26 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Styles from "./customDialog.style.ts";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Box } from "@mui/material";
 
 type AlertDialogProps = {
-  open: boolean;
   title: string;
   description: string;
-  onClose: () => void;
-  onAgree?: () => void;
-}
+};
 
-const AlertDialog: FC<AlertDialogProps> = ({ open, title, description, onClose, onAgree }) => {
-  const handleAgree = () => {
-    onAgree?.();
-    onClose();
-  };
+const AlertDialog: FC<AlertDialogProps> = ({ title, description }) => {
+  const [isDialogOpen, setIsDialogOpen] = useState(true);
 
   return (
-    <Dialog sx={Styles.dialogModal} open={open} onClose={onClose} role="alertdialog">
-      <Box  sx={Styles.dialogContent}>
+    <Dialog sx={Styles.dialogModal} open={isDialogOpen} role="alertdialog">
+      <Box sx={Styles.dialogContent}>
         <DialogTitle>{title}</DialogTitle>
-        <DialogContent >
+        <DialogContent>
           <DialogContentText sx={Styles.dialogText}>{description}</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleAgree}>
-            OK
-          </Button>
+          <Button onClick={() => setIsDialogOpen(false)}>OK</Button>
         </DialogActions>
       </Box>
     </Dialog>
