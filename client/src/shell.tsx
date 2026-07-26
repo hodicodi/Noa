@@ -5,11 +5,11 @@ import App from "./App.tsx";
 import { useAuth } from "./auth/AuthContext.tsx";
 import { LoginPage } from "./auth/LoginPage.tsx";
 import AlertDialog from "./components/custom-dialog/customDialog.tsx";
-import { useUser } from "./hooks/useUserByTz.ts";
+import { useUserByTz } from "./hooks/useUserByTz.ts";
 import style from "./layouts/rootLayout.style.ts";
 
 const Shell: FC = () => {
-  const { status, user, logout } = useAuth();
+  const { status, user, changeUser } = useAuth();
   if (status === AuthStatus.Loading)
     return (
       <Box sx={style.loading}>
@@ -18,15 +18,16 @@ const Shell: FC = () => {
     );
   if (status === AuthStatus.Unauthenticated) return <LoginPage />;
 
-  const { data: savedUser } = useUser();
+  const { data: systemUserRes } = useUserByTz();
 
-  if (useUser().isSuccess == false) {
+  if (!systemUserRes?.data.user?.uuid) {
     return (
       <>
         <AlertDialog title="We cannot let you in" description="user doesn't exist in system" /> <LoginPage />
       </>
     );
   }
+  changeUser(systemUserRes?.data.user!);
   return <App />;
 };
 
