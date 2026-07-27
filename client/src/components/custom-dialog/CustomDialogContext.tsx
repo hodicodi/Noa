@@ -8,15 +8,15 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Styles from "./customDialog.style.ts";
 import { Box } from "@mui/material";
 
-interface DialogOptions {
+type DialogOptions = {
   title?: string;
   description: string;
-}
+};
 
-interface DialogContextType {
+type DialogContextType = {
   openDialog: (options: DialogOptions) => void;
   closeDialog: () => void;
-}
+};
 
 const DialogContext = createContext<DialogContextType | undefined>(undefined);
 
@@ -57,7 +57,6 @@ export const DialogProvider: React.FC<DialogProviderProps> = ({ children }) => {
   );
 };
 
-// Custom hook for consuming the context safely
 export const useDialog = (): DialogContextType => {
   const context = useContext(DialogContext);
   if (!context) {

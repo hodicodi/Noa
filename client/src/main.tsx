@@ -10,11 +10,9 @@ const queryClient = new QueryClient();
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <AuthProvider>
-      <DialogProvider>
         <QueryClientProvider client={queryClient}>
           <Shell />
         </QueryClientProvider>
-      </DialogProvider>
     </AuthProvider>
   </StrictMode>,
 );

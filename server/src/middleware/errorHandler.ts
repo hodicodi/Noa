@@ -1,4 +1,3 @@
-// src/middleware/errorHandler.ts
 import { ErrorRequestHandler } from "express";
 import { HttpError } from "../errors/httpError.ts";
 import { StatusCodes } from "http-status-codes";
