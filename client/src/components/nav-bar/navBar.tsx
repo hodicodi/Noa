@@ -8,9 +8,8 @@ import Styles from "./navBar.style.ts";
 import { useUserByTz } from "../../hooks/useUserByTz.ts";
 
 const NavBar: FC = () => {
-  const { logout } = useAuth();
+  const { logout, user} = useAuth();
   const navigate = useNavigate();
-  const { user } = useAuth();
 
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 

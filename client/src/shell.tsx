@@ -7,7 +7,6 @@ import { LoginPage } from "./auth/LoginPage.tsx";
 import AlertDialog from "./components/custom-dialog/customDialog.tsx";
 import { useUserByTz } from "./hooks/useUserByTz.ts";
 import style from "./layouts/rootLayout.style.ts";
-import { useDialog } from "./components/custom-dialog/CustomDialogContext.tsx";
 
 const Shell: FC = () => {
   const { status, user, changeUser } = useAuth();
@@ -28,6 +27,7 @@ const Shell: FC = () => {
       </>
     );
   }
+  
   changeUser(systemUserRes!);
   return <App />;
 };
