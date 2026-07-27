@@ -28,6 +28,7 @@ const Shell: FC = () => {
       </>
     );
   }
+  console.log("system:" + systemUserRes);
   changeUser(systemUserRes!);
   return <App />;
 };

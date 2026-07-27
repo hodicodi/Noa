@@ -33,6 +33,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const changeUser = (user: User) => {
+    console.log("change user:" + user);
     setUser(user);
   }
 

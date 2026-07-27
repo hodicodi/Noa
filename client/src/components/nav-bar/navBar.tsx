@@ -10,7 +10,7 @@ import { useUserByTz } from "../../hooks/useUserByTz.ts";
 const NavBar: FC = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, authUser } = useAuth();
 
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
@@ -31,6 +31,10 @@ const NavBar: FC = () => {
     handleClose();
     logout();
   };
+
+  console.log("authUser: " + authUser);
+  console.log("user: " + user);
+  console.log("user name: " + user!.name);
 
   return (
     <Box sx={Styles.userBar}>
