@@ -1,8 +1,9 @@
 import { StatusCodes } from "http-status-codes";
-import { DeepPartial } from "typeorm";
+import { DeepPartial, ILike } from "typeorm";
 import { HttpError } from "../errors/httpError.ts";
 import { Song } from "../song/song.entity.ts";
 import { Album } from "./album.entity.ts";
+import { Artist } from "../artist/artist.entity.ts";
 
 const getAllAlbums = () => Album.find();
 
@@ -26,4 +27,15 @@ const createAlbum = async (album: DeepPartial<Album>) => {
   return Album.save(album);
 };
 
-export default { getAllAlbums, getAlbumById, createAlbum };
+const getAlbumsWithQuery = async (searchQuery: string) =>
+  await Album.find({
+    where: [
+      { name: ILike(`%${searchQuery}%`) },
+      { artist: { name: ILike(`%${searchQuery}%`) } }
+            ],
+    relations: {
+      artist: true,
+    },
+  });
+
+export default { getAllAlbums, getAlbumById, createAlbum, getAlbumsWithQuery };

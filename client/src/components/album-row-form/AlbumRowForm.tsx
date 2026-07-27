@@ -21,18 +21,18 @@ type albumRowFormProps = {
 
 const AlbumRowFrom: FC<albumRowFormProps> = ({ onSaveAlbumSucsses, album, setiIsEditMode, setCurrentAlbums, currentAlbums }) => {
   const { control, handleSubmit, reset } = useFormContext<AlbumRegistrationInput>();
-  const { mutate: saveUser } = useSaveAlbum(onSaveAlbumSucsses);
+  const { mutate: saveAlbum } = useSaveAlbum(onSaveAlbumSucsses);
 
   const onSubmit = (formData: AlbumRegistrationInput) => {
     saveAlbum(formData);
   };
 
   const handleUndo = () => {
-    if (user.uuid) {
+    if (album.uuid) {
       setiIsEditMode(false);
-      reset(user);
+      reset(album);
     } else {
-      setCurrentUsers(currentUsers!.slice(1));
+      setCurrentAlbums(currentAlbums!.slice(1));
     }
   };
 
@@ -49,18 +49,11 @@ const AlbumRowFrom: FC<albumRowFormProps> = ({ onSaveAlbumSucsses, album, setiIs
       </TableCell>
       <TableCell sx={Styles.tableCell} component="th" scope="row">
         <Controller
-          name="tz"
+          name="artist.name"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <TextField {...field} error={!!error?.message} helperText={error?.message} sx={Styles.textField} variant="standard" fullWidth />
           )}
-        />
-      </TableCell>
-      <TableCell sx={Styles.tableCell} align="center">
-        <Controller
-          name="isAdministor"
-          control={control}
-          render={({ field }) => <Checkbox {...field} onChange={(e) => field.onChange(e.target.checked)} sx={Styles.checkbox} checked={!!field.value} />}
         />
       </TableCell>
       <TableCell onClick={handleSubmit(onSubmit)} sx={Styles.tableCell} align="center">
@@ -73,4 +66,4 @@ const AlbumRowFrom: FC<albumRowFormProps> = ({ onSaveAlbumSucsses, album, setiIs
   );
 };
 
-export default UserRowFrom;
+export default AlbumRowFrom;

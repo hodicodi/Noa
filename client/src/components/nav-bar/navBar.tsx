@@ -32,16 +32,14 @@ const NavBar: FC = () => {
     logout();
   };
 
-  console.log("authUser: " + authUser);
-  console.log("user: " + user);
-  console.log("user name: " + user!.name);
+  const name = useUserByTz().data?.name;
 
   return (
     <Box sx={Styles.userBar}>
       <Button sx={Styles.supervisor} onClick={handleClick}>
         <SupervisorAccountIcon />
       </Button>
-      <Typography sx={Styles.userName}>{user!.name}</Typography>
+      <Typography sx={Styles.userName}>{name}</Typography>
       <Menu sx={Styles.dropdown} anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem sx={Styles.menuItem} onClick={signoutClick}>
           Sign out

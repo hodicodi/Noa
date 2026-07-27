@@ -17,10 +17,6 @@ export type UserParams = {
   tz: string;
 };
 
-export type UserSearchQueryParams = {
-  searchQuery: string;
-};
-
 export type UsersRes = {
   users: User[] | null;
 };

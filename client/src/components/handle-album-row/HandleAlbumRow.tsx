@@ -8,6 +8,8 @@ import UserRowFrom from "../user-row-form/UserRowForm.tsx";
 import UserRowPreview from "../user-row-preview/UserRowPreview.tsx";
 import Styles from "./handleAlbumRow.styles.ts";
 import { Album } from "@shared/src/types/album.types.ts";
+import AlbumRowFrom from "../album-row-form/AlbumRowForm.tsx";
+import AlbumRowPreview from "../album-row-preview/AlbumRowPreview.tsx";
 
 type handleAlbumRowProps = {
   album: Album;
@@ -33,15 +35,15 @@ const HandleAlbumRow: FC<handleAlbumRowProps> = ({ album, edit, setCurrentAlbums
     <TableRow key={album.uuid} sx={Styles.TableRow}>
       <FormProvider {...formMethods}>
         {isEditMode ? (
-          <UserRowFrom
-            onSaveUseSucsses={toggleEditMode}
+          <AlbumRowFrom
+            onSaveAlbumSucsses={toggleEditMode}
             album={album}
             setiIsEditMode={setIsEditMode}
             setCurrentAlbums={setCurrentAlbums}
             currentAlbums={currentAlbums}
           />
         ) : (
-          <UserRowPreview album={album} toggleEditMode={toggleEditMode} />
+          <AlbumRowPreview album={album} toggleEditMode={toggleEditMode} />
         )}
       </FormProvider>
     </TableRow>

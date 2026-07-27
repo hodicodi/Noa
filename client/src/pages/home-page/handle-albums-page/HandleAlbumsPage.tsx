@@ -4,15 +4,13 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import { ChangeEvent, FC, useEffect, useState } from "react";
-import HandleUserRow from "../../../components/handle-user-row/HandleUserRow.tsx";
-import HandleUsersTableHead from "../../../components/handle-users-table-head/HandleUsersTableHead.tsx";
+import HandleAlbumRow from "../../../components/handle-album-row/HandleAlbumRow.tsx";
+import HandleAlbumsTableHead from "../../../components/handle-albums-table-head/HandleAlbumsTableHead.tsx";
 import NavBar from "../../../components/nav-bar/NavBar.tsx";
 import SearchBar from "../../../components/search-bar/SearchBar.tsx";
-import { useUserFilterQuery } from "../../../hooks/useUserFilterQuery.ts";
-// import newUser from "./handleUserPage.consts.ts";
-import Styles from "./handleAlbumsPage.styles.ts";
 import { useAlbumFilterQuery } from "../../../hooks/useAlbumsFilterQuery.ts";
 import newAlbum from "./handleAlbumsPage.consts.ts";
+import Styles from "./handleAlbumsPage.styles.ts";
 
 const HandleAlbumsPage: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -44,10 +42,10 @@ const HandleAlbumsPage: FC = () => {
 
           <TableContainer sx={Styles.table} component={Paper}>
             <Table>
-              <HandleUsersTableHead handleAddRow={handleAddRow} />
+              <HandleAlbumsTableHead handleAddRow={handleAddRow} />
               <TableBody>
                 {currentAlbums?.map((album) => (
-                  <HandleUserRow key={album.uuid} album={album} edit={!album?.uuid} setCurrentAlbums={setCurrentAlbums} currentAlbums={currentAlbums} />
+                  <HandleAlbumRow key={album.uuid} album={album} edit={!album?.uuid} setCurrentAlbums={setCurrentAlbums} currentAlbums={currentAlbums} />
                 ))}
               </TableBody>
             </Table>
@@ -58,4 +56,4 @@ const HandleAlbumsPage: FC = () => {
   );
 };
 
-export default HandleUsersPage;
+export default HandleAlbumsPage;

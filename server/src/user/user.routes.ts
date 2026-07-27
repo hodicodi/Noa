@@ -1,11 +1,12 @@
-import { SaveUserReqBody, UserParams, UserRes, UserSearchQueryParams, UsersRes } from "@shared/src/types/user.type.ts";
+import { SaveUserReqBody, UserParams, UserRes, UsersRes } from "@shared/src/types/user.type.ts";
 import { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
 import userService from "./user.service.ts";
+import { SearchQueryParams } from "@shared/src/types/general.types.ts";
 
 const userRouter = Router();
 
-userRouter.get("/search", async (req: Request<unknown, unknown, unknown, UserSearchQueryParams>, res: Response<UsersRes>) => {
+userRouter.get("/search", async (req: Request<unknown, unknown, unknown, SearchQueryParams>, res: Response<UsersRes>) => {
   const searchQuery = req.query.searchQuery;
 
   const users = await userService.getUsersWithQuery(searchQuery);
