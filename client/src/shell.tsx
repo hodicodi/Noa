@@ -10,6 +10,7 @@ import style from "./layouts/rootLayout.style.ts";
 
 const Shell: FC = () => {
   const { status, user, changeUser } = useAuth();
+  const { data: systemUserRes } = useUserByTz();
   if (status === AuthStatus.Loading)
     return (
       <Box sx={style.loading}>
@@ -18,7 +19,6 @@ const Shell: FC = () => {
     );
   if (status === AuthStatus.Unauthenticated) return <LoginPage />;
 
-  const { data: systemUserRes } = useUserByTz();
 
   if (!systemUserRes?.uuid) {
     return (

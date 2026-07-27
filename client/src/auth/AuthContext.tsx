@@ -20,6 +20,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [status, setStatus] = useState<AuthStatus>(AuthStatus.Loading);
   const [user, setUser] = useState<User | null>(null);
 
+  // TODO: move to a hook
   const refresh = useCallback(async () => {
     try {
       const currentUser = await fetchCurrentUser();
