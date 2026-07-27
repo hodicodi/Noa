@@ -7,6 +7,7 @@ import { LoginPage } from "./auth/LoginPage.tsx";
 import AlertDialog from "./components/custom-dialog/customDialog.tsx";
 import { useUserByTz } from "./hooks/useUserByTz.ts";
 import style from "./layouts/rootLayout.style.ts";
+import { useDialog } from "./components/custom-dialog/CustomDialogContext.tsx";
 
 const Shell: FC = () => {
   const { status, user, changeUser } = useAuth();
@@ -20,14 +21,14 @@ const Shell: FC = () => {
 
   const { data: systemUserRes } = useUserByTz();
 
-  if (!systemUserRes?.data.user?.uuid) {
+  if (!systemUserRes?.uuid) {
     return (
       <>
         <AlertDialog title="We cannot let you in" description="user doesn't exist in system" /> <LoginPage />
       </>
     );
   }
-  changeUser(systemUserRes?.data.user!);
+  changeUser(systemUserRes!);
   return <App />;
 };
 

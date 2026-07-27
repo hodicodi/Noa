@@ -10,6 +10,7 @@ import { useUserByTz } from "../../hooks/useUserByTz.ts";
 const NavBar: FC = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
@@ -30,15 +31,13 @@ const NavBar: FC = () => {
     handleClose();
     logout();
   };
-  // TODO
-  const userName = useUserByTz().data?.data.user?.name;
 
   return (
     <Box sx={Styles.userBar}>
       <Button sx={Styles.supervisor} onClick={handleClick}>
         <SupervisorAccountIcon />
       </Button>
-      <Typography sx={Styles.userName}>{userName}</Typography>
+      <Typography sx={Styles.userName}>{user!.name}</Typography>
       <Menu sx={Styles.dropdown} anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem sx={Styles.menuItem} onClick={signoutClick}>
           Sign out

@@ -7,16 +7,16 @@ import { useAuth } from "../auth/AuthContext.tsx";
 
 export const USE_USER_BY_TZ = "userByTz";
 
-const getUserByTz = async (tz: string): Promise<AxiosResponse<UserRes, any, {}>> => {
-  const response = await API.get<UserRes>(USERS_PATH + `/${tz}`, { params: { tz } });
-  return response;
+const getUserByTz = async (tz: string): Promise<User | null> => {
+  const response = await API.get<UserRes>(USERS_PATH + `/${tz}`, { params: { tz: tz } });
+  return response.data.user;
 };
 
 export const useUserByTz = () => {
   const { authUser } = useAuth();
   const userId = authUser!.email!.slice(0, 9);
 
-  return useQuery<AxiosResponse<UserRes, any, {}>>({
+  return useQuery<User | null>({
     queryKey: [USE_USER_BY_TZ],
     queryFn: () => getUserByTz(userId),
   });

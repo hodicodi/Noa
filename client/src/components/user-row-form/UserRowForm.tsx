@@ -17,17 +17,17 @@ type userRowFormProps = {
 };
 
 const UserRowFrom: FC<userRowFormProps> = ({ onSaveUseSucsses, user, setiIsEditMode, setCurrentUsers, currentUsers }) => {
-  const { control, handleSubmit } = useFormContext<UserRegistrationInput>();
+  const { control, handleSubmit, reset } = useFormContext<UserRegistrationInput>();
   const { mutate: saveUser } = useSaveUser(onSaveUseSucsses);
 
   const onSubmit = (formData: UserRegistrationInput) => {
     saveUser(formData);
   };
 
-  // TODO: reset form
   const handleUndo = () => {
     if (user.uuid) {
       setiIsEditMode(false);
+      reset(user);
     } else {
       setCurrentUsers(currentUsers!.slice(1));
     }
