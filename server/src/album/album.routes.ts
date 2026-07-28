@@ -3,6 +3,9 @@ import { GeneralParams, SearchQueryParams } from "@shared/src/types/general.type
 import { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
 import albumService from "./album.service.ts";
+import multer from "multer";
+import { HttpError } from "../errors/httpError.ts";
+import { UPLOADS_PATH } from "@shared/src/const/paths.const.ts";
 
 const albumRouter = Router();
 
@@ -29,6 +32,22 @@ albumRouter.post("/", async (req: Request<unknown, unknown, SaveAlbumReqBody>, r
   const { album } = req.body;
   const newAlbum = await albumService.createAlbum(album);
   res.status(StatusCodes.CREATED).json({ newAlbum });
+});
+
+const uploadMulter = multer({ storage: multer.memoryStorage() });
+
+albumRouter.post(UPLOADS_PATH, uploadMulter.single("imgFile"), async (req: Request, res: Response) => {
+  const { title } = req.body;
+
+  const file = req.file;
+
+  if (!file) {
+    throw new HttpError(StatusCodes.NOT_FOUND, "No audio file provided");
+  }
+
+  await albumService.addImgFile(file, title);
+
+  res.status(StatusCodes.CREATED).json({ message: "File and metadata uploaded successfully" });
 });
 
 export default albumRouter;

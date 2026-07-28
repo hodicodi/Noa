@@ -19,6 +19,7 @@ const AlbumRowPreview: FC<AlbumRowPreviewProps> = ({ album, toggleEditMode }) =>
     <TableCell sx={Styles.tableCell} component="th" scope="row">
       {album.artist.name}
     </TableCell>
+    <TableCell sx={Styles.tableCell} component="th" scope="row" />
     <TableCell onClick={toggleEditMode} sx={Styles.tableCell} align="center">
       <EditIcon />
     </TableCell>

@@ -15,6 +15,9 @@ const HandleAlbumsTableHead: FC<handleAlbumHeadTableProps> = ({ handleAddRow }) 
         Artist name
       </TableCell>
       <TableCell sx={Styles.tableCell} align="center">
+        Album picture
+      </TableCell>
+      <TableCell sx={Styles.tableCell} align="center">
         <AddIcon onClick={handleAddRow} />
       </TableCell>
       <TableCell sx={Styles.tableCell} align="center"></TableCell>

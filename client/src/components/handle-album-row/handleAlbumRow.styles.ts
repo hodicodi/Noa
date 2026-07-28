@@ -1,9 +1,16 @@
 import { SxProps } from "@mui/material";
 
-const checkbox: SxProps = {
-  color: "#f7f7f7",
-  "&.Mui-checked": {
-    color: "#ffffff",
+const autoCompleteTextField: SxProps = {
+  input: { color: "white" },
+  "& .MuiInputLabel-root": { color: "white" },
+  "& .MuiOutlinedInput-notchedOutline": {
+    borderColor: "white",
+  },
+};
+
+const autoComplete: SxProps = {
+  "& .MuiAutocomplete-option": {
+    color: "white",
   },
 };
 
@@ -32,4 +39,4 @@ const TableRow: SxProps = {
   "&:last-child td, &:last-child th": { border: 0 },
 };
 
-export default { checkbox, tableCell, textField, TableRow };
+export default { autoComplete, tableCell, textField, TableRow, autoCompleteTextField };

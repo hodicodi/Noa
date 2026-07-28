@@ -1,9 +1,10 @@
-import { Artist, SaveArtist } from "./artist.type";
+import { Artist } from "./artist.type";
 import { Song } from "./song.types";
 
 export type Album = {
   uuid: string;
   name: string;
+  imgUrl: string | null;
   songs?: Song[];
   artist: Artist;
 };
@@ -22,5 +23,7 @@ export type SaveAlbumReqBody = {
 
 export type SaveAlbum = {
   name: string;
-  artist: SaveArtist;
+  artist: Artist;
 };
+
+

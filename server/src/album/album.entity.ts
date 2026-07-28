@@ -4,10 +4,13 @@ import { BaseCustomEntity } from "../base-custom-entity/baseCustomEntity.entity.
 import { Song } from "../song/song.entity.ts";
 
 @Entity()
-@Unique(['name', 'artist'])
+@Unique(["name", "artist"])
 export class Album extends BaseCustomEntity {
-  @Column({ type: "varchar"})
+  @Column({ type: "varchar" })
   name: string;
+
+  @Column({ type: "varchar", nullable: true })
+  imgUrl: string | null;
 
   @OneToMany(() => Song, (song) => song.album, { cascade: true })
   songs: Song[];
