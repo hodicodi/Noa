@@ -1,29 +1,30 @@
-import {
-  Box,
-  CircularProgress
-} from "@mui/material";
-import { AuthStatus } from "@shared/Enums.ts";
+import { Box, CircularProgress } from "@mui/material";
 import { FC } from "react";
 import App from "./App.tsx";
 import { useAuth } from "./auth/AuthContext.tsx";
 import { LoginPage } from "./auth/LoginPage.tsx";
+import AlertDialog from "./components/custom-dialog/customDialog.tsx";
 import style from "./layouts/rootLayout.style.ts";
 
-
 const Shell: FC = () => {
-  const { status, user, logout } = useAuth();
-  if (status === AuthStatus.Loading)
+  const { user, isLoading } = useAuth();
+  if (isLoading)
     return (
       <Box sx={style.loading}>
         <CircularProgress />
       </Box>
     );
-  if (status === AuthStatus.Unauthenticated) return <LoginPage />;
 
-  return (
-    <App/>
-  )
+  if (!user?.uuid) {
+    return (
+      <>
+        <AlertDialog title="We cannot let you in" description="user doesn't exist in system" />
+        <LoginPage />
+      </>
+    );
+  }
+
+  return <App />;
 };
-
 
 export default Shell;

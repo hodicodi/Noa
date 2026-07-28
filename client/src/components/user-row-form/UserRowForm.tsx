@@ -6,18 +6,32 @@ import { Controller, useFormContext } from "react-hook-form";
 import { useSaveUser } from "../../hooks/useSaveUser.ts";
 import Styles from "../handle-user-row/handleUserRow.style.ts";
 import { User } from "@shared/src/types/user.type.ts";
+import UndoIcon from "@mui/icons-material/Undo";
 
 type userRowFormProps = {
   onSaveUseSucsses: () => void;
   user: User;
+  setIsEditMode: (isEditMode: boolean) => void;
+  setCurrentUsers: (users: User[]) => void;
+  currentUsers: User[];
+  setExistingUser: () => void;
 };
 
-const UserRowFrom: FC<userRowFormProps> = ({ onSaveUseSucsses, user }) => {
-  const { control, handleSubmit } = useFormContext<UserRegistrationInput>();
+const UserRowFrom: FC<userRowFormProps> = ({ onSaveUseSucsses, user, setIsEditMode, setCurrentUsers, currentUsers, setExistingUser }) => {
+  const { control, handleSubmit, reset } = useFormContext<UserRegistrationInput>();
   const { mutate: saveUser } = useSaveUser(onSaveUseSucsses);
 
   const onSubmit = (formData: UserRegistrationInput) => {
     saveUser(formData);
+  };
+
+  const handleUndo = () => {
+    if (user.uuid) {
+      setIsEditMode(false);
+      reset(user);
+    } else {
+      setExistingUser();
+    }
   };
 
   return (
@@ -26,27 +40,32 @@ const UserRowFrom: FC<userRowFormProps> = ({ onSaveUseSucsses, user }) => {
         <Controller
           name="name"
           control={control}
-          render={({ field, fieldState: { error } }) => <TextField {...field} sx={Styles.textField} variant="standard" fullWidth />}
+          render={({ field, fieldState: { error } }) => (
+            <TextField {...field} error={!!error?.message} helperText={error?.message} sx={Styles.textField} variant="standard" fullWidth />
+          )}
         />
       </TableCell>
       <TableCell sx={Styles.tableCell} component="th" scope="row">
         <Controller
           name="tz"
           control={control}
-          render={({ field, fieldState: { error } }) => <TextField {...field} sx={Styles.textField} variant="standard" fullWidth />}
+          render={({ field, fieldState: { error } }) => (
+            <TextField {...field} error={!!error?.message} helperText={error?.message} sx={Styles.textField} variant="standard" fullWidth />
+          )}
         />
       </TableCell>
       <TableCell sx={Styles.tableCell} align="center">
         <Controller
           name="isAdministor"
           control={control}
-          render={({ field, fieldState: { error } }) => (
-            <Checkbox {...field} onChange={(e) => field.onChange(e.target.checked)} sx={Styles.checkbox} checked={!!field.value} />
-          )}
+          render={({ field }) => <Checkbox {...field} onChange={(e) => field.onChange(e.target.checked)} sx={Styles.checkbox} checked={!!field.value} />}
         />
       </TableCell>
       <TableCell onClick={handleSubmit(onSubmit)} sx={Styles.tableCell} align="center">
         <SaveIcon />
+      </TableCell>
+      <TableCell onClick={handleUndo} sx={Styles.tableCell} align="center">
+        <UndoIcon />
       </TableCell>
     </>
   );

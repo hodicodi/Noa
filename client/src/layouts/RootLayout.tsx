@@ -8,7 +8,7 @@ import style from "./rootLayout.style.ts";
 const theme = createTheme({ palette: { primary: { main: "#ffffff" } }, typography: { fontFamily: "Georgia"} });
 
 const RootLayout: FC = () => {
-  const { status, user, logout } = useAuth();
+  const {  user, logout } = useAuth();
 
   return (
 

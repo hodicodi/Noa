@@ -6,11 +6,18 @@ import userService from "./user.service.ts";
 const userRouter = Router();
 
 userRouter.get("/search", async (req: Request<unknown, unknown, unknown, UserSearchQueryParams>, res: Response<UsersRes>) => {
-  const searchQuery = (req.query.searchQuery);
+  const searchQuery = req.query.searchQuery;
 
   const users = await userService.getUsersWithQuery(searchQuery);
 
   res.status(StatusCodes.OK).json({ users });
+});
+
+userRouter.get("/:tz", async (req: Request<UserParams, unknown, unknown>, res: Response<UserRes>) => {
+  const { tz } = req.params;
+  const user = await userService.getUserByTz(tz);
+
+  res.status(StatusCodes.OK).json({ user });
 });
 
 userRouter.get("/", async (req: Request<unknown, unknown, unknown>, res: Response<UsersRes>) => {
@@ -23,13 +30,6 @@ userRouter.post("/", async (req: Request<unknown, unknown, SaveUserReqBody>, res
   const { user } = req.body;
   const newUser = await userService.saveUser(user);
   res.status(StatusCodes.CREATED).json({ user: newUser });
-});
-
-userRouter.get("/:tz", async (req: Request<UserParams, unknown, unknown>, res: Response<UserRes>) => {
-  const { tz } = req.params;
-  const user = await userService.getUserByTz(tz);
-
-  res.status(StatusCodes.OK).json({ user });
 });
 
 export default userRouter;

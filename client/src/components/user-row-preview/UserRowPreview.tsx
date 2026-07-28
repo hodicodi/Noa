@@ -5,12 +5,12 @@ import { Controller, useFormContext } from "react-hook-form";
 import Styles from "../handle-user-row/handleUserRow.style.ts";
 import { User } from "@shared/src/types/user.type.ts";
 
- type userRowPreviewProps = {
+type UserRowPreviewProps = {
   user: User;
   toggleEditMode: () => void;
 };
 
-const UserRowPreview: FC<userRowPreviewProps> = ({ user, toggleEditMode }) => {
+const UserRowPreview: FC<UserRowPreviewProps> = ({ user, toggleEditMode }) => {
   const { control } = useFormContext();
 
   return (
@@ -25,7 +25,7 @@ const UserRowPreview: FC<userRowPreviewProps> = ({ user, toggleEditMode }) => {
         <Controller
           name="isAdministor"
           control={control}
-          render={({ field, fieldState: { error } }) => (
+          render={({ field }) => (
             <Checkbox {...field} onChange={(e) => field.onChange(e.target.checked)} sx={Styles.checkbox} disabled={true} checked={!!field.value} />
           )}
         />
@@ -33,6 +33,7 @@ const UserRowPreview: FC<userRowPreviewProps> = ({ user, toggleEditMode }) => {
       <TableCell onClick={toggleEditMode} sx={Styles.tableCell} align="center">
         <EditIcon />
       </TableCell>
+      <TableCell sx={Styles.tableCell} align="center" />
     </>
   );
 };

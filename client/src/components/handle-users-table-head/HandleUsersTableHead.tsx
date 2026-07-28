@@ -3,11 +3,11 @@ import { FC } from "react";
 import Styles from "../../pages/home-page/handle-users-page/handleUsersPage.styles.ts";
 import AddIcon from "@mui/icons-material/Add";
 
-type handleUserHeadTableProps = {
+type HandleUserHeadTableProps = {
   handleAddRow: () => void;
 };
 
-const HandleUsersTableHead: FC<handleUserHeadTableProps> = ({ handleAddRow }) => {
+const HandleUsersTableHead: FC<HandleUserHeadTableProps> = ({ handleAddRow }) => (
   <TableHead>
     <TableRow>
       <TableCell sx={Styles.tableCell}>User name</TableCell>
@@ -20,8 +20,10 @@ const HandleUsersTableHead: FC<handleUserHeadTableProps> = ({ handleAddRow }) =>
       <TableCell sx={Styles.tableCell} align="center">
         <AddIcon onClick={handleAddRow} />
       </TableCell>
+      <TableCell sx={Styles.tableCell} align="center">
+      </TableCell>
     </TableRow>
-  </TableHead>;
-};
+  </TableHead>
+);
 
 export default HandleUsersTableHead;
