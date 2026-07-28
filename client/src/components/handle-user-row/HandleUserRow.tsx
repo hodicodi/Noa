@@ -8,7 +8,7 @@ import UserRowFrom from "../user-row-form/UserRowForm.tsx";
 import UserRowPreview from "../user-row-preview/UserRowPreview.tsx";
 import Styles from "./handleUserRow.style.ts";
 
-type handleUserRowProps = {
+type HandleUserRowProps = {
   user: User;
   edit: boolean;
   setCurrentUsers: (users: User[]) => void;
@@ -16,7 +16,7 @@ type handleUserRowProps = {
   setExistingUser: () => void;
 };
 
-const HandleUserRow: FC<handleUserRowProps> = ({ user, edit, setCurrentUsers, currentUsers, setExistingUser }) => {
+const HandleUserRow: FC<HandleUserRowProps> = ({ user, edit, setCurrentUsers, currentUsers, setExistingUser }) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(edit);
   const toggleEditMode = (): void => setIsEditMode((prev) => !prev);
 

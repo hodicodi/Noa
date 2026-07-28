@@ -14,14 +14,8 @@ export interface AuthUser {
 const USE_CURRENT_USER = "useCurrentUser";
 
 export async function getCurrentUser(): Promise<AuthUser | null> {
-  // try {
   const res = await api.get<{ user: AuthUser }>("/protected/user-info");
   return res.data.user;
-  // } catch (err: any) {
-  //   if (err?.response?.status === 401 || err?.response?.status === 403)
-  //     return null;
-  //   throw err;
-  // }
 }
 
 export const useCurrentUser = () => useQuery({ queryFn: getCurrentUser, queryKey: [USE_CURRENT_USER] });
