@@ -14,9 +14,10 @@ type userRowFormProps = {
   setiIsEditMode: (isEditMode: boolean) => void;
   setCurrentUsers: (users: User[]) => void;
   currentUsers: User[];
+  setExistingUser: () => void;
 };
 
-const UserRowFrom: FC<userRowFormProps> = ({ onSaveUseSucsses, user, setiIsEditMode, setCurrentUsers, currentUsers }) => {
+const UserRowFrom: FC<userRowFormProps> = ({ onSaveUseSucsses, user, setiIsEditMode, setCurrentUsers, currentUsers, setExistingUser }) => {
   const { control, handleSubmit, reset } = useFormContext<UserRegistrationInput>();
   const { mutate: saveUser } = useSaveUser(onSaveUseSucsses);
 
@@ -29,7 +30,7 @@ const UserRowFrom: FC<userRowFormProps> = ({ onSaveUseSucsses, user, setiIsEditM
       setiIsEditMode(false);
       reset(user);
     } else {
-      setCurrentUsers(currentUsers!.slice(1));
+      setExistingUser();
     }
   };
 

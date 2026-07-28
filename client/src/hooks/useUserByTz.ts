@@ -8,7 +8,7 @@ import { useAuth } from "../auth/AuthContext.tsx";
 export const USE_USER_BY_TZ = "userByTz";
 
 const getUserByTz = async (tz: string): Promise<User | null> => {
-  const response = await API.get<UserRes>(`${USERS_PATH}/${tz}`, { params: { tz: tz } });
+  const response = await API.get<UserRes>(`${USERS_PATH}/${tz}`);
   return response.data.user;
 };
 

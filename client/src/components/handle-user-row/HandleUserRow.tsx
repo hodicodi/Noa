@@ -13,9 +13,10 @@ type handleUserRowProps = {
   edit: boolean;
   setCurrentUsers: (users: User[]) => void;
   currentUsers: User[];
+  setExistingUser: () => void;
 };
 
-const HandleUserRow: FC<handleUserRowProps> = ({ user, edit, setCurrentUsers, currentUsers }) => {
+const HandleUserRow: FC<handleUserRowProps> = ({ user, edit, setCurrentUsers, currentUsers, setExistingUser }) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(edit);
   const toggleEditMode = (): void => setIsEditMode((prev) => !prev);
 
@@ -38,6 +39,7 @@ const HandleUserRow: FC<handleUserRowProps> = ({ user, edit, setCurrentUsers, cu
             setiIsEditMode={setIsEditMode}
             setCurrentUsers={setCurrentUsers}
             currentUsers={currentUsers}
+            setExistingUser={setExistingUser}
           />
         ) : (
           <UserRowPreview user={user} toggleEditMode={toggleEditMode} />

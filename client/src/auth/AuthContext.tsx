@@ -18,27 +18,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const userTz = authUser?.email?.split("@")?.[0] ?? "";
   const { data: user = null, isLoading: isLoadingUser } = useUserByTz(userTz);
 
-  // const [authUser, setAuthUser] = useState<AuthUser | null>(null);
-  // const [status, setStatus] = useState<AuthStatus>(AuthStatus.Loading);
-  // const [user, setUser] = useState<User | null>(null);
-
-  // TODO: move to a hook
-  //  useMemo(async () => {
-  //     try {
-  //       setStatus(user ? AuthStatus.Authenticated : AuthStatus.Unauthenticated);
-  //     } catch {
-  //       setStatus(AuthStatus.Unauthenticated);
-  //     }
-  //   }, [user]);
-
-  // const changeUser = (user: User) => {
-  //   setUser(user);
-  // };
-
-  // useEffect(() => {
-  //   void refresh();
-  // }, [refresh]);
-
   const value = useMemo<AuthCtx>(
     () => ({
       authUser,
@@ -47,7 +26,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       logout: logoutRequest,
       isLoading: isLoadingAuthUser || isLoadingUser,
     }),
-    [ authUser, user, loginWithMicrosoft, logoutRequest, isLoadingAuthUser || isLoadingUser],
+    [authUser, user, loginWithMicrosoft, logoutRequest, isLoadingAuthUser || isLoadingUser],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 };

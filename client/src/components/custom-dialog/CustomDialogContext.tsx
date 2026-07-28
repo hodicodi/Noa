@@ -7,7 +7,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Styles from "./customDialog.style.ts";
 import { Box } from "@mui/material";
-import { DialogContextProps, DialogOptions } from "./CustomDialogContext.types.ts";
+import { DialogContextProps, DialogOptions } from "./customDialogContext.types.ts";
 
 export const DialogContext = createContext<DialogContextProps | undefined>(undefined);
 

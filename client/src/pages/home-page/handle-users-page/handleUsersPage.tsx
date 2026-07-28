@@ -21,7 +21,12 @@ const HandleUsersPage: FC = () => {
     setSearchQuery(event.target.value);
   };
 
+  const setExistingUser = () => {
+    setCurrentUsers(currentUsers!.filter(user => user.uuid));
+  }
+
   const handleAddRow = () => {
+    setExistingUser();
     setCurrentUsers((currentUsers) => [newUser, ...currentUsers!]);
   };
 
@@ -45,7 +50,7 @@ const HandleUsersPage: FC = () => {
               <HandleUsersTableHead handleAddRow={handleAddRow} />
               <TableBody>
                 {currentUsers?.map((user) => (
-                  <HandleUserRow key={user.uuid} user={user} edit={!user?.uuid} setCurrentUsers={setCurrentUsers} currentUsers={currentUsers} />
+                  <HandleUserRow key={user.uuid} user={user} edit={!user?.uuid} setCurrentUsers={setCurrentUsers} currentUsers={currentUsers} setExistingUser={setExistingUser}/>
                 ))}
               </TableBody>
             </Table>
