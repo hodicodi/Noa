@@ -6,7 +6,7 @@ import Styles from "./administorLayout.style.ts";
 const theme = createTheme({ palette: { primary: { main: "#ffffff" } }, typography: { fontFamily: "Georgia" } });
 
 const AdministorLayout: FC = () => {
-  const { status, user, logout } = useAuth();
+  const {  user, logout } = useAuth();
 
   return (
 

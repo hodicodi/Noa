@@ -12,13 +12,9 @@ const getUserByTz = async (tz: string): Promise<User | null> => {
   return response.data.user;
 };
 
-export const useUserByTz = () => {
-  const { authUser } = useAuth();
-  const userId = authUser?.email?.split("@")?.[0] ?? "";
-
-  return useQuery<User | null>({
-    enabled: Boolean(userId),
-    queryKey: [USE_USER_BY_TZ],
-    queryFn: () => getUserByTz(userId),
+export const useUserByTz = (userTz: string) => 
+  useQuery<User | null>({
+    enabled: Boolean(userTz),
+    queryKey: [USE_USER_BY_TZ, userTz],
+    queryFn: () => getUserByTz(userTz),
   });
-};

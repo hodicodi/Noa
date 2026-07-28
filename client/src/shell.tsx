@@ -9,26 +9,23 @@ import { useUserByTz } from "./hooks/useUserByTz.ts";
 import style from "./layouts/rootLayout.style.ts";
 
 const Shell: FC = () => {
-  const { status, user, changeUser } = useAuth();
-  const { data: systemUserRes } = useUserByTz();
-  if (status === AuthStatus.Loading)
+  const { user, isLoading } = useAuth();
+  if (isLoading)
     return (
       <Box sx={style.loading}>
         <CircularProgress />
       </Box>
     );
-  if (status === AuthStatus.Unauthenticated) return <LoginPage />;
 
-
-  if (!systemUserRes?.uuid) {
+  if (!user?.uuid) {
     return (
       <>
-        <AlertDialog title="We cannot let you in" description="user doesn't exist in system" /> <LoginPage />
+        <AlertDialog title="We cannot let you in" description="user doesn't exist in system" />
+        <LoginPage />
       </>
     );
   }
-  
-  changeUser(systemUserRes!);
+
   return <App />;
 };
 

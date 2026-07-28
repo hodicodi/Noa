@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import { api } from "./http.ts";
 
 export interface AuthUser {
@@ -10,16 +11,20 @@ export interface AuthUser {
   isApp: boolean;
 }
 
-export async function fetchCurrentUser(): Promise<AuthUser | null> {
-  try {
-    const res = await api.get<{ user: AuthUser }>("/protected/user-info");
-    return res.data.user;
-  } catch (err: any) {
-    if (err?.response?.status === 401 || err?.response?.status === 403)
-      return null;
-    throw err;
-  }
+const USE_CURRENT_USER = "useCurrentUser";
+
+export async function getCurrentUser(): Promise<AuthUser | null> {
+  // try {
+  const res = await api.get<{ user: AuthUser }>("/protected/user-info");
+  return res.data.user;
+  // } catch (err: any) {
+  //   if (err?.response?.status === 401 || err?.response?.status === 403)
+  //     return null;
+  //   throw err;
+  // }
 }
+
+export const useCurrentUser = () => useQuery({ queryFn: getCurrentUser, queryKey: [USE_CURRENT_USER] });
 
 export async function loginWithMicrosoft() {
   const { data } = await api.post<{ url: string }>("/auth/authenticate", {});

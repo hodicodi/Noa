@@ -1,59 +1,56 @@
-import { AuthStatus } from "@shared/Enums.ts";
 import { User } from "@shared/src/types/user.type.ts";
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
-import { fetchCurrentUser, loginWithMicrosoft, logout as logoutRequest, type AuthUser } from "../services/auth.service.ts";
+import { createContext, useContext, useMemo, type ReactNode } from "react";
+import { useUserByTz } from "../hooks/useUserByTz.ts";
+import { loginWithMicrosoft, logout as logoutRequest, useCurrentUser, type AuthUser } from "../services/auth.service.ts";
 
-interface AuthCtx {
-  status: AuthStatus;
+type AuthCtx = {
   authUser: AuthUser | null;
   user: User | null;
-  changeUser: (user: User) => void;
   login: () => Promise<void>;
   logout: () => Promise<void>;
-  refresh: () => Promise<void>;
-}
+  isLoading: boolean;
+};
 
 const Ctx = createContext<AuthCtx | undefined>(undefined);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
-  const [authUser, setAuthUser] = useState<AuthUser | null>(null);
-  const [status, setStatus] = useState<AuthStatus>(AuthStatus.Loading);
-  const [user, setUser] = useState<User | null>(null);
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const { data: authUser = null, isLoading: isLoadingAuthUser } = useCurrentUser();
+  const userTz = authUser?.email?.split("@")?.[0] ?? "";
+  const { data: user = null, isLoading: isLoadingUser } = useUserByTz(userTz);
+
+  // const [authUser, setAuthUser] = useState<AuthUser | null>(null);
+  // const [status, setStatus] = useState<AuthStatus>(AuthStatus.Loading);
+  // const [user, setUser] = useState<User | null>(null);
 
   // TODO: move to a hook
-  const refresh = useCallback(async () => {
-    try {
-      const currentUser = await fetchCurrentUser();
-      setAuthUser(currentUser);
-      setStatus(currentUser ? AuthStatus.Authenticated : AuthStatus.Unauthenticated);
-    } catch {
-      setAuthUser(null);
-      setStatus(AuthStatus.Unauthenticated);
-    }
-  }, []);
+  //  useMemo(async () => {
+  //     try {
+  //       setStatus(user ? AuthStatus.Authenticated : AuthStatus.Unauthenticated);
+  //     } catch {
+  //       setStatus(AuthStatus.Unauthenticated);
+  //     }
+  //   }, [user]);
 
-  const changeUser = (user: User) => {
-    setUser(user);
-  };
+  // const changeUser = (user: User) => {
+  //   setUser(user);
+  // };
 
-  useEffect(() => {
-    void refresh();
-  }, [refresh]);
+  // useEffect(() => {
+  //   void refresh();
+  // }, [refresh]);
 
   const value = useMemo<AuthCtx>(
     () => ({
-      status,
       authUser,
       user,
-      changeUser,
-      refresh,
       login: loginWithMicrosoft,
       logout: logoutRequest,
+      isLoading: isLoadingAuthUser || isLoadingUser,
     }),
-    [status, authUser, refresh],
+    [ authUser, user, loginWithMicrosoft, logoutRequest, isLoadingAuthUser || isLoadingUser],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
-}
+};
 
 export const useAuth = () => {
   const c = useContext(Ctx);
