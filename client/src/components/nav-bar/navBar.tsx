@@ -1,11 +1,10 @@
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
-import { Box, Button, Menu, MenuItem, Typography, createTheme } from "@mui/material";
+import { Box, Button, Menu, MenuItem, Typography } from "@mui/material";
 import { FC, MouseEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext.tsx";
 import { ADMINISTOR_PATH } from "../../routes/path.constants.ts";
 import Styles from "./navBar.style.ts";
-import { useUserByTz } from "../../hooks/useUserByTz.ts";
 
 const NavBar: FC = () => {
   const { logout, user} = useAuth();

@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       logout: logoutRequest,
       isLoading: isLoadingAuthUser || isLoadingUser,
     }),
-    [authUser, user, loginWithMicrosoft, logoutRequest, isLoadingAuthUser || isLoadingUser],
+    [authUser, user, loginWithMicrosoft, logoutRequest, isLoadingAuthUser, isLoadingUser],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 };

@@ -36,7 +36,7 @@ const HandleUserRow: FC<HandleUserRowProps> = ({ user, edit, setCurrentUsers, cu
           <UserRowFrom
             onSaveUseSucsses={toggleEditMode}
             user={user}
-            setiIsEditMode={setIsEditMode}
+            setIsEditMode={setIsEditMode}
             setCurrentUsers={setCurrentUsers}
             currentUsers={currentUsers}
             setExistingUser={setExistingUser}
