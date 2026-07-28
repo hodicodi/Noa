@@ -30,7 +30,7 @@ export type SaveUserReqBody = {
 };
 
 export type SaveUser = {
-  uuid?: string | undefined;
+  uuid?: string;
   isAdministor: boolean;
   name: string;
   tz: string;
