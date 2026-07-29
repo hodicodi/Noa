@@ -4,7 +4,6 @@ import { User } from "@shared/src/types/user.type.ts";
       isAdministor: false,
       name: "",
       tz: "",
-      uuid: "",
       createDate: new Date(),
       deleteDate: null,
     };

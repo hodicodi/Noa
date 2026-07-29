@@ -6,7 +6,6 @@ import PlaylistPage from "../pages/home-page/playlist-page/PlaylistPage.tsx";
 import AdministorPage from "../pages/home-page/administor-page/administorPage.tsx";
 import AdministorLayout from "../layouts/AdministorLayout.tsx";
 import HandleUsersPage from "../pages/home-page/handle-users-page/HandleUsersPage.tsx";
-import HandleAlbumsPage from "../pages/home-page/handle-albums-page/HandleAlbumsPage.tsx";
 
 const router = createBrowserRouter([
   {

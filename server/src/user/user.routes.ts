@@ -6,7 +6,7 @@ import { SearchQueryParams } from "@shared/src/types/general.types.ts";
 
 const userRouter = Router();
 
-userRouter.get("/search", async (req: Request<unknown, unknown, unknown, SearchQueryParams>, res: Response<UsersRes>) => {
+userRouter.get("/search", async (req: Request<unknown, unknown, unknown, UserSearchQueryParams>, res: Response<UsersRes>) => {
   const searchQuery = req.query.searchQuery;
 
   const users = await userService.getUsersWithQuery(searchQuery);

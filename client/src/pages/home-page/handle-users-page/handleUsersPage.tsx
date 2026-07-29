@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import HandleUserRow from "../../../components/handle-user-row/HandleUserRow.tsx";
 import HandleUsersTableHead from "../../../components/handle-users-table-head/HandleUsersTableHead.tsx";
-import NavBar from "../../../components/nav-bar/NavBar.tsx";
+import NavBar from "../../../components/nav-bar/navBar.tsx";
 import SearchBar from "../../../components/search-bar/SearchBar.tsx";
 import { useUserFilterQuery } from "../../../hooks/useUserFilterQuery.ts";
 import newUser from "./handleUserPage.consts.ts";
@@ -21,7 +21,12 @@ const HandleUsersPage: FC = () => {
     setSearchQuery(event.target.value);
   };
 
+  const setExistingUser = () => {
+    setCurrentUsers(currentUsers!.filter(user => user.uuid));
+  }
+
   const handleAddRow = () => {
+    setExistingUser();
     setCurrentUsers((currentUsers) => [newUser, ...currentUsers!]);
   };
 
@@ -45,7 +50,7 @@ const HandleUsersPage: FC = () => {
               <HandleUsersTableHead handleAddRow={handleAddRow} />
               <TableBody>
                 {currentUsers?.map((user) => (
-                  <HandleUserRow key={user.uuid} user={user} edit={!user?.uuid} setCurrentUsers={setCurrentUsers} currentUsers={currentUsers} />
+                  <HandleUserRow key={user.uuid} user={user} edit={!user?.uuid} setCurrentUsers={setCurrentUsers} currentUsers={currentUsers} setExistingUser={setExistingUser}/>
                 ))}
               </TableBody>
             </Table>

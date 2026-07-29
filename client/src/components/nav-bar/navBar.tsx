@@ -1,14 +1,13 @@
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
-import { Box, Button, Menu, MenuItem, Typography, createTheme } from "@mui/material";
+import { Box, Button, Menu, MenuItem, Typography } from "@mui/material";
 import { FC, MouseEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext.tsx";
 import { ADMINISTOR_PATH } from "../../routes/path.constants.ts";
 import Styles from "./navBar.style.ts";
-import { useUserByTz } from "../../hooks/useUserByTz.ts";
 
 const NavBar: FC = () => {
-  const { logout } = useAuth();
+  const { logout, user} = useAuth();
   const navigate = useNavigate();
   const { user, authUser } = useAuth();
 
@@ -39,7 +38,7 @@ const NavBar: FC = () => {
       <Button sx={Styles.supervisor} onClick={handleClick}>
         <SupervisorAccountIcon />
       </Button>
-      <Typography sx={Styles.userName}>{name}</Typography>
+      <Typography sx={Styles.userName}>{user!.name}</Typography>
       <Menu sx={Styles.dropdown} anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem sx={Styles.menuItem} onClick={signoutClick}>
           Sign out

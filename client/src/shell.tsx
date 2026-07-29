@@ -1,35 +1,29 @@
 import { Box, CircularProgress } from "@mui/material";
-import { AuthStatus } from "@shared/Enums.ts";
 import { FC } from "react";
 import App from "./App.tsx";
 import { useAuth } from "./auth/AuthContext.tsx";
 import { LoginPage } from "./auth/LoginPage.tsx";
 import AlertDialog from "./components/custom-dialog/customDialog.tsx";
-import { useUserByTz } from "./hooks/useUserByTz.ts";
 import style from "./layouts/rootLayout.style.ts";
-import { useDialog } from "./components/custom-dialog/CustomDialogContext.tsx";
 
 const Shell: FC = () => {
-  const { status, user, changeUser } = useAuth();
-  if (status === AuthStatus.Loading)
+  const { user, isLoading } = useAuth();
+  if (isLoading)
     return (
       <Box sx={style.loading}>
         <CircularProgress />
       </Box>
     );
-  if (status === AuthStatus.Unauthenticated) return <LoginPage />;
 
-  const { data: systemUserRes } = useUserByTz();
-
-  if (!systemUserRes?.uuid) {
+  if (!user?.uuid) {
     return (
       <>
-        <AlertDialog title="We cannot let you in" description="user doesn't exist in system" /> <LoginPage />
+        <AlertDialog title="We cannot let you in" description="user doesn't exist in system" />
+        <LoginPage />
       </>
     );
   }
-  console.log("system:" + systemUserRes);
-  changeUser(systemUserRes!);
+
   return <App />;
 };
 

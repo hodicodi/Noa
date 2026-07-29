@@ -1,60 +1,35 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
-import { fetchCurrentUser, loginWithMicrosoft, logout as logoutRequest, type AuthUser } from "../services/auth.service.ts";
 import { User } from "@shared/src/types/user.type.ts";
+import { createContext, useContext, useMemo, type ReactNode } from "react";
+import { useUserByTz } from "../hooks/useUserByTz.ts";
+import { loginWithMicrosoft, logout as logoutRequest, useCurrentUser, type AuthUser } from "../services/auth.service.ts";
 
-type Status = "loading" | "authenticated" | "unauthenticated";
-
-interface AuthCtx {
-  status: Status;
+type AuthCtx = {
   authUser: AuthUser | null;
   user: User | null;
-  changeUser: (user: User) => void;
   login: () => Promise<void>;
   logout: () => Promise<void>;
-  refresh: () => Promise<void>;
-}
+  isLoading: boolean;
+};
 
 const Ctx = createContext<AuthCtx | undefined>(undefined);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
-  const [authUser, setAuthUser] = useState<AuthUser | null>(null);
-  const [status, setStatus] = useState<Status>("loading");
-  const [user, setUser]  = useState<User | null>(null);
-
-  const refresh = useCallback(async () => {
-    try {
-      const me = await fetchCurrentUser();
-      setAuthUser(me);
-      setStatus(me ? "authenticated" : "unauthenticated");
-    } catch {
-      setAuthUser(null);
-      setStatus("unauthenticated");
-    }
-  }, []);
-
-  const changeUser = (user: User) => {
-    console.log("change user:" + user);
-    setUser(user);
-  }
-
-  useEffect(() => {
-    void refresh();
-  }, [refresh]);
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const { data: authUser = null, isLoading: isLoadingAuthUser } = useCurrentUser();
+  const userTz = authUser?.email?.split("@")?.[0] ?? "";
+  const { data: user = null, isLoading: isLoadingUser } = useUserByTz(userTz);
 
   const value = useMemo<AuthCtx>(
     () => ({
-      status,
       authUser,
       user,
-      changeUser,
-      refresh,
       login: loginWithMicrosoft,
       logout: logoutRequest,
+      isLoading: isLoadingAuthUser || isLoadingUser,
     }),
-    [status, authUser, refresh],
+    [authUser, user, loginWithMicrosoft, logoutRequest, isLoadingAuthUser, isLoadingUser],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
-}
+};
 
 export const useAuth = () => {
   const c = useContext(Ctx);

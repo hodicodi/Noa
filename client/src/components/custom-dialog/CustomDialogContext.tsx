@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode, FC } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -7,24 +7,15 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Styles from "./customDialog.style.ts";
 import { Box } from "@mui/material";
+import { DialogContextProps, DialogOptions } from "./customDialogContext.types.ts";
 
-type DialogOptions = {
-  title?: string;
-  description: string;
-};
+export const DialogContext = createContext<DialogContextProps | undefined>(undefined);
 
-type DialogContextType = {
-  openDialog: (options: DialogOptions) => void;
-  closeDialog: () => void;
-};
-
-const DialogContext = createContext<DialogContextType | undefined>(undefined);
-
-interface DialogProviderProps {
+type DialogProviderProps = {
   children: ReactNode;
 }
 
-export const DialogProvider: React.FC<DialogProviderProps> = ({ children }) => {
+export const DialogProvider: FC<DialogProviderProps> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [options, setOptions] = useState<DialogOptions | null>(null);
 
@@ -55,12 +46,4 @@ export const DialogProvider: React.FC<DialogProviderProps> = ({ children }) => {
       )}
     </DialogContext.Provider>
   );
-};
-
-export const useDialog = (): DialogContextType => {
-  const context = useContext(DialogContext);
-  if (!context) {
-    throw new Error("useDialog must be used within a DialogProvider");
-  }
-  return context;
 };
