@@ -1,15 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import TableRow from "@mui/material/TableRow";
-import { UserRegistrationInput, UserRegistrationSchema } from "@shared/src/schemas/userValidation.schema.ts";
+import { AlbumRegistrationInput, AlbumRegistrationSchema } from "@shared/src/schemas/albumValidation.schema.ts";
 import { Album } from "@shared/src/types/album.types.ts";
 import { FC, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import AlbumRowFrom from "../album-row-form/AlbumRowForm.tsx";
 import AlbumRowPreview from "../album-row-preview/AlbumRowPreview.tsx";
 import Styles from "./handleAlbumRow.styles.ts";
-import { AlbumRegistrationInput, AlbumRegistrationSchema } from "@shared/src/schemas/albumValidation.schema.ts";
 
-type handleAlbumRowProps = {
+type HandleAlbumRowProps = {
   album: Album;
   edit: boolean;
   setCurrentAlbums: (albums: Album[]) => void;
@@ -17,7 +16,7 @@ type handleAlbumRowProps = {
   setExistingAlbums: () => void
 };
 
-const HandleAlbumRow: FC<handleAlbumRowProps> = ({ album, edit, setCurrentAlbums, currentAlbums, setExistingAlbums}) => {
+const HandleAlbumRow: FC<HandleAlbumRowProps> = ({ album, edit, setCurrentAlbums, currentAlbums, setExistingAlbums}) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(edit);
   const toggleEditMode = (): void => setIsEditMode((prev) => !prev);
 
@@ -35,7 +34,7 @@ const HandleAlbumRow: FC<handleAlbumRowProps> = ({ album, edit, setCurrentAlbums
       <FormProvider {...formMethods}>
         {isEditMode ? (
           <AlbumRowFrom
-            onSaveAlbumSucsses={toggleEditMode}
+            onSaveAlbumSuccess={toggleEditMode}
             album={album}
             setiIsEditMode={setIsEditMode}
             setCurrentAlbums={setCurrentAlbums}

@@ -3,11 +3,11 @@ import { FC } from "react";
 import Styles from "../../pages/home-page/handle-users-page/handleUsersPage.styles.ts";
 import AddIcon from "@mui/icons-material/Add";
 
-type handleAlbumHeadTableProps = {
+type HandleAlbumHeadTableProps = {
   handleAddRow: () => void;
 };
 
-const HandleAlbumsTableHead: FC<handleAlbumHeadTableProps> = ({ handleAddRow }) => (
+const HandleAlbumsTableHead: FC<HandleAlbumHeadTableProps> = ({ handleAddRow }) => (
   <TableHead>
     <TableRow>
       <TableCell sx={Styles.tableCell}>Album name</TableCell>

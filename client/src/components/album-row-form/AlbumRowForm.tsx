@@ -10,8 +10,8 @@ import { useSaveAlbum } from "../../hooks/useSaveAlbum.ts";
 import Styles from "../handle-album-row/handleAlbumRow.styles.ts";
 import { useSaveAlbumImg } from "../../hooks/useSaveAlbumImg.ts";
 
-type albumRowFormProps = {
-  onSaveAlbumSucsses: () => void;
+type AlbumRowFormProps = {
+  onSaveAlbumSuccess: () => void;
   album: Album;
   setiIsEditMode: (isEditMode: boolean) => void;
   setCurrentAlbums: (albums: Album[]) => void;
@@ -19,11 +19,10 @@ type albumRowFormProps = {
   setExistingAlbums: () => void;
 };
 
-const AlbumRowFrom: FC<albumRowFormProps> = ({ onSaveAlbumSucsses, album, setiIsEditMode, setCurrentAlbums, currentAlbums, setExistingAlbums }) => {
+const AlbumRowFrom: FC<AlbumRowFormProps> = ({ onSaveAlbumSuccess, album, setiIsEditMode, setCurrentAlbums, currentAlbums, setExistingAlbums }) => {
   const { control, handleSubmit, reset } = useFormContext<AlbumRegistrationInput>();
-  const { mutate: saveAlbum } = useSaveAlbum(onSaveAlbumSucsses);
+  const { mutate: saveAlbum } = useSaveAlbum(onSaveAlbumSuccess);
   const { mutate: saveAlbumImg } = useSaveAlbumImg();
-
   const { data: artists = [] } = useAllArtists();
 
   const onSubmit = (formData: AlbumRegistrationInput) => {
