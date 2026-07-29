@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import HandleAlbumRow from "../../../components/handle-album-row/HandleAlbumRow.tsx";
 import HandleAlbumsTableHead from "../../../components/handle-albums-table-head/HandleAlbumsTableHead.tsx";
-import NavBar from "../../../components/nav-bar/NavBar.tsx";
+import NavBar from "../../../components/nav-bar/navBar.tsx";
 import SearchBar from "../../../components/search-bar/SearchBar.tsx";
 import { useAlbumFilterQuery } from "../../../hooks/useAlbumsFilterQuery.ts";
 import newAlbum from "./handleAlbumsPage.consts.ts";
@@ -21,7 +21,12 @@ const HandleAlbumsPage: FC = () => {
     setSearchQuery(event.target.value);
   };
 
+  const setExistingAlbums = () => {
+    setCurrentAlbums(currentAlbums!.filter((album) => album.uuid));
+  };
+
   const handleAddRow = () => {
+    setExistingAlbums();
     setCurrentAlbums((currentAlbums) => [newAlbum, ...currentAlbums!]);
   };
 
@@ -44,8 +49,15 @@ const HandleAlbumsPage: FC = () => {
             <Table>
               <HandleAlbumsTableHead handleAddRow={handleAddRow} />
               <TableBody>
-                {currentAlbums?.map((album) => (
-                  <HandleAlbumRow key={album.uuid} album={album} edit={!album?.uuid} setCurrentAlbums={setCurrentAlbums} currentAlbums={currentAlbums} />
+                {currentAlbums?.map((album, index) => (
+                  <HandleAlbumRow
+                    key={album.uuid || index}
+                    album={album}
+                    edit={!album?.uuid}
+                    setCurrentAlbums={setCurrentAlbums}
+                    currentAlbums={currentAlbums}
+                    setExistingAlbums={setExistingAlbums}
+                  />
                 ))}
               </TableBody>
             </Table>

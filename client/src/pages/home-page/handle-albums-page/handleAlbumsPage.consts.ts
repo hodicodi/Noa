@@ -10,9 +10,9 @@ const newArtist: Artist = {
 };
 
 const newAlbum: Album = {
-  uuid: "",
   name: "",
   songs: [],
+  imgUrl: "",
   artist: newArtist,
 };
 

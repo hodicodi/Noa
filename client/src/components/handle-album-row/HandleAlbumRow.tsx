@@ -14,9 +14,10 @@ type handleAlbumRowProps = {
   edit: boolean;
   setCurrentAlbums: (albums: Album[]) => void;
   currentAlbums: Album[];
+  setExistingAlbums: () => void
 };
 
-const HandleAlbumRow: FC<handleAlbumRowProps> = ({ album, edit, setCurrentAlbums, currentAlbums }) => {
+const HandleAlbumRow: FC<handleAlbumRowProps> = ({ album, edit, setCurrentAlbums, currentAlbums, setExistingAlbums}) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(edit);
   const toggleEditMode = (): void => setIsEditMode((prev) => !prev);
 
@@ -39,6 +40,7 @@ const HandleAlbumRow: FC<handleAlbumRowProps> = ({ album, edit, setCurrentAlbums
             setiIsEditMode={setIsEditMode}
             setCurrentAlbums={setCurrentAlbums}
             currentAlbums={currentAlbums}
+            setExistingAlbums={setExistingAlbums}
           />
         ) : (
           <AlbumRowPreview album={album} toggleEditMode={toggleEditMode} />

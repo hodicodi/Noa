@@ -16,9 +16,10 @@ type albumRowFormProps = {
   setiIsEditMode: (isEditMode: boolean) => void;
   setCurrentAlbums: (albums: Album[]) => void;
   currentAlbums: Album[];
+  setExistingAlbums: () => void;
 };
 
-const AlbumRowFrom: FC<albumRowFormProps> = ({ onSaveAlbumSucsses, album, setiIsEditMode, setCurrentAlbums, currentAlbums }) => {
+const AlbumRowFrom: FC<albumRowFormProps> = ({ onSaveAlbumSucsses, album, setiIsEditMode, setCurrentAlbums, currentAlbums, setExistingAlbums }) => {
   const { control, handleSubmit, reset } = useFormContext<AlbumRegistrationInput>();
   const { mutate: saveAlbum } = useSaveAlbum(onSaveAlbumSucsses);
   const { mutate: saveAlbumImg } = useSaveAlbumImg();
@@ -27,10 +28,9 @@ const AlbumRowFrom: FC<albumRowFormProps> = ({ onSaveAlbumSucsses, album, setiIs
 
   const onSubmit = (formData: AlbumRegistrationInput) => {
     const { imgFile, ...filteredData } = formData;
-    // console.log("image file: " + imgFile.arrayBuffer);
     const uploadImgData = new FormData();
     uploadImgData.append("imgFile", imgFile);
-    uploadImgData.append("title", album.name);
+    uploadImgData.append("title", filteredData.name);
     saveAlbumImg(uploadImgData);
     saveAlbum(filteredData);
   };
@@ -40,7 +40,7 @@ const AlbumRowFrom: FC<albumRowFormProps> = ({ onSaveAlbumSucsses, album, setiIs
       setiIsEditMode(false);
       reset(album);
     } else {
-      setCurrentAlbums(currentAlbums!.slice(1));
+      setExistingAlbums();
     }
   };
 
@@ -79,7 +79,7 @@ const AlbumRowFrom: FC<albumRowFormProps> = ({ onSaveAlbumSucsses, album, setiIs
           control={control}
           render={({ field: { onChange, value, ...field } }) => (
             <Button variant="outlined" component="label" size="small">
-              Upload
+              {value?.name ? value.name : "Upload"}{" "}
               <input
                 type="file"
                 hidden

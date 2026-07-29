@@ -2,7 +2,7 @@ import { Artist } from "./artist.type";
 import { Song } from "./song.types";
 
 export type Album = {
-  uuid: string;
+  uuid?: string;
   name: string;
   imgUrl: string | null;
   songs?: Song[];
