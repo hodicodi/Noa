@@ -9,7 +9,6 @@ import Styles from "./navBar.style.ts";
 const NavBar: FC = () => {
   const { logout, user} = useAuth();
   const navigate = useNavigate();
-  const { user, authUser } = useAuth();
 
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
@@ -30,8 +29,6 @@ const NavBar: FC = () => {
     handleClose();
     logout();
   };
-
-  const name = useUserByTz().data?.name;
 
   return (
     <Box sx={Styles.userBar}>
