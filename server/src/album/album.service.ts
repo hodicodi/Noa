@@ -26,8 +26,20 @@ const getAlbumById = async (uuid: string) => {
   return album;
 };
 
+const getAlbumImgByUuid = async (uuid: string) => {
+  const album = await Album.findOneBy({ uuid });
+
+  if (!album) {
+    throw new HttpError(StatusCodes.NOT_FOUND, "album not found");
+  }
+
+  const albumImg = await s3Service.getFile(album.imgUrl!);
+
+  return albumImg;
+};
+
 const createAlbum = async (album: DeepPartial<Album>) => {
-  const imgUrl = GENERAL_S3_PATH + `${album.name}`;;
+  const imgUrl = GENERAL_S3_PATH + `${album.name}`;
   album.imgUrl = imgUrl;
   return Album.save(album);
 };
@@ -43,11 +55,11 @@ const getAlbumsWithQuery = async (searchQuery: string) =>
 const addImgFile = async (file: Express.Multer.File, title: string) => {
   const myDescription: S3FileDescriptor = { name: title, extension: "png", path: GENERAL_S3_PATH, contentType: "audio/mpeg" };
 
-  const myfile: S3File = { name: title, extension: "png", path: GENERAL_S3_PATH, contentType: "audio/mpeg", content: file.buffer };
+  const myfile: S3File = { name: title, extension: "png", path: GENERAL_S3_PATH, contentType: "image/png", content: file.buffer };
 
   const saveUrl = await s3Service.initializeCleanerApi(myDescription);
 
   await s3Service.uploadFile(saveUrl, myfile, myfile.contentType);
 };
 
-export default { getAllAlbums, getAlbumById, createAlbum, getAlbumsWithQuery, addImgFile };
+export default { getAllAlbums, getAlbumById, createAlbum, getAlbumsWithQuery, addImgFile, getAlbumImgByUuid };

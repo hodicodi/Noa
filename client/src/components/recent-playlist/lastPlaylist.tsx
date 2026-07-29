@@ -7,13 +7,15 @@ import Grid from "@mui/material/Grid";
 import { PlaylistOverviewProps } from "@shared/src/types/personalPlaylist.types.ts";
 import style from "./recentPlaylist.style.ts";
 import { useNavigate } from "react-router-dom";
-import {FC} from "react";
+import { FC } from "react";
+import { useAlbumImg } from "../../hooks/useAlbumImg.ts";
+import { Album } from "@shared/src/types/album.types.ts";
 
-const LastPlaylistCard: FC<PlaylistOverviewProps> = ({
-  name,
-  avaterPicture,
-  artist
-}: PlaylistOverviewProps) => {
+export type AlbumOverviewProps = {
+  album: Album;
+};
+
+const LastPlaylistCard: FC<AlbumOverviewProps> = ({ album }) => {
   const navigate = useNavigate();
 
   const suggestedPlaylistClick = () => {
@@ -26,22 +28,12 @@ const LastPlaylistCard: FC<PlaylistOverviewProps> = ({
         <Box sx={style.box}>
           <Grid container spacing={0}>
             <Grid size={1.9}>
-              <CardMedia
-                sx={style.cardMedia}
-                component="img"
-                image={avaterPicture}
-                alt="Beautiful Sunrise"
-              />
+              <CardMedia sx={style.cardMedia} component="img" image={useAlbumImg(album.uuid!).data!} alt="Beautiful Sunrise" />
             </Grid>
             <Grid size={10.1}>
               <CardContent sx={style.cardContent}>
-                <Typography
-                  sx={style.playlistName}
-                  gutterBottom
-                  variant="body2"
-                  component="div"
-                >
-                  {name}
+                <Typography sx={style.playlistName} gutterBottom variant="body2" component="div">
+                  {album.name}
                 </Typography>
               </CardContent>
             </Grid>

@@ -17,6 +17,14 @@ albumRouter.get("/search", async (req: Request<unknown, unknown, unknown, Search
   res.status(StatusCodes.OK).json({ albums });
 });
 
+albumRouter.get(`${UPLOADS_PATH}/:uuid`, async (req: Request<GeneralParams, unknown, unknown>, res: Response) => {
+  const { uuid } = req.params;
+  const rawDataStream = await albumService.getAlbumImgByUuid(uuid);
+  res.setHeader("Content-Type", rawDataStream.contentType);
+  const rawData = await rawDataStream.body?.transformToByteArray();
+  res.send(Buffer.from(rawData!));
+});
+
 albumRouter.get("/:uuid", async (req: Request<GeneralParams, unknown, unknown>, res: Response<AlbumRes>) => {
   const { uuid } = req.params;
   const album = await albumService.getAlbumById(uuid);
