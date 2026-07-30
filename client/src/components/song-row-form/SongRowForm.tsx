@@ -1,15 +1,14 @@
 import SaveIcon from "@mui/icons-material/Save";
 import UndoIcon from "@mui/icons-material/Undo";
 import { Autocomplete, Button, TableCell, TextField } from "@mui/material";
-import { AlbumRegistrationInput } from "@shared/src/schemas/albumValidation.schema.ts";
-import { Album } from "@shared/src/types/album.types.ts";
+import { SongRegistrationInput } from "@shared/src/schemas/songValidation.schema.ts";
+import { Song } from "@shared/src/types/song.types.ts";
 import { FC } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { useAllArtists } from "../../hooks/useArtists.tsx";
-import { useSaveAlbum } from "../../hooks/useSaveAlbum.ts";
+import { useAllAlbums } from "../../hooks/useAllAlbums.ts";
+import { useSaveSong } from "../../hooks/useSaveSong.ts";
+import { useSaveSongMp3 } from "../../hooks/useSaveSongMp3.ts";
 import Styles from "../handle-album-row/handleAlbumRow.styles.ts";
-import { useSaveAlbumImg } from "../../hooks/useSaveAlbumImg.ts";
-import { Song } from "@shared/src/types/song.types.ts";
 
 type SongRowFormProps = {
   onSaveSongSuccess: () => void;
@@ -21,26 +20,26 @@ type SongRowFormProps = {
 };
 
 const SongRowFrom: FC<SongRowFormProps> = ({ onSaveSongsSuccess, song, setiIsEditMode, setCurrentSongs, currentSongs, setExistingSongs }) => {
-  const { control, handleSubmit, reset } = useFormContext<AlbumRegistrationInput>();
-  const { mutate: saveAlbum } = useSaveAlbum(onSaveAlbumSuccess);
-  const { mutate: saveAlbumImg } = useSaveAlbumImg();
-  const { data: artists = [] } = useAllArtists();
+  const { control, handleSubmit, reset } = useFormContext<SongRegistrationInput>();
+  const { mutate: saveSong } = useSaveSong(onSaveSongsSuccess);
+  const { mutate: saveSongMp3 } = useSaveSongMp3();
+  const { data: albums = [] } = useAllAlbums();
 
-  const onSubmit = (formData: AlbumRegistrationInput) => {
-    const { imgFile, ...filteredData } = formData;
-    const uploadImgData = new FormData();
-    uploadImgData.append("imgFile", imgFile);
-    uploadImgData.append("title", filteredData.name);
-    saveAlbumImg(uploadImgData);
-    saveAlbum(filteredData);
+  const onSubmit = (formData: SongRegistrationInput) => {
+    const { mp3File, ...filteredData } = formData;
+    const uploadmp3Data = new FormData();
+    uploadmp3Data.append("mp3File", mp3File);
+    uploadmp3Data.append("title", filteredData.name);
+    saveSongMp3(uploadmp3Data);
+    saveSong(filteredData);
   };
 
   const handleUndo = () => {
-    if (album.uuid) {
+    if (song.uuid) {
       setiIsEditMode(false);
-      reset(album);
+      reset(song);
     } else {
-      setExistingAlbums();
+      setExistingSongs();
     }
   };
 
@@ -57,11 +56,11 @@ const SongRowFrom: FC<SongRowFormProps> = ({ onSaveSongsSuccess, song, setiIsEdi
       </TableCell>
       <TableCell sx={Styles.tableCell} component="th" scope="row">
         <Controller
-          name="artist"
+          name="album"
           control={control}
           render={({ field }) => (
             <Autocomplete
-              options={artists}
+              options={albums}
               getOptionLabel={(option) => option.name}
               isOptionEqualToValue={(option, value) => option.uuid === value?.uuid}
               value={field.value ?? null}

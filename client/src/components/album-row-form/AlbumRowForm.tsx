@@ -5,7 +5,7 @@ import { AlbumRegistrationInput } from "@shared/src/schemas/albumValidation.sche
 import { Album } from "@shared/src/types/album.types.ts";
 import { FC } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { useAllArtists } from "../../hooks/useArtists.tsx";
+import { useAllArtists } from "../../hooks/useAllArtists.tsx";
 import { useSaveAlbum } from "../../hooks/useSaveAlbum.ts";
 import Styles from "../handle-album-row/handleAlbumRow.styles.ts";
 import { useSaveAlbumImg } from "../../hooks/useSaveAlbumImg.ts";
