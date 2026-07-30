@@ -32,6 +32,7 @@ const getAlbumImgByUuid = async (uuid: string) => {
   if (!album) {
     throw new HttpError(StatusCodes.NOT_FOUND, "album not found");
   }
+  const albumUrl = album.imgUrl;
 
   const albumImg = await s3Service.getFile(album.imgUrl!);
 
