@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import { Album } from "@shared/src/types/album.types.ts";
 import { FC } from "react";
 import { useAlbum } from "../../hooks/useAlbum.ts";
-import LastPlaylistCard from "./LastPlaylist.tsx";
+import LastPlaylistCard from "./lastPlaylist.tsx";
 
 const LastPlaylists: FC = () => {
   const { data: album, isLoading } = useAlbum("9c609112-b8bc-4772-9f6b-9d828288bb66");
