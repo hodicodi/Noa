@@ -58,7 +58,7 @@ const AlbumRowFrom: FC<AlbumRowFormProps> = ({ onSaveAlbumSuccess, album, setiIs
         <Controller
           name="artist"
           control={control}
-          render={({ field}) => (
+          render={({ field }) => (
             <Autocomplete
               options={artists}
               getOptionLabel={(option) => option.name}
