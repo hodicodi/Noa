@@ -10,14 +10,14 @@ import Styles from "./handleAlbumRow.styles.ts";
 
 type HandleAlbumRowProps = {
   album: Album;
-  edit: boolean;
+  isEditable: boolean;
   setCurrentAlbums: (albums: Album[]) => void;
   currentAlbums: Album[];
-  setExistingAlbums: () => void
+  setExistingAlbums: () => void;
 };
 
-const HandleAlbumRow: FC<HandleAlbumRowProps> = ({ album, edit, setCurrentAlbums, currentAlbums, setExistingAlbums}) => {
-  const [isEditMode, setIsEditMode] = useState<boolean>(edit);
+const HandleAlbumRow: FC<HandleAlbumRowProps> = ({ album, isEditable, setCurrentAlbums, currentAlbums, setExistingAlbums }) => {
+  const [isEditMode, setIsEditMode] = useState<boolean>(isEditable);
   const toggleEditMode = (): void => setIsEditMode((prev) => !prev);
 
   const formMethods = useForm<AlbumRegistrationInput>({
@@ -31,8 +31,8 @@ const HandleAlbumRow: FC<HandleAlbumRowProps> = ({ album, edit, setCurrentAlbums
 
   return (
     <TableRow key={album.uuid} sx={Styles.TableRow}>
-      <FormProvider {...formMethods}>
-        {isEditMode ? (
+      {isEditMode ? (
+        <FormProvider {...formMethods}>
           <AlbumRowFrom
             onSaveAlbumSuccess={toggleEditMode}
             album={album}
@@ -41,10 +41,10 @@ const HandleAlbumRow: FC<HandleAlbumRowProps> = ({ album, edit, setCurrentAlbums
             currentAlbums={currentAlbums}
             setExistingAlbums={setExistingAlbums}
           />
-        ) : (
-          <AlbumRowPreview album={album} toggleEditMode={toggleEditMode} />
-        )}
-      </FormProvider>
+        </FormProvider>
+      ) : (
+        <AlbumRowPreview album={album} toggleEditMode={toggleEditMode} />
+      )}
     </TableRow>
   );
 };

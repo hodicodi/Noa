@@ -51,9 +51,9 @@ const HandleAlbumsPage: FC = () => {
               <TableBody>
                 {currentAlbums?.map((album, index) => (
                   <HandleAlbumRow
-                    key={album.uuid || index}
+                    key={album.uuid ?? index}
                     album={album}
-                    edit={!album?.uuid}
+                    isEditable={!album?.uuid}
                     setCurrentAlbums={setCurrentAlbums}
                     currentAlbums={currentAlbums}
                     setExistingAlbums={setExistingAlbums}

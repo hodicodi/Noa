@@ -20,7 +20,7 @@ const HandleAlbumsTableHead: FC<HandleAlbumHeadTableProps> = ({ handleAddRow }) 
       <TableCell sx={Styles.tableCell} align="center">
         <AddIcon onClick={handleAddRow} />
       </TableCell>
-      <TableCell sx={Styles.tableCell} align="center"></TableCell>
+      <TableCell sx={Styles.tableCell} align="center" />
     </TableRow>
   </TableHead>
 );

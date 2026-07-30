@@ -27,7 +27,7 @@ const getAlbumById = async (uuid: string) => {
 };
 
 const createAlbum = async (album: DeepPartial<Album>) => {
-  const imgUrl = GENERAL_S3_PATH + `${album.name}`;;
+  const imgUrl = `${GENERAL_S3_PATH}/${album.name}`;
   album.imgUrl = imgUrl;
   return Album.save(album);
 };

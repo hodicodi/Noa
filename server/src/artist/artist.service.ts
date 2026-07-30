@@ -3,7 +3,12 @@ import { Artist } from "./artist.entity.ts";
 import { HttpError } from "../errors/httpError.ts";
 import { StatusCodes } from "http-status-codes";
 
-const getAllArtists = () => Artist.find();
+const getAllArtists = () =>
+  Artist.find({
+    relations: {
+      albums: true,
+    },
+  });
 
 const getArtistById = async (uuid: string) => {
   const artist = await Artist.findOneBy({ uuid });
@@ -16,6 +21,5 @@ const getArtistById = async (uuid: string) => {
 };
 
 const createArtist = (artist: DeepPartial<Artist>) => Artist.save(artist);
-
 
 export default { getAllArtists, getArtistById, createArtist };

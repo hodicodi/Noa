@@ -58,7 +58,7 @@ const AlbumRowFrom: FC<AlbumRowFormProps> = ({ onSaveAlbumSuccess, album, setiIs
         <Controller
           name="artist"
           control={control}
-          render={({ field, fieldState: { error } }) => (
+          render={({ field}) => (
             <Autocomplete
               options={artists}
               getOptionLabel={(option) => option.name}
@@ -78,7 +78,7 @@ const AlbumRowFrom: FC<AlbumRowFormProps> = ({ onSaveAlbumSuccess, album, setiIs
           control={control}
           render={({ field: { onChange, value, ...field } }) => (
             <Button variant="outlined" component="label" size="small">
-              {value?.name ? value.name : "Upload"}{" "}
+              {value?.name ? value.name : "Upload"}
               <input
                 type="file"
                 hidden
