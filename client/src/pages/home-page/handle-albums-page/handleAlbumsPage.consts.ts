@@ -8,7 +8,7 @@ const newArtist: Artist = {
   albums: [],
 };
 
-const newAlbum: Album = {
+export const newAlbum: Album = {
   name: "",
   songs: [],
   imgUrl: "",

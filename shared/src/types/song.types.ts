@@ -2,9 +2,8 @@ import { Album } from "./album.types.ts";
 import { SongType } from "../enums/songType.enum";
 
 export type Song = {
-  uuid: string;
+  uuid?: string;
   name: string;
-  publishDate: string;
   genre: SongType;
   s3Url?: string;
   album: Album;
@@ -24,7 +23,6 @@ export type AddSongToAlbumReqBody = {
 
 export type AddSongToAlbum = {
   name: string;
-  publishDate: string;
   genre: SongType;
   s3Url: string;
   album: {
@@ -38,7 +36,6 @@ export type AddSongToPersonalPlaylistReqBody = {
 
 export type AddSongToPersonalPlaylist = {
   name: string;
-  publishDate: string;
   genre: SongType;
   s3Url: string;
   personalPlaylist: {
@@ -55,7 +52,6 @@ export type SongOverviewProps = {
 
 export type SaveSong = {
   name: string;
-  publishDate: string;
   genre: SongType;
   s3Url?: string;
 };
