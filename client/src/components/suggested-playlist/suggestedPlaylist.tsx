@@ -10,24 +10,24 @@ import { PLAYLIST_PATH } from "../../routes/path.constants.ts";
 import style from "./suggestedPlaylist.style.ts";
 
 export type AlbumOverviewProps = {
-  album: Album
+  album: Album;
 };
 
-const PlaylistCard: FC<AlbumOverviewProps> = ({
-  album
-}) => {
+const PlaylistCard: FC<AlbumOverviewProps> = ({ album }) => {
   const navigate = useNavigate();
 
   const suggestedPlaylistClick = () => {
-    navigate(PLAYLIST_PATH);
+    navigate(PLAYLIST_PATH, {
+      state: { album: album }
+    });
   };
 
   return (
     <Card sx={style.card} onClick={suggestedPlaylistClick}>
       <CardContent sx={style.cardContent}>
-        <Typography sx={style.playlistName}  variant="h6">
+        <Typography sx={style.playlistName} variant="h6">
           {album.name}
-        </Typography> 
+        </Typography>
       </CardContent>
       <CardMedia component="img" image={useAlbumImg(album.uuid!).data!} />
     </Card>

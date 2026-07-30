@@ -1,14 +1,8 @@
 import { Box, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import PlaylistCard from "./suggestedPlaylist.tsx";
-import playlistInfo from "@shared/hardCodedInfo.ts";
-import style from "./suggestedPlaylist.style.ts";
-import { Album, AlbumRes } from "@shared/src/types/album.types.ts";
-import { useAlbum } from "../../hooks/useAlbum.ts";
 import { useAllAlbums } from "../../hooks/useAllAlbums.ts";
-import { useAlbumImg } from "../../hooks/useAlbumImg.ts";
+import style from "./suggestedPlaylist.style.ts";
+import PlaylistCard from "./suggestedPlaylist.tsx";
 
 
 const SuggestedPlaylists: React.FC = () => {

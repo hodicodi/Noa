@@ -4,14 +4,21 @@ import { FC } from "react";
 import PlaylistPicture from "../../../components/playlist-picture/PlaylistPicture.tsx";
 import SongsInPlaylist from "../../../components/song-in-playlist/SongsInPlaylist.tsx";
 import Styles from "./playlistPage.style.ts";
+import { useLocation } from "react-router-dom";
+import { useAlbumImg } from "../../../hooks/useAlbumImg.ts";
 
 const PlaylistPage: FC = () => {
+  const location = useLocation();
+
+  const playlistPageProps = location.state || {};
+  console.log(playlistPageProps.album.name)
+
   return (
     <Box sx={Styles.playlistPage}>
       <PlaylistPicture
-        name={playlistInfo?.[0]?.name ?? ''}
-        avaterPicture={playlistInfo[0]!.avaterPicture}
-        artist={playlistInfo?.[0]?.artist ?? ''}
+        name={playlistPageProps.album.name}
+        avaterPicture={useAlbumImg(playlistPageProps.album.uuid!).data!}
+        artist={playlistPageProps.album.artist.name ?? ""}
       />
       <SongsInPlaylist />
     </Box>

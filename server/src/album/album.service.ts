@@ -8,7 +8,13 @@ import { S3File, S3FileDescriptor } from "../s3-service/s3service.types.ts";
 import { GENERAL_S3_PATH } from "../song/song.consts.ts";
 import s3Service from "../s3-service/s3Service.ts";
 
-const getAllAlbums = () => Album.find();
+const getAllAlbums = () =>
+  Album.find({
+    relations: {
+      songs: true,
+      artist: true,
+    },
+  });
 
 const getAlbumById = async (uuid: string) => {
   const album = await Album.findOne({

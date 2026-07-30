@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { API } from "../api/services/albumService.ts";
 
 const getMp3BufferByUuid = async (songData: GeneralParams): Promise<string | null> => {
-  const response = await API.get<ArrayBuffer>(`/songs/mp3/${songData.uuid}`, { params: { uuid: songData.uuid }, responseType: "arraybuffer" });
+  const response = await API.get<ArrayBuffer>(`/songs/mp3/${songData.uuid}`, { responseType: "arraybuffer" });
   const blob = new Blob([response.data], { type: "audio/mpeg" });
   const audioUrl = URL.createObjectURL(blob);
   return audioUrl;
