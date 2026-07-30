@@ -5,8 +5,7 @@ import s3Service from "../s3-service/s3Service.ts";
 import { S3File, S3FileDescriptor } from "../s3-service/s3service.types.ts";
 import { GENERAL_S3_PATH } from "../song/song.consts.ts";
 import { Album } from "./album.entity.ts";
-
-const IMG_EXC = "png";
+import { IMG_EXC } from "./album.consts.ts";
 
 const getAllAlbums = () => Album.find();
 
