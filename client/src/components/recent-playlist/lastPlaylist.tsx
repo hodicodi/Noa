@@ -28,7 +28,7 @@ const LastPlaylistCard: FC<AlbumOverviewProps> = ({ album }) => {
         <Box sx={style.box}>
           <Grid container spacing={0}>
             <Grid size={1.9}>
-              <CardMedia sx={style.cardMedia} component="img" image={useAlbumImg(album.uuid!).data!} alt="Beautiful Sunrise" />
+              <CardMedia sx={style.cardMedia} component="img" image={useAlbumImg(album.uuid!).data!} alt="Playlist picture" />
             </Grid>
             <Grid size={10.1}>
               <CardContent sx={style.cardContent}>
