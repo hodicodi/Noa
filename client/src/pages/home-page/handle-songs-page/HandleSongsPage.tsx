@@ -14,6 +14,7 @@ import Styles from "./handleSongsPage.styles.ts";
 import { useSongFilterQuery } from "../../../hooks/useSongFilterQuery.ts";
 import newSong from "./handleSongsPage.consts.ts";
 import HandleSongRow from "../../../components/handle-song-row/HandleSongRow.tsx";
+import HandleSongsTableHead from "../../../components/handle-songs-table-head/HandleSongsTableHead.tsx";
 
 const HandleSongsPage: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -42,7 +43,7 @@ const HandleSongsPage: FC = () => {
       <NavBar />
       <Box sx={Styles.handleUsersPage}>
         <Typography variant="h3" sx={Styles.title}>
-          Albums
+          Songs
         </Typography>
 
         <Box sx={Styles.searchableTable}>
@@ -50,7 +51,7 @@ const HandleSongsPage: FC = () => {
 
           <TableContainer sx={Styles.table} component={Paper}>
             <Table>
-              <HandleAlbumsTableHead handleAddRow={handleAddRow} />
+              <HandleSongsTableHead handleAddRow={handleAddRow} />
               <TableBody>
                 {currentSongs?.map((song, index) => (
                   <HandleSongRow

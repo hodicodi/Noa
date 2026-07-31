@@ -28,7 +28,7 @@ const AlbumRowFrom: FC<AlbumRowFormProps> = ({ onSaveAlbumSuccess, album, setiIs
   const onSubmit = (formData: AlbumRegistrationInput) => {
     const { imgFile, ...filteredData } = formData;
     const uploadImgData = new FormData();
-    uploadImgData.append("imgFile", imgFile);
+    uploadImgData.append("imgFile", imgFile!);
     uploadImgData.append("title", filteredData.name);
     saveAlbumImg(uploadImgData);
     saveAlbum(filteredData);

@@ -8,7 +8,11 @@ import { Album } from "./album.entity.ts";
 
 const IMG_EXC = "png";
 
-const getAllAlbums = () => Album.find();
+const getAllAlbums = () => Album.find({
+   relations: {
+      artist: true,
+    }}
+);
 
 const getAlbumById = async (uuid: string) => {
   const album = await Album.findOne({

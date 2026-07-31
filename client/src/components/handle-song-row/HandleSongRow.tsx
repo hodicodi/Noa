@@ -11,6 +11,7 @@ import Styles from "./handleSongRow.styles.ts";
 import { Song } from "@shared/src/types/song.types.ts";
 import { SongType } from "@shared/src/enums/songType.enum.ts";
 import SongRowFrom from "../song-row-form/SongRowForm.tsx";
+import SongRowPreview from "../song-row-preview/SongRowPreview.tsx";
 
 type HandleSongRowProps = {
   song: Song;
@@ -26,7 +27,7 @@ const HandleSongRow: FC<HandleSongRowProps> = ({ song, isEditable, setCurrentSon
 
   const formMethods = useForm<SongRegistrationInput>({
     resolver: zodResolver(SongRegistrationSchema),
-    defaultValues: { name: "", genre: SongType.Rock, album: {} },
+    defaultValues: { name: "", genre: SongType.Rock, album: {},  },
   });
 
   useEffect(() => {
@@ -47,7 +48,7 @@ const HandleSongRow: FC<HandleSongRowProps> = ({ song, isEditable, setCurrentSon
           />
         </FormProvider>
       ) : (
-        <AlbumRowPreview song={song} toggleEditMode={toggleEditMode} />
+        <SongRowPreview song={song} toggleEditMode={toggleEditMode} />
       )}
     </TableRow>
   );

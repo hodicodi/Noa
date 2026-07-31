@@ -3,7 +3,7 @@ import { ArtistType } from "../enums/artistType.enum";
 import { AlbumRegistrationSchema } from "./albumValidation.schema";
 
 export const ArtistRegistrationSchema = z.object({
-  uuid: z.string().optional(),
+  uuid: z.string(),
   name: z.string().min(3, "must be at least 3 characters"),
   type: z.enum(ArtistType),
 });

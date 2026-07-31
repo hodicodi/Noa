@@ -3,6 +3,7 @@ import { SongType } from "../enums/songType.enum";
 import { AlbumRegistrationSchema } from "./albumValidation.schema";
 
 export const SongRegistrationSchema = z.object({
+  mp3File: z.file(),
   uuid: z.string().optional(),
   name: z.string().min(3, "must be at least 3 characters"),
   genre: z.enum(SongType),

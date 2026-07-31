@@ -9,6 +9,7 @@ import { useAllAlbums } from "../../hooks/useAllAlbums.ts";
 import { useSaveSong } from "../../hooks/useSaveSong.ts";
 import { useSaveSongMp3 } from "../../hooks/useSaveSongMp3.ts";
 import Styles from "../handle-album-row/handleAlbumRow.styles.ts";
+import { SongType } from "@shared/src/enums/songType.enum.ts";
 
 type SongRowFormProps = {
   onSaveSongSuccess: () => void;
@@ -24,6 +25,8 @@ const SongRowFrom: FC<SongRowFormProps> = ({ onSaveSongSuccess, song, setiIsEdit
   const { mutate: saveSong } = useSaveSong(onSaveSongSuccess);
   const { mutate: saveSongMp3 } = useSaveSongMp3();
   const { data: albums = [] } = useAllAlbums();
+
+  const songTypeOptions = Object.values(SongType);
 
   const onSubmit = (formData: SongRegistrationInput) => {
     const { mp3File, ...filteredData } = formData;
@@ -56,12 +59,30 @@ const SongRowFrom: FC<SongRowFormProps> = ({ onSaveSongSuccess, song, setiIsEdit
       </TableCell>
       <TableCell sx={Styles.tableCell} component="th" scope="row">
         <Controller
+          name="genre"
+          control={control}
+          render={({ field }) => (
+            <Autocomplete
+              options={songTypeOptions}
+              getOptionLabel={(option) => option}
+              isOptionEqualToValue={(option, value) => option === value}
+              value={field.value ?? null}
+              onChange={(_, newValue) => field.onChange(newValue)}
+              clearOnEscape
+              sx={Styles.autoComplete}
+              renderInput={(params) => <TextField {...params} variant="standard" sx={Styles.autoCompleteTextField} />}
+            />
+          )}
+        />
+      </TableCell>
+      <TableCell sx={Styles.tableCell} component="th" scope="row">
+        <Controller
           name="album"
           control={control}
           render={({ field }) => (
             <Autocomplete
               options={albums}
-              getOptionLabel={(option) => option.name}
+              getOptionLabel={(option) => option.name || ''}
               isOptionEqualToValue={(option, value) => option.uuid === value?.uuid}
               value={field.value ?? null}
               onChange={(_, newValue) => field.onChange(newValue)}
@@ -74,7 +95,7 @@ const SongRowFrom: FC<SongRowFormProps> = ({ onSaveSongSuccess, song, setiIsEdit
       </TableCell>
       <TableCell sx={Styles.tableCell} align="center">
         <Controller
-          name="imgFile"
+          name="mp3File"
           control={control}
           render={({ field: { onChange, value, ...field } }) => (
             <Button variant="outlined" component="label" size="small">
@@ -92,7 +113,7 @@ const SongRowFrom: FC<SongRowFormProps> = ({ onSaveSongSuccess, song, setiIsEdit
           )}
         />
       </TableCell>
-      <TableCell onClick={handleSubmit(onSubmit)} sx={Styles.tableCell} align="center">
+      <TableCell onClick={handleSubmit(onSubmit, (errors) => console.log("Validation ERRORS:", errors))} sx={Styles.tableCell} align="center">
         <SaveIcon />
       </TableCell>
       <TableCell onClick={handleUndo} sx={Styles.tableCell} align="center">
