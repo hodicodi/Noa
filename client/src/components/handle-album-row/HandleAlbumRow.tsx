@@ -22,7 +22,7 @@ const HandleAlbumRow: FC<HandleAlbumRowProps> = ({ album, isEditable, setCurrent
 
   const formMethods = useForm<AlbumRegistrationInput>({
     resolver: zodResolver(AlbumRegistrationSchema),
-    defaultValues: { name: "", artist: null },
+    defaultValues: { name: "", artist: {} },
   });
 
   useEffect(() => {
