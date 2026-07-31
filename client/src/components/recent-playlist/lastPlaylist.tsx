@@ -1,15 +1,15 @@
+import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import { PlaylistOverviewProps } from "@shared/src/types/personalPlaylist.types.ts";
-import style from "./recentPlaylist.style.ts";
-import { useNavigate } from "react-router-dom";
-import { FC } from "react";
-import { useAlbumImg } from "../../hooks/useAlbumImg.ts";
+import Typography from "@mui/material/Typography";
 import { Album } from "@shared/src/types/album.types.ts";
+import { FC } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAlbumImg } from "../../hooks/useAlbumImg.ts";
+import { PLAYLIST_PATH } from "../../routes/path.constants.ts";
+import style from "./recentPlaylist.style.ts";
 
 export type AlbumOverviewProps = {
   album: Album;
@@ -19,7 +19,9 @@ const LastPlaylistCard: FC<AlbumOverviewProps> = ({ album }) => {
   const navigate = useNavigate();
 
   const suggestedPlaylistClick = () => {
-    navigate("/playlist");
+    navigate(PLAYLIST_PATH, {
+      state: { album: album },
+    });
   };
 
   {

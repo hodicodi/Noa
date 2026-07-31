@@ -3,9 +3,10 @@ import Grid from "@mui/material/Grid";
 import { useAllAlbums } from "../../hooks/useAllAlbums.ts";
 import style from "./suggestedPlaylist.style.ts";
 import PlaylistCard from "./suggestedPlaylist.tsx";
+import { FC } from "react";
 
 
-const SuggestedPlaylists: React.FC = () => {
+const SuggestedPlaylists: FC = () => {
   const { data: albums, isLoading } = useAllAlbums()
 
   if (isLoading) {

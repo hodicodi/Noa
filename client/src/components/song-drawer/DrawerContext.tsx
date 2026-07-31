@@ -1,11 +1,11 @@
 import { songsInfo } from "@shared/hardCodedInfo.ts";
 import { Song, SongOverviewProps } from "@shared/src/types/song.types.ts";
 import { createContext, FC, ReactNode, useContext, useEffect, useState } from "react";
-import { useMp3 } from "../../hooks/useMp3.ts";
+import { useRecord } from "../../hooks/useRecord.ts";
 
 type DrawerContextType = {
-  currentSong: SongOverviewProps;
-  setCurrentSong: (currentSong: SongOverviewProps) => void;
+  currentSong: Song;
+  setCurrentSong: (currentSong: Song) => void;
   recievedAudioUrl: string | null;
   audioUrl: string | null;
 };
@@ -13,13 +13,13 @@ type DrawerContextType = {
 const DrawerContext = createContext<DrawerContextType | undefined>(undefined);
 
 export const DrawerProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [currentSong, setCurrentSong] = useState<SongOverviewProps>({
+  const [currentSong, setCurrentSong] = useState<Song>({
     uuid: songsInfo[0]?.uuid!,
     name: songsInfo[0]?.name!,
     artistName: songsInfo[0]?.artistName!,
   });
 
-  const { data: recievedAudioUrl = null } = useMp3(currentSong.uuid!);
+  const { data: recievedAudioUrl = null } = useRecord(currentSong.uuid!);
 
   const [audioUrl, setAudioUrl] = useState<string | null>(recievedAudioUrl!);
 

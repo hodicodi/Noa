@@ -1,15 +1,17 @@
 import { Box } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { songsInfo } from "@shared/hardCodedInfo.ts";
+import { FC } from "react";
+import { AlbumOverviewProps } from "../recent-playlist/lastPlaylist.tsx";
 import SongInPlaylist from "./SongInPlaylist.tsx";
 
-const SongsInPlaylist: React.FC = () => {
+const SongsInPlaylist: FC<AlbumOverviewProps> = ({album}) => {
+
   return (
     <Box>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        {songsInfo.map((song, index) => (
+        {album.songs!.map((song, index) => (
           <Grid size={12} key={index}>
-            <SongInPlaylist uuid={song.uuid} name={song.name} artistName={song.artistName} />
+            <SongInPlaylist song={song} artistName={album.artist.name}/>
           </Grid>
         ))}
       </Grid>

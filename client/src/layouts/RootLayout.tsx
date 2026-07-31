@@ -14,7 +14,7 @@ const RootLayout: FC = () => {
 
           <DrawerProvider>
             <Outlet />
-            <DrawerAndSongPlayer />
+            {<DrawerAndSongPlayer />}
           </DrawerProvider>
   );
 };
