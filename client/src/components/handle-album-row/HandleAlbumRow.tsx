@@ -18,7 +18,7 @@ type HandleAlbumRowProps = {
 
 const HandleAlbumRow: FC<HandleAlbumRowProps> = ({ album, isEditable, setCurrentAlbums, currentAlbums, setExistingAlbums }) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(isEditable);
-  const toggleEditMode = (): void => setIsEditMode((prev) => !prev);
+  const toggleEditMode = () => setIsEditMode((prev) => !prev);
 
   const formMethods = useForm<AlbumRegistrationInput>({
     resolver: zodResolver(AlbumRegistrationSchema),
