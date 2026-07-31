@@ -1,15 +1,15 @@
 import SaveIcon from "@mui/icons-material/Save";
 import UndoIcon from "@mui/icons-material/Undo";
 import { Autocomplete, Button, TableCell, TextField } from "@mui/material";
+import { SongType } from "@shared/src/enums/songType.enum.ts";
 import { SongRegistrationInput } from "@shared/src/schemas/songValidation.schema.ts";
 import { Song } from "@shared/src/types/song.types.ts";
 import { FC } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { useAllAlbums } from "../../hooks/useAllAlbums.ts";
 import { useSaveSong } from "../../hooks/useSaveSong.ts";
-import { useSaveSongMp3 } from "../../hooks/useSaveSongMp3.ts";
+import { useSaveSongRecord } from "../../hooks/useSaveSongRecord.ts";
 import Styles from "../handle-album-row/handleAlbumRow.styles.ts";
-import { SongType } from "@shared/src/enums/songType.enum.ts";
 
 type SongRowFormProps = {
   onSaveSongSuccess: () => void;
@@ -23,17 +23,17 @@ type SongRowFormProps = {
 const SongRowFrom: FC<SongRowFormProps> = ({ onSaveSongSuccess, song, setiIsEditMode, setCurrentSongs, currentSongs, setExistingSongs }) => {
   const { control, handleSubmit, reset } = useFormContext<SongRegistrationInput>();
   const { mutate: saveSong } = useSaveSong(onSaveSongSuccess);
-  const { mutate: saveSongMp3 } = useSaveSongMp3();
+  const { mutate: saveSongRecord } = useSaveSongRecord();
   const { data: albums = [] } = useAllAlbums();
 
   const songTypeOptions = Object.values(SongType);
 
   const onSubmit = (formData: SongRegistrationInput) => {
-    const { mp3File, ...filteredData } = formData;
-    const uploadmp3Data = new FormData();
-    uploadmp3Data.append("audioFile", mp3File);
-    uploadmp3Data.append("title", filteredData.name);
-    saveSongMp3(uploadmp3Data);
+    const { recordFile, ...filteredData } = formData;
+    const uploadRecordData = new FormData();
+    uploadRecordData.append("audioFile", recordFile);
+    uploadRecordData.append("title", filteredData.name);
+    saveSongRecord(uploadRecordData);
     saveSong(filteredData);
   };
 
@@ -82,7 +82,7 @@ const SongRowFrom: FC<SongRowFormProps> = ({ onSaveSongSuccess, song, setiIsEdit
           render={({ field }) => (
             <Autocomplete
               options={albums}
-              getOptionLabel={(option) => option.name || ''}
+              getOptionLabel={(option) => option.name || ""}
               isOptionEqualToValue={(option, value) => option.uuid === value?.uuid}
               value={field.value ?? null}
               onChange={(_, newValue) => field.onChange(newValue)}
@@ -95,7 +95,7 @@ const SongRowFrom: FC<SongRowFormProps> = ({ onSaveSongSuccess, song, setiIsEdit
       </TableCell>
       <TableCell sx={Styles.tableCell} align="center">
         <Controller
-          name="mp3File"
+          name="recordFile"
           control={control}
           render={({ field: { onChange, value, ...field } }) => (
             <Button variant="outlined" component="label" size="small">

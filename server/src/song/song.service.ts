@@ -7,6 +7,7 @@ import s3Service from "../s3-service/s3Service.ts";
 import { Song } from "./song.entity.ts";
 import { S3File, S3FileDescriptor } from "../s3-service/s3service.types.ts";
 import { GENERAL_S3_PATH } from "./song.consts.ts";
+import { RECORD_EXT } from "@shared/src/const/fileExtensions.consts.ts";
 dotenv.config();
 
 const getAllSongs = () => Song.find();
@@ -21,16 +22,16 @@ const getSongByUuid = async (uuid: string) => {
   return song;
 };
 
-const getSongMp3ByUuid = async (uuid: string) => {
+const getSongRecordByUuid = async (uuid: string) => {
   const song = await Song.findOneBy({ uuid });
 
   if (!song) {
     throw new HttpError(StatusCodes.NOT_FOUND, "song not found");
   }
 
-  const songMp3 = await s3Service.getFile(song.s3Url);
+  const songRecord = await s3Service.getFile(song.s3Url);
 
-  return songMp3;
+  return songRecord;
 };
 
 const addSong = async (song: DeepPartial<Song>) => {
@@ -57,14 +58,14 @@ const getSongsWithQuery = async (searchQuery: string) =>
     },
   });
 
-const addMp3File = async (file: Express.Multer.File, title: string) => {
-  const myDescription: S3FileDescriptor = { name: title, extension: "mp3", path: GENERAL_S3_PATH, contentType: "audio/mpeg" };
+const addRecordFile = async (file: Express.Multer.File, title: string) => {
+  const myDescription: S3FileDescriptor = { name: title, extension: `${RECORD_EXT}`, path: GENERAL_S3_PATH, contentType: "audio/mpeg" };
 
-  const myfile: S3File = { name: title, extension: "mp3", path: GENERAL_S3_PATH, contentType: "audio/mpeg", content: file.buffer };
+  const myfile: S3File = { name: title, extension: `${RECORD_EXT}`, path: GENERAL_S3_PATH, contentType: "audio/mpeg", content: file.buffer };
 
   const saveUrl = await s3Service.initializeCleanerApi(myDescription);
 
   await s3Service.uploadFile(saveUrl, myfile, myfile.contentType);
 };
 
-export default { getAllSongs, getSongByUuid, addSong, getSongMp3ByUuid, addMp3File, getSongsWithQuery };
+export default { getAllSongs, getSongByUuid, addSong, getSongRecordByUuid, addRecordFile, getSongsWithQuery };

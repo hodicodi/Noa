@@ -23,7 +23,7 @@ const HandleSongRow: FC<HandleSongRowProps> = ({ song, isEditable, setCurrentSon
 
   const formMethods = useForm<SongRegistrationInput>({
     resolver: zodResolver(SongRegistrationSchema),
-    defaultValues: { name: "", genre: SongType.Rock, album: {},  },
+    defaultValues: { name: "", genre: SongType.Rock, album: {} },
   });
 
   useEffect(() => {

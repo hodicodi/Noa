@@ -4,17 +4,13 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import { ChangeEvent, FC, useEffect, useState } from "react";
-import HandleAlbumRow from "../../../components/handle-album-row/HandleAlbumRow.tsx";
-import HandleAlbumsTableHead from "../../../components/handle-albums-table-head/HandleAlbumsTableHead.tsx";
-import NavBar from "../../../components/nav-bar/navBar.tsx";
-import SearchBar from "../../../components/search-bar/SearchBar.tsx";
-import { useAlbumFilterQuery } from "../../../hooks/useAlbumsFilterQuery.ts";
-import newAlbum from "./handleSongsPage.consts.ts";
-import Styles from "./handleSongsPage.styles.ts";
-import { useSongFilterQuery } from "../../../hooks/useSongFilterQuery.ts";
-import newSong from "./handleSongsPage.consts.ts";
 import HandleSongRow from "../../../components/handle-song-row/HandleSongRow.tsx";
 import HandleSongsTableHead from "../../../components/handle-songs-table-head/HandleSongsTableHead.tsx";
+import NavBar from "../../../components/nav-bar/navBar.tsx";
+import SearchBar from "../../../components/search-bar/SearchBar.tsx";
+import { useSongFilterQuery } from "../../../hooks/useSongFilterQuery.ts";
+import newSong from "./handleSongsPage.consts.ts";
+import Styles from "./handleSongsPage.styles.ts";
 
 const HandleSongsPage: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -47,7 +43,7 @@ const HandleSongsPage: FC = () => {
         </Typography>
 
         <Box sx={Styles.searchableTable}>
-          <SearchBar searchQuery={searchQuery} handleSearchChange={handleSearchChange} placeHolder="Search by name or id..." />
+          <SearchBar searchQuery={searchQuery} handleSearchChange={handleSearchChange} placeHolder="Search by name or genre or album..." />
 
           <TableContainer sx={Styles.table} component={Paper}>
             <Table>

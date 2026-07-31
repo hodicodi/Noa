@@ -4,15 +4,15 @@ import { API } from "../api/services/albumService.ts";
 
 export const USE_SONGS_UPLOADS_FILTER_KEY = "songUploads";
 
-export const saveSongMp3 = async (formData: FormData): Promise<File> => {
+export const saveSongRecord = async (formData: FormData): Promise<File> => {
   const response = await API.post<File>(`${SONGS_PATH}${UPLOADS_PATH}`, formData);
   return response.data;
 };
 
-export const useSaveSongMp3 = () => {
+export const useSaveSongRecord = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (uploadMp3Data: FormData) => saveSongMp3(uploadMp3Data),
+    mutationFn: (uploadRecordData: FormData) => saveSongRecord(uploadRecordData),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: [USE_SONGS_UPLOADS_FILTER_KEY] });
     },
