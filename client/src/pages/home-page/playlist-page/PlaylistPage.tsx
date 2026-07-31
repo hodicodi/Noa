@@ -11,7 +11,6 @@ const PlaylistPage: FC = () => {
   const location = useLocation();
 
   const playlistPageProps = location.state || {};
-  console.log(playlistPageProps.album.name)
 
   return (
     <Box sx={Styles.playlistPage}>
