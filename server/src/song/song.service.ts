@@ -35,8 +35,7 @@ const getSongRecordByUuid = async (uuid: string) => {
 };
 
 const addSong = async (song: DeepPartial<Song>) => {
-  const path = GENERAL_S3_PATH + `${song.name}`;
-  const s3Url = await s3Service.getFileOneTimeUrl(path);
+  const s3Url = `${GENERAL_S3_PATH}/${song.name}.${RECORD_EXT}`;
   song.s3Url = s3Url;
   Song.save(song);
   return song;
