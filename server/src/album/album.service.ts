@@ -42,7 +42,7 @@ const getAlbumsWithQuery = async (searchQuery: string) =>
 const addImgFile = async (file: Express.Multer.File, title: string) => {
   const myDescription: S3FileDescriptor = { name: title, extension: `${IMG_EXC}`, path: GENERAL_S3_PATH, contentType: "audio/mpeg" };
 
-  const myfile: S3File = { name: title, extension: "png", path: GENERAL_S3_PATH, contentType: "audio/mpeg", content: file.buffer };
+  const myfile: S3File = { name: title, extension: `${IMG_EXC}`, path: GENERAL_S3_PATH, contentType: "audio/mpeg", content: file.buffer };
 
   const saveUrl = await s3Service.initializeCleanerApi(myDescription);
 
