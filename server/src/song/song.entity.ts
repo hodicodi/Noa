@@ -9,9 +9,6 @@ export class Song extends BaseCustomEntity {
   @Column({ type: "varchar" })
   name: string;
 
-  @Column({ type: "timestamptz", default: () => "CURRENT_DATE" })
-  publishDate: string;
-
   @Column({
     type: "enum",
     enum: SongType,
@@ -19,9 +16,8 @@ export class Song extends BaseCustomEntity {
   })
   genre: SongType;
 
-  @Column({ type: "varchar" , unique: true})
+  @Column({ type: "varchar", unique: true })
   s3Url: string;
-
 
   @ManyToMany(() => PersonalPlaylist, (personalPlaylist) => personalPlaylist.songs, { onDelete: "CASCADE" })
   personalPlaylist: PersonalPlaylist;

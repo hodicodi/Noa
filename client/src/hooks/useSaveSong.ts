@@ -1,9 +1,7 @@
-import { ALBUMS_PATH, SONGS_PATH } from "@shared/src/const/paths.const.ts";
-import { Album, AlbumRes, SaveAlbum } from "@shared/src/types/album.types.ts";
+import { SONGS_PATH } from "@shared/src/const/paths.const.ts";
+import { SaveSong, Song, SongRes } from "@shared/src/types/song.types.ts";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { API } from "../api/services/albumService.ts";
-import { USE_ALBUMS_FILTER_KEY } from "./useAlbumsFilterQuery.ts";
-import { SaveSong, Song, SongRes } from "@shared/src/types/song.types.ts";
 import { USE_SONGS_FILTER_KEY } from "./useSongFilterQuery.ts";
 
 export const saveSong = async (song: SaveSong): Promise<Song | null> => {

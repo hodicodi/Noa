@@ -1,17 +1,13 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import TableRow from "@mui/material/TableRow";
-import { SongRegistrationSchema, SongRegistrationInput } from "@shared/src/schemas/songValidation.schema.ts";
-import { AlbumRegistrationInput, AlbumRegistrationSchema } from "@shared/src/schemas/albumValidation.schema.ts";
-import { Album } from "@shared/src/types/album.types.ts";
+import { SongType } from "@shared/src/enums/songType.enum.ts";
+import { SongRegistrationInput, SongRegistrationSchema } from "@shared/src/schemas/songValidation.schema.ts";
+import { Song } from "@shared/src/types/song.types.ts";
 import { FC, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import AlbumRowFrom from "../album-row-form/AlbumRowForm.tsx";
-import AlbumRowPreview from "../album-row-preview/AlbumRowPreview.tsx";
-import Styles from "./handleSongRow.styles.ts";
-import { Song } from "@shared/src/types/song.types.ts";
-import { SongType } from "@shared/src/enums/songType.enum.ts";
 import SongRowFrom from "../song-row-form/SongRowForm.tsx";
 import SongRowPreview from "../song-row-preview/SongRowPreview.tsx";
+import Styles from "./handleSongRow.styles.ts";
 
 type HandleSongRowProps = {
   song: Song;

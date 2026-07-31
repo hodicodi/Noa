@@ -31,7 +31,7 @@ const SongRowFrom: FC<SongRowFormProps> = ({ onSaveSongSuccess, song, setiIsEdit
   const onSubmit = (formData: SongRegistrationInput) => {
     const { mp3File, ...filteredData } = formData;
     const uploadmp3Data = new FormData();
-    uploadmp3Data.append("mp3File", mp3File);
+    uploadmp3Data.append("audioFile", mp3File);
     uploadmp3Data.append("title", filteredData.name);
     saveSongMp3(uploadmp3Data);
     saveSong(filteredData);
@@ -113,7 +113,7 @@ const SongRowFrom: FC<SongRowFormProps> = ({ onSaveSongSuccess, song, setiIsEdit
           )}
         />
       </TableCell>
-      <TableCell onClick={handleSubmit(onSubmit, (errors) => console.log("Validation ERRORS:", errors))} sx={Styles.tableCell} align="center">
+      <TableCell onClick={handleSubmit(onSubmit)} sx={Styles.tableCell} align="center">
         <SaveIcon />
       </TableCell>
       <TableCell onClick={handleUndo} sx={Styles.tableCell} align="center">

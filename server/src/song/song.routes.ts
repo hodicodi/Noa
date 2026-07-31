@@ -1,4 +1,4 @@
-import { GeneralParams } from "@shared/src/types/general.types.ts";
+import { GeneralParams, SearchQueryParams } from "@shared/src/types/general.types.ts";
 import { SaveSongReqBody, SongRes, SongsRes } from "@shared/src/types/song.types.ts";
 import { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
@@ -8,6 +8,14 @@ import songService from "./song.service.ts";
 import { UPLOADS_PATH } from "@shared/src/const/paths.const.ts";
 
 const songRouter = Router();
+
+songRouter.get("/search", async (req: Request<unknown, unknown, unknown, SearchQueryParams>, res: Response<SongsRes>) => {
+  const { searchQuery } = req.query;
+
+  const songs = await songService.getSongsWithQuery(searchQuery);
+
+  res.status(StatusCodes.OK).json({ songs });
+});
 
 songRouter.get("/:uuid", async (req: Request<GeneralParams, unknown, unknown>, res: Response<SongRes>) => {
   const { uuid } = req.params;

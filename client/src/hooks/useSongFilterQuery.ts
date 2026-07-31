@@ -1,4 +1,4 @@
-import { ALBUMS_PATH } from "@shared/src/const/paths.const.ts";
+import { ALBUMS_PATH, SONGS_PATH } from "@shared/src/const/paths.const.ts";
 import { Song, SongsRes } from "@shared/src/types/song.types.ts";
 import { useQuery } from "@tanstack/react-query";
 import { API } from "../api/services/albumService.ts";
@@ -6,7 +6,7 @@ import { API } from "../api/services/albumService.ts";
 export const USE_SONGS_FILTER_KEY = "useSongsFilterKey";
 
 const getSongFilterQuery = async (searchQuery: string): Promise<Song[] | null> => {
-  const response = await API.get<SongsRes>(ALBUMS_PATH + "/search", {
+  const response = await API.get<SongsRes>(SONGS_PATH + "/search", {
     params: { searchQuery },
   });
   return response.data?.songs ?? [];
