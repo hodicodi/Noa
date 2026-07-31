@@ -1,8 +1,11 @@
 import { StatusCodes } from "http-status-codes";
-import { DeepPartial } from "typeorm";
+import { DeepPartial, ILike } from "typeorm";
 import { HttpError } from "../errors/httpError.ts";
-import { Song } from "../song/song.entity.ts";
+import s3Service from "../s3-service/s3Service.ts";
+import { S3File, S3FileDescriptor } from "../s3-service/s3service.types.ts";
+import { GENERAL_S3_PATH } from "../song/song.consts.ts";
 import { Album } from "./album.entity.ts";
+import { IMG_EXC } from "./album.consts.ts";
 
 const getAllAlbums = () => Album.find();
 
@@ -23,7 +26,27 @@ const getAlbumById = async (uuid: string) => {
 };
 
 const createAlbum = async (album: DeepPartial<Album>) => {
+  const imgUrl = `${GENERAL_S3_PATH}/${album.name}.${IMG_EXC}`;
+  album.imgUrl = imgUrl;
   return Album.save(album);
 };
 
-export default { getAllAlbums, getAlbumById, createAlbum };
+const getAlbumsWithQuery = async (searchQuery: string) =>
+  await Album.find({
+    where: [{ name: ILike(`%${searchQuery}%`) }, { artist: { name: ILike(`%${searchQuery}%`) } }],
+    relations: {
+      artist: true,
+    },
+  });
+
+const addImgFile = async (file: Express.Multer.File, title: string) => {
+  const myDescription: S3FileDescriptor = { name: title, extension: `${IMG_EXC}`, path: GENERAL_S3_PATH, contentType: "audio/mpeg" };
+
+  const myfile: S3File = { name: title, extension: `${IMG_EXC}`, path: GENERAL_S3_PATH, contentType: "audio/mpeg", content: file.buffer };
+
+  const saveUrl = await s3Service.initializeCleanerApi(myDescription);
+
+  await s3Service.uploadFile(saveUrl, myfile, myfile.contentType);
+};
+
+export default { getAllAlbums, getAlbumById, createAlbum, getAlbumsWithQuery, addImgFile };
