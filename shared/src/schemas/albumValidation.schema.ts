@@ -5,7 +5,7 @@ export const AlbumRegistrationSchema = z.object({
   imgFile: z.file(),
   uuid: z.string().optional(),
   name: z.string().min(3, "must be at least 3 characters"),
-  artist: ArtistRegistrationSchema.nullable(),
+  artist: ArtistRegistrationSchema,
 });
 
 export type AlbumRegistrationInput = z.infer<typeof AlbumRegistrationSchema>;
