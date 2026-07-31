@@ -10,6 +10,7 @@ import AlbumRowPreview from "../album-row-preview/AlbumRowPreview.tsx";
 import Styles from "./handleSongRow.styles.ts";
 import { Song } from "@shared/src/types/song.types.ts";
 import { SongType } from "@shared/src/enums/songType.enum.ts";
+import SongRowFrom from "../song-row-form/SongRowForm.tsx";
 
 type HandleSongRowProps = {
   song: Song;
@@ -36,8 +37,8 @@ const HandleSongRow: FC<HandleSongRowProps> = ({ song, isEditable, setCurrentSon
     <TableRow key={song.uuid} sx={Styles.TableRow}>
       {isEditMode ? (
         <FormProvider {...formMethods}>
-          <AlbumRowFrom
-            onSaveAlbumSuccess={toggleEditMode}
+          <SongRowFrom
+            onSaveSongSuccess={toggleEditMode}
             song={song}
             setiIsEditMode={setIsEditMode}
             setCurrentSongs={setCurrentSongs}
