@@ -11,7 +11,7 @@ const validateIsraeliID = (id: string) => {
     }, 0);
 
   return sum % 10 === 0;
-};
+}; 
 
 export const UserRegistrationSchema = z.object({
   name: z.string().min(3, "must be at least 3 characters"),

@@ -102,4 +102,4 @@ const SongRowFrom: FC<SongRowFormProps> = ({ onSaveSongsSuccess, song, setiIsEdi
   );
 };
 
-export default AlbumRowFrom;
+export default SongRowFrom;
