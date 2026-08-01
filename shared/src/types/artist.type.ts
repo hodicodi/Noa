@@ -2,7 +2,7 @@ import { ArtistType } from "../enums/artistType.enum";
 import { Album } from "./album.types";
 
 export type Artist = {
-  uuid: string;
+  uuid?: string;
   name: string;
   type: ArtistType;
   albums?: Album[];

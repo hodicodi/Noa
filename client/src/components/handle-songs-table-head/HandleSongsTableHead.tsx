@@ -3,19 +3,22 @@ import { FC } from "react";
 import Styles from "../../pages/home-page/handle-users-page/handleUsersPage.styles.ts";
 import AddIcon from "@mui/icons-material/Add";
 
-type HandleAlbumHeadTableProps = {
+type HandleSongHeadTableProps = {
   handleAddRow: () => void;
 };
 
-const HandleAlbumsTableHead: FC<HandleAlbumHeadTableProps> = ({ handleAddRow }) => (
+const HandleSongsTableHead: FC<HandleSongHeadTableProps> = ({ handleAddRow }) => (
   <TableHead>
     <TableRow>
       <TableCell sx={Styles.tableCell}>Name</TableCell>
       <TableCell sx={Styles.tableCell} align="center">
-        Artist name
+        Genre
       </TableCell>
       <TableCell sx={Styles.tableCell} align="center">
-        Album picture
+        Album name
+      </TableCell>
+      <TableCell sx={Styles.tableCell} align="center">
+        Record file
       </TableCell>
       <TableCell sx={Styles.tableCell} align="center">
         <AddIcon onClick={handleAddRow} />
@@ -25,4 +28,4 @@ const HandleAlbumsTableHead: FC<HandleAlbumHeadTableProps> = ({ handleAddRow }) 
   </TableHead>
 );
 
-export default HandleAlbumsTableHead;
+export default HandleSongsTableHead;
