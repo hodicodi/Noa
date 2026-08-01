@@ -4,7 +4,7 @@ const handleUsersPage: SxProps = {
   display: "flex",
   flexDirection: "column",
   rowGap: 6,
-  mt: 4,
+  mt: 14,
   minHeight: "100vh",
   alignItems: "center",
 };
@@ -26,9 +26,19 @@ const title: SxProps = {
   color: "#f8f8f8",
 };
 
-const searchBarInputField = {
+const searchBarInputField: SxProps = {
   marginBottom: 3,
   backgroundColor: "#fff",
 };
 
-export default { handleUsersPage, table, tableCell, searchableTable, title, searchBarInputField };
+const backIcon: SxProps = {
+  position: "absolute",
+  color: "#ffffff",
+  mt: 4,
+  width: 80,
+  cursor: "pointer",
+  alignSelf: "flex-start",
+  paddingLeft: "0.8%",
+};
+
+export default { handleUsersPage, table, tableCell, searchableTable, title, searchBarInputField,backIcon };

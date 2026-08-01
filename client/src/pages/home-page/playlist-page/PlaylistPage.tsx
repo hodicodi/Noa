@@ -20,11 +20,13 @@ const PlaylistPage: FC = () => {
   return (
     <Box sx={Styles.playlistPage}>
       <ArrowBackIcon sx={Styles.backIcon} onClick={handleBackClick} />
-      <PlaylistPicture
-        name={playlistPageProps.album.name}
-        avaterPicture={useAlbumImg(playlistPageProps.album.uuid!).data!}
-        artist={playlistPageProps.album.artist.name ?? ""}
-      />
+      <Box sx={Styles.playlistPicture}>
+        <PlaylistPicture
+          name={playlistPageProps.album.name}
+          avaterPicture={useAlbumImg(playlistPageProps.album.uuid!).data!}
+          artist={playlistPageProps.album.artist.name ?? ""}
+        />
+      </Box>
       <SongsInPlaylist album={playlistPageProps.album} />
     </Box>
   );

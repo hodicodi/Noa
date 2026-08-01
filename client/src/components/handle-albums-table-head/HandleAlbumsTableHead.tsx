@@ -10,7 +10,7 @@ type HandleAlbumHeadTableProps = {
 const HandleAlbumsTableHead: FC<HandleAlbumHeadTableProps> = ({ handleAddRow }) => (
   <TableHead>
     <TableRow>
-      <TableCell sx={Styles.tableCell}>Album name</TableCell>
+      <TableCell sx={Styles.tableCell}>Name</TableCell>
       <TableCell sx={Styles.tableCell} align="center">
         Artist name
       </TableCell>
