@@ -12,21 +12,28 @@ export type DrawerInfoProps = {
 };
 
 const DrawerAndSongPlayer: FC = () => {
-  const { recievedAudioUrl } = useGlobalDrawer();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isPlay, setIsPlay] = useState(false);
+  const { recievedAudioUrl } = useGlobalDrawer();
+  const timesRender = useRef(0);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
+    pauseAudio();
     if (recievedAudioUrl) {
       audioRef.current = new Audio(recievedAudioUrl);
     }
+    if (timesRender.current > 2) {
+      setIsPlay(true);
+      playAudio();
+    }
+    timesRender.current++;
   }, [recievedAudioUrl]);
 
   const playAudio = async () => {
     if (audioRef.current) {
-       audioRef.current.play();
+      audioRef.current.play();
     }
   };
 
@@ -44,22 +51,15 @@ const DrawerAndSongPlayer: FC = () => {
     setIsPlay((prev) => !prev);
     if (!isPlay) {
       playAudio();
-      return
-    } 
-      pauseAudio();
-
+      return;
+    }
+    pauseAudio();
   };
 
   return (
     <>
       <SongPlaying isDrawerOpen={isDrawerOpen} isPlay={isPlay} toggleDrawer={toggleDrawer} handleIconClick={handleIconClick} />
-      <SongDrawer
-        imageUrl={playlistInfo[0]!.avaterPicture}
-        isDrawerOpen={isDrawerOpen}
-        isPlay={isPlay}
-        toggleDrawer={toggleDrawer}
-        handleIconClick={handleIconClick}
-      />
+      <SongDrawer isDrawerOpen={isDrawerOpen} isPlay={isPlay} toggleDrawer={toggleDrawer} handleIconClick={handleIconClick} />
     </>
   );
 };

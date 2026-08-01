@@ -1,11 +1,14 @@
-import { songsInfo } from "@shared/hardCodedInfo.ts";
-import { Song, SongOverviewProps } from "@shared/src/types/song.types.ts";
+import { Song } from "@shared/src/types/song.types.ts";
 import { createContext, FC, ReactNode, useContext, useEffect, useState } from "react";
 import { useRecord } from "../../hooks/useRecord.ts";
+import { defaultAlbum, defaultSong } from "@shared/hardCodedInfo.ts";
+import { Album } from "@shared/src/types/album.types.ts";
 
 type DrawerContextType = {
   currentSong: Song;
   setCurrentSong: (currentSong: Song) => void;
+  currentAlbum: Album;
+  setCurrentAlbum: (currentAlbum: Album) => void;
   recievedAudioUrl: string | null;
   audioUrl: string | null;
 };
@@ -13,11 +16,8 @@ type DrawerContextType = {
 const DrawerContext = createContext<DrawerContextType | undefined>(undefined);
 
 export const DrawerProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [currentSong, setCurrentSong] = useState<Song>({
-    uuid: songsInfo[0]?.uuid!,
-    name: songsInfo[0]?.name!,
-    artistName: songsInfo[0]?.artistName!,
-  });
+  const [currentSong, setCurrentSong] = useState<Song>(defaultSong);
+  const [currentAlbum, setCurrentAlbum] = useState<Album>(defaultAlbum);
 
   const { data: recievedAudioUrl = null } = useRecord(currentSong.uuid!);
 
@@ -29,7 +29,11 @@ export const DrawerProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
   }, [recievedAudioUrl]);
 
-  return <DrawerContext.Provider value={{ recievedAudioUrl, currentSong, setCurrentSong, audioUrl }}>{children}</DrawerContext.Provider>;
+  return (
+    <DrawerContext.Provider value={{ recievedAudioUrl, currentSong, setCurrentSong, audioUrl, currentAlbum, setCurrentAlbum }}>
+      {children}
+    </DrawerContext.Provider>
+  );
 };
 
 export const useGlobalDrawer = () => {

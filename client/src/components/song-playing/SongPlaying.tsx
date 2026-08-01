@@ -2,15 +2,15 @@ import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { AppBar, Box, ButtonBase, Card, CardContent, CardMedia, Grid, IconButton, Toolbar, Typography } from "@mui/material";
 import { FC } from "react";
+import { useAlbumImg } from "../../hooks/useAlbumImg.ts";
+import { DrawerInfoProps } from "../DrawerAndSongPlayer/DrawerAndSongPlayer.tsx";
 import { useGlobalDrawer } from "../song-drawer/DrawerContext.tsx";
 import Styles from "./songPlaying.style.ts";
-import { DrawerInfoProps } from "../DrawerAndSongPlayer/DrawerAndSongPlayer.tsx";
 
-const SongPlaying: FC<DrawerInfoProps> = ({ isPlay, toggleDrawer, handleIconClick}) => {
-  const { currentSong, recievedAudioUrl } = useGlobalDrawer();
+const SongPlaying: FC<DrawerInfoProps> = ({ isPlay, toggleDrawer, handleIconClick }) => {
+  const { currentSong, currentAlbum } = useGlobalDrawer();
 
-  const avatarImage = "https://t2.genius.com/unsafe/344x344/https%3A%2F%2Fimages.genius.com%2F890d5a9fbbe79b45c3cee4d7b086accd.1000x563x1.jpg";
-
+  const albumImg = useAlbumImg(currentAlbum.uuid!).data!;
 
   return (
     <>
@@ -21,7 +21,7 @@ const SongPlaying: FC<DrawerInfoProps> = ({ isPlay, toggleDrawer, handleIconClic
               <Box sx={Styles.box}>
                 <Grid container spacing={0}>
                   <Grid size={0.8}>
-                    <CardMedia sx={Styles.cardMedia} component="img" image={avatarImage} alt="Beautiful Sunrise" />
+                    <CardMedia sx={Styles.cardMedia} component="img" image={albumImg} alt="Beautiful Sunrise" />
                   </Grid>
                   <Grid size={10.5}>
                     <CardContent sx={Styles.cardContent}>
@@ -30,7 +30,7 @@ const SongPlaying: FC<DrawerInfoProps> = ({ isPlay, toggleDrawer, handleIconClic
                           {currentSong.name}
                         </Typography>
                         <Typography sx={Styles.artistName} variant="body2" component="div">
-                          {currentSong.artistName}
+                          {currentAlbum.artist.name}
                         </Typography>
                       </Box>
                       <IconButton

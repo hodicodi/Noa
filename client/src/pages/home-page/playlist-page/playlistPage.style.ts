@@ -8,4 +8,13 @@ const playlistPage: SxProps = {
     mt: 4
 }
 
-export default {playlistPage};
+const backIcon: SxProps = {
+  position: "absolute",
+  color: "#ffffff",
+  mt: 4,
+  left: "7%",
+  width: 40,
+  cursor: "pointer",
+};
+
+export default {playlistPage, backIcon};

@@ -1,21 +1,22 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Song, SongOverviewProps } from "@shared/src/types/song.types.ts";
+import { Album } from "@shared/src/types/album.types.ts";
+import { Song } from "@shared/src/types/song.types.ts";
 import { FC } from "react";
 import { useGlobalDrawer } from "../song-drawer/DrawerContext.tsx";
 import style from "./songInPlaylist.style.ts";
 
 type SongInPlaylistProps = {
   song: Song;
-  artistName: string;
+  album: Album;
 };
 
-const SongInPlaylist: FC<SongInPlaylistProps> = ({ song, artistName }) => {
-  console.log(song);
-  const { setCurrentSong } = useGlobalDrawer();
+const SongInPlaylist: FC<SongInPlaylistProps> = ({ song, album }) => {
+  const { setCurrentSong, setCurrentAlbum } = useGlobalDrawer();
 
   const songInPlaylistClick = () => {
     setCurrentSong(song);
+    setCurrentAlbum(album)
   };
 
   {
@@ -25,7 +26,7 @@ const SongInPlaylist: FC<SongInPlaylistProps> = ({ song, artistName }) => {
           {song.name}
         </Typography>
         <Typography sx={style.playlistName} variant="body2" component="div">
-          {artistName}
+          {album.artist.name}
         </Typography>
       </Box>
     );
