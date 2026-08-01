@@ -4,13 +4,13 @@ const songPlaying: SxProps = {
   display: "flex",
   top: "auto",
   bottom: 0,
-  bgcolor: "#47025c",
+  bgcolor: "rgba(0, 0, 0, 1)",
   width: { xs: "100%", sm: "30%" },
   left: "35%",
 };
 
 const card: SxProps = {
-  bgcolor: "#47025c",
+  bgcolor: "rgba(0, 0, 0, 0.5)",
   width: "100%",
   boxShadow: "none",
 };

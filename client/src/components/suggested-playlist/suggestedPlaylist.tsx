@@ -18,18 +18,16 @@ const PlaylistCard: FC<AlbumOverviewProps> = ({ album }) => {
 
   const suggestedPlaylistClick = () => {
     navigate(PLAYLIST_PATH, {
-      state: { album: album }
+      state: { album: album },
     });
   };
 
   return (
     <Card sx={style.card} onClick={suggestedPlaylistClick}>
-      <CardContent sx={style.cardContent}>
-        <Typography sx={style.playlistName} variant="h6">
+      <CardMedia component="img" image={useAlbumImg(album.uuid!).data!} />
+        <Typography sx={style.playlistName} variant="body2">
           {album.name}
         </Typography>
-      </CardContent>
-      <CardMedia component="img" image={useAlbumImg(album.uuid!).data!} />
     </Card>
   );
 };

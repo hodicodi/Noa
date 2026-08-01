@@ -10,7 +10,7 @@ const handleUsersPage: SxProps = {
 };
 
 const table: SxProps = {
-  backgroundColor: "#47025c",
+  bgcolor: "rgba(94, 94, 94, 0.5)",
 };
 
 const tableCell: SxProps = {

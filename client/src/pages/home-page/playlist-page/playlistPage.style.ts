@@ -12,13 +12,13 @@ const playlistPage: SxProps = {
 const backIcon: SxProps = {
   position: "absolute",
   color: "#ffffff",
-  mt: 4,
+  mt: 1,
   width: 40,
   cursor: "pointer",
 };
 
 const playlistPicture: SxProps = {
-  mt: 14,
+  mt: 8,
 };
 
 export default { playlistPage, backIcon, playlistPicture };

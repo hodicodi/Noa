@@ -5,13 +5,13 @@ const userBar: SxProps = {
   justifyContent: "space-between",
   alignItems: "center",
   p: 2,
-  bgcolor: "#47025c",
+  bgcolor: "rgba(94, 94, 94, 0.5)",
 };
 
 const dropdown: SxProps = {
   "& .MuiMenu-paper": {
     justifyContent: "flex-start",
-    backgroundColor: "#47025c",
+  bgcolor: "rgb(49, 48, 48)",
     color: "#ffffff",
   },
   justifyContent: "flex-start",

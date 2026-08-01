@@ -5,16 +5,10 @@ const card: SxProps = {
   borderRadius: 2,
 };
 
-const cardContent: SxProps = {
-  position: "absolute",
-  backgroundColor: "rgba(169, 15, 216, 0.5)",
-  width: "13.7%",
-  borderRadius: 2,
-};
-
 const playlistName: SxProps = {
   color: "#ffffff",
   position: "top",
+  backgroundColor: "#000",
 };
 
-export default { card, cardContent, playlistName };
+export default { card, playlistName };
