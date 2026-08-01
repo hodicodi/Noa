@@ -7,6 +7,7 @@ const playlistPage: SxProps = {
   borderRadius: 7,
   mt: 4,
   paddingLeft: "5%",
+  height: "800PX"
 };
 
 const backIcon: SxProps = {

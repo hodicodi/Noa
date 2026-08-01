@@ -17,7 +17,7 @@ const LastPlaylists: FC = () => {
         Recent listenings
       </Typography>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        {albums?.map((album) => (
+        {albums?.slice(0, 6).map((album) => (
           <Grid size={6} key={album.name}>
             <LastPlaylistCard album={album} />
           </Grid>
