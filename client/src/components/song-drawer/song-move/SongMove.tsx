@@ -4,7 +4,7 @@ import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import { Box, IconButton } from "@mui/material";
 import { FC } from "react";
-import { DrawerInfoProps } from "../../DrawerAndSongPlayer/DrawerAndSongPlayer.tsx";
+import { DrawerInfoProps } from "../../drawer-and-song-player/DrawerAndSongPlayer.tsx";
 import Styles from "./songMove.style.ts";
 
 type SongMoveProps = Partial<DrawerInfoProps>;

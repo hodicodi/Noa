@@ -2,7 +2,7 @@ import { Box, CssBaseline, Paper, ThemeProvider, createTheme } from "@mui/materi
 import { FC } from "react";
 import { Outlet } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext.tsx";
-import DrawerAndSongPlayer from "../components/DrawerAndSongPlayer/DrawerAndSongPlayer.tsx";
+import DrawerAndSongPlayer from "../components/drawer-and-song-player/DrawerAndSongPlayer.tsx";
 import { DrawerProvider } from "../components/song-drawer/DrawerContext.tsx";
 import style from "./rootLayout.style.ts";
 const theme = createTheme({ palette: { primary: { main: "#ffffff" } }, typography: { fontFamily: "Georgia"} });
