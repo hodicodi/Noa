@@ -9,7 +9,7 @@ import HandleSongsTableHead from "../../../components/handle-songs-table-head/Ha
 import NavBar from "../../../components/nav-bar/navBar.tsx";
 import SearchBar from "../../../components/search-bar/SearchBar.tsx";
 import { useSongFilterQuery } from "../../../hooks/useSongFilterQuery.ts";
-import newSong from "./handleSongsPage.consts.ts";
+import NEW_SONG_DEFAULT_VALUES from "./handleSongsPage.consts.ts";
 import Styles from "./handleSongsPage.styles.ts";
 
 const HandleSongsPage: FC = () => {
@@ -22,12 +22,12 @@ const HandleSongsPage: FC = () => {
   };
 
   const setExistingSongs = () => {
-    setCurrentSongs(currentSongs!.filter((song) => song.uuid));
+    setCurrentSongs((currentSongs ?? []).filter((song) => song.uuid));
   };
 
   const handleAddRow = () => {
     setExistingSongs();
-    setCurrentSongs((currentSongs) => [newSong, ...currentSongs!]);
+    setCurrentSongs((currentSongs) => [NEW_SONG_DEFAULT_VALUES, ...currentSongs!]);
   };
 
   useEffect(() => {

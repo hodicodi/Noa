@@ -9,8 +9,8 @@ import HandleAlbumsTableHead from "../../../components/handle-albums-table-head/
 import NavBar from "../../../components/nav-bar/navBar.tsx";
 import SearchBar from "../../../components/search-bar/SearchBar.tsx";
 import { useAlbumFilterQuery } from "../../../hooks/useAlbumsFilterQuery.ts";
-import newAlbum from "./handleAlbumsPage.consts.ts";
 import Styles from "./handleAlbumsPage.styles.ts";
+import NEW_ALBUM_DEFAULT_VALUES from "./handleAlbumsPage.consts.ts";
 
 const HandleAlbumsPage: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -27,7 +27,7 @@ const HandleAlbumsPage: FC = () => {
 
   const handleAddRow = () => {
     setExistingAlbums();
-    setCurrentAlbums((currentAlbums) => [newAlbum, ...currentAlbums!]);
+    setCurrentAlbums((currentAlbums) => [NEW_ALBUM_DEFAULT_VALUES, ...currentAlbums!]);
   };
 
   useEffect(() => {

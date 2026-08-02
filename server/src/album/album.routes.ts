@@ -5,11 +5,11 @@ import { StatusCodes } from "http-status-codes";
 import albumService from "./album.service.ts";
 import multer from "multer";
 import { HttpError } from "../errors/httpError.ts";
-import { UPLOADS_PATH } from "@shared/src/const/paths.const.ts";
+import { SEARCH_PATH, UPLOADS_PATH } from "@shared/src/const/paths.const.ts";
 
 const albumRouter = Router();
 
-albumRouter.get("/search", async (req: Request<unknown, unknown, unknown, SearchQueryParams>, res: Response<AlbumsRes>) => {
+albumRouter.get(`${SEARCH_PATH}`, async (req: Request<unknown, unknown, unknown, SearchQueryParams>, res: Response<AlbumsRes>) => {
   const { searchQuery } = req.query;
 
   const albums = await albumService.getAlbumsWithQuery(searchQuery);

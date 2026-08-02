@@ -29,9 +29,7 @@ const getSongRecordByUuid = async (uuid: string) => {
     throw new HttpError(StatusCodes.NOT_FOUND, "song not found");
   }
 
-  const songRecord = await s3Service.getFile(song.s3Url);
-
-  return songRecord;
+  return s3Service.getFile(song.s3Url);
 };
 
 const addSong = async (song: DeepPartial<Song>) => {
