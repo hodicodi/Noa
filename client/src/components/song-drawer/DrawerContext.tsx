@@ -5,9 +5,9 @@ import { defaultAlbum, defaultSong } from "@shared/hardCodedInfo.ts";
 import { Album } from "@shared/src/types/album.types.ts";
 
 type DrawerContextType = {
-  currentSong: Song;
+  currentSong: Song | undefined;
   setCurrentSong: (currentSong: Song) => void;
-  currentAlbum: Album;
+  currentAlbum: Album | undefined;
   setCurrentAlbum: (currentAlbum: Album) => void;
   recievedAudioUrl: string | null;
   audioUrl: string | null;
@@ -16,10 +16,10 @@ type DrawerContextType = {
 const DrawerContext = createContext<DrawerContextType | undefined>(undefined);
 
 export const DrawerProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [currentSong, setCurrentSong] = useState<Song>(defaultSong);
-  const [currentAlbum, setCurrentAlbum] = useState<Album>(defaultAlbum);
+  const [currentSong, setCurrentSong] = useState<Song>();
+  const [currentAlbum, setCurrentAlbum] = useState<Album>();
 
-  const { data: recievedAudioUrl = null } = useRecord(currentSong.uuid!);
+  const { data: recievedAudioUrl = null } = useRecord(currentSong?.uuid ?? "");
 
   const [audioUrl, setAudioUrl] = useState<string | null>(recievedAudioUrl!);
 

@@ -10,7 +10,7 @@ import Styles from "./songPlaying.style.ts";
 const SongPlaying: FC<DrawerInfoProps> = ({ isPlay, toggleDrawer, handleIconClick }) => {
   const { currentSong, currentAlbum } = useGlobalDrawer();
 
-  const albumImg = useAlbumImg(currentAlbum.uuid!).data!;
+  const albumImg = useAlbumImg(currentAlbum!.uuid!).data!;
 
   return (
     <>
@@ -27,10 +27,10 @@ const SongPlaying: FC<DrawerInfoProps> = ({ isPlay, toggleDrawer, handleIconClic
                     <CardContent sx={Styles.cardContent}>
                       <Box>
                         <Typography sx={Styles.playlistName} variant="body2" component="div">
-                          {currentSong.name}
+                          {currentSong!.name}
                         </Typography>
                         <Typography sx={Styles.artistName} variant="body2" component="div">
-                          {currentAlbum.artist.name}
+                          {currentAlbum!.artist.name}
                         </Typography>
                       </Box>
                       <IconButton
