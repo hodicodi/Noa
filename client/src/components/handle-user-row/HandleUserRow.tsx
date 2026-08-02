@@ -7,6 +7,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import UserRowFrom from "../user-row-form/UserRowForm.tsx";
 import UserRowPreview from "../user-row-preview/UserRowPreview.tsx";
 import Styles from "./handleUserRow.style.ts";
+import RowPreview, { ColumnValue } from "../row-preview/RowPreview.tsx";
 
 type HandleUserRowProps = {
   user: User;
@@ -19,6 +20,12 @@ type HandleUserRowProps = {
 const HandleUserRow: FC<HandleUserRowProps> = ({ user, edit, setCurrentUsers, currentUsers, setExistingUser }) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(edit);
   const toggleEditMode = (): void => setIsEditMode((prev) => !prev);
+
+  const columnValues: ColumnValue[] = [
+    { value: user.name, isCheckbox: false },
+    { value: user.tz, isCheckbox: false },
+    { value: "isAdministor", isCheckbox: true },
+  ];
 
   const formMethods = useForm<UserRegistrationInput>({
     resolver: zodResolver(UserRegistrationSchema),
@@ -42,7 +49,7 @@ const HandleUserRow: FC<HandleUserRowProps> = ({ user, edit, setCurrentUsers, cu
             setExistingUser={setExistingUser}
           />
         ) : (
-          <UserRowPreview user={user} toggleEditMode={toggleEditMode} />
+          <RowPreview columnValues={columnValues} toggleEditMode={toggleEditMode} />
         )}
       </FormProvider>
     </TableRow>

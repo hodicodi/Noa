@@ -5,8 +5,8 @@ import { SongRegistrationInput, SongRegistrationSchema } from "@shared/src/schem
 import { Song } from "@shared/src/types/song.types.ts";
 import { FC, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import RowPreview, { ColumnValue } from "../row-preview/RowPreview.tsx";
 import SongRowFrom from "../song-row-form/SongRowForm.tsx";
-import SongRowPreview from "../song-row-preview/SongRowPreview.tsx";
 import Styles from "./handleSongRow.styles.ts";
 
 type HandleSongRowProps = {
@@ -20,6 +20,13 @@ type HandleSongRowProps = {
 const HandleSongRow: FC<HandleSongRowProps> = ({ song, isEditable, setCurrentSongs, currentSongs, setExistingSongs }) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(isEditable);
   const toggleEditMode = (): void => setIsEditMode((prev) => !prev);
+
+  const columnValues: ColumnValue[] = [
+    { value: song.name, isCheckbox: false },
+    { value: song.genre, isCheckbox: false },
+    { value: song.album.name, isCheckbox: false },
+    { value: "", isCheckbox: false },
+  ];
 
   const formMethods = useForm<SongRegistrationInput>({
     resolver: zodResolver(SongRegistrationSchema),
@@ -44,7 +51,7 @@ const HandleSongRow: FC<HandleSongRowProps> = ({ song, isEditable, setCurrentSon
           />
         </FormProvider>
       ) : (
-        <SongRowPreview song={song} toggleEditMode={toggleEditMode} />
+        <RowPreview columnValues={columnValues} toggleEditMode={toggleEditMode} />
       )}
     </TableRow>
   );

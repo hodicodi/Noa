@@ -5,8 +5,9 @@ import { Album } from "@shared/src/types/album.types.ts";
 import { FC, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import AlbumRowFrom from "../album-row-form/AlbumRowForm.tsx";
-import AlbumRowPreview from "../album-row-preview/AlbumRowPreview.tsx";
+import AlbumRowPreview, { ColumnValue } from "../row-preview/RowPreview.tsx";
 import Styles from "./handleAlbumRow.styles.ts";
+import RowPreview from "../row-preview/RowPreview.tsx";
 
 type HandleAlbumRowProps = {
   album: Album;
@@ -19,6 +20,12 @@ type HandleAlbumRowProps = {
 const HandleAlbumRow: FC<HandleAlbumRowProps> = ({ album, isEditable, setCurrentAlbums, currentAlbums, setExistingAlbums }) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(isEditable);
   const toggleEditMode = () => setIsEditMode((prev) => !prev);
+
+  const columnValues: ColumnValue[] = [
+    { value: album.name, isCheckbox: false },
+    { value: album.artist.name, isCheckbox: false },
+    { value: "", isCheckbox: false },
+  ];
 
   const formMethods = useForm<AlbumRegistrationInput>({
     resolver: zodResolver(AlbumRegistrationSchema),
@@ -43,7 +50,7 @@ const HandleAlbumRow: FC<HandleAlbumRowProps> = ({ album, isEditable, setCurrent
           />
         </FormProvider>
       ) : (
-        <AlbumRowPreview album={album} toggleEditMode={toggleEditMode} />
+        <RowPreview columnValues={columnValues} toggleEditMode={toggleEditMode} />
       )}
     </TableRow>
   );
