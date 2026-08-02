@@ -1,16 +1,16 @@
 import { FC } from "react";
-import { DrawerProvider, useGlobalDrawer } from "../components/song-drawer/DrawerContext.tsx";
 import { Outlet } from "react-router-dom";
 import DrawerAndSongPlayer from "../components/DrawerAndSongPlayer/DrawerAndSongPlayer.tsx";
+import { useGlobalDrawer } from "../components/song-drawer/DrawerContext.tsx";
 
 const UserLayout: FC = () => {
-const {currentSong, currentAlbum} = useGlobalDrawer()
+  const { currentSong, currentAlbum } = useGlobalDrawer();
 
   return (
-    <DrawerProvider>
+    <>
       <Outlet />
-      {currentSong&&currentAlbum&&<DrawerAndSongPlayer />}
-    </DrawerProvider>
+      {currentSong && currentAlbum && <DrawerAndSongPlayer />}
+    </>
   );
 };
 

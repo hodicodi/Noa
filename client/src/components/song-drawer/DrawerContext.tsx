@@ -1,8 +1,7 @@
+import { Album } from "@shared/src/types/album.types.ts";
 import { Song } from "@shared/src/types/song.types.ts";
 import { createContext, FC, ReactNode, useContext, useEffect, useState } from "react";
 import { useRecord } from "../../hooks/useRecord.ts";
-import { defaultAlbum, defaultSong } from "@shared/hardCodedInfo.ts";
-import { Album } from "@shared/src/types/album.types.ts";
 
 type DrawerContextType = {
   currentSong: Song | undefined;

@@ -1,4 +1,3 @@
-import { playlistInfo } from "@shared/hardCodedInfo.ts";
 import { FC, useEffect, useRef, useState } from "react";
 import { useGlobalDrawer } from "../song-drawer/DrawerContext.tsx";
 import { SongDrawer } from "../song-drawer/SongDrawer.tsx";
@@ -15,7 +14,6 @@ const DrawerAndSongPlayer: FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isPlay, setIsPlay] = useState(false);
   const { recievedAudioUrl } = useGlobalDrawer();
-  const timesRender = useRef(0);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -24,11 +22,8 @@ const DrawerAndSongPlayer: FC = () => {
     if (recievedAudioUrl) {
       audioRef.current = new Audio(recievedAudioUrl);
     }
-    if (timesRender.current > 2) {
-      setIsPlay(true);
-      playAudio();
-    }
-    timesRender.current++;
+    setIsPlay(true);
+    playAudio();
   }, [recievedAudioUrl]);
 
   const playAudio = async () => {

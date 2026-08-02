@@ -1,16 +1,14 @@
 import { FC } from "react";
-import { Outlet } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext.tsx";
-import DrawerAndSongPlayer from "../components/DrawerAndSongPlayer/DrawerAndSongPlayer.tsx";
 import { DrawerProvider } from "../components/song-drawer/DrawerContext.tsx";
+import UserLayout from "./UserLayout.tsx";
 
 const RootLayout: FC = () => {
   const { user, logout } = useAuth();
 
   return (
     <DrawerProvider>
-      <Outlet />
-      <DrawerAndSongPlayer />
+      <UserLayout />
     </DrawerProvider>
   );
 };
