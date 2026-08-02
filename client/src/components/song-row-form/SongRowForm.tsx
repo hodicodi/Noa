@@ -20,7 +20,7 @@ type SongRowFormProps = {
   setExistingSongs: () => void;
 };
 
-const SongRowFrom: FC<SongRowFormProps> = ({ onSaveSongSuccess, song, setiIsEditMode, setCurrentSongs, currentSongs, setExistingSongs }) => {
+const SongRowForm: FC<SongRowFormProps> = ({ onSaveSongSuccess, song, setiIsEditMode, setCurrentSongs, currentSongs, setExistingSongs }) => {
   const { control, handleSubmit, reset } = useFormContext<SongRegistrationInput>();
   const { mutate: saveSong } = useSaveSong(onSaveSongSuccess);
   const { mutate: saveSongRecord } = useSaveSongRecord();
@@ -82,7 +82,7 @@ const SongRowFrom: FC<SongRowFormProps> = ({ onSaveSongSuccess, song, setiIsEdit
           render={({ field }) => (
             <Autocomplete
               options={albums}
-              getOptionLabel={(option) => option.name || ""}
+              getOptionLabel={(option) => option.name ?? ""}
               isOptionEqualToValue={(option, value) => option.uuid === value?.uuid}
               value={field.value ?? null}
               onChange={(_, newValue) => field.onChange(newValue)}
@@ -123,4 +123,4 @@ const SongRowFrom: FC<SongRowFormProps> = ({ onSaveSongSuccess, song, setiIsEdit
   );
 };
 
-export default SongRowFrom;
+export default SongRowForm;
