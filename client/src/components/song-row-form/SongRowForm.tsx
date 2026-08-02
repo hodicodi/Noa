@@ -16,11 +16,10 @@ type SongRowFormProps = {
   song: Song;
   setiIsEditMode: (isEditMode: boolean) => void;
   setCurrentSongs: (songs: Song[]) => void;
-  currentSongs: Song[];
   setExistingSongs: () => void;
 };
 
-const SongRowFrom: FC<SongRowFormProps> = ({ onSaveSongSuccess, song, setiIsEditMode, setCurrentSongs, currentSongs, setExistingSongs }) => {
+const SongRowFrom: FC<SongRowFormProps> = ({ onSaveSongSuccess, song, setiIsEditMode, setCurrentSongs, setExistingSongs }) => {
   const { control, handleSubmit, reset } = useFormContext<SongRegistrationInput>();
   const { mutate: saveSong } = useSaveSong(onSaveSongSuccess);
   const { mutate: saveSongRecord } = useSaveSongRecord();

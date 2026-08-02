@@ -64,7 +64,6 @@ const HandleSongsPage: FC = () => {
                     song={song}
                     isEditable={!song?.uuid}
                     setCurrentSongs={setCurrentSongs}
-                    currentSongs={currentSongs}
                     setExistingSongs={setExistingSongs}
                   />
                 ))}

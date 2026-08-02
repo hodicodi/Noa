@@ -13,11 +13,10 @@ type HandleSongRowProps = {
   song: Song;
   isEditable: boolean;
   setCurrentSongs: (songs: Song[]) => void;
-  currentSongs: Song[];
   setExistingSongs: () => void;
 };
 
-const HandleSongRow: FC<HandleSongRowProps> = ({ song, isEditable, setCurrentSongs, currentSongs, setExistingSongs }) => {
+const HandleSongRow: FC<HandleSongRowProps> = ({ song, isEditable, setCurrentSongs, setExistingSongs }) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(isEditable);
   const toggleEditMode = (): void => setIsEditMode((prev) => !prev);
 
@@ -30,24 +29,23 @@ const HandleSongRow: FC<HandleSongRowProps> = ({ song, isEditable, setCurrentSon
     formMethods.reset(song);
   }, [song]);
 
-  return (
-    <TableRow key={song.uuid} sx={Styles.TableRow}>
-      {isEditMode ? (
-        <FormProvider {...formMethods}>
-          <SongRowFrom
-            onSaveSongSuccess={toggleEditMode}
-            song={song}
-            setiIsEditMode={setIsEditMode}
-            setCurrentSongs={setCurrentSongs}
-            currentSongs={currentSongs}
-            setExistingSongs={setExistingSongs}
-          />
-        </FormProvider>
-      ) : (
-        <SongRowPreview song={song} toggleEditMode={toggleEditMode} />
-      )}
-    </TableRow>
-  );
+    return (
+      <TableRow sx={Styles.TableRow}>
+        {isEditMode ? (
+          <FormProvider {...formMethods}>
+            <SongRowFrom
+              onSaveSongSuccess={toggleEditMode}
+              song={song}
+              setiIsEditMode={setIsEditMode}
+              setCurrentSongs={setCurrentSongs}
+              setExistingSongs={setExistingSongs}
+            />
+          </FormProvider>
+        ) : (
+          <SongRowPreview song={song} toggleEditMode={toggleEditMode} />
+        )}
+      </TableRow>
+    );
 };
 
 export default HandleSongRow;
