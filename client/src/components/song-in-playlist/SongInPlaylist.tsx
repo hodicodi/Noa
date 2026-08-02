@@ -12,11 +12,12 @@ type SongInPlaylistProps = {
 };
 
 const SongInPlaylist: FC<SongInPlaylistProps> = ({ song, album }) => {
-  const { setCurrentSong, setCurrentAlbum } = useGlobalDrawer();
+  const { setCurrentSong, setCurrentAlbum, setPlay } = useGlobalDrawer();
 
   const songInPlaylistClick = () => {
     setCurrentSong(song);
     setCurrentAlbum(album)
+    setPlay(true);
   };
 
   {
