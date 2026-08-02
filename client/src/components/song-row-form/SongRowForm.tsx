@@ -81,8 +81,8 @@ const SongRowFrom: FC<SongRowFormProps> = ({ onSaveSongSuccess, song, setiIsEdit
           control={control}
           render={({ field }) => (
             <Autocomplete
-              options={albums}
-              getOptionLabel={(option) => option.name || ""}
+              options={albums!}
+              getOptionLabel={(option) => option.name ?? ""}
               isOptionEqualToValue={(option, value) => option.uuid === value?.uuid}
               value={field.value ?? null}
               onChange={(_, newValue) => field.onChange(newValue)}

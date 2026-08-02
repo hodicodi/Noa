@@ -9,7 +9,7 @@ const getSongFilterQuery = async (searchQuery: string): Promise<Song[] | null> =
   const response = await API.get<SongsRes>(SONGS_PATH + "/search", {
     params: { searchQuery },
   });
-  return response.data?.songs ?? [];
+  return response?.data?.songs ?? [];
 };
 
 export const useSongFilterQuery = (searchQuery: string) => {
