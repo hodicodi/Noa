@@ -5,9 +5,8 @@ import { Album } from "@shared/src/types/album.types.ts";
 import { FC, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import AlbumRowFrom from "../album-row-form/AlbumRowForm.tsx";
-import AlbumRowPreview, { ColumnValue } from "../row-preview/RowPreview.tsx";
+import RowPreview, { ColumnValue } from "../row-preview/RowPreview.tsx";
 import Styles from "./handleAlbumRow.styles.ts";
-import RowPreview from "../row-preview/RowPreview.tsx";
 
 type HandleAlbumRowProps = {
   album: Album;
