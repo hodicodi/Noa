@@ -13,6 +13,7 @@ const dropdown: SxProps = {
     justifyContent: "flex-start",
   bgcolor: "rgb(49, 48, 48)",
     color: "#ffffff",
+    paddingLeft: '0.2%',
   },
   justifyContent: "flex-start",
 };

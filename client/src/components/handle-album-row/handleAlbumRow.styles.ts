@@ -9,9 +9,9 @@ const autoCompleteTextField: SxProps = {
 };
 
 const autoComplete: SxProps = {
-  "& .MuiAutocomplete-option": {
-    color: "white",
-  },
+  '& .MuiSvgIcon-root': {
+      color: 'white',
+    },
 };
 
 const handleUsersPage: SxProps = {
