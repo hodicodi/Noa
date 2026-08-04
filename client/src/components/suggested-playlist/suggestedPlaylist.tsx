@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { useAlbumImg } from "../../hooks/useAlbumImg.ts";
 import { PLAYLIST_PATH } from "../../routes/path.constants.ts";
 import style from "./suggestedPlaylist.style.ts";
-import { AlbumOverviewProps } from "../recent-playlist/lastPlaylist.consts.ts";
+import { AlbumPreviewProps } from "../recent-playlist/lastPlaylist.consts.ts";
 
-const PlaylistCard: FC<AlbumOverviewProps> = ({ album }) => {
+const PlaylistCard: FC<AlbumPreviewProps> = ({ album }) => {
   const navigate = useNavigate();
 
   const suggestedPlaylistClick = () => {

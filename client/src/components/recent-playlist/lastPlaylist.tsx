@@ -7,10 +7,10 @@ import Typography from "@mui/material/Typography";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAlbumImg } from "../../hooks/useAlbumImg.ts";
-import { AlbumOverviewProps } from "./lastPlaylist.consts.ts";
+import { AlbumPreviewProps } from "./lastPlaylist.consts.ts";
 import style from "./recentPlaylist.style.ts";
 
-const LastPlaylistCard: FC<AlbumOverviewProps> = ({ album }) => {
+const LastPlaylistCard: FC<AlbumPreviewProps> = ({ album }) => {
   const navigate = useNavigate();
 
   const suggestedPlaylistClick = () => {
