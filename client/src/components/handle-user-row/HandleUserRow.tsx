@@ -5,7 +5,6 @@ import { User } from "@shared/src/types/user.type.ts";
 import { FC, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import UserRowFrom from "../user-row-form/UserRowForm.tsx";
-import UserRowPreview from "../user-row-preview/UserRowPreview.tsx";
 import Styles from "./handleUserRow.style.ts";
 import RowPreview, { ColumnValue } from "../row-preview/RowPreview.tsx";
 

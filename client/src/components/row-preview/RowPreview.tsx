@@ -14,21 +14,12 @@ type PreviewProps = {
   columnValues: ColumnValue[];
 };
 
-const RowPreview: FC<PreviewProps> = ({ columnValues, toggleEditMode }) => {
-  const { control } = useFormContext();
-
-  return (
+const RowPreview: FC<PreviewProps> = ({ columnValues, toggleEditMode }) => (
     <>
       {columnValues.map((columnValue) =>
         columnValue.isCheckbox ? (
           <TableCell sx={Styles.tableCell} align="center">
-            <Controller
-              name={columnValue.value? columnValue.value : ""}
-              control={control}
-              render={({ field }) => (
-                <Checkbox {...field} onChange={(e) => field.onChange(e.target.checked)} sx={Styles.checkbox} disabled={true} checked={!!field.value} />
-              )}
-            />
+              <Checkbox sx={Styles.checkbox} disabled={true} checked={!!columnValue.value} />
           </TableCell>
         ) : (
           <TableCell sx={Styles.tableCell} component="th" scope="row">
@@ -42,6 +33,6 @@ const RowPreview: FC<PreviewProps> = ({ columnValues, toggleEditMode }) => {
       <TableCell sx={Styles.tableCell} align="center" />
     </>
   );
-};
+
 
 export default RowPreview;
