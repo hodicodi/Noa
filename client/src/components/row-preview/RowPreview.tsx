@@ -5,7 +5,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import Styles from "../handle-user-row/handleUserRow.style.ts";
 
 export type ColumnValue = {
-  value: string;
+  value?: string;
   isCheckbox: boolean;
 };
 
@@ -23,7 +23,7 @@ const RowPreview: FC<PreviewProps> = ({ columnValues, toggleEditMode }) => {
         columnValue.isCheckbox ? (
           <TableCell sx={Styles.tableCell} align="center">
             <Controller
-              name={columnValue.value}
+              name={columnValue.value? columnValue.value : ""}
               control={control}
               render={({ field }) => (
                 <Checkbox {...field} onChange={(e) => field.onChange(e.target.checked)} sx={Styles.checkbox} disabled={true} checked={!!field.value} />
@@ -32,7 +32,7 @@ const RowPreview: FC<PreviewProps> = ({ columnValues, toggleEditMode }) => {
           </TableCell>
         ) : (
           <TableCell sx={Styles.tableCell} component="th" scope="row">
-            {columnValue.value}
+            {columnValue.value? columnValue.value : ""}
           </TableCell>
         ),
       )}

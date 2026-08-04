@@ -25,7 +25,7 @@ const HandleSongRow: FC<HandleSongRowProps> = ({ song, isEditable, setCurrentSon
     { value: song.name, isCheckbox: false },
     { value: song.genre, isCheckbox: false },
     { value: song.album.name, isCheckbox: false },
-    { value: "", isCheckbox: false },
+    { isCheckbox: false },
   ];
 
   const formMethods = useForm<SongRegistrationInput>({

@@ -24,7 +24,7 @@ const HandleAlbumRow: FC<HandleAlbumRowProps> = ({ album, isEditable, setCurrent
   const columnValues: ColumnValue[] = [
     { value: album.name, isCheckbox: false },
     { value: album.artist.name, isCheckbox: false },
-    { value: "", isCheckbox: false },
+    {  isCheckbox: false },
   ];
 
   const formMethods = useForm<AlbumRegistrationInput>({
