@@ -26,4 +26,6 @@ export type SaveAlbum = {
   artist: Artist;
 };
 
-
+export type AlbumImageRes = {
+  albumImg: Buffer;
+}

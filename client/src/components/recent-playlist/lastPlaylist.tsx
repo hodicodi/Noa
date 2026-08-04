@@ -7,11 +7,12 @@ import Typography from "@mui/material/Typography";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAlbumImg } from "../../hooks/useAlbumImg.ts";
-import { AlbumPreviewProps } from "./lastPlaylist.consts.ts";
+import { AlbumPreviewProps } from "./lastPlaylist.types.ts";
 import style from "./recentPlaylist.style.ts";
 
 const LastPlaylistCard: FC<AlbumPreviewProps> = ({ album }) => {
   const navigate = useNavigate();
+  const albumImg = useAlbumImg(album.uuid!).data!;
 
   const suggestedPlaylistClick = () => {
     navigate("/playlist");
@@ -23,7 +24,7 @@ const LastPlaylistCard: FC<AlbumPreviewProps> = ({ album }) => {
         <Box sx={style.box}>
           <Grid container spacing={0}>
             <Grid size={1.9}>
-              <CardMedia sx={style.cardMedia} component="img" image={useAlbumImg(album.uuid!).data!} alt="Playlist picture" />
+              <CardMedia sx={style.cardMedia} component="img" image={albumImg} alt="Playlist picture" />
             </Grid>
             <Grid size={10.1}>
               <CardContent sx={style.cardContent}>

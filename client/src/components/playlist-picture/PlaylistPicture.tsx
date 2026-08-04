@@ -4,7 +4,7 @@ import { PlaylistOverviewProps } from "@shared/src/types/personalPlaylist.types.
 import Styles from "./PlaylistPicture.style.ts";
 import { FC } from "react";
 
-const PlaylistPicture: FC<PlaylistOverviewProps> = ({ name, avaterPicture, artist }) => (
+const PlaylistPicture: FC<PlaylistOverviewProps> = ({ name, avaterPicture, artistName }) => (
   <Box sx={Styles.playlistMainPreview}>
     <Box sx={Styles.imgContainer}>
       <Box sx={Styles.playlistImg} component="img" src={avaterPicture} />
@@ -14,7 +14,7 @@ const PlaylistPicture: FC<PlaylistOverviewProps> = ({ name, avaterPicture, artis
         {name}
       </Typography>
       <Typography sx={Styles.artistName} variant="body2">
-        {artist}
+        {artistName}
       </Typography>
     </Box>
   </Box>

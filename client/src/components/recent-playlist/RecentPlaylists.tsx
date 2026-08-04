@@ -2,10 +2,10 @@ import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { FC } from "react";
 import { useAllAlbums } from "../../hooks/useAllAlbums.ts";
-import LastPlaylistCard from "./lastPlaylist.tsx";
+import LastPlaylistCard from "./LastPlaylist.tsx";
 
 const LastPlaylists: FC = () => {
-  const { data: albums, isLoading } = useAllAlbums();
+  const { data: albums = [], isLoading } = useAllAlbums();
 
   if (isLoading) {
     return <></>;

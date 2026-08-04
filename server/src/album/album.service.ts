@@ -40,9 +40,7 @@ const getAlbumImgByUuid = async (uuid: string) => {
   }
   const albumUrl = album.imgUrl;
 
-  const albumImg = await s3Service.getFile(album.imgUrl!);
-
-  return albumImg;
+  return await s3Service.getFile(album.imgUrl!);
 };
 
 const createAlbum = async (album: DeepPartial<Album>) => {

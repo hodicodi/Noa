@@ -22,6 +22,7 @@ albumRouter.get(`${UPLOADS_PATH}/:uuid`, async (req: Request<GeneralParams, unkn
   const rawDataStream = await albumService.getAlbumImgByUuid(uuid);
   res.setHeader("Content-Type", rawDataStream.contentType);
   const rawData = await rawDataStream.body?.transformToByteArray();
+  res.status(StatusCodes.CREATED).json({ albumImg:  Buffer.from(rawData!)});
   res.send(Buffer.from(rawData!));
 });
 
