@@ -9,7 +9,7 @@ import NavBar from "../../../components/nav-bar/navBar.tsx";
 import SearchBar from "../../../components/search-bar/SearchBar.tsx";
 import TableHeader from "../../../components/table-header/TableHeader.tsx";
 import { useSongFilterQuery } from "../../../hooks/useSongFilterQuery.ts";
-import NEW_SONG_DEFAULT_VALUES from "./handleSongsPage.consts.ts";
+import { NEW_SONG_DEFAULT_VALUES, COLUMN_NAMES } from "./handleSongsPage.consts.ts";
 import Styles from "./handleSongsPage.styles.ts";
 
 const HandleSongsPage: FC = () => {
@@ -17,14 +17,12 @@ const HandleSongsPage: FC = () => {
   const { data: filteredSongs = [] } = useSongFilterQuery(searchQuery);
   const [currentSongs, setCurrentSongs] = useState(filteredSongs);
 
-  const columnsNames = ["Name", "Genre", "Album name", "Record file"];
-
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
 
   const setExistingSongs = () => {
-    setCurrentSongs((currentSongs ?? []).filter((song) => song.uuid));
+    setCurrentSongs(currentSongs!.filter((song) => song.uuid));
   };
 
   const handleAddRow = () => {
@@ -49,7 +47,7 @@ const HandleSongsPage: FC = () => {
 
           <TableContainer sx={Styles.table} component={Paper}>
             <Table>
-              <TableHeader handleAddRow={handleAddRow} columnNames={columnsNames}/>
+              <TableHeader handleAddRow={handleAddRow} columnNames={COLUMN_NAMES} />
               <TableBody>
                 {currentSongs?.map((song, index) => (
                   <HandleSongRow

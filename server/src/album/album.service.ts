@@ -6,7 +6,7 @@ import { S3File, S3FileDescriptor } from "../s3-service/s3service.types.ts";
 import { GENERAL_S3_PATH } from "../song/song.consts.ts";
 import { Album } from "./album.entity.ts";
 import { IMG_EXT } from "@shared/src/const/fileExtensions.consts.ts";
-import { AUDIO_FILE } from "@shared/src/const/binaryData.consts.ts";
+import { IMG_FILE } from "@shared/src/const/binaryData.consts.ts";
 
 const getAllAlbums = () =>
   Album.find({
@@ -46,9 +46,9 @@ const getAlbumsWithQuery = async (searchQuery: string) =>
   });
 
 const addImgFile = async (file: Express.Multer.File, title: string) => {
-  const myDescription: S3FileDescriptor = { name: title, extension: `${IMG_EXT}`, path: GENERAL_S3_PATH, contentType: AUDIO_FILE };
+  const myDescription: S3FileDescriptor = { name: title, extension: IMG_EXT, path: GENERAL_S3_PATH, contentType: IMG_FILE };
 
-  const myfile: S3File = { name: title, extension: `${IMG_EXT}`, path: GENERAL_S3_PATH, contentType: AUDIO_FILE, content: file.buffer };
+  const myfile: S3File = { name: title, extension: IMG_EXT, path: GENERAL_S3_PATH, contentType: IMG_FILE, content: file.buffer };
 
   const saveUrl = await s3Service.initializeCleanerApi(myDescription);
 

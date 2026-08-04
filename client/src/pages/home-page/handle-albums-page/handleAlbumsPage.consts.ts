@@ -8,11 +8,13 @@ const NEW_ARTIST_DEFAULT_VALUES: Artist = {
   albums: [],
 };
 
-export const NEW_ALBUM_DEFAULT_VALUES: Album = {
+const NEW_ALBUM_DEFAULT_VALUES: Album = {
   name: "",
   songs: [],
   imgUrl: "",
   artist: NEW_ARTIST_DEFAULT_VALUES,
 };
 
-export default NEW_ALBUM_DEFAULT_VALUES;
+const COLUMN_NAMES = ["Name", "Artist name", "Album picture"];
+
+export {NEW_ALBUM_DEFAULT_VALUES, COLUMN_NAMES};

@@ -9,7 +9,7 @@ import { UPLOADS_PATH, SEARCH_PATH } from "@shared/src/const/paths.const.ts";
 
 const songRouter = Router();
 
-songRouter.get(`${SEARCH_PATH}`, async (req: Request<unknown, unknown, unknown, SearchQueryParams>, res: Response<SongsRes>) => {
+songRouter.get(SEARCH_PATH, async (req: Request<unknown, unknown, unknown, SearchQueryParams>, res: Response<SongsRes>) => {
   const { searchQuery } = req.query;
 
   const songs = await songService.getSongsWithQuery(searchQuery);

@@ -6,7 +6,7 @@ import { SEARCH_PATH } from "@shared/src/const/paths.const.ts";
 
 const userRouter = Router();
 
-userRouter.get(`${SEARCH_PATH}`, async (req: Request<unknown, unknown, unknown, UserSearchQueryParams>, res: Response<UsersRes>) => {
+userRouter.get(SEARCH_PATH, async (req: Request<unknown, unknown, unknown, UserSearchQueryParams>, res: Response<UsersRes>) => {
   const searchQuery = req.query.searchQuery;
 
   const users = await userService.getUsersWithQuery(searchQuery);

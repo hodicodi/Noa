@@ -8,6 +8,7 @@ import { Song } from "./song.entity.ts";
 import { S3File, S3FileDescriptor } from "../s3-service/s3service.types.ts";
 import { GENERAL_S3_PATH } from "./song.consts.ts";
 import { RECORD_EXT } from "@shared/src/const/fileExtensions.consts.ts";
+import { RECORD_FILE } from "@shared/src/const/binaryData.consts.ts";
 dotenv.config();
 
 const getAllSongs = () => Song.find();
@@ -35,12 +36,11 @@ const getSongRecordByUuid = async (uuid: string) => {
 const addSong = async (song: DeepPartial<Song>) => {
   const s3Url = `${GENERAL_S3_PATH}/${song.name}.${RECORD_EXT}`;
   song.s3Url = s3Url;
-  Song.save(song);
-  return song;
+  return Song.save(song);
 };
 
-const getSongsWithQuery = async (searchQuery: string) =>
-  await Song.find({
+const getSongsWithQuery = (searchQuery: string) =>
+  Song.find({
     where: [
       { name: ILike(`%${searchQuery}%`) },
       { album: { name: ILike(`%${searchQuery}%`) } },
@@ -56,9 +56,9 @@ const getSongsWithQuery = async (searchQuery: string) =>
   });
 
 const addRecordFile = async (file: Express.Multer.File, title: string) => {
-  const myDescription: S3FileDescriptor = { name: title, extension: `${RECORD_EXT}`, path: GENERAL_S3_PATH, contentType: "audio/mpeg" };
+  const myDescription: S3FileDescriptor = { name: title, extension: RECORD_EXT, path: GENERAL_S3_PATH, contentType: RECORD_FILE };
 
-  const myfile: S3File = { name: title, extension: `${RECORD_EXT}`, path: GENERAL_S3_PATH, contentType: "audio/mpeg", content: file.buffer };
+  const myfile: S3File = { name: title, extension: RECORD_EXT, path: GENERAL_S3_PATH, contentType: RECORD_FILE, content: file.buffer };
 
   const saveUrl = await s3Service.initializeCleanerApi(myDescription);
 

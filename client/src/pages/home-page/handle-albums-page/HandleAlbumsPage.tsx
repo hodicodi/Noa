@@ -9,15 +9,13 @@ import NavBar from "../../../components/nav-bar/navBar.tsx";
 import SearchBar from "../../../components/search-bar/SearchBar.tsx";
 import TableHeader from "../../../components/table-header/TableHeader.tsx";
 import { useAlbumFilterQuery } from "../../../hooks/useAlbumsFilterQuery.ts";
-import NEW_ALBUM_DEFAULT_VALUES from "./handleAlbumsPage.consts.ts";
+import {NEW_ALBUM_DEFAULT_VALUES, COLUMN_NAMES} from "./handleAlbumsPage.consts.ts";
 import Styles from "./handleAlbumsPage.styles.ts";
 
 const HandleAlbumsPage: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const { data: filteredAlbums = [] } = useAlbumFilterQuery(searchQuery);
   const [currentAlbums, setCurrentAlbums] = useState(filteredAlbums);
-
-  const columnsNames = ["Name", "Artist name", "Album picture"];
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
@@ -49,7 +47,7 @@ const HandleAlbumsPage: FC = () => {
 
           <TableContainer sx={Styles.table} component={Paper}>
             <Table>
-              <TableHeader handleAddRow={handleAddRow} columnNames={columnsNames}/>
+              <TableHeader handleAddRow={handleAddRow} columnNames={COLUMN_NAMES} />
               <TableBody>
                 {currentAlbums?.map((album, index) => (
                   <HandleAlbumRow

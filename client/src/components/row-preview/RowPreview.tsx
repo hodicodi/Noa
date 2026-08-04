@@ -7,6 +7,7 @@ import Styles from "../handle-user-row/handleUserRow.style.ts";
 export type ColumnValue = {
   value?: string;
   isCheckbox: boolean;
+  isChecked?: boolean;
 };
 
 type PreviewProps = {
@@ -19,7 +20,7 @@ const RowPreview: FC<PreviewProps> = ({ columnValues, toggleEditMode }) => (
       {columnValues.map((columnValue) =>
         columnValue.isCheckbox ? (
           <TableCell sx={Styles.tableCell} align="center">
-              <Checkbox sx={Styles.checkbox} disabled={true} checked={!!columnValue.value} />
+              <Checkbox sx={Styles.checkbox} disabled={true} checked={columnValue.isChecked} />
           </TableCell>
         ) : (
           <TableCell sx={Styles.tableCell} component="th" scope="row">

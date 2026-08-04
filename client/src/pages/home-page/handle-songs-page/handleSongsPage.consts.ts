@@ -5,7 +5,9 @@ import { NEW_ALBUM_DEFAULT_VALUES } from "../handle-albums-page/handleAlbumsPage
 const NEW_SONG_DEFAULT_VALUES: Song = {
   name: "",
   genre: SongType.Rock,
-  album: NEW_ALBUM_DEFAULT_VALUES
+  album: NEW_ALBUM_DEFAULT_VALUES,
 };
 
-export default NEW_SONG_DEFAULT_VALUES;
+const COLUMN_NAMES = ["Name", "Genre", "Album name", "Record file"];
+
+export {NEW_SONG_DEFAULT_VALUES, COLUMN_NAMES};

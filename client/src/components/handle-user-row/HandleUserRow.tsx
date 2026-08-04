@@ -23,7 +23,7 @@ const HandleUserRow: FC<HandleUserRowProps> = ({ user, edit, setCurrentUsers, cu
   const columnValues: ColumnValue[] = [
     { value: user.name, isCheckbox: false },
     { value: user.tz, isCheckbox: false },
-    { value: "isAdministor", isCheckbox: true },
+    { isChecked: user.isAdministor, isCheckbox: true }
   ];
 
   const formMethods = useForm<UserRegistrationInput>({

@@ -9,7 +9,7 @@ import { SEARCH_PATH, UPLOADS_PATH } from "@shared/src/const/paths.const.ts";
 
 const albumRouter = Router();
 
-albumRouter.get(`${SEARCH_PATH}`, async (req: Request<unknown, unknown, unknown, SearchQueryParams>, res: Response<AlbumsRes>) => {
+albumRouter.get(SEARCH_PATH, async (req: Request<unknown, unknown, unknown, SearchQueryParams>, res: Response<AlbumsRes>) => {
   const { searchQuery } = req.query;
 
   const albums = await albumService.getAlbumsWithQuery(searchQuery);
