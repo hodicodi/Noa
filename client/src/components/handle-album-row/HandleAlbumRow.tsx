@@ -2,23 +2,31 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import TableRow from "@mui/material/TableRow";
 import { AlbumRegistrationInput, AlbumRegistrationSchema } from "@shared/src/schemas/albumValidation.schema.ts";
 import { Album } from "@shared/src/types/album.types.ts";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import AlbumRowFrom from "../album-row-form/AlbumRowForm.tsx";
-import AlbumRowPreview from "../album-row-preview/AlbumRowPreview.tsx";
+import RowPreview from "../row-preview/RowPreview.tsx";
 import Styles from "./handleAlbumRow.styles.ts";
+import { ColumnValue } from "../row-preview/rowPreview.consts.tsx";
+import { IMG_EXT } from "@shared/src/const/fileExtensions.consts.ts";
 
 type HandleAlbumRowProps = {
   album: Album;
-  edit: boolean;
+  isEditable: boolean;
   setCurrentAlbums: (albums: Album[]) => void;
   currentAlbums: Album[];
-  setExistingAlbums: () => void
+  setExistingAlbums: () => void;
 };
 
-const HandleAlbumRow: FC<HandleAlbumRowProps> = ({ album, edit, setCurrentAlbums, currentAlbums, setExistingAlbums}) => {
-  const [isEditMode, setIsEditMode] = useState<boolean>(edit);
-  const toggleEditMode = (): void => setIsEditMode((prev) => !prev);
+const HandleAlbumRow: FC<HandleAlbumRowProps> = ({ album, isEditable, setCurrentAlbums, currentAlbums, setExistingAlbums }) => {
+  const [isEditMode, setIsEditMode] = useState<boolean>(isEditable);
+  const toggleEditMode = () => setIsEditMode((prev) => !prev);
+
+  const columnValues: ColumnValue[] = useMemo(() => [
+    { value: album.name },
+    { value: album.artist.name },
+    { value: `${album.name}.${IMG_EXT}`},
+  ],[album]);
 
   const formMethods = useForm<AlbumRegistrationInput>({
     resolver: zodResolver(AlbumRegistrationSchema),
@@ -31,8 +39,8 @@ const HandleAlbumRow: FC<HandleAlbumRowProps> = ({ album, edit, setCurrentAlbums
 
   return (
     <TableRow key={album.uuid} sx={Styles.TableRow}>
-      <FormProvider {...formMethods}>
-        {isEditMode ? (
+      {isEditMode ? (
+        <FormProvider {...formMethods}>
           <AlbumRowFrom
             onSaveAlbumSuccess={toggleEditMode}
             album={album}
@@ -41,10 +49,10 @@ const HandleAlbumRow: FC<HandleAlbumRowProps> = ({ album, edit, setCurrentAlbums
             currentAlbums={currentAlbums}
             setExistingAlbums={setExistingAlbums}
           />
-        ) : (
-          <AlbumRowPreview album={album} toggleEditMode={toggleEditMode} />
-        )}
-      </FormProvider>
+        </FormProvider>
+      ) : (
+        <RowPreview columnValues={columnValues} toggleEditMode={toggleEditMode} />
+      )}
     </TableRow>
   );
 };

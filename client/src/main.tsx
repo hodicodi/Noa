@@ -3,7 +3,6 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { AuthProvider } from "./auth/AuthContext.tsx";
 import Shell from "./shell.tsx";
-import { DialogProvider } from "./components/custom-dialog/CustomDialogContext.tsx";
 
 const queryClient = new QueryClient();
 

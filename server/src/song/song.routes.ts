@@ -1,13 +1,21 @@
-import { GeneralParams } from "@shared/src/types/general.types.ts";
+import { GeneralParams, SearchQueryParams } from "@shared/src/types/general.types.ts";
 import { SaveSongReqBody, SongRes, SongsRes } from "@shared/src/types/song.types.ts";
 import { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
 import multer from "multer";
 import { HttpError } from "../errors/httpError.ts";
 import songService from "./song.service.ts";
-import { UPLOADS_PATH } from "@shared/src/const/paths.const.ts";
+import { UPLOADS_PATH, SEARCH_PATH } from "@shared/src/const/paths.const.ts";
 
 const songRouter = Router();
+
+songRouter.get(SEARCH_PATH, async (req: Request<unknown, unknown, unknown, SearchQueryParams>, res: Response<SongsRes>) => {
+  const { searchQuery } = req.query;
+
+  const songs = await songService.getSongsWithQuery(searchQuery);
+
+  res.status(StatusCodes.OK).json({ songs });
+});
 
 songRouter.get("/:uuid", async (req: Request<GeneralParams, unknown, unknown>, res: Response<SongRes>) => {
   const { uuid } = req.params;
@@ -16,9 +24,9 @@ songRouter.get("/:uuid", async (req: Request<GeneralParams, unknown, unknown>, r
   res.status(StatusCodes.OK).json({ song });
 });
 
-songRouter.get("/mp3/:uuid", async (req: Request<GeneralParams, unknown, unknown>, res: Response) => {
+songRouter.get(`${UPLOADS_PATH}/:uuid`, async (req: Request<GeneralParams, unknown, unknown>, res: Response) => {
   const { uuid } = req.params;
-  const rawDataStream = await songService.getSongMp3ByUuid(uuid);
+  const rawDataStream = await songService.getSongRecordByUuid(uuid);
   res.setHeader("Content-Type", rawDataStream.contentType);
   const rawData = await rawDataStream.body?.transformToByteArray();
   res.send(Buffer.from(rawData!));
@@ -47,7 +55,7 @@ songRouter.post(UPLOADS_PATH, uploadMulter.single("audioFile"), async (req: Requ
     throw new HttpError(StatusCodes.NOT_FOUND, "No audio file provided");
   }
 
-  songService.addMp3File(file, title);
+  await songService.addRecordFile(file, title);
 
   res.status(StatusCodes.CREATED).json({ message: "File and metadata uploaded successfully" });
 });

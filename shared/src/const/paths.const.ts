@@ -4,6 +4,7 @@ const PERSONAL_PLAYLISTS_PATH = "/personal-playlists";
 const ALBUMS_PATH = "/albums";
 const SONGS_PATH = "/songs";
 const UPLOADS_PATH = "/uploads";
+const SEARCH_PATH = "/search";
 
 export {
   USERS_PATH,
@@ -11,5 +12,6 @@ export {
   PERSONAL_PLAYLISTS_PATH,
   ALBUMS_PATH,
   SONGS_PATH,
-  UPLOADS_PATH
+  UPLOADS_PATH,
+  SEARCH_PATH
 };

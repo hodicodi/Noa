@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { HOME_PATH, PLAYLIST_PATH, ADMINISTOR_PATH, HADNLE_USERS_PATH, HANDLE_ALBUMS_PATH } from "./path.constants.ts";
+import { HOME_PATH, PLAYLIST_PATH, ADMINISTOR_PATH, HADNLE_USERS_PATH, HANDLE_ALBUMS_PATH, HANDLE_SONGS_PATH } from "./path.constants.ts";
 import RootLayout from "../layouts/RootLayout.tsx";
 import HomePage from "../pages/home-page/home-page/HomePage.tsx";
 import PlaylistPage from "../pages/home-page/playlist-page/PlaylistPage.tsx";
@@ -7,6 +7,7 @@ import AdministorPage from "../pages/home-page/administor-page/administorPage.ts
 import AdministorLayout from "../layouts/AdministorLayout.tsx";
 import HandleUsersPage from "../pages/home-page/handle-users-page/handleUsersPage.tsx";
 import HandleAlbumsPage from "../pages/home-page/handle-albums-page/HandleAlbumsPage.tsx";
+import HandleSongsPage from "../pages/home-page/handle-songs-page/HandleSongsPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: ADMINISTOR_PATH, element: <AdministorPage /> },
       { path: HADNLE_USERS_PATH, element: <HandleUsersPage /> },
       { path: HANDLE_ALBUMS_PATH, element: <HandleAlbumsPage /> },
+      { path: HANDLE_SONGS_PATH, element: <HandleSongsPage /> },
     ],
   },
 ]);

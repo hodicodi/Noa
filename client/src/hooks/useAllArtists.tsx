@@ -3,7 +3,7 @@ import { Artist, ArtistsRes } from "@shared/src/types/artist.type.ts";
 import { useQuery } from "@tanstack/react-query";
 import { API } from "../api/services/albumService.ts";
 
-const USE_ARTISTS_FILTER_KEY = "artist"
+const USE_ARTISTS_FILTER_KEY = "useArtistsFilterKey"
 
 const getAllArtists = async (): Promise<Artist[]> => {
   const response = await API.get<ArtistsRes>(ARTISTS_PATH);

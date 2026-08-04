@@ -1,6 +1,5 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-
 import { SongOverviewProps } from "@shared/src/types/song.types.ts";
 import { FC } from "react";
 import { useGlobalDrawer } from "../song-drawer/DrawerContext.tsx";
