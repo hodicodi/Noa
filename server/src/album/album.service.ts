@@ -46,11 +46,7 @@ const getAlbumImgByUuid = async (uuid: string) => {
 };
 
 const createAlbum = async (album: DeepPartial<Album>) => {
-<<<<<<< HEAD
-  const imgUrl = GENERAL_S3_PATH + `${album.name}`;
-=======
   const imgUrl = `${GENERAL_S3_PATH}/${album.name}.${IMG_EXT}`;
->>>>>>> 1969bf69cebdc2703b715b91e48e6c4884bceae0
   album.imgUrl = imgUrl;
   return Album.save(album);
 };
@@ -66,11 +62,7 @@ const getAlbumsWithQuery = async (searchQuery: string) =>
 const addImgFile = async (file: Express.Multer.File, title: string) => {
   const myDescription: S3FileDescriptor = { name: title, extension: IMG_EXT, path: GENERAL_S3_PATH, contentType: IMG_FILE };
 
-<<<<<<< HEAD
-  const myfile: S3File = { name: title, extension: "png", path: GENERAL_S3_PATH, contentType: "image/png", content: file.buffer };
-=======
   const myfile: S3File = { name: title, extension: IMG_EXT, path: GENERAL_S3_PATH, contentType: IMG_FILE, content: file.buffer };
->>>>>>> 1969bf69cebdc2703b715b91e48e6c4884bceae0
 
   const saveUrl = await s3Service.initializeCleanerApi(myDescription);
 
