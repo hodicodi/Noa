@@ -4,7 +4,6 @@ import { useAllAlbums } from "../../hooks/useAllAlbums.ts";
 import style from "./suggestedPlaylist.style.ts";
 import PlaylistCard from "./suggestedPlaylist.tsx";
 
-
 const SuggestedPlaylists: React.FC = () => {
   const { data: albums, isLoading } = useAllAlbums()
 
