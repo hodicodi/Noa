@@ -6,7 +6,8 @@ import { FC, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import UserRowFrom from "../user-row-form/UserRowForm.tsx";
 import Styles from "./handleUserRow.style.ts";
-import RowPreview, { ColumnValue } from "../row-preview/RowPreview.tsx";
+import RowPreview from "../row-preview/RowPreview.tsx";
+import { ColumnValue } from "../row-preview/rowPreview.consts.tsx";
 
 type HandleUserRowProps = {
   user: User;
@@ -21,9 +22,9 @@ const HandleUserRow: FC<HandleUserRowProps> = ({ user, edit, setCurrentUsers, cu
   const toggleEditMode = (): void => setIsEditMode((prev) => !prev);
 
   const columnValues: ColumnValue[] = [
-    { value: user.name, isCheckbox: false },
-    { value: user.tz, isCheckbox: false },
-    { isChecked: user.isAdministor, isCheckbox: true }
+    { value: user.name },
+    { value: user.tz},
+    { isChecked: user.isAdministor }
   ];
 
   const formMethods = useForm<UserRegistrationInput>({

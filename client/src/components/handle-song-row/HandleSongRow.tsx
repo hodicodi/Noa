@@ -5,9 +5,10 @@ import { SongRegistrationInput, SongRegistrationSchema } from "@shared/src/schem
 import { Song } from "@shared/src/types/song.types.ts";
 import { FC, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import RowPreview, { ColumnValue } from "../row-preview/RowPreview.tsx";
+import RowPreview from "../row-preview/RowPreview.tsx";
 import SongRowFrom from "../song-row-form/SongRowForm.tsx";
 import Styles from "./handleSongRow.styles.ts";
+import { ColumnValue } from "../row-preview/rowPreview.consts.tsx";
 
 type HandleSongRowProps = {
   song: Song;
@@ -22,10 +23,10 @@ const HandleSongRow: FC<HandleSongRowProps> = ({ song, isEditable, setCurrentSon
   const toggleEditMode = (): void => setIsEditMode((prev) => !prev);
 
   const columnValues: ColumnValue[] = [
-    { value: song.name, isCheckbox: false },
-    { value: song.genre, isCheckbox: false },
-    { value: song.album.name, isCheckbox: false },
-    { isCheckbox: false },
+    { value: song.name },
+    { value: song.genre },
+    { value: song.album.name },
+    {},
   ];
 
   const formMethods = useForm<SongRegistrationInput>({

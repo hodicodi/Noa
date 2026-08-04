@@ -1,6 +1,5 @@
 export type ColumnValue = {
   value?: string;
-  isCheckbox: boolean;
   isChecked?: boolean;
 };
 

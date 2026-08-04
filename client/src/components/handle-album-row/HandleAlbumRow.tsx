@@ -5,8 +5,9 @@ import { Album } from "@shared/src/types/album.types.ts";
 import { FC, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import AlbumRowFrom from "../album-row-form/AlbumRowForm.tsx";
-import RowPreview, { ColumnValue } from "../row-preview/RowPreview.tsx";
+import RowPreview from "../row-preview/RowPreview.tsx";
 import Styles from "./handleAlbumRow.styles.ts";
+import { ColumnValue } from "../row-preview/rowPreview.consts.tsx";
 
 type HandleAlbumRowProps = {
   album: Album;
@@ -21,9 +22,9 @@ const HandleAlbumRow: FC<HandleAlbumRowProps> = ({ album, isEditable, setCurrent
   const toggleEditMode = () => setIsEditMode((prev) => !prev);
 
   const columnValues: ColumnValue[] = [
-    { value: album.name, isCheckbox: false },
-    { value: album.artist.name, isCheckbox: false },
-    {  isCheckbox: false },
+    { value: album.name },
+    { value: album.artist.name },
+    {},
   ];
 
   const formMethods = useForm<AlbumRegistrationInput>({

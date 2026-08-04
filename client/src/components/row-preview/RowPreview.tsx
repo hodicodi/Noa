@@ -6,13 +6,13 @@ import { PreviewProps } from "./rowPreview.consts.ts";
 
 const RowPreview: FC<PreviewProps> = ({ columnValues, toggleEditMode }) => (
   <>
-    {columnValues.map((columnValue) =>
-      columnValue.isCheckbox ? (
-        <TableCell sx={Styles.tableCell} align="center">
+    {columnValues.map((columnValue, index) =>
+      columnValue.isChecked ? (
+        <TableCell key={index} sx={Styles.tableCell} align="center">
           <Checkbox sx={Styles.checkbox} disabled={true} checked={columnValue.isChecked} />
         </TableCell>
       ) : (
-        <TableCell sx={Styles.tableCell} component="th" scope="row">
+        <TableCell key={index} sx={Styles.tableCell} component="th" scope="row">
           {columnValue.value ?? ""}
         </TableCell>
       ),

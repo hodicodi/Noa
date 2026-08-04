@@ -31,7 +31,7 @@ const HandleSongsPage: FC = () => {
   };
 
   useEffect(() => {
-    setCurrentSongs(filteredSongs!);
+    setCurrentSongs(filteredSongs);
   }, [filteredSongs]);
 
   return (

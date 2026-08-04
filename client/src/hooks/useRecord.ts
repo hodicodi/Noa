@@ -5,7 +5,7 @@ import { RECORD_FILE } from "@shared/src/const/binaryData.consts.ts";
 
 export const USE_RECORD_KEY = "useRecordKey";
 
-const useRecordByUuid = async (uuid: string): Promise<string | null> => {
+const useRecordByUuid = async (uuid: string) => {
   const response = await API.get<ArrayBuffer>(`${SONGS_PATH}${UPLOADS_PATH}/${uuid}`, { responseType: "arraybuffer" });
   const blob = new Blob([response?.data], { type: RECORD_FILE });
   const audioUrl = URL.createObjectURL(blob);
@@ -13,7 +13,7 @@ const useRecordByUuid = async (uuid: string): Promise<string | null> => {
 };
 
 export const useRecord = (uuid: string) =>
-  useQuery<string | null>({
+  useQuery({
     queryKey: [USE_RECORD_KEY, uuid],
     queryFn: () => useRecordByUuid(uuid),
     enabled: !!uuid,
