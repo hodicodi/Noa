@@ -3,12 +3,13 @@ import TableRow from "@mui/material/TableRow";
 import { SongType } from "@shared/src/enums/songType.enum.ts";
 import { SongRegistrationInput, SongRegistrationSchema } from "@shared/src/schemas/songValidation.schema.ts";
 import { Song } from "@shared/src/types/song.types.ts";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import RowPreview from "../row-preview/RowPreview.tsx";
 import SongRowFrom from "../song-row-form/SongRowForm.tsx";
 import Styles from "./handleSongRow.styles.ts";
 import { ColumnValue } from "../row-preview/rowPreview.consts.tsx";
+import { RECORD_EXT } from "@shared/src/const/fileExtensions.consts.ts";
 
 type HandleSongRowProps = {
   song: Song;
@@ -22,12 +23,12 @@ const HandleSongRow: FC<HandleSongRowProps> = ({ song, isEditable, setCurrentSon
   const [isEditMode, setIsEditMode] = useState<boolean>(isEditable);
   const toggleEditMode = (): void => setIsEditMode((prev) => !prev);
 
-  const columnValues: ColumnValue[] = [
+  const columnValues: ColumnValue[] = useMemo(() =>[
     { value: song.name },
     { value: song.genre },
     { value: song.album.name },
-    {},
-  ];
+    { value: `${song.name}.${RECORD_EXT}`},
+  ],[song]);
 
   const formMethods = useForm<SongRegistrationInput>({
     resolver: zodResolver(SongRegistrationSchema),
