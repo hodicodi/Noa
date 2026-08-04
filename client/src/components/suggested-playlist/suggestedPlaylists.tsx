@@ -5,7 +5,7 @@ import style from "./suggestedPlaylist.style.ts";
 import PlaylistCard from "./suggestedPlaylist.tsx";
 
 const SuggestedPlaylists: React.FC = () => {
-  const { data: albums, isLoading } = useAllAlbums()
+  const { data: albums, isLoading } = useAllAlbums();
 
   if (isLoading) {
     return <></>;
@@ -19,7 +19,7 @@ const SuggestedPlaylists: React.FC = () => {
       <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         {albums?.map((album) => (
           <Grid size={6} key={album?.name!}>
-              <PlaylistCard album= {album} />
+            <PlaylistCard album={album} />
           </Grid>
         ))}
       </Grid>
