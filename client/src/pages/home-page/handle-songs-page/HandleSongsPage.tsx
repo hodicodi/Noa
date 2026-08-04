@@ -22,7 +22,7 @@ const HandleSongsPage: FC = () => {
   };
 
   const setExistingSongs = () => {
-    setCurrentSongs(currentSongs!.filter((song) => song.uuid));
+    setCurrentSongs(currentSongs.filter((song) => song.uuid));
   };
 
   const handleAddRow = () => {

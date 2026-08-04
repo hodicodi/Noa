@@ -13,7 +13,7 @@ const RowPreview: FC<PreviewProps> = ({ columnValues, toggleEditMode }) => (
         </TableCell>
       ) : (
         <TableCell sx={Styles.tableCell} component="th" scope="row">
-          {columnValue.value ? columnValue.value : ""}
+          {columnValue.value ?? ""}
         </TableCell>
       ),
     )}

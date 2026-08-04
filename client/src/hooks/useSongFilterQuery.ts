@@ -5,16 +5,17 @@ import { API } from "../api/services/albumService.ts";
 
 export const USE_SONGS_FILTER_KEY = "useSongsFilterKey";
 
-const getSongFilterQuery = async (searchQuery: string): Promise<Song[] | null> => {
+const getSongFilterQuery = async (searchQuery: string)=> {
   const response = await API.get<SongsRes>(`${SONGS_PATH}${SEARCH_PATH}`, {
     params: { searchQuery },
   });
-  return response.data?.songs ?? [];
+  return response?.data?.songs ?? [];
 };
 
 export const useSongFilterQuery = (searchQuery: string) => {
-  return useQuery<Song[] | null, Error>({
+  return useQuery({
     queryKey: [USE_SONGS_FILTER_KEY, searchQuery],
     queryFn: () => getSongFilterQuery(searchQuery),
   });
 };
+ 
