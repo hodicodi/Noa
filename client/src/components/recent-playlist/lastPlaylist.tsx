@@ -1,19 +1,14 @@
+import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import { PlaylistOverviewProps } from "@shared/src/types/personalPlaylist.types.ts";
-import style from "./recentPlaylist.style.ts";
-import { useNavigate } from "react-router-dom";
+import Typography from "@mui/material/Typography";
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAlbumImg } from "../../hooks/useAlbumImg.ts";
-import { Album } from "@shared/src/types/album.types.ts";
-
-export type AlbumOverviewProps = {
-  album: Album;
-};
+import { AlbumOverviewProps } from "./lastPlaylist.consts.ts";
+import style from "./recentPlaylist.style.ts";
 
 const LastPlaylistCard: FC<AlbumOverviewProps> = ({ album }) => {
   const navigate = useNavigate();
