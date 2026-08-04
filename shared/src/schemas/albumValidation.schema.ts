@@ -2,7 +2,7 @@ import { z } from "zod";
 import { ArtistRegistrationSchema } from "./artistValidation.schema";
 
 export const AlbumRegistrationSchema = z.object({
-  imgFile: z.file(),
+  imgFile: z.file().optional(),
   uuid: z.string().optional(),
   name: z.string().min(3, "must be at least 3 characters"),
   artist: ArtistRegistrationSchema,

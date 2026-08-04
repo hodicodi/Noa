@@ -1,4 +1,5 @@
 import {
+  SEARCH_PATH,
     USERS_PATH
 } from "@shared/src/const/paths.const.ts";
 import { User, UsersRes } from "@shared/src/types/user.type.ts";
@@ -8,10 +9,10 @@ import { API } from "../api/services/albumService.ts";
 export const USE_USERS_FILTER_KEY = "user";
 
 const getUserFilterQuery = async (searchQuery: string): Promise<User[] | null> => {
-  const response = await API.get<UsersRes>(USERS_PATH + '/search', {
+  const response = await API.get<UsersRes>(`${USERS_PATH}${SEARCH_PATH}`, {
     params: { searchQuery },
   });
-  return response.data?.users ?? [];
+  return response?.data?.users ?? [];
 };
 
 export const useUserFilterQuery = (searchQuery: string) => {

@@ -2,11 +2,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import TableRow from "@mui/material/TableRow";
 import { AlbumRegistrationInput, AlbumRegistrationSchema } from "@shared/src/schemas/albumValidation.schema.ts";
 import { Album } from "@shared/src/types/album.types.ts";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import AlbumRowFrom from "../album-row-form/AlbumRowForm.tsx";
-import AlbumRowPreview from "../album-row-preview/AlbumRowPreview.tsx";
+import RowPreview from "../row-preview/RowPreview.tsx";
 import Styles from "./handleAlbumRow.styles.ts";
+import { ColumnValue } from "../row-preview/rowPreview.consts.tsx";
+import { IMG_EXT } from "@shared/src/const/fileExtensions.consts.ts";
 
 type HandleAlbumRowProps = {
   album: Album;
@@ -19,6 +21,12 @@ type HandleAlbumRowProps = {
 const HandleAlbumRow: FC<HandleAlbumRowProps> = ({ album, isEditable, setCurrentAlbums, currentAlbums, setExistingAlbums }) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(isEditable);
   const toggleEditMode = () => setIsEditMode((prev) => !prev);
+
+  const columnValues: ColumnValue[] = useMemo(() => [
+    { value: album.name },
+    { value: album.artist.name },
+    { value: `${album.name}.${IMG_EXT}`},
+  ],[album]);
 
   const formMethods = useForm<AlbumRegistrationInput>({
     resolver: zodResolver(AlbumRegistrationSchema),
@@ -43,7 +51,7 @@ const HandleAlbumRow: FC<HandleAlbumRowProps> = ({ album, isEditable, setCurrent
           />
         </FormProvider>
       ) : (
-        <AlbumRowPreview album={album} toggleEditMode={toggleEditMode} />
+        <RowPreview columnValues={columnValues} toggleEditMode={toggleEditMode} />
       )}
     </TableRow>
   );

@@ -5,11 +5,11 @@ import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import HandleAlbumRow from "../../../components/handle-album-row/HandleAlbumRow.tsx";
-import HandleAlbumsTableHead from "../../../components/handle-albums-table-head/HandleAlbumsTableHead.tsx";
 import NavBar from "../../../components/nav-bar/navBar.tsx";
 import SearchBar from "../../../components/search-bar/SearchBar.tsx";
+import TableHeader from "../../../components/table-header/TableHeader.tsx";
 import { useAlbumFilterQuery } from "../../../hooks/useAlbumsFilterQuery.ts";
-import newAlbum from "./handleAlbumsPage.consts.ts";
+import {NEW_ALBUM_DEFAULT_VALUES, COLUMN_NAMES} from "./handleAlbumsPage.consts.ts";
 import Styles from "./handleAlbumsPage.styles.ts";
 
 const HandleAlbumsPage: FC = () => {
@@ -27,7 +27,7 @@ const HandleAlbumsPage: FC = () => {
 
   const handleAddRow = () => {
     setExistingAlbums();
-    setCurrentAlbums((currentAlbums) => [newAlbum, ...currentAlbums!]);
+    setCurrentAlbums((currentAlbums) => [NEW_ALBUM_DEFAULT_VALUES, ...currentAlbums!]);
   };
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const HandleAlbumsPage: FC = () => {
 
           <TableContainer sx={Styles.table} component={Paper}>
             <Table>
-              <HandleAlbumsTableHead handleAddRow={handleAddRow} />
+              <TableHeader handleAddRow={handleAddRow} columnNames={COLUMN_NAMES} />
               <TableBody>
                 {currentAlbums?.map((album, index) => (
                   <HandleAlbumRow

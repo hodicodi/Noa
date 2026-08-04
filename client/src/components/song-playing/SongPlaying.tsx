@@ -4,7 +4,7 @@ import { AppBar, Box, ButtonBase, Card, CardContent, CardMedia, Grid, IconButton
 import { FC } from "react";
 import { useGlobalDrawer } from "../song-drawer/DrawerContext.tsx";
 import Styles from "./songPlaying.style.ts";
-import { DrawerInfoProps } from "../DrawerAndSongPlayer/DrawerAndSongPlayer.tsx";
+import { DrawerInfoProps } from "../drawer-and-song-player/DrawerAndSongPlayer.tsx";
 
 const SongPlaying: FC<DrawerInfoProps> = ({ isPlay, toggleDrawer, handleIconClick}) => {
   const { currentSong, recievedAudioUrl } = useGlobalDrawer();
