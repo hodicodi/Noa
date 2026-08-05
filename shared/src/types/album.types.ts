@@ -25,7 +25,3 @@ export type SaveAlbum = {
   name: string;
   artist: Artist;
 };
-
-export type AlbumImageRes = {
-  albumImg: Buffer;
-}

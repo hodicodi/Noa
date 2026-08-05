@@ -1,15 +1,15 @@
+import { UPLOADS_PATH } from "@shared/src/const/paths.const.ts";
 import { AlbumRes, AlbumsRes, SaveAlbumReqBody } from "@shared/src/types/album.types.ts";
 import { GeneralParams, SearchQueryParams } from "@shared/src/types/general.types.ts";
 import { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
-import albumService from "./album.service.ts";
 import multer from "multer";
 import { HttpError } from "../errors/httpError.ts";
-import { SEARCH_PATH, UPLOADS_PATH } from "@shared/src/const/paths.const.ts";
+import albumService from "./album.service.ts";
 
 const albumRouter = Router();
 
-albumRouter.get(SEARCH_PATH, async (req: Request<unknown, unknown, unknown, SearchQueryParams>, res: Response<AlbumsRes>) => {
+albumRouter.get("/search", async (req: Request<unknown, unknown, unknown, SearchQueryParams>, res: Response<AlbumsRes>) => {
   const { searchQuery } = req.query;
 
   const albums = await albumService.getAlbumsWithQuery(searchQuery);
@@ -17,12 +17,11 @@ albumRouter.get(SEARCH_PATH, async (req: Request<unknown, unknown, unknown, Sear
   res.status(StatusCodes.OK).json({ albums });
 });
 
-albumRouter.get(`${UPLOADS_PATH}/:uuid`, async (req: Request<GeneralParams, unknown, unknown>, res: Response) => {
+albumRouter.get(`${UPLOADS_PATH}/:uuid`, async (req: Request<GeneralParams, unknown, unknown>, res: Response<BlobPart>) => {
   const { uuid } = req.params;
   const rawDataStream = await albumService.getAlbumImgByUuid(uuid);
   res.setHeader("Content-Type", rawDataStream.contentType);
   const rawData = await rawDataStream.body?.transformToByteArray();
-  res.status(StatusCodes.CREATED).json({ albumImg:  Buffer.from(rawData!)});
   res.send(Buffer.from(rawData!));
 });
 
