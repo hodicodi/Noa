@@ -3,6 +3,8 @@ import { TableCell } from "@mui/material";
 import { Song } from "@shared/src/types/song.types.ts";
 import { FC } from "react";
 import Styles from "../handle-user-row/handleUserRow.style.ts";
+import { RECORD_EXT } from "@shared/src/const/fileExtensions.consts.ts";
+
 
 type SongRowPreviewProps = {
   song: Song;
@@ -20,7 +22,9 @@ const SongRowPreview: FC<SongRowPreviewProps> = ({ song, toggleEditMode }) => (
     <TableCell sx={Styles.tableCell} component="th" scope="row">
       {song.album.name}
     </TableCell>
-    <TableCell sx={Styles.tableCell} component="th" scope="row" />
+    <TableCell sx={Styles.tableCell} component="th" scope="row">
+      {song.name + `.${RECORD_EXT}`}
+    </TableCell>
     <TableCell onClick={toggleEditMode} sx={Styles.tableCell} align="center">
       <EditIcon />
     </TableCell>

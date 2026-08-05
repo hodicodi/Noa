@@ -5,6 +5,8 @@ import { Controller, useFormContext } from "react-hook-form";
 import Styles from "../handle-user-row/handleUserRow.style.ts";
 import { User } from "@shared/src/types/user.type.ts";
 import { Album } from "@shared/src/types/album.types.ts";
+import { IMG_EXT } from "@shared/src/const/fileExtensions.consts.ts";
+
 
 type AlbumRowPreviewProps = {
   album: Album;
@@ -19,7 +21,9 @@ const AlbumRowPreview: FC<AlbumRowPreviewProps> = ({ album, toggleEditMode }) =>
     <TableCell sx={Styles.tableCell} component="th" scope="row">
       {album.artist.name}
     </TableCell>
-    <TableCell sx={Styles.tableCell} component="th" scope="row" />
+    <TableCell sx={Styles.tableCell} component="th" scope="row">
+      {album.name + `.${IMG_EXT}`}
+    </TableCell>
     <TableCell onClick={toggleEditMode} sx={Styles.tableCell} align="center">
       <EditIcon />
     </TableCell>
