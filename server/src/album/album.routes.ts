@@ -22,7 +22,12 @@ albumRouter.get(`${UPLOADS_PATH}/:uuid`, async (req: Request<GeneralParams, unkn
   const rawDataStream = await albumService.getAlbumImgByUuid(uuid);
   res.setHeader("Content-Type", rawDataStream.contentType);
   const rawData = await rawDataStream.body?.transformToByteArray();
-  res.send(Buffer.from(rawData!));
+
+  if (!rawData) {
+    throw new HttpError(StatusCodes.NOT_FOUND, "Album image file not found");
+  }
+
+  res.send(Buffer.from(rawData));
 });
 
 albumRouter.get("/:uuid", async (req: Request<GeneralParams, unknown, unknown>, res: Response<AlbumRes>) => {

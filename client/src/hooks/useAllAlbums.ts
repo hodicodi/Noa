@@ -3,7 +3,7 @@ import { AlbumsRes } from "@shared/src/types/album.types.ts";
 import { useQuery } from "@tanstack/react-query";
 import { API } from "../api/services/albumService.ts";
 
-const USE_ALL_ALBUMS_FILTER_KEY = "useAllAlbumsFilterKey"
+const USE_ALL_ALBUMS_KEY = "useAllAlbumsKey"
 
 const getAllAlbums = async () => {
   const response = await API.get<AlbumsRes>(ALBUMS_PATH);
@@ -12,7 +12,7 @@ const getAllAlbums = async () => {
 
 export const useAllAlbums = () => {
   return useQuery({
-    queryKey: [USE_ALL_ALBUMS_FILTER_KEY],
+    queryKey: [USE_ALL_ALBUMS_KEY],
     queryFn: getAllAlbums,
   });
 };
