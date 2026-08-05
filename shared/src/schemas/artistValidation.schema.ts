@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { ArtistType } from "../enums/artistType.enum";
-import { AlbumRegistrationSchema } from "./albumValidation.schema";
 
 export const ArtistRegistrationSchema = z.object({
   uuid: z.string(),
