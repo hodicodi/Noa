@@ -8,10 +8,10 @@ import Styles from "./playlistPage.style.ts";
 
 const PlaylistPage: FC = () => {
   const location = useLocation();
-  const playlistPageProps = location.state ?? {};
-  const {data: albumImg = null} = useAlbumImg(playlistPageProps.album.uuid!);
-  const artistName = playlistPageProps.album.artist.name ?? "";
-  const playlistName = playlistPageProps.album.name;
+  const {album} = location.state ?? {};
+  const {data: albumImg = null} = useAlbumImg(album.uuid!);
+  const artistName = album.artist.name ?? "";
+  const playlistName = album.name;
 
   return (
     <Box sx={Styles.playlistPage}>
