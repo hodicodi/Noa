@@ -1,4 +1,4 @@
-import { UPLOADS_PATH } from "@shared/src/const/paths.const.ts";
+import { SEARCH_PATH, UPLOADS_PATH } from "@shared/src/const/paths.const.ts";
 import { AlbumRes, AlbumsRes, SaveAlbumReqBody } from "@shared/src/types/album.types.ts";
 import { GeneralParams, SearchQueryParams } from "@shared/src/types/general.types.ts";
 import { Request, Response, Router } from "express";
@@ -9,7 +9,7 @@ import albumService from "./album.service.ts";
 
 const albumRouter = Router();
 
-albumRouter.get("/search", async (req: Request<unknown, unknown, unknown, SearchQueryParams>, res: Response<AlbumsRes>) => {
+albumRouter.get(SEARCH_PATH, async (req: Request<unknown, unknown, unknown, SearchQueryParams>, res: Response<AlbumsRes>) => {
   const { searchQuery } = req.query;
 
   const albums = await albumService.getAlbumsWithQuery(searchQuery);

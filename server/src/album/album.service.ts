@@ -1,3 +1,5 @@
+import { IMG_FILE } from "@shared/src/const/binaryData.consts.ts";
+import { IMG_EXT } from "@shared/src/const/fileExtensions.consts.ts";
 import { StatusCodes } from "http-status-codes";
 import { DeepPartial, ILike } from "typeorm";
 import { HttpError } from "../errors/httpError.ts";
@@ -5,8 +7,6 @@ import s3Service from "../s3-service/s3Service.ts";
 import { S3File, S3FileDescriptor } from "../s3-service/s3service.types.ts";
 import { GENERAL_S3_PATH } from "../song/song.consts.ts";
 import { Album } from "./album.entity.ts";
-import { IMG_EXT } from "@shared/src/const/fileExtensions.consts.ts";
-import { IMG_FILE } from "@shared/src/const/binaryData.consts.ts";
 
 const getAllAlbums = () =>
   Album.find({
@@ -40,7 +40,7 @@ const getAlbumImgByUuid = async (uuid: string) => {
   }
   const albumUrl = album.imgUrl;
 
-  return await s3Service.getFile(album.imgUrl!);
+  return s3Service.getFile(album.imgUrl!);
 };
 
 const createAlbum = async (album: DeepPartial<Album>) => {

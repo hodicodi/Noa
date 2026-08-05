@@ -9,13 +9,13 @@ import Styles from "./playlistPage.style.ts";
 const PlaylistPage: FC = () => {
   const location = useLocation();
   const playlistPageProps = location.state ?? {};
-  const albumImg = useAlbumImg(playlistPageProps.album.uuid!).data!;
+  const {data: albumImg = null} = useAlbumImg(playlistPageProps.album.uuid!);
   const artistName = playlistPageProps.album.artist.name ?? "";
   const playlistName = playlistPageProps.album.name;
 
   return (
     <Box sx={Styles.playlistPage}>
-      <PlaylistPicture name={playlistName} avaterPicture={albumImg} artistName={artistName} />
+      <PlaylistPicture name={playlistName} avaterPicture={albumImg!} artistName={artistName} />
       <SongsInPlaylist />
     </Box>
   );

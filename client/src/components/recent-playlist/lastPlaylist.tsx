@@ -9,13 +9,14 @@ import { useNavigate } from "react-router-dom";
 import { useAlbumImg } from "../../hooks/useAlbumImg.ts";
 import { AlbumPreviewProps } from "./lastPlaylist.types.ts";
 import style from "./recentPlaylist.style.ts";
+import { PLAYLIST_PATH } from "../../routes/path.constants.ts";
 
 const LastPlaylistCard: FC<AlbumPreviewProps> = ({ album }) => {
   const navigate = useNavigate();
-  const albumImg = useAlbumImg(album.uuid!).data!;
+  const { data: albumImg = null } = useAlbumImg(album.uuid!);
 
   const suggestedPlaylistClick = () => {
-    navigate("/playlist");
+    navigate(PLAYLIST_PATH);
   };
 
   {
@@ -24,7 +25,7 @@ const LastPlaylistCard: FC<AlbumPreviewProps> = ({ album }) => {
         <Box sx={style.box}>
           <Grid container spacing={0}>
             <Grid size={1.9}>
-              <CardMedia sx={style.cardMedia} component="img" image={albumImg} alt="Playlist picture" />
+              <CardMedia sx={style.cardMedia} component="img" image={albumImg!} alt="Playlist picture" />
             </Grid>
             <Grid size={10.1}>
               <CardContent sx={style.cardContent}>

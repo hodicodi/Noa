@@ -11,7 +11,7 @@ import { AlbumPreviewProps } from "../recent-playlist/lastPlaylist.types.ts";
 
 const PlaylistCard: FC<AlbumPreviewProps> = ({ album }) => {
   const navigate = useNavigate();
-  const albumImg = useAlbumImg(album.uuid!).data!;
+  const {data: albumImg = null} = useAlbumImg(album.uuid!);
 
   const suggestedPlaylistClick = () => {
     navigate(PLAYLIST_PATH, {
@@ -26,7 +26,7 @@ const PlaylistCard: FC<AlbumPreviewProps> = ({ album }) => {
           {album.name}
         </Typography>
       </CardContent>
-      <CardMedia component="img" image={albumImg} />
+      <CardMedia component="img" image={albumImg!} />
     </Card>
   );
 };
