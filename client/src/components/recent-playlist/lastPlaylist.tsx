@@ -1,23 +1,22 @@
+import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import { PlaylistOverviewProps } from "@shared/src/types/personalPlaylist.types.ts";
-import style from "./recentPlaylist.style.ts";
+import Typography from "@mui/material/Typography";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import {FC} from "react";
+import { useAlbumImg } from "../../hooks/useAlbumImg.ts";
+import { AlbumPreviewProps } from "./lastPlaylist.types.ts";
+import style from "./recentPlaylist.style.ts";
+import { PLAYLIST_PATH } from "../../routes/path.constants.ts";
 
-const LastPlaylistCard: FC<PlaylistOverviewProps> = ({
-  name,
-  avaterPicture,
-  artist
-}: PlaylistOverviewProps) => {
+const LastPlaylistCard: FC<AlbumPreviewProps> = ({ album }) => {
   const navigate = useNavigate();
+  const { data: albumImg = null } = useAlbumImg(album.uuid!);
 
   const suggestedPlaylistClick = () => {
-    navigate("/playlist");
+    navigate(PLAYLIST_PATH);
   };
 
   {
@@ -26,22 +25,12 @@ const LastPlaylistCard: FC<PlaylistOverviewProps> = ({
         <Box sx={style.box}>
           <Grid container spacing={0}>
             <Grid size={1.9}>
-              <CardMedia
-                sx={style.cardMedia}
-                component="img"
-                image={avaterPicture}
-                alt="Beautiful Sunrise"
-              />
+              <CardMedia sx={style.cardMedia} component="img" image={albumImg!} alt="Playlist picture" />
             </Grid>
             <Grid size={10.1}>
               <CardContent sx={style.cardContent}>
-                <Typography
-                  sx={style.playlistName}
-                  gutterBottom
-                  variant="body2"
-                  component="div"
-                >
-                  {name}
+                <Typography sx={style.playlistName} gutterBottom variant="body2" component="div">
+                  {album.name}
                 </Typography>
               </CardContent>
             </Grid>

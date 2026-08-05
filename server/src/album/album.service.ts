@@ -1,3 +1,5 @@
+import { IMG_FILE } from "@shared/src/const/binaryData.consts.ts";
+import { IMG_EXT } from "@shared/src/const/fileExtensions.consts.ts";
 import { StatusCodes } from "http-status-codes";
 import { DeepPartial, ILike } from "typeorm";
 import { HttpError } from "../errors/httpError.ts";
@@ -5,12 +7,11 @@ import s3Service from "../s3-service/s3Service.ts";
 import { S3File, S3FileDescriptor } from "../s3-service/s3service.types.ts";
 import { GENERAL_S3_PATH } from "../song/song.consts.ts";
 import { Album } from "./album.entity.ts";
-import { IMG_EXT } from "@shared/src/const/fileExtensions.consts.ts";
-import { IMG_FILE } from "@shared/src/const/binaryData.consts.ts";
 
 const getAllAlbums = () =>
   Album.find({
     relations: {
+      songs: true,
       artist: true,
     },
   });
@@ -29,6 +30,17 @@ const getAlbumById = async (uuid: string) => {
   }
 
   return album;
+};
+
+const getAlbumImgByUuid = async (uuid: string) => {
+  const album = await Album.findOneBy({ uuid });
+
+  if (!album) {
+    throw new HttpError(StatusCodes.NOT_FOUND, "album not found");
+  }
+  const albumUrl = album.imgUrl;
+
+  return s3Service.getFile(album.imgUrl!);
 };
 
 const createAlbum = async (album: DeepPartial<Album>) => {
@@ -55,4 +67,4 @@ const addImgFile = async (file: Express.Multer.File, title: string) => {
   await s3Service.uploadFile(saveUrl, myfile, myfile.contentType);
 };
 
-export default { getAllAlbums, getAlbumById, createAlbum, getAlbumsWithQuery, addImgFile };
+export default { getAllAlbums, getAlbumById, createAlbum, getAlbumsWithQuery, addImgFile, getAlbumImgByUuid };

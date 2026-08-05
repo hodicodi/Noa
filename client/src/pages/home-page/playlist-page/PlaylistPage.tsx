@@ -1,18 +1,21 @@
 import { Box } from "@mui/material";
-import { playlistInfo } from "@shared/hardCodedInfo.ts";
 import { FC } from "react";
+import { useLocation } from "react-router-dom";
 import PlaylistPicture from "../../../components/playlist-picture/PlaylistPicture.tsx";
 import SongsInPlaylist from "../../../components/song-in-playlist/SongsInPlaylist.tsx";
+import { useAlbumImg } from "../../../hooks/useAlbumImg.ts";
 import Styles from "./playlistPage.style.ts";
 
 const PlaylistPage: FC = () => {
+  const location = useLocation();
+  const {album} = location.state ?? {};
+  const {data: albumImg = null} = useAlbumImg(album.uuid!);
+  const artistName = album.artist.name ?? "";
+  const playlistName = album.name;
+
   return (
     <Box sx={Styles.playlistPage}>
-      <PlaylistPicture
-        name={playlistInfo?.[0]?.name ?? ''}
-        avaterPicture={playlistInfo[0]!.avaterPicture}
-        artist={playlistInfo?.[0]?.artist ?? ''}
-      />
+      <PlaylistPicture name={playlistName} avaterPicture={albumImg!} artistName={artistName} />
       <SongsInPlaylist />
     </Box>
   );

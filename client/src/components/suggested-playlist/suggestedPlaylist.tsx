@@ -2,29 +2,31 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { PlaylistOverviewProps } from "@shared/src/types/personalPlaylist.types.ts";
-import style from "./suggestedPlaylist.style.ts";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import {PLAYLIST_PATH} from "../../routes/path.constants.ts";
+import { useAlbumImg } from "../../hooks/useAlbumImg.ts";
+import { PLAYLIST_PATH } from "../../routes/path.constants.ts";
+import Style from "./suggestedPlaylist.style.ts";
+import { AlbumPreviewProps } from "../recent-playlist/lastPlaylist.types.ts";
 
-const PlaylistCard: React.FC<PlaylistOverviewProps> = ({
-  name,
-  avaterPicture,
-}: PlaylistOverviewProps) => {
+const PlaylistCard: FC<AlbumPreviewProps> = ({ album }) => {
   const navigate = useNavigate();
+  const {data: albumImg = null} = useAlbumImg(album.uuid!);
 
   const suggestedPlaylistClick = () => {
-    navigate(PLAYLIST_PATH);
+    navigate(PLAYLIST_PATH, {
+      state: { album },
+    });
   };
 
   return (
-    <Card sx={style.card} onClick={suggestedPlaylistClick}>
-      <CardContent sx={style.cardContent}>
-        <Typography sx={style.playlistName}  variant="h6">
-          {name}
-        </Typography> 
+    <Card sx={Style.card} onClick={suggestedPlaylistClick}>
+      <CardContent sx={Style.cardContent}>
+        <Typography sx={Style.playlistName} variant="h6">
+          {album.name}
+        </Typography>
       </CardContent>
-      <CardMedia component="img" image={avaterPicture} />
+      <CardMedia component="img" image={albumImg!} />
     </Card>
   );
 };
