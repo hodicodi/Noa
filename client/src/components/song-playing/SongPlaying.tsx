@@ -10,7 +10,7 @@ import { DrawerInfoProps } from "../drawer-and-song-player/DrawerAndSongPlayer.t
 const SongPlaying: FC<DrawerInfoProps> = ({ isPlay, toggleDrawer, handleIconClick }) => {
   const { currentSong, currentAlbum } = useGlobalDrawer();
 
-  const albumImg = useAlbumImg(currentAlbum!.uuid!).data!;
+  const { data: albumImg = null } = useAlbumImg(currentAlbum!.uuid!);
 
   return (
     <>
@@ -21,7 +21,7 @@ const SongPlaying: FC<DrawerInfoProps> = ({ isPlay, toggleDrawer, handleIconClic
               <Box sx={Styles.box}>
                 <Grid container spacing={0}>
                   <Grid size={0.8}>
-                    <CardMedia sx={Styles.cardMedia} component="img" image={albumImg} alt="Beautiful Sunrise" />
+                    <CardMedia sx={Styles.cardMedia} component="img" image={albumImg!} alt="Beautiful Sunrise" />
                   </Grid>
                   <Grid size={10.5}>
                     <CardContent sx={Styles.cardContent}>

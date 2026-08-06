@@ -5,7 +5,7 @@ import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAlbumImg } from "../../hooks/useAlbumImg.ts";
 import { PLAYLIST_PATH } from "../../routes/path.constants.ts";
-import style from "./suggestedPlaylist.style.ts";
+import Styles from "./suggestedPlaylist.style.ts";
 import { PlaylistProps } from "../../pages/home-page/playlist-page/playlistPage.types.ts";
 
 const PlaylistCard: FC<PlaylistProps> = ({ album }) => {
@@ -19,9 +19,9 @@ const PlaylistCard: FC<PlaylistProps> = ({ album }) => {
   };
 
   return (
-    <Card sx={style.card} onClick={suggestedPlaylistClick}>
+    <Card sx={Styles.card} onClick={suggestedPlaylistClick}>
       <CardMedia component="img" image={albumImg!} />
-      <Typography sx={style.playlistName} variant="body2">
+      <Typography sx={Styles.playlistName} variant="body2">
         {album.name}
       </Typography>
     </Card>

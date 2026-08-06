@@ -4,7 +4,7 @@ const administorPage: SxProps = {
   display: "flex",
   flexDirection: "column",
   rowGap: 6,
-  mt: 10,
+  mt: "17%",
   minHeight: "100vh",
   alignItems: "center",
   bgcolor: "#0a0a0a",
