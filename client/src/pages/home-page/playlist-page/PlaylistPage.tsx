@@ -26,7 +26,7 @@ const PlaylistPage: FC = () => {
       <Box sx={Styles.playlistPicture}>
         <PlaylistPicture name={playlistName} avaterPicture={albumImg!} artistName={artistName} />
       </Box>
-      <SongsInPlaylist />
+      <SongsInPlaylist album={album} />
     </Box>
   );
 };

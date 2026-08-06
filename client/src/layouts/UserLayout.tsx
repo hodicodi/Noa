@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Outlet } from "react-router-dom";
-import DrawerAndSongPlayer from "../components/DrawerAndSongPlayer/DrawerAndSongPlayer.tsx";
 import { useGlobalDrawer } from "../components/song-drawer/DrawerContext.tsx";
+import DrawerAndSongPlayer from "../components/drawer-and-song-player/DrawerAndSongPlayer.tsx";
 
 const UserLayout: FC = () => {
   const { currentSong, currentAlbum } = useGlobalDrawer();

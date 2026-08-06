@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { FC } from "react";
-import { AlbumOverviewProps } from "../recent-playlist/lastPlaylist.tsx";
 import SongInPlaylist from "./SongInPlaylist.tsx";
+import { AlbumOverviewProps } from "../suggested-playlist/suggestedPlaylist.tsx";
 
 const SongsInPlaylist: FC<AlbumOverviewProps> = ({ album }) => (
   <Box>
