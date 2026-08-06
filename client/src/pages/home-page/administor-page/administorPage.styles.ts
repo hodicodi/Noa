@@ -17,7 +17,7 @@ const title: SxProps = {
 const backIcon: SxProps = {
   position: "absolute",
   color: "#ffffff",
-  mt: 4,
+  mt: "1.5%",
   width: 80,
   cursor: "pointer",
   alignSelf: "flex-start",
