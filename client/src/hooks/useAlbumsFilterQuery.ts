@@ -1,5 +1,6 @@
 import {
-    ALBUMS_PATH
+    ALBUMS_PATH,
+    SEARCH_PATH
 } from "@shared/src/const/paths.const.ts";
 import { Album, AlbumsRes } from "@shared/src/types/album.types.ts";
 import { useQuery } from "@tanstack/react-query";
@@ -8,7 +9,7 @@ import { API } from "../api/services/albumService.ts";
 export const USE_ALBUMS_FILTER_KEY = "useAlbumFilterKey";
 
 const getAlbumFilterQuery = async (searchQuery: string): Promise<Album[] | null> => {
-  const response = await API.get<AlbumsRes>(ALBUMS_PATH + '/search', {
+  const response = await API.get<AlbumsRes>(`${ALBUMS_PATH}${SEARCH_PATH}`, {
     params: { searchQuery },
   });
   return response.data?.albums ?? [];

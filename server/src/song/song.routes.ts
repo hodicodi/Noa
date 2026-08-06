@@ -5,11 +5,11 @@ import { StatusCodes } from "http-status-codes";
 import multer from "multer";
 import { HttpError } from "../errors/httpError.ts";
 import songService from "./song.service.ts";
-import { UPLOADS_PATH } from "@shared/src/const/paths.const.ts";
+import { UPLOADS_PATH, SEARCH_PATH } from "@shared/src/const/paths.const.ts";
 
 const songRouter = Router();
 
-songRouter.get("/search", async (req: Request<unknown, unknown, unknown, SearchQueryParams>, res: Response<SongsRes>) => {
+songRouter.get(SEARCH_PATH, async (req: Request<unknown, unknown, unknown, SearchQueryParams>, res: Response<SongsRes>) => {
   const { searchQuery } = req.query;
 
   const songs = await songService.getSongsWithQuery(searchQuery);
@@ -55,7 +55,8 @@ songRouter.post(UPLOADS_PATH, uploadMulter.single("audioFile"), async (req: Requ
     throw new HttpError(StatusCodes.NOT_FOUND, "No audio file provided");
   }
 
-  songService.addRecordFile(file, title);
+  await songService.addRecordFile(file, title);
+
   res.status(StatusCodes.CREATED).json({ message: "File and metadata uploaded successfully" });
 });
 

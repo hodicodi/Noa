@@ -25,5 +25,3 @@ export type SaveAlbum = {
   name: string;
   artist: Artist;
 };
-
-

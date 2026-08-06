@@ -13,6 +13,6 @@
     "lib": ["ES2023"],
     "noEmit": true,
     "allowImportingTsExtensions":true,
-    // other options
+    "types": ["node"]
   }
 }

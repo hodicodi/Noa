@@ -3,9 +3,9 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { AppBar, Box, ButtonBase, Card, CardContent, CardMedia, Grid, IconButton, Toolbar, Typography } from "@mui/material";
 import { FC } from "react";
 import { useAlbumImg } from "../../hooks/useAlbumImg.ts";
-import { DrawerInfoProps } from "../DrawerAndSongPlayer/DrawerAndSongPlayer.tsx";
 import { useGlobalDrawer } from "../song-drawer/DrawerContext.tsx";
 import Styles from "./songPlaying.style.ts";
+import { DrawerInfoProps } from "../drawer-and-song-player/DrawerAndSongPlayer.tsx";
 
 const SongPlaying: FC<DrawerInfoProps> = ({ isPlay, toggleDrawer, handleIconClick }) => {
   const { currentSong, currentAlbum } = useGlobalDrawer();

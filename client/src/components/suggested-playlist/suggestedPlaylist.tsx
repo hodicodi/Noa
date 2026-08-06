@@ -15,10 +15,11 @@ export type AlbumOverviewProps = {
 
 const PlaylistCard: FC<AlbumOverviewProps> = ({ album }) => {
   const navigate = useNavigate();
+  const {data: albumImg = null} = useAlbumImg(album.uuid!);
 
   const suggestedPlaylistClick = () => {
     navigate(PLAYLIST_PATH, {
-      state: { album: album },
+      state: { album },
     });
   };
 

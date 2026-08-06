@@ -5,11 +5,11 @@ import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import HandleUserRow from "../../../components/handle-user-row/HandleUserRow.tsx";
-import HandleUsersTableHead from "../../../components/handle-users-table-head/HandleUsersTableHead.tsx";
 import NavBar from "../../../components/nav-bar/navBar.tsx";
 import SearchBar from "../../../components/search-bar/SearchBar.tsx";
+import TableHeader from "../../../components/table-header/TableHeader.tsx";
 import { useUserFilterQuery } from "../../../hooks/useUserFilterQuery.ts";
-import newUser from "./handleUserPage.consts.ts";
+import { NEW_USER_DEFULT_VALUES, COLUMN_NAMES } from "./handleUserPage.consts.ts";
 import Styles from "./handleUsersPage.styles.ts";
 import { useNavigate } from "react-router-dom";
 import { ADMINISTOR_PATH } from "../../../routes/path.constants.ts";
@@ -25,6 +25,7 @@ const HandleUsersPage: FC = () => {
     navigate(ADMINISTOR_PATH);
   };
 
+
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
@@ -35,7 +36,7 @@ const HandleUsersPage: FC = () => {
 
   const handleAddRow = () => {
     setExistingUser();
-    setCurrentUsers((currentUsers) => [newUser, ...currentUsers!]);
+    setCurrentUsers((currentUsers) => [NEW_USER_DEFULT_VALUES, ...currentUsers!]);
   };
 
   useEffect(() => {
@@ -56,7 +57,7 @@ const HandleUsersPage: FC = () => {
 
           <TableContainer sx={Styles.table} component={Paper}>
             <Table>
-              <HandleUsersTableHead handleAddRow={handleAddRow} />
+              <TableHeader handleAddRow={handleAddRow} columnNames={COLUMN_NAMES}/>
               <TableBody>
                 {currentUsers?.map((user) => (
                   <HandleUserRow
