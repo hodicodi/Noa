@@ -16,17 +16,7 @@ const DrawerAndSongPlayer: FC = () => {
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  useEffect(() => {
-    pauseAudio();
-    if (recievedAudioUrl) {
-      audioRef.current = new Audio(recievedAudioUrl);
-    }
-    if (isPlay) {
-      playAudio();
-    }
-  }, [recievedAudioUrl]);
-
-  const playAudio = async () => {
+  const playAudio = () => {
     if (audioRef.current) {
       audioRef.current.play();
     }
@@ -50,6 +40,16 @@ const DrawerAndSongPlayer: FC = () => {
     }
     pauseAudio();
   };
+
+  useEffect(() => {
+    pauseAudio();
+    if (recievedAudioUrl) {
+      audioRef.current = new Audio(recievedAudioUrl);
+    }
+    if (isPlay) {
+      playAudio();
+    }
+  }, [recievedAudioUrl]);
 
   return (
     <>

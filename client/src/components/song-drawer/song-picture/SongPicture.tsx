@@ -7,11 +7,11 @@ import Styles from "./songPicture.style.ts";
 const SongPicture: FC = () => {
   const { currentAlbum } = useGlobalDrawer();
 
-  const albumImg = useAlbumImg(currentAlbum.uuid!).data!;
+  const { data: albumImg = null } = useAlbumImg(currentAlbum!.uuid!);
 
   return (
     <Box sx={Styles.imgContainer}>
-      <Box sx={Styles.songImg} component="img" src={albumImg} />
+      <Box sx={Styles.songImg} component="img" src={albumImg!} />
     </Box>
   );
 };

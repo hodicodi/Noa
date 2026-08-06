@@ -23,10 +23,10 @@ const SongInPlaylist: FC<SongInPlaylistProps> = ({ song, album }) => {
   return (
     <Box sx={style.box} onClick={songInPlaylistClick}>
       <Typography sx={style.playlistName} variant="h6" component="div">
-        {song.name}
+        {song?.name}
       </Typography>
       <Typography sx={style.playlistName} variant="body2" component="div">
-        {album.artist.name}
+        {album?.artist?.name}
       </Typography>
     </Box>
   );

@@ -27,10 +27,10 @@ const SongPlaying: FC<DrawerInfoProps> = ({ isPlay, toggleDrawer, handleIconClic
                     <CardContent sx={Styles.cardContent}>
                       <Box>
                         <Typography sx={Styles.playlistName} variant="body2" component="div">
-                          {currentSong!.name}
+                          {currentSong?.name}
                         </Typography>
                         <Typography sx={Styles.artistName} variant="body2" component="div">
-                          {currentAlbum!.artist.name}
+                          {currentAlbum?.artist?.name}
                         </Typography>
                       </Box>
                       <IconButton

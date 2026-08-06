@@ -17,7 +17,7 @@ const LastPlaylistCard: FC<AlbumPreviewProps> = ({ album }) => {
 
   const suggestedPlaylistClick = () => {
     navigate(PLAYLIST_PATH, {
-      state: { album: album },
+      state: { album },
     });
   };
 
