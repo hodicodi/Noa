@@ -20,7 +20,7 @@ const PlaylistCard: FC<PlaylistProps> = ({ album }) => {
 
   return (
     <Card sx={style.card} onClick={suggestedPlaylistClick}>
-      <CardMedia component="img" image={useAlbumImg(album.uuid!).data!} />
+      <CardMedia component="img" image={albumImg!} />
       <Typography sx={style.playlistName} variant="body2">
         {album.name}
       </Typography>

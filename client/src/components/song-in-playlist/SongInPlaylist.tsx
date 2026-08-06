@@ -16,22 +16,20 @@ const SongInPlaylist: FC<SongInPlaylistProps> = ({ song, album }) => {
 
   const songInPlaylistClick = () => {
     setCurrentSong(song);
-    setCurrentAlbum(album)
+    setCurrentAlbum(album);
     setPlay(true);
   };
 
-  {
-    return (
-      <Box sx={style.box} onClick={songInPlaylistClick}>
-        <Typography sx={style.playlistName} variant="h6" component="div">
-          {song.name}
-        </Typography>
-        <Typography sx={style.playlistName} variant="body2" component="div">
-          {album.artist.name}
-        </Typography>
-      </Box>
-    );
-  }
+  return (
+    <Box sx={style.box} onClick={songInPlaylistClick}>
+      <Typography sx={style.playlistName} variant="h6" component="div">
+        {song.name}
+      </Typography>
+      <Typography sx={style.playlistName} variant="body2" component="div">
+        {album.artist.name}
+      </Typography>
+    </Box>
+  );
 };
 
 export default SongInPlaylist;
