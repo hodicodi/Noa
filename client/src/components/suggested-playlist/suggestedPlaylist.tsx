@@ -1,21 +1,16 @@
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Album } from "@shared/src/types/album.types.ts";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAlbumImg } from "../../hooks/useAlbumImg.ts";
 import { PLAYLIST_PATH } from "../../routes/path.constants.ts";
 import style from "./suggestedPlaylist.style.ts";
+import { PlaylistProps } from "../../pages/home-page/playlist-page/playlistPage.types.ts";
 
-export type AlbumOverviewProps = {
-  album: Album;
-};
-
-const PlaylistCard: FC<AlbumOverviewProps> = ({ album }) => {
+const PlaylistCard: FC<PlaylistProps> = ({ album }) => {
   const navigate = useNavigate();
-  const {data: albumImg = null} = useAlbumImg(album.uuid!);
+  const { data: albumImg = null } = useAlbumImg(album.uuid!);
 
   const suggestedPlaylistClick = () => {
     navigate(PLAYLIST_PATH, {
@@ -26,9 +21,9 @@ const PlaylistCard: FC<AlbumOverviewProps> = ({ album }) => {
   return (
     <Card sx={style.card} onClick={suggestedPlaylistClick}>
       <CardMedia component="img" image={useAlbumImg(album.uuid!).data!} />
-        <Typography sx={style.playlistName} variant="body2">
-          {album.name}
-        </Typography>
+      <Typography sx={style.playlistName} variant="body2">
+        {album.name}
+      </Typography>
     </Card>
   );
 };

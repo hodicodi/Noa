@@ -13,9 +13,7 @@ const PlaylistPage: FC = () => {
   const navigate = useNavigate();
 
   const { album } = location.state ?? {};
-  const { data: albumImg = null } = useAlbumImg(album.uuid!);
-  const artistName = album.artist.name ?? "";
-  const playlistName = album.name;
+
 
   const handleBackClick = () => {
     navigate(HOME_PATH);
@@ -24,7 +22,7 @@ const PlaylistPage: FC = () => {
     <Box sx={Styles.playlistPage}>
       <ArrowBackIcon sx={Styles.backIcon} onClick={handleBackClick} />
       <Box sx={Styles.playlistPicture}>
-        <PlaylistPicture name={playlistName} avaterPicture={albumImg!} artistName={artistName} />
+        <PlaylistPicture album={album} />
       </Box>
       <SongsInPlaylist album={album} />
     </Box>
