@@ -44,10 +44,7 @@ export type AddSongToPersonalPlaylist = {
 };
 
 export type SongOverviewProps = {
-  uuid: string;
-  name: string;
-  artistName: string;
-  avaterPicture?: string
+  song: Song
 };
 
 export type SaveSong = {

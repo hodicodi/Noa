@@ -17,7 +17,7 @@ const cardMedia: SxProps = {
 };
 
 const cardContent: SxProps = {
-  backgroundColor: "#47025c",
+  backgroundColor: "rgba(94, 94, 94, 0.5)",
   height: 40,
   display: "flex",
   flexDirection: "column",

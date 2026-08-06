@@ -11,11 +11,20 @@ import TableHeader from "../../../components/table-header/TableHeader.tsx";
 import { useSongFilterQuery } from "../../../hooks/useSongFilterQuery.ts";
 import { NEW_SONG_DEFAULT_VALUES, COLUMN_NAMES } from "./handleSongsPage.consts.ts";
 import Styles from "./handleSongsPage.styles.ts";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useNavigate } from "react-router-dom";
+import { ADMINISTOR_PATH } from "../../../routes/path.constants.ts";
+
 
 const HandleSongsPage: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const { data: filteredSongs = [] } = useSongFilterQuery(searchQuery);
   const [currentSongs, setCurrentSongs] = useState(filteredSongs);
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    navigate(ADMINISTOR_PATH);
+  };
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
@@ -37,6 +46,7 @@ const HandleSongsPage: FC = () => {
   return (
     <>
       <NavBar />
+      <ArrowBackIcon sx={Styles.backIcon} onClick={handleBackClick} />
       <Box sx={Styles.handleUsersPage}>
         <Typography variant="h3" sx={Styles.title}>
           Songs

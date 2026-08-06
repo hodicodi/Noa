@@ -11,11 +11,19 @@ import TableHeader from "../../../components/table-header/TableHeader.tsx";
 import { useUserFilterQuery } from "../../../hooks/useUserFilterQuery.ts";
 import { NEW_USER_DEFULT_VALUES, COLUMN_NAMES } from "./handleUserPage.consts.ts";
 import Styles from "./handleUsersPage.styles.ts";
+import { useNavigate } from "react-router-dom";
+import { ADMINISTOR_PATH } from "../../../routes/path.constants.ts";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const HandleUsersPage: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const { data: filteredUsers = [] } = useUserFilterQuery(searchQuery);
   const [currentUsers, setCurrentUsers] = useState(filteredUsers);
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    navigate(ADMINISTOR_PATH);
+  };
 
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -23,8 +31,8 @@ const HandleUsersPage: FC = () => {
   };
 
   const setExistingUser = () => {
-    setCurrentUsers(currentUsers!.filter(user => user.uuid));
-  }
+    setCurrentUsers(currentUsers!.filter((user) => user.uuid));
+  };
 
   const handleAddRow = () => {
     setExistingUser();
@@ -38,6 +46,7 @@ const HandleUsersPage: FC = () => {
   return (
     <>
       <NavBar />
+      <ArrowBackIcon sx={Styles.backIcon} onClick={handleBackClick} />
       <Box sx={Styles.handleUsersPage}>
         <Typography variant="h3" sx={Styles.title}>
           Users
@@ -51,7 +60,14 @@ const HandleUsersPage: FC = () => {
               <TableHeader handleAddRow={handleAddRow} columnNames={COLUMN_NAMES}/>
               <TableBody>
                 {currentUsers?.map((user) => (
-                  <HandleUserRow key={user.uuid} user={user} edit={!user?.uuid} setCurrentUsers={setCurrentUsers} currentUsers={currentUsers} setExistingUser={setExistingUser}/>
+                  <HandleUserRow
+                    key={user.uuid}
+                    user={user}
+                    edit={!user?.uuid}
+                    setCurrentUsers={setCurrentUsers}
+                    currentUsers={currentUsers}
+                    setExistingUser={setExistingUser}
+                  />
                 ))}
               </TableBody>
             </Table>

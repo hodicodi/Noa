@@ -1,4 +1,3 @@
-import { playlistInfo } from "@shared/hardCodedInfo.ts";
 import { FC, useEffect, useRef, useState } from "react";
 import { useGlobalDrawer } from "../song-drawer/DrawerContext.tsx";
 import { SongDrawer } from "../song-drawer/SongDrawer.tsx";
@@ -12,21 +11,14 @@ export type DrawerInfoProps = {
 };
 
 const DrawerAndSongPlayer: FC = () => {
-  const { recievedAudioUrl } = useGlobalDrawer();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [isPlay, setIsPlay] = useState(false);
+  const { recievedAudioUrl, isPlay, setPlay } = useGlobalDrawer();
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  useEffect(() => {
-    if (recievedAudioUrl) {
-      audioRef.current = new Audio(recievedAudioUrl);
-    }
-  }, [recievedAudioUrl]);
-
-  const playAudio = async () => {
+  const playAudio = () => {
     if (audioRef.current) {
-       audioRef.current.play();
+      audioRef.current.play();
     }
   };
 
@@ -41,25 +33,28 @@ const DrawerAndSongPlayer: FC = () => {
   };
 
   const handleIconClick = (): void => {
-    setIsPlay((prev) => !prev);
+    setPlay(!isPlay);
     if (!isPlay) {
       playAudio();
-      return
-    } 
-      pauseAudio();
-
+      return;
+    }
+    pauseAudio();
   };
+
+  useEffect(() => {
+    pauseAudio();
+    if (recievedAudioUrl) {
+      audioRef.current = new Audio(recievedAudioUrl);
+    }
+    if (isPlay) {
+      playAudio();
+    }
+  }, [recievedAudioUrl]);
 
   return (
     <>
       <SongPlaying isDrawerOpen={isDrawerOpen} isPlay={isPlay} toggleDrawer={toggleDrawer} handleIconClick={handleIconClick} />
-      <SongDrawer
-        imageUrl={playlistInfo[0]!.avaterPicture}
-        isDrawerOpen={isDrawerOpen}
-        isPlay={isPlay}
-        toggleDrawer={toggleDrawer}
-        handleIconClick={handleIconClick}
-      />
+      <SongDrawer isDrawerOpen={isDrawerOpen} isPlay={isPlay} toggleDrawer={toggleDrawer} handleIconClick={handleIconClick} />
     </>
   );
 };

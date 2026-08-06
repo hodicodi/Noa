@@ -1,12 +1,11 @@
 import { SxProps } from "@mui/material";
 
 const card: SxProps = {
-  maxWidth: 345,
+  maxWidth: 30,
   bgcolor: "#000000",
 };
 
 const box: SxProps = {
-  flexGrow: 1,
   bgcolor: "#000000",
   width: "100%",
   height: 60,

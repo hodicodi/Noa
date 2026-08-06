@@ -6,7 +6,7 @@ const dialogModal: SxProps = {
 };
 
 const dialogContent: SxProps = {
-  bgcolor: "#47025c",
+  bgcolor: "rgba(94, 94, 94, 0.5)",
   color: "#ffffff",
 };
 

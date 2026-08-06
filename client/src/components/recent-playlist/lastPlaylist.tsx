@@ -16,7 +16,9 @@ const LastPlaylistCard: FC<AlbumPreviewProps> = ({ album }) => {
   const { data: albumImg = null } = useAlbumImg(album.uuid!);
 
   const suggestedPlaylistClick = () => {
-    navigate(PLAYLIST_PATH);
+    navigate(PLAYLIST_PATH, {
+      state: { album },
+    });
   };
 
   {

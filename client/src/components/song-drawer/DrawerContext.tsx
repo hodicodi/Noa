@@ -1,11 +1,15 @@
-import { songsInfo } from "@shared/hardCodedInfo.ts";
-import { Song, SongOverviewProps } from "@shared/src/types/song.types.ts";
+import { Album } from "@shared/src/types/album.types.ts";
+import { Song } from "@shared/src/types/song.types.ts";
 import { createContext, FC, ReactNode, useContext, useEffect, useState } from "react";
 import { useRecord } from "../../hooks/useRecord.ts";
 
 type DrawerContextType = {
-  currentSong: SongOverviewProps;
-  setCurrentSong: (currentSong: SongOverviewProps) => void;
+  currentSong: Song | undefined;
+  setCurrentSong: (currentSong: Song) => void;
+  currentAlbum: Album | undefined;
+  setCurrentAlbum: (currentAlbum: Album) => void;
+  isPlay: boolean;
+  setPlay: (isPlay: boolean) => void;
   recievedAudioUrl: string | null;
   audioUrl: string | null;
 };
@@ -13,13 +17,11 @@ type DrawerContextType = {
 const DrawerContext = createContext<DrawerContextType | undefined>(undefined);
 
 export const DrawerProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [currentSong, setCurrentSong] = useState<SongOverviewProps>({
-    uuid: songsInfo[0]?.uuid!,
-    name: songsInfo[0]?.name!,
-    artistName: songsInfo[0]?.artistName!,
-  });
+  const [currentSong, setCurrentSong] = useState<Song>();
+  const [currentAlbum, setCurrentAlbum] = useState<Album>();
+  const [isPlay, setPlay] = useState<boolean>(false);
 
-  const { data: recievedAudioUrl = null } = useRecord(currentSong.uuid!);
+  const { data: recievedAudioUrl = null } = useRecord(currentSong?.uuid ?? "");
 
   const [audioUrl, setAudioUrl] = useState<string | null>(recievedAudioUrl!);
 
@@ -29,7 +31,11 @@ export const DrawerProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
   }, [recievedAudioUrl]);
 
-  return <DrawerContext.Provider value={{ recievedAudioUrl, currentSong, setCurrentSong, audioUrl }}>{children}</DrawerContext.Provider>;
+  return (
+    <DrawerContext.Provider value={{ recievedAudioUrl, currentSong, setCurrentSong, audioUrl, currentAlbum, setCurrentAlbum, isPlay, setPlay }}>
+      {children}
+    </DrawerContext.Provider>
+  );
 };
 
 export const useGlobalDrawer = () => {

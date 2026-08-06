@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { FC } from "react";
 import { useAllAlbums } from "../../hooks/useAllAlbums.ts";
-import LastPlaylistCard from "./LastPlaylist.tsx";
+import LastPlaylistCard from "./lastPlaylist.tsx";
 
 const LastPlaylists: FC = () => {
   const { data: albums = [], isLoading } = useAllAlbums();
@@ -17,8 +17,8 @@ const LastPlaylists: FC = () => {
         Recent listenings
       </Typography>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        {albums?.map((album) => (
-          <Grid size={6} key={album.name}>
+        {albums?.slice(0, 6).map((album) => (
+          <Grid size={6} key={album.uuid}>
             <LastPlaylistCard album={album} />
           </Grid>
         ))}
